@@ -1,11 +1,19 @@
 package com.mycompany.streamfox;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 public class PrimaryController {
 
-    public VBox PrimaryTopPane;
+    @FXML
+    public VBox displayVbox;
+    @FXML
+    public SplitPane PrimaryTopPane;
+    @FXML
+    public AnchorPane menuAnchorPane;
+    @FXML
+    public AnchorPane displayAnchorPane;
 
     /**
      * exits the application

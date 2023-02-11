@@ -47,6 +47,14 @@ public class App extends Application {
         stage.setFullScreen(!stage.isFullScreen());
     }
 
+    public static double getWidth(){
+        return stage.getWidth();
+    }
+
+    public static double getHeight(){
+        return stage.getHeight();
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

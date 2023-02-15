@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="330.0" styleClass="backgroundColor" stylesheets="@cssAuth.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.SecondaryController">
+   <children>
+      <BorderPane layoutY="-1.0" prefHeight="400.0" prefWidth="330.0" stylesheets="@cssAuth.css">
+         <bottom>
+            <HBox alignment="TOP_RIGHT" prefHeight="116.0" prefWidth="330.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="accQuestionLabel" text="Don't have an account? " />
+                  <Label fx:id="signLabel" onMouseClicked="#switchTextLabel" style="-fx-text-fill: yellow;" stylesheets="@cssAuth.css" text="Sign Up" />
+               </children>
+               <padding>
+                  <Insets left="35.0" right="35.0" top="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <center>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="300.0" prefWidth="190.0" spacing="15.0" stylesheets="@cssAuth.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label stylesheets="@cssAuth.css" text="Email">
+                     <font>
+                        <Font name="Lato Regular" size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="emailTxtField" />
+                  <Label text="Password">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="passTxtField">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></TextField>
+                  <Button fx:id="signInBtn" mnemonicParsing="false" prefHeight="25.6" prefWidth="260.0" stylesheets="@cssAuth.css" text="Sign In" />
+               </children>
+               <padding>
+                  <Insets left="35.0" right="35.0" />
+               </padding>
+            </VBox>
+         </center>
+         <top>
+            <ImageView fx:id="exitImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#exitCommand" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
+               <image>
+                  <Image url="@x-icon-white-25.jpg" />
+               </image>
+               <BorderPane.margin>
+                  <Insets right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

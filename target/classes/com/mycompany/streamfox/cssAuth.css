@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap%27");
+
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-background-radius: 0;
+    -fx-background-color: #7241f0;
+    -fx-font-size: 8pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 260;
+    -fx-min-height: 35;
+    -fx-font-family: "Lato", sans-serif;
+}
+
+.text-field{
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 260;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #4A3D66;
+    -fx-text-fill: white;
+    -fx-font-family: "Lato", sans-serif;
+    -fx-font-weight: 300;
+    
+}
+
+.label {
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-font-family: "Lato", sans-serif;
+}
+
+.backgroundColor{
+    -fx-background-color: linear-gradient(to right top, #2a1945, #523b75);
+    
+}
+
+.vbox{
+    -fx-background-color: #342B59;
+}
+
+.button:pressed {
+    -fx-background-color:  #6e5c9c;
+}

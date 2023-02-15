@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
+import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -17,8 +19,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("auth"), 640, 480);
+        scene = new Scene(loadFXML("authentication"));
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("logo")));
         stage.show();
     }
 

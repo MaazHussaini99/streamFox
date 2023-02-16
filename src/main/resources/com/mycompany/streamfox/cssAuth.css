@@ -18,10 +18,23 @@
     -fx-min-height: 35;
     -fx-background-radius: 0;
     -fx-background-color: #4A3D66;
-    -fx-text-fill: white;
+    -fx-text-fill: #b7abc9;
     -fx-font-family: "Lato", sans-serif;
     -fx-font-weight: 300;
+    -fx-font-size:11;
     
+}
+
+.password-field{
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 260;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #4A3D66;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Lato", sans-serif;
+    -fx-font-weight: 300;
+    -fx-font-size:11;
 }
 
 .label {
@@ -31,9 +44,19 @@
 }
 
 .backgroundColor{
-    -fx-background-color: linear-gradient(to right top, #2a1945, #523b75);
+   
+    -fx-background-color: radial-gradient(center 50% 50%,radius 300px, #2a1945, #523b75);
     
 }
+
+.shmeep{
+    -fx-text-fill: yellow;
+}
+
+.shmeep:hover{
+    -fx-text-fill: red;
+}
+
 
 .vbox{
     -fx-background-color: #342B59;

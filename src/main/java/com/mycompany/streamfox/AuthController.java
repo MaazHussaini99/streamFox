@@ -19,28 +19,64 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class AuthController {
+    
+    @FXML
+    private Label accQuestionLabel;
 
     @FXML
-    private TextField emailField;
+    private TextField emailTxtField;
 
+    @FXML
+    private ImageView exitImage;
+
+    @FXML
+    private Button signInBtn;
+
+    @FXML
+    private Label signLabel;
+    
     @FXML
     private PasswordField passwordField;
 
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button signUpButton;
-
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    
+    @FXML
+    void exitCommand(MouseEvent event) {
+        System.exit(0);
+    }
 
+    @FXML
+    void switchTextLabel(MouseEvent event) {
+        if(signLabel.getText().contains("Up")){
+            signInBtn.setText("Sign Up");
+            signLabel.setText("Sign In");
+            accQuestionLabel.setText("Have an account? ");
+        }else{
+            signInBtn.setText("Sign In");
+            signLabel.setText("Sign Up");
+            accQuestionLabel.setText("Don't have an account? ");
+        }
+    }
+    
+    @FXML
+    void preformActionBtn(ActionEvent event) {
+        if(signInBtn.getText().contains("In")){
+            login(event);
+        }else{
+            signUp(event);
+        }
+    }
+    
     @FXML
     void login(ActionEvent event) {
-        String email = emailField.getText();
+        String email = emailTxtField.getText();
         String password = passwordField.getText();
 
         try {
@@ -81,7 +117,7 @@ public class AuthController {
 
     @FXML
     void signUp(ActionEvent event) {
-        String email = emailField.getText();
+        String email = emailTxtField.getText();
         String password = passwordField.getText();
         CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
         try {

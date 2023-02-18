@@ -29,6 +29,8 @@ public class PrimaryController {
      */
     @FXML
     private void fullscreen(){
+        //toggles fullscreen on and off
+        //TODO: make the interface more dynamic (hard)
         System.out.println("fullscreen");
         App.fullscreen();
     }

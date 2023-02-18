@@ -1,3 +1,6 @@
+/* For CSS with JavaFX, you can treat the FX:ID the same as you would an id for an html element */
+/* The class names for JavaFX elements are treated similarly to html classes */
+/* This element is the root of the scene, and is set to round the corners */
 #PrimaryTopPane{
     -fx-background-size: 1200 900;
     -fx-background-radius: 18 18 18 18;

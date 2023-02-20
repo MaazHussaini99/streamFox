@@ -48,14 +48,21 @@
             </VBox>
          </center>
          <top>
-            <ImageView fx:id="exitImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#exitCommand" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
-               <image>
-                  <Image url="@x-icon-white-25.jpg" />
-               </image>
+            <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="exitImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#exitCommand" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@x-icon-white-25.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <BorderPane.margin>
-                  <Insets right="5.0" top="5.0" />
+                  <Insets right="2.0" top="2.0" />
                </BorderPane.margin>
-            </ImageView>
+            </HBox>
          </top>
       </BorderPane>
    </children>

@@ -17,20 +17,28 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 
-public class AuthController {
+public class AuthController implements Initializable{
 
     @FXML
     private Label accQuestionLabel;
@@ -51,9 +59,18 @@ public class AuthController {
     private PasswordField passwordField;
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    
+    private DialogPane dialog;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+       passwordField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+    }
+    
     @FXML
     void exitCommand(MouseEvent event) {
+        
         System.exit(0);
     }
 
@@ -103,6 +120,7 @@ public class AuthController {
                     }
                     System.out.println(response.toString());
                     //Add primary screen functionality
+                    
                     App.setRoot("primary");
                 }
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
@@ -112,16 +130,26 @@ public class AuthController {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Sign Up Failed");
-                alert.setHeaderText("Error creating user");
-                alert.setContentText(e.getMessage());
-                alert.show();
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.setTitle("Sign In Failed");
+                alert.setHeaderText("Error in user login");
+                alert.setContentText("Please try again");
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Sign Up Failed");
-                alert.setHeaderText("Error creating user");
-                alert.setContentText(e.getMessage());
-                alert.show();
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.setTitle("Sign In Failed");
+                alert.setHeaderText("Error in user login");
+                alert.setContentText("Please try again");
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
             }
         }
     }
@@ -136,20 +164,33 @@ public class AuthController {
         } else {
             if (!matchEmail.find()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initStyle(StageStyle.UNDECORATED);
                 alert.setTitle("Email Invalid");
                 alert.setHeaderText("Make sure your email is correct!");
                 alert.setContentText("Should follow standard rules of email id");
-                alert.show();
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
+                
+                
                 return false;
             } else if (!matchPass.find() ){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initStyle(StageStyle.UNDECORATED);
                 alert.setTitle("Password Invalid");
-                alert.setHeaderText("Make sure you have following in the password!");
-                alert.setContentText("At least 8 characters long \n"
-                        + "At least 1 Uppercase \n"
-                        + "At least 1 special\n"
-                        + "At least 1 digit");
-                alert.show();
+                alert.setHeaderText("Make sure you have the following in the password!");
+                alert.setContentText("-At least 8 characters long \n"
+                        + "-At least 1 Uppercase \n"
+                        + "-At least 1 special\n"
+                        + "-At least 1 digit");
+                
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
                 return false;
             }
         }
@@ -163,13 +204,29 @@ public class AuthController {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
+                
                 //add primary screen functionality
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.setTitle("User Created");
+                alert.setHeaderText("User Created Successfully");
+                alert.setContentText("Your account has been created,\nyou can now sign in.");
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
             } catch (FirebaseAuthException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initStyle(StageStyle.UNDECORATED);
                 alert.setTitle("Sign Up Failed");
                 alert.setHeaderText("Error creating user");
                 alert.setContentText("Please try again");
-                alert.show();
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
                 ex.printStackTrace();
             }
         }

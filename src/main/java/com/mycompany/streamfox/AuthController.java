@@ -129,6 +129,7 @@ public class AuthController implements Initializable{
                 conn.disconnect();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                System.out.println("aaa");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initStyle(StageStyle.UNDECORATED);
                 alert.setTitle("Sign In Failed");
@@ -136,10 +137,11 @@ public class AuthController implements Initializable{
                 alert.setContentText("Please try again");
                 dialog = alert.getDialogPane();
                 dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-                
+              
                 
                 alert.showAndWait();
             } catch (IOException e) {
+                System.out.println("aaa");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initStyle(StageStyle.UNDECORATED);
                 alert.setTitle("Sign In Failed");

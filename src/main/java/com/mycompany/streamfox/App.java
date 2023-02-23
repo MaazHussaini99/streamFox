@@ -7,22 +7,52 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
+    
     private static Scene scene;
+    private static Stage stage;
+    
+    double xOffset = 0;
+    double yOffset = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("authentication"));
+        
+        int width = 330;
+        int height = 400;
+        App.stage = stage;
+        
+        scene = new Scene(loadFXML("authentication"), width, height);
         stage.initStyle(StageStyle.UNDECORATED);
+        
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        
+        //move around here
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        
         stage.setScene(scene);
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("logo")));
+        stage.setFullScreenExitHint("");
         
         stage.show();
     }
@@ -40,5 +70,18 @@ public class App extends Application {
         FirebaseStart.initializeFire();
         launch();
     }
+    
+     public static void fullscreen(){
+        stage.setFullScreen(!stage.isFullScreen());
+    }
+     
+    public static double getWidth(){
+        return stage.getWidth();
+    }
+
+    public static double getHeight(){
+        return stage.getHeight();
+    } 
+     
 
 }

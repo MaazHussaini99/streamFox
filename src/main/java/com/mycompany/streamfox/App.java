@@ -17,17 +17,20 @@ import javafx.stage.StageStyle;
  */
 public class App extends Application {
     
-    private static Scene scene;
-    private static Stage stage;
+     static Scene scene;
+     static Stage stage;
     
     double xOffset = 0;
     double yOffset = 0;
 
+    static int width = 330;
+    static int height = 400;
+    
     @Override
     public void start(Stage stage) throws IOException {
         
-        int width = 330;
-        int height = 400;
+        //int width = 330;
+        //int height = 400;
         App.stage = stage;
         
         scene = new Scene(loadFXML("authentication"), width, height);
@@ -83,5 +86,12 @@ public class App extends Application {
         return stage.getHeight();
     } 
      
+    public static void setWidth(int widthNew){
+        width = widthNew;
+    }
+
+    public static void setHeight(int heightNew){
+        height = heightNew;
+    } 
 
 }

@@ -8,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 import com.google.firebase.auth.UserRecord.CreateRequest;
+import static com.mycompany.streamfox.App.height;
+import static com.mycompany.streamfox.App.width;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +24,10 @@ import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
@@ -126,6 +131,11 @@ public class AuthController implements Initializable {
                     }
 
                     //Add primary screen functionality
+                    App.setWidth(640);
+                    App.setHeight(480);
+                    App.scene = new Scene(loadFXML("primary"), App.width, App.height);
+                    
+                    App.stage.setScene(App.scene);
                     
                     App.setRoot("primary");
                     
@@ -252,4 +262,10 @@ public class AuthController implements Initializable {
         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
     }
+    
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+    
 }

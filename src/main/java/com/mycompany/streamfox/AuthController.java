@@ -122,10 +122,13 @@ public class AuthController implements Initializable {
                     System.out.println(response.toString());
 
                     //initialize the user object
-                    UserRecord uid;
+                    UserRecord userRecord;
                     try {
-                        uid = firebaseAuth.getUserByEmail(email);
-                        System.out.println("Current user UID: " + uid.getUid());
+                        userRecord = firebaseAuth.getUserByEmail(email);
+                        User user = User.getInstance();
+                        user.setUserEmail(email);
+                        user.setUid(userRecord.getUid());
+                        //System.out.println(user);
                     } catch (FirebaseAuthException ex) {
                         ex.printStackTrace();
                     }
@@ -138,7 +141,7 @@ public class AuthController implements Initializable {
                     App.stage.setScene(App.scene);
                     
                     App.setRoot("primary");
-                    
+
                 }
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -152,7 +155,7 @@ public class AuthController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
                 loginIOExceptionAlert();
-            } 
+            }
         }
     }
 
@@ -203,16 +206,15 @@ public class AuthController implements Initializable {
     }
 
     void loginIOExceptionAlert() {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initStyle(StageStyle.UNDECORATED);
-                alert.setTitle("Sign In Failed");
-                alert.setHeaderText("Error in user login");
-                alert.setContentText("Please try again");
-                dialog = alert.getDialogPane();
-                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-                
-                
-                alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.setTitle("Sign In Failed");
+        alert.setHeaderText("Error in user login");
+        alert.setContentText("Please try again");
+        dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+
+        alert.showAndWait();
     }
 
     void emailMatchRegexAlert() {

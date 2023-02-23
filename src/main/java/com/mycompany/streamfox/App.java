@@ -23,6 +23,7 @@ public class App extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("logo")));
+        
         stage.show();
     }
 

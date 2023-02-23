@@ -122,5 +122,5 @@
 .dialog-pane .button:hover{
   -fx-background-color:#6e5c9c;
   -fx-text-fill:white;
-  -fx-font-weight:bold; 
+  -fx-font-weight:bold;
  }

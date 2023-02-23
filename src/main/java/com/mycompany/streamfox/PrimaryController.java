@@ -1,5 +1,4 @@
 package com.mycompany.streamfox;
-package com.mycompany.streamfox;
 
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.fxml.FXML;
@@ -19,6 +18,11 @@ public class PrimaryController {
     public AnchorPane menuAnchorPane;
     @FXML
     public AnchorPane displayAnchorPane;
+    
+    public PrimaryController(){
+        User user = User.getInstance();
+        System.out.println(user);
+    }
 
     /**
      * exits the application

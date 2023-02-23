@@ -136,12 +136,13 @@ public class AuthController implements Initializable {
                 conn.disconnect();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+
                 loginMalformedURLAlert();
 
             } catch (IOException e) {
                 e.printStackTrace();
                 loginIOExceptionAlert();
-            }
+            } 
         }
     }
 
@@ -192,14 +193,16 @@ public class AuthController implements Initializable {
     }
 
     void loginIOExceptionAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initStyle(StageStyle.UNDECORATED);
-        alert.setTitle("Sign In Failed");
-        alert.setHeaderText("Error in user login");
-        alert.setContentText("Please try again");
-        dialog = alert.getDialogPane();
-        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-        alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.setTitle("Sign In Failed");
+                alert.setHeaderText("Error in user login");
+                alert.setContentText("Please try again");
+                dialog = alert.getDialogPane();
+                dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                
+                
+                alert.showAndWait();
     }
 
     void emailMatchRegexAlert() {

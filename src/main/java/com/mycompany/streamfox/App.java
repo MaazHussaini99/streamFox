@@ -7,18 +7,56 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
+    
+     static Scene scene;
+     static Stage stage;
+    
+    double xOffset = 0;
+    double yOffset = 0;
 
-    private static Scene scene;
-
+    static int width = 330;
+    static int height = 400;
+    
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        
+        //int width = 330;
+        //int height = 400;
+        App.stage = stage;
+        
+        scene = new Scene(loadFXML("authentication"), width, height);
+        stage.initStyle(StageStyle.UNDECORATED);
+        
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        
+        //move around here
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        
         stage.setScene(scene);
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("logo")));
+        stage.setFullScreenExitHint("");
+        
         stage.show();
     }
 
@@ -31,8 +69,30 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        FirebaseStart.initializeFire();
+        
         launch();
     }
+    
+     public static void fullscreen(){
+        stage.setFullScreen(!stage.isFullScreen());
+    }
+     
+    public static double getWidth(){
+        return stage.getWidth();
+    }
+
+    public static double getHeight(){
+        return stage.getHeight();
+    } 
+     
+    public static void setWidth(int widthNew){
+        width = widthNew;
+    }
+
+    public static void setHeight(int heightNew){
+        height = heightNew;
+    } 
 
 }

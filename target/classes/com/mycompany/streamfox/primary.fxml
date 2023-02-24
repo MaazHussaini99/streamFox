@@ -29,7 +29,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Home" />
+                              <Button minWidth="144.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="144.0" text="Home" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="35.0">

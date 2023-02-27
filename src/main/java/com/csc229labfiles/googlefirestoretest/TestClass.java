@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.csc229labfiles.googlefirestoretest;
+
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+
+
+public class TestClass {
+
+    
+    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
+
+
+        StreamFoxFB sffb=new StreamFoxFB();
+        sffb.getData();
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+      //  System.out.println("Enter the name of the collection you want to add data to ");
+/*
+        String colName= myObj.nextLine();  // Read user input
+        System.out.println("Enter the name of the document ou want to add data to ");
+
+        String docName= myObj.nextLine();  // Read user input
+        System.out.println("Enter the name of the person want to add data to ");
+
+        String pName= myObj.nextLine();  // Read user input
+        System.out.println("Enter the age of the person you want to add data to ");
+
+        String pAge= myObj.nextLine();  // Read user input
+        System.out.println("Enter the location of the person you want to add data to ");
+
+        String plocation= myObj.nextLine();  // Read user input
+
+        sffb.addData(colName,docName,pName,pAge,plocation);
+*/
+        /*
+        System.out.println("Enter the name of the collection you want to delete data from ");
+        String colName2= myObj.nextLine();  // Read user input
+
+
+        String docName2= myObj.nextLine();  // Read user input
+        System.out.println("Enter the name of the document want to delete ");
+
+        sffb.deleteData(colName2,docName2);
+
+         */
+
+        System.out.println("Enter the name of the collection u want to update ");
+        String colName3= myObj.nextLine();  // Read user input
+
+        System.out.println("Enter the name of the document want to  update ");
+        String docName3= myObj.nextLine();  // Read user input
+
+        System.out.println("Enter the name of the record want to update to ");
+        String updateField= myObj.nextLine();  // Read user input
+
+        System.out.println("Enter the name of the updatedData ");
+        String data= myObj.nextLine();  // Read user input
+
+
+        sffb.updateData(colName3,docName3,updateField,data);
+
+
+
+        
+    }
+
+
+
+}

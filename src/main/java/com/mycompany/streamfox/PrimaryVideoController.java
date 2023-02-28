@@ -81,12 +81,13 @@ public class PrimaryVideoController implements Initializable{
         });
 
         we = webVideoView.getEngine();
+        
         loadPage();
         
     }
         
     public void loadPage(){
-        we.load("http://www.youtube.com/embed/utUPth77L_o?autoplay=1");
+        we.load("https://www.youtube.com/embed/_ZKTB_E52t8");
     }
     
     @FXML

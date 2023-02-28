@@ -6,7 +6,6 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -20,10 +19,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
-public class PrimaryController implements Initializable{
-    
+public class PrimaryVideoController implements Initializable{
     private FirebaseAuth firebaseAuth;
       
     @FXML
@@ -44,20 +44,25 @@ public class PrimaryController implements Initializable{
     @FXML
     private ImageView menuOpen;
     
+    @FXML
+    private WebView webVideoView;
+    
+    private WebEngine we;
+    
     private int onOff = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         frontPane.setVisible(false);
-        FadeTransition ft = new FadeTransition(Duration.seconds(0.5),frontPane);
+        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
         ft.setToValue(0);
         ft.play();
-        
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1),frontPane);
+
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
         tt.setByX(-200);
         tt.play();
-        
+
         topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -74,6 +79,14 @@ public class PrimaryController implements Initializable{
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
+
+        we = webVideoView.getEngine();
+        loadPage();
+        
+    }
+        
+    public void loadPage(){
+        we.load("http://www.youtube.com/embed/utUPth77L_o?autoplay=1");
     }
     
     @FXML
@@ -108,9 +121,7 @@ public class PrimaryController implements Initializable{
         
     }
     
-   
-    
-    public PrimaryController(){
+    public PrimaryVideoController(){
         User user = User.getInstance();
         System.out.println(user);
     }
@@ -132,11 +143,6 @@ public class PrimaryController implements Initializable{
     private void exit(){
         System.out.println("exit");
         System.exit(0);
-    }
-    
-    @FXML
-    void playVideoMode(MouseEvent event) throws IOException {
-        App.setRoot("primary_video");
     }
     
     /**

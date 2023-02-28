@@ -9,7 +9,10 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import static com.mycompany.streamfox.App.height;
+import static com.mycompany.streamfox.App.scene;
 import static com.mycompany.streamfox.App.width;
+import static com.mycompany.streamfox.App.xOffset;
+import static com.mycompany.streamfox.App.yOffset;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,6 +67,7 @@ public class AuthController implements Initializable {
 
     private DialogPane dialog;
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
@@ -134,13 +139,15 @@ public class AuthController implements Initializable {
                     }
 
                     //Add primary screen functionality
-                    App.setWidth(640);
-                    App.setHeight(480);
+                    App.setWidth(800);
+                    App.setHeight(500);
                     App.scene = new Scene(loadFXML("primary"), App.width, App.height);
+                    
+                    
                     
                     App.stage.setScene(App.scene);
                     
-                    App.setRoot("primary");
+                    //App.setRoot("primary");
 
                 }
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {

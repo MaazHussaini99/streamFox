@@ -15,15 +15,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
-public class PrimaryController implements Initializable{
-    
+public class PrimaryVideoController implements Initializable{
     private FirebaseAuth firebaseAuth;
       
     @FXML
@@ -44,20 +46,34 @@ public class PrimaryController implements Initializable{
     @FXML
     private ImageView menuOpen;
     
+    @FXML
+    private WebView webVideoView;
+    
+    @FXML
+    private ImageView channelPic;
+
+    @FXML
+    private Label channelTxt;
+    
+    @FXML
+    private Label titleTxt;
+    
+    private WebEngine we;
+    
     private int onOff = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         frontPane.setVisible(false);
-        FadeTransition ft = new FadeTransition(Duration.seconds(0.5),frontPane);
+        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
         ft.setToValue(0);
         ft.play();
-        
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1),frontPane);
+
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
         tt.setByX(-200);
         tt.play();
-        
+
         topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -74,6 +90,15 @@ public class PrimaryController implements Initializable{
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
+
+        we = webVideoView.getEngine();
+        
+        loadPage();
+        
+    }
+        
+    public void loadPage(){
+        we.load("https://www.youtube.com/embed/_ZKTB_E52t8");
     }
     
     @FXML
@@ -108,7 +133,7 @@ public class PrimaryController implements Initializable{
         
     }
     
-    public PrimaryController(){
+    public PrimaryVideoController(){
         User user = User.getInstance();
         System.out.println(user);
     }
@@ -116,6 +141,16 @@ public class PrimaryController implements Initializable{
     @FXML
     void closeCommand(MouseEvent event) {
         System.exit(0);
+    }
+    
+    @FXML
+    void switchToHome(ActionEvent event) throws IOException {
+        App.setRoot("primary_Home");
+    }
+    
+    @FXML
+    void switchToYT(ActionEvent event) throws IOException {
+        App.setRoot("primary");
     }
 
     @FXML
@@ -132,26 +167,27 @@ public class PrimaryController implements Initializable{
         System.exit(0);
     }
     
-    @FXML
-    void playVideoMode(MouseEvent event) throws IOException {
-        App.setRoot("primary_video");
-    }
-    
-    @FXML
-    void switchToHome(ActionEvent event) throws IOException {
-        App.setRoot("primary_Home");
-    }
-    
     /**
      * switches the application to and from fullscreen mode
      */
     @FXML
     private void fullscreen(){
         firebaseAuth  = FirebaseAuth.getInstance();
-        //toggles fullscreen on and off
-        //TODO: make the interface more dynamic (hard)
-        System.out.println("fullscreen");
         App.fullscreen();
+        if(webVideoView.getPrefWidth() == 512)
+        {
+            webVideoView.setPrefWidth(1024);
+            webVideoView.setPrefHeight(576);
+        }else{
+            webVideoView.setPrefWidth(512);
+            webVideoView.setPrefHeight(288);
+        }
+        
+                   
+        //TODO: make the interface more dynamic (hard)
+        
+       
+        
     }
    
     

@@ -20,8 +20,8 @@ public class App extends Application {
      static Scene scene;
      static Stage stage;
     
-    double xOffset = 0;
-    double yOffset = 0;
+    static double xOffset = 0;
+    static double yOffset = 0;
 
     static int width = 330;
     static int height = 400;

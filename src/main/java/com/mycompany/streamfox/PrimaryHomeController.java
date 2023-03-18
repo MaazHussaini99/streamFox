@@ -22,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class PrimaryController implements Initializable{
+public class PrimaryHomeController implements Initializable{
     
     private FirebaseAuth firebaseAuth;
       
@@ -106,9 +106,9 @@ public class PrimaryController implements Initializable{
             onOff=0;
         }
         
-    }
+    }   
     
-    public PrimaryController(){
+    public PrimaryHomeController(){
         User user = User.getInstance();
         System.out.println(user);
     }
@@ -137,9 +137,9 @@ public class PrimaryController implements Initializable{
         App.setRoot("primary_video");
     }
     
-    @FXML
-    void switchToHome(ActionEvent event) throws IOException {
-        App.setRoot("primary_Home");
+       @FXML
+    void switchToYT(ActionEvent event) throws IOException {
+        App.setRoot("primary");
     }
     
     /**

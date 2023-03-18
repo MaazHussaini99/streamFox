@@ -141,7 +141,7 @@ public class AuthController implements Initializable {
                     //Add primary screen functionality
                     App.setWidth(800);
                     App.setHeight(500);
-                    App.scene = new Scene(loadFXML("primary"), App.width, App.height);
+                    App.scene = new Scene(loadFXML("primary_Home"), App.width, App.height);
                     
                     
                     

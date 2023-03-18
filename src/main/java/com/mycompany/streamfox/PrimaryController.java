@@ -108,8 +108,6 @@ public class PrimaryController implements Initializable{
         
     }
     
-   
-    
     public PrimaryController(){
         User user = User.getInstance();
         System.out.println(user);
@@ -137,6 +135,11 @@ public class PrimaryController implements Initializable{
     @FXML
     void playVideoMode(MouseEvent event) throws IOException {
         App.setRoot("primary_video");
+    }
+    
+    @FXML
+    void switchToHome(ActionEvent event) throws IOException {
+        App.setRoot("primary_Home");
     }
     
     /**

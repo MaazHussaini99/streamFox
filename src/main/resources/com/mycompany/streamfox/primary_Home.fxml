@@ -8,8 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryHomeController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -18,7 +19,7 @@
                   <Image url="@x-icon-white-25.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="715.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
+            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="716.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
                <image>
                   <Image url="@minimize.png" />
                </image>
@@ -28,7 +29,7 @@
                   <Image url="@burger.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="746.0" layoutY="3.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="29.0">
+            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="747.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="28.0">
                <image>
                   <Image url="@fullscreen.png" />
                </image>
@@ -78,7 +79,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                            <content>
                               <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
                                  <children>
@@ -136,122 +137,11 @@
                               </AnchorPane>
                            </content>
                         </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="180.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <AnchorPane prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="211.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="422.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="633.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="844.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="360.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <AnchorPane prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="211.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="422.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="633.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="844.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
+                        <Label layoutX="42.0" layoutY="14.0" style="-fx-text-fill: red; -fx-font-size: 15;" text="YouTube - Recommended">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>
@@ -261,7 +151,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToHome" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -270,9 +160,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToYT" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToYT" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@youtube.png" />
                            </image>
@@ -314,8 +204,8 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="YouTube">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Home" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
                      <VBox.margin>
                         <Insets top="6.0" />
                      </VBox.margin>

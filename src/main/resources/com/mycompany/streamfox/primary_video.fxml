@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.web.WebView?>
@@ -80,90 +81,39 @@
                <content>
                   <AnchorPane prefHeight="1024.0" prefWidth="735.0" style="-fx-background-color: #000;" stylesheets="@primarystylesheet.css">
                      <children>
-                        <WebView fx:id="webVideoView" layoutX="47.0" layoutY="14.0" prefHeight="288.0" prefWidth="512.0" />
-                        <Label fx:id="titleTxt" layoutX="46.0" layoutY="308.0" prefHeight="19.0" prefWidth="518.0" style="-fx-font-size: 16;" styleClass="titleText" text="Title of Video Here" AnchorPane.bottomAnchor="210.8" AnchorPane.leftAnchor="46.0" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="534.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="176.20000000000005">
-                           <image>
-                              <Image url="@thumb.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="498.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="206.0">
-                           <image>
-                              <Image url="@thumb.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="channelPic" fitHeight="25.0" fitWidth="25.0" layoutX="45.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="45.0">
-                           <image>
-                              <Image url="@user.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="channelTxt" layoutX="77.0" layoutY="337.0" styleClass="titleText" text="Channel Name Here" AnchorPane.bottomAnchor="185.0" AnchorPane.leftAnchor="77.0" />
-                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutX="47.0" layoutY="14.0" spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
                            <children>
-                              <Label style="-fx-text-fill: red;" text="Recommended" />
-                              <Line endX="60.0" startX="-100.0" stroke="RED" />
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
+                              <WebView fx:id="webVideoView" prefHeight="288.0" prefWidth="512.0" />
+                              <Label fx:id="titleTxt" prefHeight="19.0" prefWidth="518.0" style="-fx-font-size: 16;" styleClass="titleText" text="Title of Video Here" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
                                  <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="channelPic" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@yt_thumbnail.png" />
+                                          <Image url="@user.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
-                                 <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label text="Channel Name Here">
+                                       <HBox.margin>
+                                          <Insets right="300.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@yt_thumbnail.png" />
+                                          <Image url="@thumb.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
-                                 <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                        <image>
-                                          <Image url="@yt_thumbnail.png" />
+                                          <Image url="@thumb.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
                                  </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
-                                 <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@yt_thumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
-                                 <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@yt_thumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="91.0" prefWidth="121.0">
-                                 <children>
-                                    <ImageView fitHeight="77.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@yt_thumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutY="80.0" text="Title of Video Here!" />
-                                 </children>
-                              </AnchorPane>
+                              </HBox>
                            </children>
                         </VBox>
+                        <Label layoutX="606.0" layoutY="6.0" style="-fx-text-fill: red;" text="Recommended" AnchorPane.rightAnchor="34.00000000000004" AnchorPane.topAnchor="0.0" />
+                        <Line endX="60.0" layoutX="665.0" layoutY="15.0" startX="-59.0" stroke="RED" AnchorPane.rightAnchor="9.700000000000045" AnchorPane.topAnchor="14.5" />
+                        <VBox fx:id="recommendedTab" prefHeight="200.0" prefWidth="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
                      </children>
                   </AnchorPane>
                </content>

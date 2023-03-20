@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -56,20 +57,32 @@ public class PrimaryVideoController implements Initializable{
     private Label channelTxt;
     
     @FXML
+    private VBox recommendedTab;
+    
+    @FXML
     private Label titleTxt;
     
     private WebEngine we;
     
     private int onOff = 0;
     
+    VBox[] testvb;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        String[] sthumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
+        "https://img.youtube.com/vi/nWji9F-WP6k/sddefault.jpg",
+        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
+        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
+        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
+        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
+        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
         ft.setToValue(0);
         ft.play();
-
+        
         TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
         tt.setByX(-200);
         tt.play();
@@ -94,6 +107,30 @@ public class PrimaryVideoController implements Initializable{
         we = webVideoView.getEngine();
         
         loadPage();
+        
+        
+        
+        String[] thumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
+        "https://img.youtube.com/vi/YLt73w6criQ/sddefault.jpg",
+        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
+        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
+        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
+        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
+        testvb = new VBox[7];
+        for(int i = 0; i < 6; i++){
+        testvb[i] = new VBox();
+        ImageView imv = new ImageView();
+        Image img = new Image(thumbs[i]);
+        imv.setFitWidth(130);
+        imv.setFitHeight(80);
+        imv.setImage(img);
+        Label tlabel = new Label();
+        tlabel.setText("Title testing");
+        testvb[i].getChildren().add(imv);
+        testvb[i].getChildren().add(tlabel);
+        
+        recommendedTab.getChildren().add(testvb[i]);}
+        
         
     }
         
@@ -174,13 +211,53 @@ public class PrimaryVideoController implements Initializable{
     private void fullscreen(){
         firebaseAuth  = FirebaseAuth.getInstance();
         App.fullscreen();
+        
+        String[] thumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
+        "https://img.youtube.com/vi/YLt73w6criQ/sddefault.jpg",
+        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
+        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
+        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
+        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
+        
+        
         if(webVideoView.getPrefWidth() == 512)
         {
             webVideoView.setPrefWidth(1024);
             webVideoView.setPrefHeight(576);
+            testvb = new VBox[7];
+        recommendedTab.getChildren().clear();
+        for(int i = 0; i < 6; i++){
+        testvb[i] = new VBox();
+        
+        ImageView imv = new ImageView();
+        Image img = new Image(thumbs[i]);
+        imv.setFitWidth(260);
+        imv.setFitHeight(160);
+        imv.setImage(img);
+        Label tlabel = new Label();
+        tlabel.setText("Title testing");
+        testvb[i].getChildren().add(imv);
+        testvb[i].getChildren().add(tlabel);
+        
+        recommendedTab.getChildren().add(testvb[i]);}
         }else{
             webVideoView.setPrefWidth(512);
             webVideoView.setPrefHeight(288);
+            recommendedTab.getChildren().clear();
+            for(int i = 0; i < 6; i++){
+        testvb[i] = new VBox();
+        ImageView imv = new ImageView();
+        Image img = new Image(thumbs[i]);
+        
+        imv.setFitWidth(130);
+        imv.setFitHeight(80);
+        imv.setImage(img);
+        Label tlabel = new Label();
+        tlabel.setText("Title testing");
+        testvb[i].getChildren().add(imv);
+        testvb[i].getChildren().add(tlabel);
+        
+        recommendedTab.getChildren().add(testvb[i]);}
         }
         
                    

@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -83,56 +84,7 @@
                            <content>
                               <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
                                  <children>
-                                    <AnchorPane onMouseClicked="#playVideoMode" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="211.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="422.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="633.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="844.0" prefHeight="150.0" prefWidth="201.0">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@yt_thumbnail.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutY="115.0" text="Title of Video Here!" />
-                                       </children>
-                                    </AnchorPane>
+                                    <HBox fx:id="ytVids" />
                                  </children>
                               </AnchorPane>
                            </content>

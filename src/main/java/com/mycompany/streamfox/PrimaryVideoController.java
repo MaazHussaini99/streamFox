@@ -70,12 +70,6 @@ public class PrimaryVideoController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String[] sthumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
-        "https://img.youtube.com/vi/nWji9F-WP6k/sddefault.jpg",
-        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
-        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
-        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
-        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
         
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -106,36 +100,66 @@ public class PrimaryVideoController implements Initializable{
 
         we = webVideoView.getEngine();
         
-        loadPage();
+        PrimaryController pc = new PrimaryController();
+        String startVid = pc.VIDload;
+        System.out.println(startVid);
+        loadPage(startVid);
         
         
+        VidObj[] help = new VidObj[15];
         
-        String[] thumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
-        "https://img.youtube.com/vi/YLt73w6criQ/sddefault.jpg",
-        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
-        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
-        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
-        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
-        testvb = new VBox[7];
-        for(int i = 0; i < 6; i++){
+        help[0] = new VidObj("YLt73w6criQ", "I Paid A Real Assassin To Try To Kill Me", "MrBeast");
+        help[1] = new VidObj("dT6taoucBX4", "SCREAMS SCREAMS and MORE SCREAMS [Fears To Fathom: Norwood Hitchhike]", "CoryxKenshin");
+        help[2] = new VidObj("_F6YBwIPzmk", "Star Wars Jedi: Survivor - Official Story Trailer", "EA Star Wars");
+        help[3] = new VidObj("LtwaDBjNop0", "Resumen de FC Barcelona vs Real Madrid (2-1)", "LaLiga Santander");
+        help[4] = new VidObj("DOWDNBu9DkU", "Amazing Invention- This Drone Will Change Everything", "Mark Rober");
+        help[5] = new VidObj("scTOJJbecGw", "Fooling my Friend with the LOUDEST SOUND in Minecraft", "Doni Bobes");
+        help[6] = new VidObj("EDnwWcFpObo", "NMIXX 'Love Me Like This' M/V", "JYP Entertainment");
+        help[7] = new VidObj("bEKmOVP-SOI", "Can You ACTUALLY Win Money on Gameshows?", "Jaiden Animations");
+        help[8] = new VidObj("moIuur9GUws", "World's Brightest Flashlight | OT38", "Dude Perfect");
+        help[9] = new VidObj("q3FXUUV3hWA", "Different Childhood Sleepovers (pt.5) | Ep.1 Dtay Known", "Dtay Known");
+        help[10] = new VidObj("5RNrCRjZO0M", "I Played Diablo 4 Beta.. My HONEST Thoughts", "Asmongold TV ");
+        help[11] = new VidObj("S9EnUSSU7HI", "I Trapped 25 TikTokers In A Box", "Airrack");
+        help[12] = new VidObj("clJyTJ3vvh4", "Momoshiki vs Kawaki | Boruto: Naruto Next Generations", "Crunchyroll Collection");
+        help[13] = new VidObj("myNFxrTMczA", "Best Watercolor Art Wins $5,000!", "ZHC Crafts");
+        help[14] = new VidObj("PZM6j8bKnks", "Ben Affleck and Matt Damon on 'Air'", "CBS Sunday Morning");
+        
+        testvb = new VBox[help.length];
+        for(int i = 0; i < help.length; i++){
         testvb[i] = new VBox();
         ImageView imv = new ImageView();
-        Image img = new Image(thumbs[i]);
+        Image img = new Image("https://img.youtube.com/vi/"+help[i].id+"/sddefault.jpg");
         imv.setFitWidth(130);
         imv.setFitHeight(80);
         imv.setImage(img);
         Label tlabel = new Label();
-        tlabel.setText("Title testing");
+        tlabel.setMaxWidth(130);
+        tlabel.setText(help[i].title);
+        
+        int placeholder = i;
+        imv.setOnMouseClicked( new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event){
+                System.out.println("working");
+                loadPage(help[placeholder].id);
+                titleTxt.setText(help[placeholder].title);
+                channelTxt.setText(help[placeholder].channel);
+            }
+        });
         testvb[i].getChildren().add(imv);
         testvb[i].getChildren().add(tlabel);
         
         recommendedTab.getChildren().add(testvb[i]);}
         
         
+        
+        
     }
         
-    public void loadPage(){
-        we.load("https://www.youtube.com/embed/_ZKTB_E52t8");
+    public void loadPage(String VID){
+        we.load("https://www.youtube.com/embed/"+VID);
+        
     }
     
     @FXML
@@ -212,48 +236,87 @@ public class PrimaryVideoController implements Initializable{
         firebaseAuth  = FirebaseAuth.getInstance();
         App.fullscreen();
         
-        String[] thumbs = {"https://img.youtube.com/vi/jfKfPfyJRdk/sddefault.jpg",
-        "https://img.youtube.com/vi/YLt73w6criQ/sddefault.jpg",
-        "https://img.youtube.com/vi/DOWDNBu9DkU/sddefault.jpg",
-        "https://img.youtube.com/vi/CpLdL8ONEm4/sddefault.jpg",
-        "https://img.youtube.com/vi/YaF4yFILMi4/sddefault.jpg",
-        "https://img.youtube.com/vi/qxicoCHRStA/sddefault.jpg"};
+        VidObj[] help = new VidObj[15];
         
+        help[0] = new VidObj("YLt73w6criQ", "I Paid A Real Assassin To Try To Kill Me", "MrBeast");
+        help[1] = new VidObj("dT6taoucBX4", "SCREAMS SCREAMS and MORE SCREAMS [Fears To Fathom: Norwood Hitchhike]", "CoryxKenshin");
+        help[2] = new VidObj("_F6YBwIPzmk", "Star Wars Jedi: Survivor - Official Story Trailer", "EA Star Wars");
+        help[3] = new VidObj("LtwaDBjNop0", "Resumen de FC Barcelona vs Real Madrid (2-1)", "LaLiga Santander");
+        help[4] = new VidObj("DOWDNBu9DkU", "Amazing Invention- This Drone Will Change Everything", "Mark Rober");
+        help[5] = new VidObj("scTOJJbecGw", "Fooling my Friend with the LOUDEST SOUND in Minecraft", "Doni Bobes");
+        help[6] = new VidObj("EDnwWcFpObo", "NMIXX 'Love Me Like This' M/V", "JYP Entertainment");
+        help[7] = new VidObj("bEKmOVP-SOI", "Can You ACTUALLY Win Money on Gameshows?", "Jaiden Animations");
+        help[8] = new VidObj("moIuur9GUws", "World's Brightest Flashlight | OT38", "Dude Perfect");
+        help[9] = new VidObj("q3FXUUV3hWA", "Different Childhood Sleepovers (pt.5) | Ep.1 Dtay Known", "Dtay Known");
+        help[10] = new VidObj("5RNrCRjZO0M", "I Played Diablo 4 Beta.. My HONEST Thoughts", "Asmongold TV ");
+        help[11] = new VidObj("S9EnUSSU7HI", "I Trapped 25 TikTokers In A Box", "Airrack");
+        help[12] = new VidObj("clJyTJ3vvh4", "Momoshiki vs Kawaki | Boruto: Naruto Next Generations", "Crunchyroll Collection");
+        help[13] = new VidObj("myNFxrTMczA", "Best Watercolor Art Wins $5,000!", "ZHC Crafts");
+        help[14] = new VidObj("PZM6j8bKnks", "Ben Affleck and Matt Damon on 'Air'", "CBS Sunday Morning");
+        
+        
+        testvb = new VBox[7];
         
         if(webVideoView.getPrefWidth() == 512)
         {
             webVideoView.setPrefWidth(1024);
             webVideoView.setPrefHeight(576);
-            testvb = new VBox[7];
-        recommendedTab.getChildren().clear();
-        for(int i = 0; i < 6; i++){
+            recommendedTab.getChildren().clear();
+           testvb = new VBox[help.length];
+        for(int i = 0; i < help.length; i++){
         testvb[i] = new VBox();
-        
         ImageView imv = new ImageView();
-        Image img = new Image(thumbs[i]);
+        Image img = new Image("https://img.youtube.com/vi/"+help[i].id+"/sddefault.jpg");
         imv.setFitWidth(260);
         imv.setFitHeight(160);
         imv.setImage(img);
         Label tlabel = new Label();
-        tlabel.setText("Title testing");
+        tlabel.setMaxWidth(260);
+        tlabel.setText(help[i].title);
+        
+        int placeholder = i;
+        imv.setOnMouseClicked( new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event){
+                System.out.println("working");
+                loadPage(help[placeholder].id);
+                titleTxt.setText(help[placeholder].title);
+                channelTxt.setText(help[placeholder].channel);
+            }
+        });
         testvb[i].getChildren().add(imv);
         testvb[i].getChildren().add(tlabel);
         
         recommendedTab.getChildren().add(testvb[i]);}
+        
         }else{
             webVideoView.setPrefWidth(512);
             webVideoView.setPrefHeight(288);
             recommendedTab.getChildren().clear();
-            for(int i = 0; i < 6; i++){
+            testvb = new VBox[help.length];
+        for(int i = 0; i < help.length; i++){
         testvb[i] = new VBox();
         ImageView imv = new ImageView();
-        Image img = new Image(thumbs[i]);
-        
+        Image img = new Image("https://img.youtube.com/vi/"+help[i].id+"/sddefault.jpg");
         imv.setFitWidth(130);
         imv.setFitHeight(80);
         imv.setImage(img);
         Label tlabel = new Label();
-        tlabel.setText("Title testing");
+        tlabel.setMaxWidth(130);
+        tlabel.setText(help[i].title);
+        
+        int placeholder = i;
+        imv.setOnMouseClicked( new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event){
+                System.out.println("working");
+                loadPage(help[placeholder].id);
+                titleTxt.setText(help[placeholder].title);
+                channelTxt.setText(help[placeholder].channel);
+            }
+        });
         testvb[i].getChildren().add(imv);
         testvb[i].getChildren().add(tlabel);
         

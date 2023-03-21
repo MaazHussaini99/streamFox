@@ -92,7 +92,7 @@
                                           <Image url="@user.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="Channel Name Here">
+                                    <Label fx:id="channelTxt" text="Channel Name Here">
                                        <HBox.margin>
                                           <Insets right="300.0" />
                                        </HBox.margin>

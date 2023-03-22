@@ -1,10 +1,8 @@
 package databasepackage;
 
-//import com.csc229labfiles.googlefirestoretest.databasepackage.*;
-//import com.google.api.core.ApiFuture;
-//import com.google.auth.oauth2.GoogleCredentials;
-//import com.google.cloud.firestore.*;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 public class StreamFoxFB {
 
 
-/*
+
     public void addData(String collectionName) throws IOException, ExecutionException, InterruptedException {
         FileInputStream serviceAccount =
                 new FileInputStream("./serviceAccountKey.json");
@@ -24,12 +22,12 @@ public class StreamFoxFB {
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                         .build();
         Firestore db = firestoreOptions.getService();
-        com.csc229labfiles.googlefirestoretest.databasepackage.AccountInfo AccountData=new com.csc229labfiles.googlefirestoretest.databasepackage.AccountInfo("Eren Jaeafer","sadjkdsajkkdjsall","AttackTitan69","9/26/1996",true,false);
-        com.csc229labfiles.googlefirestoretest.databasepackage.DurationSettings DurationData=new com.csc229labfiles.googlefirestoretest.databasepackage.DurationSettings("10hours","5hours","32","100hr");
-        com.csc229labfiles.googlefirestoretest.databasepackage.Netflix uNetflix=new com.csc229labfiles.googlefirestoretest.databasepackage.Netflix("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
-        com.csc229labfiles.googlefirestoretest.databasepackage.Disney uDisney=new com.csc229labfiles.googlefirestoretest.databasepackage.Disney("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
-        com.csc229labfiles.googlefirestoretest.databasepackage.Youtube youtube=new com.csc229labfiles.googlefirestoretest.databasepackage.Youtube("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
-        com.csc229labfiles.googlefirestoretest.databasepackage.UserDocument Userdata=new com.csc229labfiles.googlefirestoretest.databasepackage.UserDocument(Arrays.asList(AccountData,DurationData),Arrays.asList(uNetflix,uDisney,youtube));
+        AccountInfo AccountData=new AccountInfo("Eren Jaeafer","sadjkdsajkkdjsall","AttackTitan69","9/26/1996",true,false);
+        DurationSettings DurationData=new DurationSettings("10hours","5hours","32","100hr");
+        Netflix uNetflix=new Netflix("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
+       Disney uDisney=new Disney("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
+        Youtube youtube=new Youtube("ohioman","bobbyflay44","Netflix","10 hours","100 hours","Ohioman","sjkjksdklsdakljdskjl");
+       UserDocument Userdata=new UserDocument(Arrays.asList(AccountData,DurationData),Arrays.asList(uNetflix,uDisney,youtube));
         //Map<String, Object> docData = new HashMap<>();
         //docData.put("name", name);
         //docData.put("age",age);
@@ -39,7 +37,8 @@ public class StreamFoxFB {
 // future.get() blocks on response
         System.out.println("Added document with ID: " + future.get().getId());
     }
-
+    
+/*
     public void getData() throws IOException, ExecutionException, InterruptedException {
         FileInputStream serviceAccount =
                 new FileInputStream("./serviceAccountKey.json");
@@ -94,8 +93,9 @@ public class StreamFoxFB {
 
 
     }
-    */
+*/
 }
+    
 
 
 

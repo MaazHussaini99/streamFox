@@ -1,4 +1,4 @@
-package databasepackage;
+package com.mycompany.streamfox;
 
 public class AccountInfo {
 

@@ -16,11 +16,6 @@
             <version>17.0.0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>17.0.0.1</version>
-        </dependency>
-        <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-context</artifactId>
             <version>1.0.1</version>
@@ -81,9 +76,25 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-firestore</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.api</groupId>
             <artifactId>api-common</artifactId>
             <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-core</artifactId>
+            <version>2.13.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>

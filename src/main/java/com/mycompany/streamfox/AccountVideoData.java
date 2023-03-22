@@ -2,33 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package databasepackage;
+package com.mycompany.streamfox;
 
 import java.util.Objects;
 
-
-
-public class YoutubeVideoData {
-
+/**
+ *
+ *
+ */
+public class AccountVideoData {
 private String VideoId; 
 private String VideoName; 
-private Boolean Likes;
-private Boolean Dislikes;
-private Boolean Subscribe; 
+private Boolean Favorites; 
 private Boolean Recently_watched; 
 private Boolean Resume ;  
-private String URL ;  
 
 
-    public YoutubeVideoData(String VideoId, String VideoName, String URL) {
+ public AccountVideoData(String VideoId, String VideoName) {
         this.VideoId = VideoId;
         this.VideoName = VideoName;
-        this.URL = URL;
-        this.Likes = false ; 
-        this.Dislikes = false ; 
-        this.Subscribe = false ;
-        this.Recently_watched = false ;
-        this.Resume = false ; 
+        this.Resume = false; 
+        this.Recently_watched = false; 
+        this.Favorites = false ; 
     }
 
     public String getVideoId() {
@@ -39,6 +34,8 @@ private String URL ;
         this.VideoId = VideoId;
     }
 
+  
+
     public String getVideoName() {
         return VideoName;
     }
@@ -46,21 +43,16 @@ private String URL ;
     public void setVideoName(String VideoName) {
         this.VideoName = VideoName;
     }
-
-    public String getURL() {
-        return URL;
+  @Override
+    public String toString() {
+        return "AccountVideoData{" + "VideoId=" + VideoId + ", VideoName=" + VideoName + '}';
     }
-
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.VideoId);
-        hash = 97 * hash + Objects.hashCode(this.VideoName);
-        hash = 97 * hash + Objects.hashCode(this.URL);
+        hash = 67 * hash + Objects.hashCode(this.VideoId);
+        hash = 67 * hash + Objects.hashCode(this.VideoName);
         return hash;
     }
 
@@ -75,21 +67,13 @@ private String URL ;
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final YoutubeVideoData other = (YoutubeVideoData) obj;
+        final AccountVideoData other = (AccountVideoData) obj;
         if (!Objects.equals(this.VideoId, other.VideoId)) {
             return false;
         }
-        if (!Objects.equals(this.VideoName, other.VideoName)) {
-            return false;
-        }
-        return Objects.equals(this.URL, other.URL);
+        return Objects.equals(this.VideoName, other.VideoName);
     }
 
-    @Override
-    public String toString() {
-        return "YoutubeVideoData{" + "VideoId=" + VideoId + ", VideoName=" + VideoName + ", URL=" + URL + '}';
-    }
-
-
-
-  }
+   
+    
+}

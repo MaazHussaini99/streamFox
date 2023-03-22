@@ -1,14 +1,20 @@
-package databasepackage;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.streamfox;
 
 /**
  *
+ * 
  */
-public class Disney {
+public class Netflix {
   
+ 
  private String Username;
- private String Password;
- private String StreamingServiceName ;
- private String DailyWatchTime ;
+ private String Password; 
+ private String StreamingServiceName ; 
+ private String DailyWatchTime ; 
  private String WeeklyWatchTime;
 
     public String getVideoName() {
@@ -31,16 +37,16 @@ public class Disney {
 
     private String videoID;
 
-    public Disney(String Username, String Password, String StreamingServiceName, String DailyWatchTime, String WeeklyWatchTime,String videoID,String videoName) {
+
+    public Netflix(String Username, String Password, String StreamingServiceName, String DailyWatchTime, String WeeklyWatchTime, String videoName, String videoID) {
         this.Username = Username;
         this.Password = Password;
         this.StreamingServiceName = StreamingServiceName;
         this.DailyWatchTime = DailyWatchTime;
-        this.WeeklyWatchTime = WeeklyWatchTime;
+        this.WeeklyWatchTime = WeeklyWatchTime; 
         this.videoName=videoName;
         this.videoID=videoID;
 
-        
     }
 
     public String getUsername() {
@@ -85,3 +91,7 @@ public class Disney {
  
     
 }
+    
+    
+    
+

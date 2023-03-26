@@ -17,6 +17,11 @@ public class UserDocument {
 
 
     private AccountInfo uAccountInfo;
+    private String uid;
+
+    UserDocument(String uid) {
+        this.uid = uid;
+    }
 
     public AccountInfo getuAccountInfo() {
         return uAccountInfo;

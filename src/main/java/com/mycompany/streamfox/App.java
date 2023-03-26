@@ -73,8 +73,6 @@ public class App extends Application {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         FirebaseStart.initializeFire();
-        StreamFoxFB sffb=new StreamFoxFB();
-        sffb.addData("Unique registered User");
         launch();
     }
     

@@ -5,6 +5,7 @@
 package com.mycompany.streamfox;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -12,15 +13,15 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
  * @author maazh
  */
-
 public class FirebaseStart {
-    
-    public static void initializeFire() throws FileNotFoundException, IOException{
+
+    public static void initializeFire() throws FileNotFoundException, IOException {
         FileInputStream serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()

@@ -31,7 +31,7 @@ public class PrimaryVideoController implements Initializable{
       
     @FXML
     private AnchorPane backPane;
-
+    
     @FXML
     private AnchorPane frontPane;
     

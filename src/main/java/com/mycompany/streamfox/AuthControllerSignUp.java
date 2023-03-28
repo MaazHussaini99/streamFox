@@ -43,7 +43,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
-public class AuthController implements Initializable {
+public class AuthControllerSignUp implements Initializable {
 
     @FXML
     private Label accQuestionLabel;
@@ -59,7 +59,13 @@ public class AuthController implements Initializable {
 
     @FXML
     private Label signLabel;
+    
+    @FXML
+    private TextField firstNameField;
 
+    @FXML
+    private TextField lastNameField;
+    
     @FXML
     private PasswordField passwordField;
 
@@ -82,16 +88,8 @@ public class AuthController implements Initializable {
 
     @FXML
     void switchTextLabel(MouseEvent event) throws IOException {
-        App.setRoot("authentication_signUp");
-        /*if (signLabel.getText().contains("Up")) {
-            signInBtn.setText("Sign Up");
-            signLabel.setText("Sign In");
-            accQuestionLabel.setText("Have an account? ");
-        } else {
-            signInBtn.setText("Sign In");
-            signLabel.setText("Sign Up");
-            accQuestionLabel.setText("Don't have an account? ");
-        }*/
+        App.setRoot("authentication");
+       
     }
 
     @FXML
@@ -186,15 +184,18 @@ public class AuthController implements Initializable {
         return true;
     }
 
-    void signUp(ActionEvent event) {
+    void signUp(ActionEvent event) throws IOException {
         String email = emailTxtField.getText();
         String password = passwordField.getText();
         if (checkRegex(email, password)) {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
+                
                 //add primary screen functionality
                 userCreatedAlert();
+                
+                App.setRoot("authentication");
             } catch (FirebaseAuthException ex) {
                 firebaseAuthExceptionAlert();
                 ex.printStackTrace();

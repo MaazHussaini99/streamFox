@@ -20,6 +20,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -93,7 +96,7 @@ public class AuthControllerSignUp implements Initializable {
     }
 
     @FXML
-    void preformActionBtn(ActionEvent event) {
+    void preformActionBtn(ActionEvent event) throws IOException {
         if (signInBtn.getText().contains("In")) {
             login(event);
         } else if (signInBtn.getText().contains("Up")) {

@@ -18,6 +18,18 @@
     -fx-font-size:48pt;
 }
 
+.ProfileButtons {
+    -fx-background-radius: 30;
+    -fx-background-color: #525254;
+    -fx-font-size: 10pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 100;
+    -fx-min-height: 38;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
 .label {
     -fx-font-size: 12;
     -fx-text-fill: white;
@@ -45,6 +57,12 @@
     -fx-font-weight: 300;
     -fx-font-size:11;
     
+}
+
+.profileText{
+    -fx-background-color: black;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #b5b3b4;
 }
 
 .imagebutton{

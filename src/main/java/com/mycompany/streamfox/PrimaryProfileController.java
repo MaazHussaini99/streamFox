@@ -6,6 +6,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,17 +16,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
-public class PrimaryHomeController implements Initializable{
+public class PrimaryProfileController implements Initializable{
     
     private FirebaseAuth firebaseAuth;
       
@@ -33,29 +38,51 @@ public class PrimaryHomeController implements Initializable{
     private AnchorPane backPane;
 
     @FXML
-    private AnchorPane frontPane;
-    
-    @FXML
-    private AnchorPane topBar;
-    
+    private Button cancelBtn;
+
     @FXML
     private ImageView closeWindow;
 
     @FXML
-    private ImageView minimizeWindow;
-    
+    private ImageView closeWindow1;
+
+    @FXML
+    private AnchorPane frontPane;
+
     @FXML
     private ImageView menuOpen;
-    
+
     @FXML
-    private HBox ytVids;
-    
-    VBox[] testvb;
+    private ImageView minimizeWindow;
+
+    @FXML
+    private Circle profCircle;
+
+    @FXML
+    private TextField profEmailTxt;
+
+    @FXML
+    private TextField profFirstNameTxt;
+
+    @FXML
+    private TextField profLastNameTxt;
+
+    @FXML
+    private TextField profPassTxt;
+
+    @FXML
+    private Button saveBtn;
+
+    @FXML
+    private AnchorPane topBar;
     
     private int onOff = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //add functionality to initialize circle with profile image through
+        //circle.setFill(New ImagePattern(img))
+        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5),frontPane);
         ft.setFromValue(1);
@@ -82,54 +109,7 @@ public class PrimaryHomeController implements Initializable{
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-        ytVids.setSpacing(20);
-        VidObj[] help = new VidObj[15];
-
-        help[0] = new VidObj("YLt73w6criQ", "I Paid A Real Assassin To Try To Kill Me", "MrBeast");
-        help[1] = new VidObj("dT6taoucBX4", "SCREAMS SCREAMS and MORE SCREAMS [Fears To Fathom: Norwood Hitchhike]", "CoryxKenshin");
-        help[2] = new VidObj("_F6YBwIPzmk", "Star Wars Jedi: Survivor - Official Story Trailer", "EA Star Wars");
-        help[3] = new VidObj("LtwaDBjNop0", "Resumen de FC Barcelona vs Real Madrid (2-1)", "LaLiga Santander");
-        help[4] = new VidObj("DOWDNBu9DkU", "Amazing Invention- This Drone Will Change Everything", "Mark Rober");
-        help[5] = new VidObj("scTOJJbecGw", "Fooling my Friend with the LOUDEST SOUND in Minecraft", "Doni Bobes");
-        help[6] = new VidObj("EDnwWcFpObo", "NMIXX 'Love Me Like This' M/V", "JYP Entertainment");
-        help[7] = new VidObj("bEKmOVP-SOI", "Can You ACTUALLY Win Money on Gameshows?", "Jaiden Animations");
-        help[8] = new VidObj("moIuur9GUws", "World's Brightest Flashlight | OT38", "Dude Perfect");
-        help[9] = new VidObj("q3FXUUV3hWA", "Different Childhood Sleepovers (pt.5) | Ep.1 Dtay Known", "Dtay Known");
-        help[10] = new VidObj("5RNrCRjZO0M", "I Played Diablo 4 Beta.. My HONEST Thoughts", "Asmongold TV ");
-        help[11] = new VidObj("S9EnUSSU7HI", "I Trapped 25 TikTokers In A Box", "Airrack");
-        help[12] = new VidObj("clJyTJ3vvh4", "Momoshiki vs Kawaki | Boruto: Naruto Next Generations", "Crunchyroll Collection");
-        help[13] = new VidObj("myNFxrTMczA", "Best Watercolor Art Wins $5,000!", "ZHC Crafts");
-        help[14] = new VidObj("PZM6j8bKnks", "Ben Affleck and Matt Damon on 'Air'", "CBS Sunday Morning");
         
-        testvb = new VBox[help.length];
-        for(int i = 0; i < 6; i++){
-        testvb[i] = new VBox();
-        ImageView imv = new ImageView();
-        Image img = new Image("https://img.youtube.com/vi/"+help[i].id+"/sddefault.jpg");
-        imv.setFitWidth(200);
-        imv.setFitHeight(100);
-        imv.setImage(img);
-        Label tlabel = new Label();
-        tlabel.setMaxWidth(200);
-        tlabel.setText(help[i].title);
-        
-        int placeholder = i;
-        imv.setOnMouseClicked( new EventHandler<MouseEvent>() {
-            
-            @Override
-            public void handle(MouseEvent event){
-                System.out.println("working");
-                try {
-                    playVideoMode(event);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        testvb[i].getChildren().add(imv);
-        testvb[i].getChildren().add(tlabel);
-        
-        ytVids.getChildren().add(testvb[i]);}
     }
     
     @FXML
@@ -164,9 +144,19 @@ public class PrimaryHomeController implements Initializable{
         
     }   
     
-    public PrimaryHomeController(){
+    public PrimaryProfileController(){
         User user = User.getInstance();
         System.out.println(user);
+    }
+    
+    @FXML
+    void cancelFunc(ActionEvent event) {
+        //Set all fields back to original value
+    }
+    
+    @FXML
+    void saveFunc(ActionEvent event) {
+        //add all new values
     }
     
     @FXML
@@ -199,8 +189,8 @@ public class PrimaryHomeController implements Initializable{
     }
     
     @FXML
-    void switchToProfile(ActionEvent event) throws IOException {
-        App.setRoot("primary_Profile");
+    void switchToHome(ActionEvent event) throws IOException {
+        App.setRoot("primary_Home");
     }
     
     /**
@@ -215,5 +205,22 @@ public class PrimaryHomeController implements Initializable{
         App.fullscreen();
     }
    
+    @FXML
+    void changePic(MouseEvent event) {
+        FileChooser fileC = new FileChooser();
+        
+        FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter filterjpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter filterPNG = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter filterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        
+        fileC.getExtensionFilters().addAll(filterJPG,filterjpg,filterPNG,filterpng);
+        
+        File file = fileC.showOpenDialog(null);
+        /*Image img;
+        ImagePattern imgP = new ImagePattern(img);
+        profCircle.setFill(New ImagePattern(img));*/
+
+    }
     
 }

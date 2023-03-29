@@ -213,6 +213,11 @@ public class PrimaryVideoController implements Initializable{
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
+    
+    @FXML
+    void switchToProfile(ActionEvent event) throws IOException {
+        App.setRoot("primary_Profile");
+    }
 
     @FXML
     void minimizeCommand(MouseEvent event) {

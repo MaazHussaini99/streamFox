@@ -109,12 +109,11 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <Label style="-fx-font-size: 14;" text="Pasword">
+                                    <Label onMouseClicked="#resetPassFunc" style="-fx-font-size: 14;" styleClass="profPassLabel" text="Reset Pasword">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="profPassTxt" styleClass="profileText" />
                                  </children>
                               </HBox>
                            </children>

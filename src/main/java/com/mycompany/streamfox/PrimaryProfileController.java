@@ -180,6 +180,11 @@ public class PrimaryProfileController implements Initializable {
     }
 
     @FXML
+    void resetPassFunc(MouseEvent event) {
+        //for when reset label is pressed
+    }
+    
+    @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);
     }

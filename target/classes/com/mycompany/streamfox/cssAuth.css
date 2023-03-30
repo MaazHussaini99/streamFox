@@ -61,6 +61,19 @@
     -fx-cursor:hand;
 }
 
+.nameFields{
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 120;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #4A3D66;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: 300;
+    -fx-font-size:11;
+}
 
 .vbox{
     -fx-background-color: #342B59;

@@ -246,6 +246,7 @@ public class PrimaryController implements Initializable {
     
     public PrimaryController(){
         User user = User.getInstance();
+        UserData userData = new UserData();
         System.out.println(user);
     }
     

@@ -35,6 +35,7 @@ public class FirebaseStart {
     }
     
     
+    @SuppressWarnings("ThrowableResultIgnored")
         public static void initializeFirestore(){
         FileInputStream serviceAccount = null;
         try {

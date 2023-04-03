@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -22,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -41,6 +44,12 @@ public class PrimaryVideoController implements Initializable{
     @FXML
     private ImageView closeWindow;
 
+    @FXML
+    private Circle userProfView;
+    
+    @FXML
+    private Button userNameMenuBtn;
+    
     @FXML
     private ImageView minimizeWindow;
     
@@ -67,6 +76,9 @@ public class PrimaryVideoController implements Initializable{
     private int onOff = 0;
     
     VBox[] testvb;
+    
+    User user = User.getInstance();
+    UserData userData = UserData.getInstance();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -154,7 +166,9 @@ public class PrimaryVideoController implements Initializable{
         
         
         
-        
+        userNameMenuBtn.setText( ((String)userData.getProfileDataMap().get("fname"))+ " " +((String) userData.getProfileDataMap().get("lname")));
+        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+    
     }
         
     public void loadPage(String VID){

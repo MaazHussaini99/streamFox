@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryHomeController">
@@ -25,7 +26,7 @@
                   <Image url="@minimize.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="menuOpen" fitHeight="46.0" fitWidth="32.0" layoutX="7.0" layoutY="3.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0">
+            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="11.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="11.0">
                <image>
                   <Image url="@burger.png" />
                </image>
@@ -116,7 +117,7 @@
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToYT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@youtube.png" />
+                              <Image url="@youtubeGray.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -137,16 +138,12 @@
                      </VBox.margin>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@user.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
+                     <graphic>
+                        <Circle fx:id="userProfView" fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                     </graphic>
                   </Button>
                </children>
             </VBox>
@@ -159,26 +156,23 @@
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Home" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
                      <VBox.margin>
-                        <Insets top="6.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
                      <VBox.margin>
-                        <Insets top="208.0" />
+                        <Insets top="201.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">
+                  <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">
                      <VBox.margin>
-                        <Insets top="14.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets top="6.0" />
-               </padding>
             </VBox>
          </children>
       </AnchorPane>

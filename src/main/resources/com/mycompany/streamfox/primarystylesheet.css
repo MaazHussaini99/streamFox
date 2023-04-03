@@ -82,11 +82,13 @@
     -fx-background-color: black;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #b5b3b4;
+    -fx-pref-width: 200;
 }
 
 .imagebutton{
     -fx-min-width: 32;
-    -fx-min-height: 46;
+    -fx-pref-height: 38.4;
+    
 }
 
 .imagebutton:hover{
@@ -118,4 +120,8 @@ image-view:hover{
 
 .scroll-pane > .corner {
     -fx-background-color: black;
+}
+
+.sideButton {
+    -fx-pref-height: 38.4;
 }

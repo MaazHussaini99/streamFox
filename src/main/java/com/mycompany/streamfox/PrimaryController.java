@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -23,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class PrimaryController implements Initializable {
@@ -48,6 +51,12 @@ public class PrimaryController implements Initializable {
     private ImageView menuOpen;
     
     @FXML
+    private Circle userProfView;
+    
+    @FXML
+    private Button userNameMenuBtn;
+    
+    @FXML
     private HBox videos1;
     
     @FXML
@@ -63,6 +72,9 @@ public class PrimaryController implements Initializable {
     private boolean fullscreenBool;
     
     public String VIDload;
+    
+    User user = User.getInstance();
+    UserData userData = UserData.getInstance();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -209,8 +221,10 @@ public class PrimaryController implements Initializable {
         testvb[i].getChildren().add(tlabel);
         
         videos3.getChildren().add(testvb[i]);}
-        
-    }
+        userNameMenuBtn.setText( ((String)userData.getProfileDataMap().get("fname"))+ " " +((String) userData.getProfileDataMap().get("lname")));
+        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+    
+        }
     
     @FXML
     void menuMove(MouseEvent event) {

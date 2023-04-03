@@ -28,6 +28,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -41,6 +42,9 @@ public class PrimaryProfileController implements Initializable {
 
     private FirebaseAuth firebaseAuth;
 
+    @FXML
+    private Button YTBtn;
+    
     @FXML
     private AnchorPane backPane;
 
@@ -66,11 +70,20 @@ public class PrimaryProfileController implements Initializable {
     private Circle profCircle;
 
     @FXML
+    private ImageView ytLogoView;
+    
+    @FXML
+    private Circle userProfView;
+    
+    @FXML
     private TextField profEmailTxt;
 
     @FXML
     private TextField profFirstNameTxt;
 
+    @FXML
+    private Button userNameMenuBtn;
+    
     @FXML
     private TextField profLastNameTxt;
 
@@ -118,6 +131,7 @@ public class PrimaryProfileController implements Initializable {
             }
         });
         setValues();
+        userNameMenuBtn.setText( ((String)userData.getProfileDataMap().get("fname"))+ " " +((String) userData.getProfileDataMap().get("lname")));
     }
 
     private void setValues() {
@@ -126,6 +140,7 @@ public class PrimaryProfileController implements Initializable {
         profEmailTxt.setText((String) userData.getProfileDataMap().get("email"));
         //add functionality to initialize circle with profile image through
         profCircle.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
     }
 
     @FXML
@@ -235,12 +250,23 @@ public class PrimaryProfileController implements Initializable {
         FileChooser.ExtensionFilter filterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
 
         fileC.getExtensionFilters().addAll(filterJPG, filterjpg, filterPNG, filterpng);
-
+        
         File file = fileC.showOpenDialog(null);
-        /*Image img;
-        ImagePattern imgP = new ImagePattern(img);
-        profCircle.setFill(New ImagePattern(img));*/
+        file.getAbsolutePath();
+        
+        
+    }
+    
+    @FXML
+    void YTBtnEnter(MouseDragEvent event) {
+        Image newImg = new Image("/src/main/resources/youtube.png");
+        ytLogoView.setImage(newImg);
+    }
 
+    @FXML
+    void YTBtnExit(MouseDragEvent event) {
+        Image newImg = new Image("/src/main/resources/youtubeGray.png");
+        ytLogoView.setImage(newImg);
     }
 
 }

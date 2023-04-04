@@ -29,7 +29,7 @@ import com.sun.net.httpserver.*;
  * @author maazh
  */
 public class YoutubeApiEngine {
-     private static final String CS = "C:\\Users\\maazh\\Desktop\\Spring 2023\\youtubeTest\\src\\main\\java\\com\\mycompany\\youtubetest\\cs.json";
+     private static final String CS = "src/main/resources/youtube.json";
      static YouTube youtubeService;
     private static final Collection<String> SCOPES
             = Arrays.asList("https://www.googleapis.com/auth/youtube.force-ssl");
@@ -57,7 +57,7 @@ public class YoutubeApiEngine {
      */
     public static Credential authorize(final NetHttpTransport httpTransport) throws IOException {
         // Load client secrets.
-        InputStream in = new FileInputStream("C:\\Users\\maazh\\Desktop\\Spring 2023\\youtubeTest\\src\\main\\java\\com\\mycompany\\youtubetest\\cs.json");
+        InputStream in = new FileInputStream("src/main/resources/youtube.json");
         System.out.println("InputStream: " + in.toString()); // Debug statement
         String json = new Scanner(in).useDelimiter("\\Z").next();
         System.out.println("JSON: " + json); // Debug statement

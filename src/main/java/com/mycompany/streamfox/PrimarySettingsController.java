@@ -92,8 +92,8 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     private CheckMenuItem Youtube;
-    
-      private int onOff = 0;
+
+    private int onOff = 0;
 
     private void setValues() { // temp 
         DailyWatchTime.setUserData(this);
@@ -225,6 +225,11 @@ public class PrimarySettingsController implements Initializable {
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
+    }
+
+    @FXML
+    void switchToProfile(ActionEvent event) throws IOException {
+        App.setRoot("primary_Profile");
     }
 
     @FXML

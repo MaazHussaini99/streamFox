@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.DropdownButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimarySettingsController">
+   <children>
+      <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fx:id="closeWindow" fitHeight="25.0" fitWidth="25.0" layoutX="773.0" layoutY="2.0" onMouseClicked="#closeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@x-icon-white-25.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="716.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
+               <image>
+                  <Image url="@minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="10.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+               <image>
+                  <Image url="@burger.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="747.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="28.0">
+               <image>
+                  <Image url="@fullscreen.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="46.0" prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.60000000000002">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@home.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="9.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@youtube.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@setting.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="220.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@user.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="backPane" layoutY="46.0" prefHeight="454.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="758.0" style="-fx-background-color: #000;">
+                     <children>
+                        <VBox layoutX="61.0" layoutY="64.0" spacing="40.0" AnchorPane.leftAnchor="61.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="100.0" />
+                              <HBox alignment="CENTER_LEFT" spacing="100.0" />
+                              <HBox alignment="CENTER_LEFT" spacing="100.0" />
+                              <HBox alignment="CENTER_LEFT" spacing="100.0" />
+                           </children>
+                        </VBox>
+                        <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="Settings" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <Label layoutX="412.0" layoutY="378.0" style="-fx-font-size: 16;" text="Account Settings" />
+                        <Button fx:id="DisableYA" layoutX="232.0" layoutY="399.0" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />
+                        <Button fx:id="DeleteYA" layoutX="546.0" layoutY="399.0" mnemonicParsing="false" onAction="#DeleteYourAcount" text="Delete Your Account" />
+                        <Label layoutX="413.0" layoutY="6.0" text="Duration Settings">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="194.0" layoutY="7.0" text="Streaming Services">
+                           <font>
+                              <Font size="3.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="199.0" layoutY="105.0" text="Netflix">
+                           <font>
+                              <Font size="3.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="194.0" layoutY="166.0" text="Disney">
+                           <font>
+                              <Font size="3.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="194.0" layoutY="223.0" text="Youtube">
+                           <font>
+                              <Font size="3.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="336.0" layoutY="57.0" text="Daily Watch Time">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="503.0" layoutY="57.0" text="Weekly Watch Time">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="NetflixDailyWatchTime" layoutX="327.0" layoutY="95.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" scaleZ="0.43" />
+                        <TextField fx:id="NetflixWeeklyWatchTime" layoutX="500.0" layoutY="95.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <TextField fx:id="DisneyDailyWatchTime" layoutX="327.0" layoutY="157.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <TextField fx:id="YoutubeWeeklyWatchTime" layoutX="499.0" layoutY="215.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <TextField fx:id="YoutubeDailyWatchTime" layoutX="328.0" layoutY="214.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <TextField fx:id="DisneyWeeklyWatchTime" layoutX="499.0" layoutY="157.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <Label layoutX="194.0" layoutY="270.0" text="Total">
+                           <font>
+                              <Font size="3.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="DailyWatchTime" layoutX="328.0" layoutY="260.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <TextField fx:id="WeeklyWatchTime" layoutX="496.0" layoutY="260.0" maxHeight="-Infinity" minHeight="4.0" prefHeight="2.0" prefWidth="124.0" scaleY="0.5" />
+                        <Label layoutX="430.0" layoutY="286.0" text="Want a Break?">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="460.0" layoutY="313.0" text="Below">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="404.0" layoutY="300.0" text="Set A Watch Time Limit">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                        </Label>
+                        <DropdownButton fx:id="WatchTimeLimit" layoutX="439.0" layoutY="337.0">
+                            <items>
+                                <MenuItem text="1 Hour" />
+                                <MenuItem text="2 Hours" />
+                                <MenuItem text="3 Hours" />
+                              <MenuItem text="4 Hours" />
+                              <MenuItem text="5 Hours" />
+                              <MenuItem text="6 Hours" />
+                              <MenuItem text="7 Hours" />
+                              <MenuItem text="8 Hours" />
+                              <MenuItem text="9 Hours" />
+                              <MenuItem text="10 Hours" />
+                              <MenuItem text="11 Hours" />
+                              <MenuItem text="12 Hours" />
+                              <MenuItem text="13 Hours" />
+                              <MenuItem text="14 Hours" />
+                              <MenuItem text="15 Hours" />
+                              <MenuItem text="16 Hours" />
+                              <MenuItem text="17 Hours" />
+                              <MenuItem text="18 Hours" />
+                              <MenuItem text="19 Hours" />
+                              <MenuItem text="20 Hours" />
+                              <MenuItem text="21 Hours" />
+                              <MenuItem text="22 Hours" />
+                              <MenuItem text="23 Hours" />
+                              <MenuItem text="24 Hours" />
+                            </items>
+                        </DropdownButton>
+                        <CheckBox fx:id="Disney" layoutX="295.0" layoutY="165.0" mnemonicParsing="false" wrapText="true" />
+                        <CheckBox fx:id="Netflix" layoutX="295.0" layoutY="104.0" mnemonicParsing="false" wrapText="true" />
+                        <CheckBox fx:id="Youtube" layoutX="295.0" layoutY="222.0" mnemonicParsing="false" wrapText="true" />
+                     </children></AnchorPane>
+              </content>
+            </ScrollPane>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.60000000000002">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToHome" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToYT" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToYT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@youtube.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@setting.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="179.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Settings">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="User">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

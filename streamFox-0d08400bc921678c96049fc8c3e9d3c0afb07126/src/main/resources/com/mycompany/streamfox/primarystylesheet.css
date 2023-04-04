@@ -1,0 +1,127 @@
+@font-face{
+    src: url("Montserrat-Regular.ttf");
+}
+
+.button {
+    -fx-background-radius: 0;
+    -fx-background-color: #121212;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 179;
+    -fx-min-height: 38;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
+.titleText {
+    -fx-font-size:48pt;
+}
+
+.ProfileButtons {
+    -fx-background-radius: 30;
+    -fx-background-color: #525254;
+    -fx-font-size: 10pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 100;
+    -fx-min-height: 38;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
+.nameFields{
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 120;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #4A3D66;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: 300;
+    -fx-font-size:11;
+}
+
+.label {
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+.button:pressed {
+    -fx-background-color:  #474747;
+}
+
+.button:hover {
+  -fx-background-color:#474747;
+  -fx-text-fill:white;
+  -fx-font-weight:bold;  
+}
+
+.text-field{
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 70;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #121212;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: 300;
+    -fx-font-size:11;
+    
+}
+
+.profPassLabel:hover{
+    -fx-cursor:hand;
+    -fx-underline: true;
+}
+
+.profileText{
+    -fx-background-color: black;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #b5b3b4;
+    -fx-pref-width: 200;
+}
+
+.imagebutton{
+    -fx-min-width: 32;
+    -fx-pref-height: 38.4;
+    
+}
+
+.imagebutton:hover{
+   -fx-cursor:hand;
+}
+
+image-view:hover{
+  -fx-cursor:hand;
+}
+
+.scroll-pane{
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: transparent;
+    
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb{
+    -fx-background-color:#474747;
+    -fx-background-radius: 1em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.sideButton {
+    -fx-pref-height: 38.4;
+}

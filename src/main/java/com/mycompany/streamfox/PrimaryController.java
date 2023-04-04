@@ -72,11 +72,13 @@ public class PrimaryController implements Initializable {
 
     private boolean fullscreenBool;
 
-    public String VIDload;
+    public static String VIDload;
+    public static String titleLoad;
+    public static String channelLoad;
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fullscreenBool = false;
@@ -153,6 +155,8 @@ public class PrimaryController implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -185,6 +189,8 @@ public class PrimaryController implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     VIDload = help1[placeholder].id;
+                    titleLoad = help1[placeholder].title;
+                    channelLoad = help1[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -217,6 +223,8 @@ public class PrimaryController implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     VIDload = help2[placeholder].id;
+                    titleLoad = help2[placeholder].title;
+                    channelLoad = help2[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {

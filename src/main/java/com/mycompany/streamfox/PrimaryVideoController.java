@@ -115,11 +115,21 @@ public class PrimaryVideoController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-
+        
         we = webVideoView.getEngine();
-
-        PrimaryController pc = new PrimaryController();
-        String startVid = pc.VIDload;
+        
+        String startVid;
+       
+        if(PrimaryController.VIDload !=null){
+            startVid = PrimaryController.VIDload;
+            titleTxt.setText(PrimaryController.titleLoad);
+            channelTxt.setText(PrimaryController.channelLoad);
+        }else{
+            startVid = PrimaryHomeController.VIDload;
+            titleTxt.setText(PrimaryHomeController.titleLoad);
+            channelTxt.setText(PrimaryHomeController.channelLoad);
+        }
+        
         System.out.println(startVid);
         loadPage(startVid);
 
@@ -170,6 +180,7 @@ public class PrimaryVideoController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     try {
+                        recommendedTab.getChildren().clear();                    
                         System.out.println("working");
                         String myId = help[placeholder].id;
                         testvb = new VBox[help.length];
@@ -340,6 +351,7 @@ public class PrimaryVideoController implements Initializable {
                     @Override
                     public void handle(MouseEvent event) {
                         System.out.println("working");
+                        
                         loadPage(help[placeholder].id);
                         titleTxt.setText(help[placeholder].title);
                         channelTxt.setText(help[placeholder].channel);
@@ -379,6 +391,7 @@ public class PrimaryVideoController implements Initializable {
                     @Override
                     public void handle(MouseEvent event) {
                         System.out.println("working");
+                        
                         loadPage(help[placeholder].id);
                         titleTxt.setText(help[placeholder].title);
                         channelTxt.setText(help[placeholder].channel);

@@ -28,7 +28,7 @@
                   <Image url="@minimize.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="menuOpen" fitHeight="46.0" fitWidth="32.0" layoutX="7.0" layoutY="3.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0">
+            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="10.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
                <image>
                   <Image url="@burger.png" />
                </image>
@@ -160,7 +160,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -172,7 +172,7 @@
                         <Insets top="200.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -188,33 +188,30 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
                      <VBox.margin>
-                        <Insets top="6.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Settings">
                      <VBox.margin>
-                        <Insets top="208.0" />
+                        <Insets top="200.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="User">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="User">
                      <VBox.margin>
-                        <Insets top="14.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets top="6.0" />
-               </padding>
             </VBox>
          </children>
       </AnchorPane>

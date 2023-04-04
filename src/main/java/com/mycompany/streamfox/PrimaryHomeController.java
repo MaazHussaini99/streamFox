@@ -69,6 +69,10 @@ public class PrimaryHomeController implements Initializable {
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
+    
+    public static String VIDload;
+    public static String titleLoad;
+    public static String channelLoad;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,6 +142,9 @@ public class PrimaryHomeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
+                    VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {

@@ -254,7 +254,6 @@ public class PrimaryProfileController implements Initializable {
         File file = fileC.showOpenDialog(null);
         file.getAbsolutePath();
         
-        
     }
     
     @FXML

@@ -75,6 +75,7 @@ public class PrimarySettingsController implements Initializable {
     private AnchorPane frontPane;
 
     @FXML
+
     private ChoiceBox<String> WatchTimeLimit;
 
     @FXML
@@ -120,6 +121,7 @@ public class PrimarySettingsController implements Initializable {
         WeeklyWatchTime.setUserData(this);
         WatchTimeLimit.getEventDispatcher();
 
+
     }
 
     void StreamingSerivceAvailbility(ActionEvent event) throws IOException {
@@ -137,6 +139,7 @@ public class PrimarySettingsController implements Initializable {
     }
 
     //  temp skeleton method for backend use 
+
     void setWatchTimeLimit() {
         WatchTimeLimit = new ChoiceBox();
         
@@ -163,6 +166,7 @@ public class PrimarySettingsController implements Initializable {
 //    FXCollections.observableList("1 Hour", "2 Hours", "3 Hours", "4 Hours",
 //                "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours", "13 Hours",
 //                "14 Hours", "15 Hours", "16 Hours, 17 Hours , 18 Hours , 19 Hours, 20 Hours , 21 Hours, 22 Hours, 23 Hours , 24 Hours")
+
     @FXML
     void DisableYourAcount(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

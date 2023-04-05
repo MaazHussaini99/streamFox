@@ -24,7 +24,7 @@ public class YoutubeVids {
                 .setRegionCode("US")
                 .execute();
 
-        System.out.println(response);
+        //System.out.println(response);
         return response;
     }
 
@@ -36,7 +36,7 @@ public class YoutubeVids {
             .setType("video")
             .execute();
 
-        System.out.println(response);
+        //System.out.println(response);
         return response;
     }
 }

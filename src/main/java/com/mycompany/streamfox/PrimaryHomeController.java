@@ -105,7 +105,7 @@ public class PrimaryHomeController implements Initializable {
         ytVids.setSpacing(20);
         
         //initialize youtube
-        YoutubeApiEngine.initializeYoutube();
+        
         /*try {
             Comments.getCommentsFromVideo("QC6Q4Fge3uE");
         } catch (IOException ex) {

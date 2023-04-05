@@ -138,6 +138,7 @@ public class AuthController implements Initializable {
                     } catch (FirebaseAuthException ex) {
                         ex.printStackTrace();
                     }
+                    YoutubeApiEngine.initializeYoutube();
 
                     //Add primary screen functionality
                     App.setWidth(800);

@@ -17,12 +17,16 @@ import static com.mycompany.streamfox.App.yOffset;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,6 +36,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
@@ -70,7 +75,22 @@ public class PrimarySettingsController implements Initializable {
     private AnchorPane frontPane;
 
     @FXML
-    private TextField WatchTimeLimit;
+    private ChoiceBox<String> WatchTimeLimit;
+
+    @FXML
+    private TextField YoutubeWeeklyWatchTime;
+    @FXML
+    private TextField YoutubeDailyWatchTime;
+
+    @FXML
+    private TextField NetflixWeeklyWatchTime;
+    @FXML
+    private TextField NetflixDailyWatchTime;
+
+    @FXML
+    private TextField DisneyWeeklyWatchTime;
+    @FXML
+    private TextField DisneyDailyWatchTime;
 
     @FXML
     private TextField WeeklyWatchTime;
@@ -85,13 +105,13 @@ public class PrimarySettingsController implements Initializable {
     private MenuButton StreamingServiceMenu;
 
     @FXML
-    private CheckMenuItem Netflix;
+    private CheckBox Netflix;
 
     @FXML
-    private CheckMenuItem Disney;
+    private CheckBox Disney;
 
     @FXML
-    private CheckMenuItem Youtube;
+    private CheckBox Youtube;
 
     private int onOff = 0;
 
@@ -99,7 +119,7 @@ public class PrimarySettingsController implements Initializable {
         DailyWatchTime.setUserData(this);
         WeeklyWatchTime.setUserData(this);
         WatchTimeLimit.getEventDispatcher();
-        StreamingServiceMenu.applyCss();
+
     }
 
     void StreamingSerivceAvailbility(ActionEvent event) throws IOException {
@@ -116,6 +136,33 @@ public class PrimarySettingsController implements Initializable {
 
     }
 
+    //  temp skeleton method for backend use 
+    void setWatchTimeLimit() {
+        WatchTimeLimit = new ChoiceBox();
+        
+        ArrayList<String> stringList = new ArrayList<>();
+        stringList.add("1 Hour");
+        stringList.add("2 Hour");
+        stringList.add("3 Hour");
+        stringList.add("4 Hour");
+        stringList.add("5 Hour");
+        stringList.add("6 Hour");
+        stringList.add("7 Hour");
+        ObservableList<String> observableStringList = FXCollections.observableArrayList(stringList);
+        
+        WatchTimeLimit.setItems(observableStringList);
+                
+    }
+
+//    void getLimit(ActionEvent event) {
+//
+//        WatchTimeLimit.getValue();
+//
+//    }
+    
+//    FXCollections.observableList("1 Hour", "2 Hours", "3 Hours", "4 Hours",
+//                "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours", "13 Hours",
+//                "14 Hours", "15 Hours", "16 Hours, 17 Hours , 18 Hours , 19 Hours, 20 Hours , 21 Hours, 22 Hours, 23 Hours , 24 Hours")
     @FXML
     void DisableYourAcount(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -179,7 +226,9 @@ public class PrimarySettingsController implements Initializable {
                 App.xOffset = event.getSceneX();
                 App.yOffset = event.getSceneY();
             }
-        });
+
+        }
+        );
 
         //move around here
         topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -189,6 +238,18 @@ public class PrimarySettingsController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
+        setWatchTimeLimit();
+        WatchTimeLimit.setOnAction((event) -> {
+            int selectedIndex = WatchTimeLimit.getSelectionModel().getSelectedIndex();
+            Object selectedItem = WatchTimeLimit.getSelectionModel().getSelectedItem();
+
+            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
+            System.out.println("   ChoiceBox.getValue(): " + WatchTimeLimit.getValue());
+        });
+
+        //WatchTimeLimit.getItems().addAll();
+        //WatchTimeLimit.getValue();
+        // ((this::getLimit));
     }
 
     @FXML

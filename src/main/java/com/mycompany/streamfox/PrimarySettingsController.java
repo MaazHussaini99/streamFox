@@ -70,7 +70,19 @@ public class PrimarySettingsController implements Initializable {
     private AnchorPane frontPane;
 
     @FXML
-    private TextField WatchTimeLimit;
+    private TextField YoutubeWeeklyWatchTime;
+    @FXML
+    private TextField YoutubeDailyWatchTime;
+
+    @FXML
+    private TextField NetflixWeeklyWatchTime;
+    @FXML
+    private TextField NetflixDailyWatchTime;
+
+    @FXML
+    private TextField DisneyWeeklyWatchTime;
+    @FXML
+    private TextField DisneyDailyWatchTime;
 
     @FXML
     private TextField WeeklyWatchTime;
@@ -85,21 +97,21 @@ public class PrimarySettingsController implements Initializable {
     private MenuButton StreamingServiceMenu;
 
     @FXML
-    private CheckMenuItem Netflix;
+    private CheckBox Netflix;
 
     @FXML
-    private CheckMenuItem Disney;
+    private CheckBox Disney;
 
     @FXML
-    private CheckMenuItem Youtube;
+    private CheckBox Youtube;
 
     private int onOff = 0;
 
     private void setValues() { // temp 
         DailyWatchTime.setUserData(this);
         WeeklyWatchTime.setUserData(this);
-        WatchTimeLimit.getEventDispatcher();
-        StreamingServiceMenu.applyCss();
+        
+
     }
 
     void StreamingSerivceAvailbility(ActionEvent event) throws IOException {
@@ -116,6 +128,12 @@ public class PrimarySettingsController implements Initializable {
 
     }
 
+    //  temp skeleton method for backend use 
+    void setWatchTimeLimit(){
+       
+    
+    }
+    
     @FXML
     void DisableYourAcount(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

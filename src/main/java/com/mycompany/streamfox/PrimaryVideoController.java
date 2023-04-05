@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,7 +51,10 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private Circle userProfView;
-
+    
+    @FXML
+    private ListView<?> commentView;
+    
     @FXML
     private Button userNameMenuBtn;
 

@@ -25,9 +25,9 @@ public class Comments {
                 .execute();
         
         
-        System.out.println("Comment: " + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getTextOriginal());
-        System.out.println("Name:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName());
-        System.out.println("Image URL:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl());
+//        System.out.println("Comment: " + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getTextOriginal());
+//        System.out.println("Name:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName());
+//        System.out.println("Image URL:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl());
         return response;
     }
 }

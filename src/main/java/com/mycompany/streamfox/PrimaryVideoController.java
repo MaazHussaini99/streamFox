@@ -1,5 +1,6 @@
 package com.mycompany.streamfox;
 
+import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.VideoListResponse;
@@ -14,12 +15,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import static javafx.collections.FXCollections.observableArrayList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -29,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -51,10 +56,10 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private Circle userProfView;
-    
+
     @FXML
-    private ListView<?> commentView;
-    
+    private ListView<String> commentView;
+
     @FXML
     private Button userNameMenuBtn;
 
@@ -89,6 +94,7 @@ public class PrimaryVideoController implements Initializable {
     UserData userData = UserData.getInstance();
 
     SearchListResponse relatedVids;
+    CommentThreadListResponse comments;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,21 +125,21 @@ public class PrimaryVideoController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-        
+
         we = webVideoView.getEngine();
-        
+
         String startVid;
-       
-        if(PrimaryController.VIDload !=null){
+
+        if (PrimaryController.VIDload != null) {
             startVid = PrimaryController.VIDload;
             titleTxt.setText(PrimaryController.titleLoad);
             channelTxt.setText(PrimaryController.channelLoad);
-        }else{
+        } else {
             startVid = PrimaryHomeController.VIDload;
             titleTxt.setText(PrimaryHomeController.titleLoad);
             channelTxt.setText(PrimaryHomeController.channelLoad);
         }
-        
+
         System.out.println(startVid);
         loadPage(startVid);
 
@@ -150,22 +156,6 @@ public class PrimaryVideoController implements Initializable {
             ex.printStackTrace();
         }
 
-        //VidObj[] help = new VidObj[15];
-//        help[0] = new VidObj("YLt73w6criQ", "I Paid A Real Assassin To Try To Kill Me", "MrBeast");
-//        help[1] = new VidObj("dT6taoucBX4", "SCREAMS SCREAMS and MORE SCREAMS [Fears To Fathom: Norwood Hitchhike]", "CoryxKenshin");
-//        help[2] = new VidObj("_F6YBwIPzmk", "Star Wars Jedi: Survivor - Official Story Trailer", "EA Star Wars");
-//        help[3] = new VidObj("LtwaDBjNop0", "Resumen de FC Barcelona vs Real Madrid (2-1)", "LaLiga Santander");
-//        help[4] = new VidObj("DOWDNBu9DkU", "Amazing Invention- This Drone Will Change Everything", "Mark Rober");
-//        help[5] = new VidObj("scTOJJbecGw", "Fooling my Friend with the LOUDEST SOUND in Minecraft", "Doni Bobes");
-//        help[6] = new VidObj("EDnwWcFpObo", "NMIXX 'Love Me Like This' M/V", "JYP Entertainment");
-//        help[7] = new VidObj("bEKmOVP-SOI", "Can You ACTUALLY Win Money on Gameshows?", "Jaiden Animations");
-//        help[8] = new VidObj("moIuur9GUws", "World's Brightest Flashlight | OT38", "Dude Perfect");
-//        help[9] = new VidObj("q3FXUUV3hWA", "Different Childhood Sleepovers (pt.5) | Ep.1 Dtay Known", "Dtay Known");
-//        help[10] = new VidObj("5RNrCRjZO0M", "I Played Diablo 4 Beta.. My HONEST Thoughts", "Asmongold TV ");
-//        help[11] = new VidObj("S9EnUSSU7HI", "I Trapped 25 TikTokers In A Box", "Airrack");
-//        help[12] = new VidObj("clJyTJ3vvh4", "Momoshiki vs Kawaki | Boruto: Naruto Next Generations", "Crunchyroll Collection");
-//        help[13] = new VidObj("myNFxrTMczA", "Best Watercolor Art Wins $5,000!", "ZHC Crafts");
-//        help[14] = new VidObj("PZM6j8bKnks", "Ben Affleck and Matt Damon on 'Air'", "CBS Sunday Morning");
         testvb = new VBox[help.length];
         for (int i = 0; i < help.length; i++) {
             testvb[i] = new VBox();
@@ -184,20 +174,20 @@ public class PrimaryVideoController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     try {
-                        recommendedTab.getChildren().clear();                    
+                        recommendedTab.getChildren().clear();
                         System.out.println("working");
                         String myId = help[placeholder].id;
                         testvb = new VBox[help.length];
                         VidObj[] help = new VidObj[20];
-                        
+
                         SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
-                        
+
                         for (int i = 0; i < 20; i++) {
                             help[i] = new VidObj(newRelatedVids.getItems().get(i).getId().getVideoId(),
                                     newRelatedVids.getItems().get(i).getSnippet().getTitle(),
                                     newRelatedVids.getItems().get(i).getSnippet().getChannelTitle());
                         }
-                        
+
                         for (int i = 0; i < help.length; i++) {
                             testvb[i] = new VBox();
                             ImageView imv = new ImageView();
@@ -208,16 +198,16 @@ public class PrimaryVideoController implements Initializable {
                             Label tlabel = new Label();
                             tlabel.setMaxWidth(130);
                             tlabel.setText(help[i].title);
-                            
+
                             testvb[i].getChildren()
                                     .add(imv);
                             testvb[i].getChildren()
                                     .add(tlabel);
-                            
+
                             recommendedTab.getChildren()
                                     .add(testvb[i]);
                         }
-                        
+
                         loadPage(help[placeholder].id);
                         titleTxt.setText(help[placeholder].title);
                         channelTxt.setText(help[placeholder].channel);
@@ -238,7 +228,49 @@ public class PrimaryVideoController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+        
+        //adding comments
+        ObservableList<String> obComments = observableArrayList();
+        ObservableList<String> imageUrls = observableArrayList();
 
+        try {
+            comments = Comments.getCommentsFromVideo(startVid);
+            for (CommentThread commentThread : comments.getItems()) {
+                String authorName = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName();
+                String text = commentThread.getSnippet().getTopLevelComment().getSnippet().getTextOriginal();
+                String imageUrl = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl();
+                obComments.add(authorName + ": " + text);
+                imageUrls.add(imageUrl);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        commentView.setItems(obComments);
+        commentView.setCellFactory(param -> new ListCell<String>() {
+            private ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setText(item);
+                    int index = getIndex();
+                    String imageUrl = imageUrls.get(index);
+                    imageView.setImage(new Image(imageUrl));
+                    setGraphic(imageView);
+                    // set the width's
+                    setMinWidth(param.getWidth());
+                    setMaxWidth(param.getWidth());
+                    setPrefWidth(param.getWidth());
+                    // allow wrapping
+                    setWrapText(true);
+                }
+            }
+        });
     }
 
     public void loadPage(String VID) {
@@ -355,7 +387,7 @@ public class PrimaryVideoController implements Initializable {
                     @Override
                     public void handle(MouseEvent event) {
                         System.out.println("working");
-                        
+
                         loadPage(help[placeholder].id);
                         titleTxt.setText(help[placeholder].title);
                         channelTxt.setText(help[placeholder].channel);
@@ -395,7 +427,7 @@ public class PrimaryVideoController implements Initializable {
                     @Override
                     public void handle(MouseEvent event) {
                         System.out.println("working");
-                        
+
                         loadPage(help[placeholder].id);
                         titleTxt.setText(help[placeholder].title);
                         channelTxt.setText(help[placeholder].channel);

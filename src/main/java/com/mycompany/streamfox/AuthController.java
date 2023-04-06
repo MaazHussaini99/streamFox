@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -139,6 +140,7 @@ public class AuthController implements Initializable {
                         ex.printStackTrace();
                     }
                     YoutubeApiEngine.initializeYoutube();
+
 
                     //Add primary screen functionality
                     App.setWidth(800);

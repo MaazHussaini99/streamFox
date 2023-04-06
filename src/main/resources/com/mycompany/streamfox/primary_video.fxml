@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,6 +24,16 @@
                   <Image url="@x-icon-white-25.jpg" />
                </image>
             </ImageView>
+            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" />
+            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@find.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="741.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
                <image>
                   <Image url="@minimize.png" />
@@ -110,13 +121,16 @@
                                        </image>
                                     </ImageView>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="30.0" />
+                                 </VBox.margin>
                               </HBox>
+                              <ListView fx:id="commentView" prefHeight="462.0" prefWidth="550.0" />
                            </children>
                         </VBox>
                         <Label layoutX="606.0" layoutY="6.0" style="-fx-text-fill: red;" text="Recommended" AnchorPane.rightAnchor="34.00000000000004" AnchorPane.topAnchor="0.0" />
                         <Line endX="60.0" layoutX="665.0" layoutY="15.0" startX="-59.0" stroke="RED" AnchorPane.rightAnchor="9.700000000000045" AnchorPane.topAnchor="14.5" />
                         <VBox fx:id="recommendedTab" prefHeight="200.0" prefWidth="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
-                        <ListView fx:id="commentView" layoutX="47.0" layoutY="421.0" prefHeight="462.0" prefWidth="522.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -147,7 +161,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -181,7 +195,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
                         <Insets top="201.0" />
                      </VBox.margin>

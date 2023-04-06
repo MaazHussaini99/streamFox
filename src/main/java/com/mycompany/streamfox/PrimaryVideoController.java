@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,6 +60,9 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private ListView<String> commentView;
+    
+    @FXML
+    private TextField searchTxtField;
 
     @FXML
     private Button userNameMenuBtn;
@@ -98,7 +102,7 @@ public class PrimaryVideoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+   
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -308,6 +312,11 @@ public class PrimaryVideoController implements Initializable {
         }
 
     }
+    
+    @FXML
+    void searchFunction(ActionEvent event) {
+
+    }
 
     public PrimaryVideoController() {
         User user = User.getInstance();
@@ -334,6 +343,11 @@ public class PrimaryVideoController implements Initializable {
         App.setRoot("primary_Profile");
     }
 
+    @FXML
+    void switchToSettings(ActionEvent event) throws IOException {
+        App.setRoot("primary_Settings");
+    }
+    
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);

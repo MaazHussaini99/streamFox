@@ -2,15 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimarySearchResultsController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -79,33 +79,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos1" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="180.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos2" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="360.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos3" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
+                        <Label layoutX="333.0" layoutY="70.0" text="Search Results:" />
+                        <VBox fx:id="searchResultsBox" layoutX="329.0" layoutY="85.0" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -160,7 +135,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>

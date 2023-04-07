@@ -1,0 +1,271 @@
+@font-face{
+    src: url("Montserrat-Regular.ttf");
+}
+
+.button {
+    -fx-background-radius: 0;
+    -fx-background-color: #121212;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 179;
+    -fx-min-height: 38;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
+.titleText {
+    -fx-font-size:48pt;
+}
+
+.ProfileButtons {
+    -fx-background-radius: 30;
+    -fx-background-color: #525254;
+    -fx-font-size: 10pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 100;
+    -fx-min-height: 38;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
+.nameFields{
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 120;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #4A3D66;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: 300;
+    -fx-font-size:11;
+}
+
+.label {
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+.button:pressed {
+    -fx-background-color:  #474747;
+}
+
+.button:hover {
+  -fx-background-color:#474747;
+  -fx-text-fill:white;
+  -fx-font-weight:bold;  
+}
+
+.text-field{
+    -fx-padding: 5 10 5 10;
+    -fx-min-width: 70;
+    -fx-min-height: 35;
+    -fx-background-radius: 0;
+    -fx-background-color: #121212;
+    -fx-text-fill: #b7abc9;
+    -fx-font-family: "Montserrat";
+    -fx-font-weight: 300;
+    -fx-font-size:11;
+    
+}
+
+.profPassLabel:hover{
+    -fx-cursor:hand;
+    -fx-underline: true;
+}
+
+.profileText{
+    -fx-background-color: black;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #b5b3b4;
+    -fx-pref-width: 200;
+}
+
+.choice-box {
+    -fx-background-color: #b5b3b4; 
+    -fx-mark-color: white;
+    -fx-background-radius: 0;
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat";
+}
+.choice-box .context-menu{
+    -fx-background-color: #b5b3b4; 
+    -fx-text-fill: white;
+}
+.choice-box .context-menu-item:focused{
+    -fx-background-color: white; 
+    -fx-text-fill: #b5b3b4;
+}
+.choice-box .context-menu-item:focused > .label{
+    -fx-text-fill: #b5b3b4;
+}
+.choice-box .context-menu-item > .label{
+    -fx-background-color: #b5b3b4; 
+    -fx-text-fill: white;
+}
+
+.check-box .box{
+    -fx-background-color: #000;
+    -fx-border-color: #b5b3b4;
+    -fx-border-radius: 1px;
+}
+.check-box .mark {
+     -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+}
+
+.check-box:selected .mark{
+    -fx-background-color: white;
+}
+.check-box:selected .box{
+    -fx-background-color: #323232;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: #000;
+    -fx-border-color: #000;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+   -fx-body-color:#323232;
+}
+
+.spinner .increment-arrow-button .increment-arrow {
+  -fx-background-color: #b5b3b4;
+  -fx-mark-highlight-color: #323232;
+  -fx-mark-color: #b5b3b4;
+  -fx-background-insets: 0 0 -1 0, 0;
+  -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em;
+  -fx-shape: "M 0 4 h 7 l -3.5 -4 z";
+}
+.spinner .decrement-arrow-button .decrement-arrow {
+  -fx-background-color: #b5b3b4;
+  -fx-mark-highlight-color: #323232;
+  -fx-mark-color: #b5b3b4;
+  -fx-background-insets: 0 0 -1 0, 0;
+  -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em;
+  -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.spinner {
+    -fx-background-color: transparent;
+    -fx-pref-width: 60;
+    -fx-text-fill:white;
+    -fx-font-family: "Montserrat";
+}
+
+.spinner:focused,
+.spinner:contains-focus{
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-background-color: #000;
+    
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-opacity: 0;
+}
+
+.list-view .scroll-bar .corner {
+    -fx-background-color: #000;
+}
+
+.list-view .filler {
+    -fx-background-color: #000;
+}
+
+.list-view > .corner {
+    -fx-background-color: #000;
+}
+
+.list-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #323232;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #323232;
+}
+
+.list-view .list-cell {
+    -fx-background-color: #000;
+    -fx-text-fill: white;
+}
+
+.list-view .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+
+.imagebutton{
+    -fx-min-width: 32;
+    -fx-pref-height: 38.4;
+    
+}
+
+.imagebutton:hover{
+   -fx-cursor:hand;
+}
+
+image-view:hover{
+  -fx-cursor:hand;
+}
+
+.scroll-pane{
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: transparent;
+    
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb{
+    -fx-background-color:#474747;
+    -fx-background-radius: 1em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.sideButton {
+    -fx-pref-height: 38.4;
+}
+
+.search-field{
+    -fx-pref-height: 24;
+    -fx-pref-width: 320;
+    -fx-background-color: #323232;
+    -fx-background-radius: 20 0 0 20;
+}
+.search-button{
+    -fx-background-radius: 0 20 20 0;
+    -fx-background-color: #505050;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 35;
+    -fx-pref-width: 35;
+    -fx-min-height: 35.2;
+    -fx-pref-height: 35.2;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}

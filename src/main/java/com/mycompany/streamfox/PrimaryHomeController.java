@@ -161,6 +161,11 @@ public class PrimaryHomeController implements Initializable {
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
     }
+    
+    @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
+    }
 
     @FXML
     void menuMove(MouseEvent event) {

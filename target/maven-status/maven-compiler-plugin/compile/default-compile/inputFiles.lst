@@ -1,18 +1,19 @@
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\AuthControllerSignUp.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\YoutubeApiEngine.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\FirebaseStart.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimarySettingsController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimaryController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\UserData.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimaryHomeController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\User.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\YoutubeVids.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\AuthController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\NewUser.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimarySearchResultsController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\App.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\module-info.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimaryVideoController.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\Comments.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\VidObj.java
-E:\streamFox-auth-main_UI 3\streamFox-auth-main_UI\src\main\java\com\mycompany\streamfox\PrimaryProfileController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/NewUser.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/VidObj.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimaryProfileController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/FirebaseStart.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/App.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/AuthController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/AuthControllerSignUp.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/Comments.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/YoutubeApiEngine.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimaryHomeController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/User.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimaryVideoController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimaryController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/NetflixWebviewController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimarySettingsController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/module-info.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/PrimarySearchResultsController.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/UserData.java
+/Users/adam_solomon_home/Documents/GitHub/streamFox/src/main/java/com/mycompany/streamfox/YoutubeVids.java

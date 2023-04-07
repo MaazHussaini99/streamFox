@@ -76,6 +76,7 @@ public class PrimaryHomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);

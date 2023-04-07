@@ -60,7 +60,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private ListView<String> commentView;
-    
+
     @FXML
     private TextField searchTxtField;
 
@@ -102,7 +102,7 @@ public class PrimaryVideoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
+
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -232,7 +232,7 @@ public class PrimaryVideoController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-        
+
         //adding comments
         ObservableList<String> obComments = observableArrayList();
         ObservableList<String> imageUrls = observableArrayList();
@@ -275,12 +275,6 @@ public class PrimaryVideoController implements Initializable {
                 }
             }
         });
-        
-        try {
-            Search.getSearchResults();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public void loadPage(String VID) {
@@ -318,10 +312,12 @@ public class PrimaryVideoController implements Initializable {
         }
 
     }
-    
+
     @FXML
     void searchFunction(ActionEvent event) {
-
+        //Can call this from any controller and use it to initialize videos
+        VidObj[] results = Search.returnArray(searchTxtField.getText());
+        System.out.println(results[0].title);
     }
 
     public PrimaryVideoController() {
@@ -353,7 +349,7 @@ public class PrimaryVideoController implements Initializable {
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("primary_Settings");
     }
-    
+
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);

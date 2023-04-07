@@ -17,7 +17,6 @@ com\mycompany\streamfox\Comments.class
 com\mycompany\streamfox\FirebaseStart.class
 com\mycompany\streamfox\PrimaryController$2.class
 com\mycompany\streamfox\PrimaryProfileController.class
-com\mycompany\streamfox\AuthController.class
 com\mycompany\streamfox\PrimaryProfileController$2.class
 com\mycompany\streamfox\PrimaryHomeController$1.class
 com\mycompany\streamfox\PrimaryController$3.class

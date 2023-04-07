@@ -68,7 +68,6 @@ public class AuthController implements Initializable {
 
     private DialogPane dialog;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
@@ -140,19 +139,17 @@ public class AuthController implements Initializable {
                         ex.printStackTrace();
                     }
                     YoutubeApiEngine.initializeYoutube();
-
-
+                    User user = User.getInstance();
+                    
+                    //NewUser.setNewProfile(user.getUid(), user.getUserEmail());
                     //Add primary screen functionality
                     App.setWidth(800);
                     App.setHeight(500);
                     App.scene = new Scene(loadFXML("primary_Home"), App.width, App.height);
-                    
-                    
-                    
-                    App.stage.setScene(App.scene);
-                    
-                    //App.setRoot("primary");
 
+                    App.stage.setScene(App.scene);
+
+                    //App.setRoot("primary");
                 }
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -275,10 +272,10 @@ public class AuthController implements Initializable {
         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
     }
-    
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
+
 }

@@ -313,6 +313,11 @@ public class PrimaryController implements Initializable {
         App.setRoot("primary_Profile");
     }
 
+    @FXML
+    void switchToSettings(ActionEvent event) throws IOException {
+        App.setRoot("primary_Settings");
+    }
+    
     /**
      * switches the application to and from fullscreen mode
      */

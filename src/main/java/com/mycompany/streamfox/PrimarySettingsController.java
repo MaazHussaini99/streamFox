@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +41,8 @@ import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -73,31 +77,36 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     private AnchorPane frontPane;
+    
+    @FXML
+    private Spinner<Integer> DisneyDailyWatchTime;
 
     @FXML
-
-    private ChoiceBox<String> WatchTimeLimit;
-
-    @FXML
-    private TextField YoutubeWeeklyWatchTime;
-    @FXML
-    private TextField YoutubeDailyWatchTime;
+    private Spinner<Integer> DisneyWeeklyWatchTime;
 
     @FXML
-    private TextField NetflixWeeklyWatchTime;
-    @FXML
-    private TextField NetflixDailyWatchTime;
+    private CheckBox Netflix;
 
     @FXML
-    private TextField DisneyWeeklyWatchTime;
-    @FXML
-    private TextField DisneyDailyWatchTime;
+    private Spinner<Integer> NetflixDailyWatchTime;
 
     @FXML
-    private TextField WeeklyWatchTime;
+    private Spinner<Integer> NetflixWeeklyWatchTime;
+    
+    @FXML
+    private Spinner<Integer> DailyWatchTime;
 
     @FXML
-    private TextField DailyWatchTime;
+    private Spinner<Integer> WeeklyWatchTime;
+
+    @FXML
+    private CheckBox Youtube;
+
+    @FXML
+    private Spinner<Integer> YoutubeDailyWatchTime;
+
+    @FXML
+    private Spinner<Integer> YoutubeWeeklyWatchTime;
     @FXML
     private Button DeleteYA;
     @FXML
@@ -106,20 +115,25 @@ public class PrimarySettingsController implements Initializable {
     private MenuButton StreamingServiceMenu;
 
     @FXML
-    private CheckBox Netflix;
-
-    @FXML
     private CheckBox Disney;
-
+    
     @FXML
-    private CheckBox Youtube;
+    private Button userNameMenuBtn;
+    
+    User user = User.getInstance();
+    UserData userData = UserData.getInstance();
+    
+    @FXML
+    private Circle userProfView;
 
     private int onOff = 0;
+    
+    int CurrentValueTest;
 
     private void setValues() { // temp 
         DailyWatchTime.setUserData(this);
         WeeklyWatchTime.setUserData(this);
-        WatchTimeLimit.getEventDispatcher();
+        
 
 
     }
@@ -137,31 +151,6 @@ public class PrimarySettingsController implements Initializable {
         }
 
     }
-
-    //  temp skeleton method for backend use 
-
-    void setWatchTimeLimit() {
-        WatchTimeLimit = new ChoiceBox();
-        
-        ArrayList<String> stringList = new ArrayList<>();
-        stringList.add("1 Hour");
-        stringList.add("2 Hour");
-        stringList.add("3 Hour");
-        stringList.add("4 Hour");
-        stringList.add("5 Hour");
-        stringList.add("6 Hour");
-        stringList.add("7 Hour");
-        ObservableList<String> observableStringList = FXCollections.observableArrayList(stringList);
-        
-        WatchTimeLimit.setItems(observableStringList);
-                
-    }
-
-//    void getLimit(ActionEvent event) {
-//
-//        WatchTimeLimit.getValue();
-//
-//    }
     
 //    FXCollections.observableList("1 Hour", "2 Hours", "3 Hours", "4 Hours",
 //                "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours", "13 Hours",
@@ -242,18 +231,49 @@ public class PrimarySettingsController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-        setWatchTimeLimit();
-        WatchTimeLimit.setOnAction((event) -> {
-            int selectedIndex = WatchTimeLimit.getSelectionModel().getSelectedIndex();
-            Object selectedItem = WatchTimeLimit.getSelectionModel().getSelectedItem();
-
-            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-            System.out.println("   ChoiceBox.getValue(): " + WatchTimeLimit.getValue());
+        
+        SpinnerValueFactory<Integer> valueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+        valueFacDaily.setValue(24);
+        SpinnerValueFactory<Integer> NetflixvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+        valueFacDaily.setValue(24);
+        SpinnerValueFactory<Integer> YoutubevalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+        valueFacDaily.setValue(24);
+        SpinnerValueFactory<Integer> DisneyvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+        valueFacDaily.setValue(24);
+        
+        SpinnerValueFactory<Integer> valueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
+        valueFacWeekly.setValue(168);
+        SpinnerValueFactory<Integer> NetflixvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
+        valueFacWeekly.setValue(168);
+        SpinnerValueFactory<Integer> YoutubevalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
+        valueFacWeekly.setValue(168);
+        SpinnerValueFactory<Integer> DisneyvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
+        valueFacWeekly.setValue(168);
+        
+        
+        //Setting watch time area we need listeners for each, and as the value is changed it should update firebase in the listener
+        DailyWatchTime.setValueFactory(valueFacDaily);
+        WeeklyWatchTime.setValueFactory(valueFacWeekly);
+        
+        YoutubeDailyWatchTime.setValueFactory(YoutubevalueFacDaily);
+        YoutubeWeeklyWatchTime.setValueFactory(YoutubevalueFacWeekly);
+        
+        NetflixDailyWatchTime.setValueFactory(NetflixvalueFacDaily);
+        NetflixWeeklyWatchTime.setValueFactory(NetflixvalueFacWeekly);
+        
+        DisneyDailyWatchTime.setValueFactory(DisneyvalueFacDaily);
+        DisneyWeeklyWatchTime.setValueFactory(DisneyvalueFacWeekly);
+        
+        DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                CurrentValueTest = DailyWatchTime.getValue();
+                //firebase connection here
+            } 
         });
-
-        //WatchTimeLimit.getItems().addAll();
-        //WatchTimeLimit.getValue();
-        // ((this::getLimit));
+        
+        userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
+        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
     }
 
     @FXML

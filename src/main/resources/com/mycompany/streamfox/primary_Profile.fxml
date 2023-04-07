@@ -82,7 +82,7 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1024.0" prefWidth="758.0" style="-fx-background-color: #000;">
+                <AnchorPane minHeight="1000.0" minWidth="0.0" prefHeight="1024.0" prefWidth="758.0" style="-fx-background-color: #000;">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="User Profile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
                         <VBox layoutX="61.0" layoutY="64.0" spacing="40.0" AnchorPane.leftAnchor="61.0">
@@ -161,7 +161,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -195,7 +195,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
                         <Insets top="201.0" />
                      </VBox.margin>

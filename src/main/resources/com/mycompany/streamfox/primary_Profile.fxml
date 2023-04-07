@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -160,6 +160,15 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@NetflixGray.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>

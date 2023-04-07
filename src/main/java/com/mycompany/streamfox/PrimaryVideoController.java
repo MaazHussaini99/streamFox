@@ -337,6 +337,12 @@ public class PrimaryVideoController implements Initializable {
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
+    
+    @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
+    }
+
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {

@@ -125,6 +125,15 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Netflix.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">

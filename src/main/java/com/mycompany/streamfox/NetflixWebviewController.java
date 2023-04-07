@@ -94,7 +94,10 @@ public class NetflixWebviewController  implements Initializable {
 
     }
 
-       
+        @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
+    }
     
     @FXML
     void switchToYT(ActionEvent event) throws IOException {

@@ -5,28 +5,27 @@
 package com.mycompany.streamfox;
 
 import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.CommentThreadListResponse;
+import com.google.api.services.youtube.model.SearchListResponse;
 import java.io.IOException;
 
 /**
  *
  * @author maazh
  */
-public class Comments {
+public class Search {
 
-    private static CommentThreadListResponse response;
+    public static SearchListResponse getSearchResults() throws IOException {
 
-    public static CommentThreadListResponse getCommentsFromVideo(String videoId) throws IOException {
-
-        YouTube.CommentThreads.List request = YoutubeApiEngine.youtubeService.commentThreads()
+        YouTube.Search.List request = YoutubeApiEngine.youtubeService.search()
                 .list("snippet");
-        response = request.setKey("src/main/resources/youtube.json")
-                .setVideoId(videoId)
+        SearchListResponse response = request.setMaxResults(25L)
+                .setQ("surfing")
                 .execute();
 
 //        System.out.println("Comment: " + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getTextOriginal());
 //        System.out.println("Name:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName());
 //        System.out.println("Image URL:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl());
+        System.out.println(response);
         return response;
     }
 }

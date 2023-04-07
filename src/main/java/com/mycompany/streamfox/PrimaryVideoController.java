@@ -271,6 +271,12 @@ public class PrimaryVideoController implements Initializable {
                 }
             }
         });
+        
+        try {
+            Search.getSearchResults();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void loadPage(String VID) {

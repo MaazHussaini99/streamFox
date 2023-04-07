@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -19,7 +24,7 @@
                   <Image url="@x-icon-white-25.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="715.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
+            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="716.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
                <image>
                   <Image url="@minimize.png" />
                </image>
@@ -29,7 +34,7 @@
                   <Image url="@burger.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="746.0" layoutY="3.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="29.0">
+            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="747.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="28.0">
                <image>
                   <Image url="@fullscreen.png" />
                </image>
@@ -77,37 +82,57 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
+                <AnchorPane minHeight="1000.0" minWidth="0.0" prefHeight="1024.0" prefWidth="758.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
+                        <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="User Profile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <VBox layoutX="61.0" layoutY="64.0" spacing="40.0" AnchorPane.leftAnchor="61.0">
+                           <children>
+                              <Label style="-fx-font-size: 16;" text="Account details" />
+                              <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <HBox fx:id="videos1" spacing="20.0" />
+                                    <Label style="-fx-font-size: 14;" text="First Name" />
+                                    <TextField fx:id="profFirstNameTxt" styleClass="profileText" />
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="180.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <HBox fx:id="videos2" spacing="20.0" />
+                                    <Label style="-fx-font-size: 14;" text="Last Name" />
+                                    <TextField fx:id="profLastNameTxt" styleClass="profileText" />
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="360.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <HBox fx:id="videos3" spacing="20.0" />
+                                    <Label style="-fx-font-size: 14;" text="Email">
+                                       <HBox.margin>
+                                          <Insets right="32.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="profEmailTxt" editable="false" styleClass="profileText" />
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="100.0">
+                                 <children>
+                                    <Label onMouseClicked="#resetPassFunc" style="-fx-font-size: 14;" styleClass="profPassLabel" text="Reset Pasword">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Circle fx:id="profCircle" fill="#a2bfd9" layoutX="379.0" layoutY="64.0" onMouseClicked="#changePic" radius="50.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="saveBtn" layoutX="429.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveFunc" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="347.0" />
+                        <Button fx:id="cancelBtn" layoutX="550.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancelFunc" styleClass="ProfileButtons" text="Cancel" underline="true" visible="false" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="347.0" />
+                        <BarChart layoutX="14.0" layoutY="402.0" prefHeight="400.0" prefWidth="601.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
          </children></AnchorPane>
@@ -124,11 +149,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button fx:id="YTBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToYT" onMouseEntered="#YTBtnEnter" onMouseExited="#YTBtnExit" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ytLogoView" fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToYT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@youtube.png" />
+                              <Image url="@youtubeGray.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -148,12 +173,12 @@
                         <Insets top="200.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="38.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="39.0" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                      <graphic>
-                        <Circle fx:id="userProfView" fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="userProfView" fill="DODGERBLUE" layoutX="32.0" layoutY="46.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                      </graphic>
                   </Button>
                </children>
@@ -165,7 +190,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="YouTube">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -175,9 +200,9 @@
                         <Insets top="201.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">
+                  <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="User">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="4.0" />
                      </VBox.margin>
                   </Button>
                </children>

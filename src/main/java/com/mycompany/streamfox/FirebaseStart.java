@@ -5,6 +5,8 @@
 package com.mycompany.streamfox;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.FirestoreOptions;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -19,8 +21,9 @@ import java.io.IOException;
  */
 
 public class FirebaseStart {
+    public static Firestore db;
     
-    public static void initializeFire() throws FileNotFoundException, IOException{
+    public static void initializeFirebase() throws FileNotFoundException, IOException{
         FileInputStream serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
@@ -29,5 +32,23 @@ public class FirebaseStart {
                 .build();
 
         FirebaseApp.initializeApp(options);
+    }
+    
+    
+    @SuppressWarnings("ThrowableResultIgnored")
+        public static void initializeFirestore(){
+        FileInputStream serviceAccount = null;
+        try {
+            serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        FirestoreOptions firestoreOptions = null;
+        try {
+            firestoreOptions = FirestoreOptions.getDefaultInstance().toBuilder().setProjectId("streamfox-966e7").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        db = firestoreOptions.getService();
     }
 }

@@ -1,6 +1,5 @@
 package com.mycompany.streamfox;
 
-import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.VideoListResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import static com.mycompany.streamfox.App.scene;
@@ -8,10 +7,8 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
-import static com.mycompany.streamfox.YoutubeApiEngine.getService;
 import java.io.IOException;
 import java.net.URL;
-import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -32,7 +29,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class PrimaryHomeController implements Initializable {
+public class PrimarySearchResultsController implements Initializable {
 
     private FirebaseAuth firebaseAuth;
 
@@ -59,24 +56,26 @@ public class PrimaryHomeController implements Initializable {
 
     @FXML
     private Button userNameMenuBtn;
-
+    
     @FXML
-    private HBox ytVids;
+    private VBox searchResultsBox;
 
     VBox[] testvb;
 
     private int onOff = 0;
 
-    User user = User.getInstance();
-    UserData userData = UserData.getInstance();
-    
+    private boolean fullscreenBool;
+
     public static String VIDload;
     public static String titleLoad;
     public static String channelLoad;
 
+    User user = User.getInstance();
+    UserData userData = UserData.getInstance();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        fullscreenBool = false;
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -103,30 +102,9 @@ public class PrimaryHomeController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-        ytVids.setSpacing(20);
-        
-        //initialize youtube
-        
-        /*try {
-            Comments.getCommentsFromVideo("QC6Q4Fge3uE");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }*/
-        VidObj[] help = new VidObj[50];
-        try {
-            VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
-            
-            for (int i = 0; i < 50; i++) {
-                help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(), 
-                        mostPopularVids.getItems().get(i).getSnippet().getTitle(), 
-                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
 
-        testvb = new VBox[help.length];
-        for (int i = 0; i < 20; i++) {
+        /*testvb = new VBox[10];
+        for (int i = 0; i < help.length; i++) {
             testvb[i] = new VBox();
             ImageView imv = new ImageView();
             Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
@@ -156,8 +134,10 @@ public class PrimaryHomeController implements Initializable {
             testvb[i].getChildren().add(imv);
             testvb[i].getChildren().add(tlabel);
 
-            ytVids.getChildren().add(testvb[i]);
-        }
+            videos1.getChildren().add(testvb[i]);
+        }*/
+
+       
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
@@ -194,8 +174,9 @@ public class PrimaryHomeController implements Initializable {
 
     }
 
-    public PrimaryHomeController() {
+    public PrimarySearchResultsController() {
         User user = User.getInstance();
+        UserData userData = new UserData();
         System.out.println(user);
     }
 
@@ -224,20 +205,20 @@ public class PrimaryHomeController implements Initializable {
     }
 
     @FXML
-    void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+    void switchToHome(ActionEvent event) throws IOException {
+        App.setRoot("primary_Home");
     }
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
     }
-    
-        @FXML
+
+    @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("primary_Settings");
     }
-
+    
     /**
      * switches the application to and from fullscreen mode
      */
@@ -248,6 +229,7 @@ public class PrimaryHomeController implements Initializable {
         //TODO: make the interface more dynamic (hard)
         System.out.println("fullscreen");
         App.fullscreen();
+
     }
 
 }

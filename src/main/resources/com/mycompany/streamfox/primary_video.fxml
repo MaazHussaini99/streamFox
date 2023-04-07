@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryVideoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryVideoController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -179,7 +179,7 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets top="200.0" />
+                        <Insets top="160.0" />
                      </VBox.margin>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
@@ -194,7 +194,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -204,9 +204,10 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Netflix" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
-                        <Insets top="201.0" />
+                        <Insets top="161.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">

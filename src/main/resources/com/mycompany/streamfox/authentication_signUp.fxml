@@ -49,7 +49,7 @@
                      </VBox.margin>
                   </Label>
                   <PasswordField fx:id="passwordField" />
-                  <Button fx:id="signInBtn" mnemonicParsing="false" onAction="#preformActionBtn" prefHeight="25.6" prefWidth="260.0" stylesheets="@cssAuth.css" text="Sign In">
+                  <Button fx:id="signInBtn" mnemonicParsing="false" onAction="#signUp" prefHeight="25.6" prefWidth="260.0" stylesheets="@cssAuth.css" text="Sign Up">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin></Button>

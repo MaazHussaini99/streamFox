@@ -62,13 +62,13 @@ public class AuthControllerSignUp implements Initializable {
 
     @FXML
     private Label signLabel;
-    
+
     @FXML
     private TextField firstNameField;
 
     @FXML
     private TextField lastNameField;
-    
+
     @FXML
     private PasswordField passwordField;
 
@@ -76,7 +76,6 @@ public class AuthControllerSignUp implements Initializable {
 
     private DialogPane dialog;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
@@ -92,81 +91,78 @@ public class AuthControllerSignUp implements Initializable {
     @FXML
     void switchTextLabel(MouseEvent event) throws IOException {
         App.setRoot("authentication");
-       
+
     }
 
-    @FXML
-    void preformActionBtn(ActionEvent event) throws IOException {
-        if (signInBtn.getText().contains("In")) {
-            login(event);
-        } else if (signInBtn.getText().contains("Up")) {
-            signUp(event);
-        }
-    }
+//    @FXML
+//    void preformActionBtn(ActionEvent event) throws IOException {
+//        if (signInBtn.getText().contains("In")) {
+//            login(event);
+//        } else if (signInBtn.getText().contains("Up")) {
+//            signUp(event);
+//        }
+//    }
 
-    void login(ActionEvent event) {
-        String email = emailTxtField.getText();
-        String password = passwordField.getText();
-        if (checkRegex(email, password)) {
-            try {
-                URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBsNMBJU17vpcxX6Nz3PBglq8wWOijTtq0");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", "application/json; utf-8");
-                conn.setDoOutput(true);
-                String jsonInputString = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
-                try (OutputStream os = conn.getOutputStream()) {
-                    byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
-                    os.write(input, 0, input.length);
-                }
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                    System.out.println(response.toString());
-
-                    //initialize the user object
-                    UserRecord userRecord;
-                    try {
-                        userRecord = firebaseAuth.getUserByEmail(email);
-                        User user = User.getInstance();
-                        user.setUserEmail(email);
-                        user.setUid(userRecord.getUid());
-                        //System.out.println(user);
-                    } catch (FirebaseAuthException ex) {
-                        ex.printStackTrace();
-                    }
-
-                    //Add primary screen functionality
-                    App.setWidth(800);
-                    App.setHeight(500);
-                    App.scene = new Scene(loadFXML("primary_Home"), App.width, App.height);
-                    
-                    
-                    
-                    App.stage.setScene(App.scene);
-                    
-                    //App.setRoot("primary");
-
-                }
-                if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                    throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-                }
-                conn.disconnect();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-
-                loginMalformedURLAlert();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                loginIOExceptionAlert();
-            }
-        }
-    }
+//    void login(ActionEvent event) {
+//        String email = emailTxtField.getText();
+//        String password = passwordField.getText();
+//        if (checkRegex(email, password)) {
+//            try {
+//                URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBsNMBJU17vpcxX6Nz3PBglq8wWOijTtq0");
+//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                conn.setRequestMethod("POST");
+//                conn.setRequestProperty("Content-Type", "application/json; utf-8");
+//                conn.setDoOutput(true);
+//                String jsonInputString = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+//                try (OutputStream os = conn.getOutputStream()) {
+//                    byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+//                    os.write(input, 0, input.length);
+//                }
+//                try (BufferedReader br = new BufferedReader(
+//                        new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
+//                    StringBuilder response = new StringBuilder();
+//                    String responseLine;
+//                    while ((responseLine = br.readLine()) != null) {
+//                        response.append(responseLine.trim());
+//                    }
+//                    System.out.println(response.toString());
+//
+//                    //initialize the user object
+//                    UserRecord userRecord;
+//                    try {
+//                        userRecord = firebaseAuth.getUserByEmail(email);
+//                        User user = User.getInstance();
+//                        user.setUserEmail(email);
+//                        user.setUid(userRecord.getUid());
+//                        //System.out.println(user);
+//                    } catch (FirebaseAuthException ex) {
+//                        ex.printStackTrace();
+//                    }
+//
+//                    //Add primary screen functionality
+//                    App.setWidth(800);
+//                    App.setHeight(500);
+//                    App.scene = new Scene(loadFXML("primary_Home"), App.width, App.height);
+//
+//                    App.stage.setScene(App.scene);
+//
+//                    //App.setRoot("primary");
+//                }
+//                if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+//                    throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+//                }
+//                conn.disconnect();
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//
+//                loginMalformedURLAlert();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                loginIOExceptionAlert();
+//            }
+//        }
+//    }
 
     boolean checkRegex(String email, String password) {
         Pattern regEmail = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -187,6 +183,7 @@ public class AuthControllerSignUp implements Initializable {
         return true;
     }
 
+    @FXML
     void signUp(ActionEvent event) throws IOException {
         String email = emailTxtField.getText();
         String password = passwordField.getText();
@@ -194,10 +191,28 @@ public class AuthControllerSignUp implements Initializable {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
-                
+
                 //add primary screen functionality
                 userCreatedAlert();
+
+                UserRecord userRecord;
+                try {
+                    userRecord = firebaseAuth.getUserByEmail(email);
+                    User user = User.getInstance();
+                    user.setUserEmail(email);
+                    user.setUid(userRecord.getUid());
+                    
+                    //setting new user
+                    NewUser.setNewProfile(user.getUid(), user.getUserEmail(), firstNameField.getText(), lastNameField.getText(), YoutubeApiEngine.refreshToken);
+                    NewUser.setNewServiceList(user.getUid());
+                    NewUser.setNewWatchtime(user.getUid());
+                    NewUser.setServiceWatchtime(user.getUid());
+                    //System.out.println(user);
+                } catch (FirebaseAuthException ex) {
+                    ex.printStackTrace();
+                }
                 
+
                 App.setRoot("authentication");
             } catch (FirebaseAuthException ex) {
                 firebaseAuthExceptionAlert();
@@ -276,10 +291,10 @@ public class AuthControllerSignUp implements Initializable {
         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
     }
-    
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
+
 }

@@ -66,7 +66,7 @@ public final class UserData {
     }
 
     private void setWatchtime() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("watchtime");
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("watchtime");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             watchTimeDataMap = future.get().getData();

@@ -138,15 +138,9 @@ public class AuthController implements Initializable {
                     } catch (FirebaseAuthException ex) {
                         ex.printStackTrace();
                     }
-                    YoutubeApiEngine.initializeYoutube();
+                    
                     User user = User.getInstance();
-                    
-                    //setting new user
-                    
-                    NewUser.setNewProfile(user.getUid(), user.getUserEmail(), YoutubeApiEngine.refreshToken);
-                    NewUser.setNewServiceList(user.getUid());
-                    NewUser.setNewWatchtime(user.getUid());
-                    NewUser.setServiceWatchtime(user.getUid());
+
                     
                     //Add primary screen functionality
                     App.setWidth(800);

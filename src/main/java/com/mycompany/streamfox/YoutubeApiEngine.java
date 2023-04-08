@@ -19,6 +19,7 @@ import com.google.api.core.ApiFuture;
 import com.google.api.services.youtube.YouTube;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.WriteResult;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,6 +30,7 @@ import java.util.Collection;
 import java.util.Scanner;
 import com.sun.net.httpserver.*;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -46,8 +48,8 @@ public class YoutubeApiEngine {
     private static final String APPLICATION_NAME = "myCmsMaaz";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-    public static String refreshToken;
-    User user = User.getInstance();
+    public static String refreshToken = "";
+    static User user = User.getInstance();
 
     public static void initializeYoutube() {
 
@@ -58,20 +60,23 @@ public class YoutubeApiEngine {
 //        } catch (IOException ex) {
 //            ex.printStackTrace();
 //        }
-        Map<String, Object> profileDataMap;
+        Map<String, Object> profileDataMap = null;
         DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             profileDataMap = future.get().getData();
-            profileDataMap.get("refreshToken");
+            refreshToken = (String) profileDataMap.get("refreshToken");
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (ExecutionException ex) {
             ex.printStackTrace();
         }
-        if (refreshToken.equals("")) {
+        if (refreshToken == "") {
             try {
                 youtubeService = getService();
+                
+                profileDataMap.put("refreshToken", refreshToken);
+                ApiFuture<WriteResult> update = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile").update(profileDataMap);
             } catch (GeneralSecurityException ex) {
                 ex.printStackTrace();
             } catch (IOException ex) {
@@ -79,7 +84,6 @@ public class YoutubeApiEngine {
             }
         } else {
             try {
-                
                 youtubeService = getServiceWithRefreshToken(refreshToken);
             } catch (GeneralSecurityException ex) {
                 ex.printStackTrace();

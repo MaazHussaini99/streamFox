@@ -18,9 +18,9 @@ public class NewUser {
     private static Map<String, Integer> watchtimeMap = new HashMap();
     
 
-    public static void setNewProfile(String uid, String email, String refreshToken) {
-        profileMap.put("fname", "Maaz");
-        profileMap.put("lname", "Hussaini");
+    public static void setNewProfile(String uid, String email, String fname, String lname, String refreshToken) {
+        profileMap.put("fname", fname);
+        profileMap.put("lname", lname);
         profileMap.put("email", email);
         profileMap.put("refreshToken", refreshToken);
         profileMap.put("profileImage", "https://marketplace.canva.com/EAFEits4-uw/1/0/800w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-r0bPCSjUqg0.jpg");

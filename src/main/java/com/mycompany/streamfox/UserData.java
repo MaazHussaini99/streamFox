@@ -42,7 +42,7 @@ public final class UserData {
     }
 
     private void setProfile() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("profile");
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             profileDataMap = future.get().getData();
@@ -54,7 +54,7 @@ public final class UserData {
     }
 
     private void setServiceList() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("servicesList");
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("servicesList");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             serviceListDataMap = future.get().getData();

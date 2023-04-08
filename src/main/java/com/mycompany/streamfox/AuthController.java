@@ -141,7 +141,13 @@ public class AuthController implements Initializable {
                     YoutubeApiEngine.initializeYoutube();
                     User user = User.getInstance();
                     
-                    //NewUser.setNewProfile(user.getUid(), user.getUserEmail());
+                    //setting new user
+                    
+                    NewUser.setNewProfile(user.getUid(), user.getUserEmail(), YoutubeApiEngine.refreshToken);
+                    NewUser.setNewServiceList(user.getUid());
+                    NewUser.setNewWatchtime(user.getUid());
+                    NewUser.setServiceWatchtime(user.getUid());
+                    
                     //Add primary screen functionality
                     App.setWidth(800);
                     App.setHeight(500);

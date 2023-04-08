@@ -15,7 +15,10 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.core.ApiFuture;
 import com.google.api.services.youtube.YouTube;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +29,8 @@ import java.util.Collection;
 import java.util.Scanner;
 import com.sun.net.httpserver.*;
 import java.io.InputStreamReader;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -41,6 +46,9 @@ public class YoutubeApiEngine {
     private static final String APPLICATION_NAME = "myCmsMaaz";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
+    public static String refreshToken;
+    User user = User.getInstance();
+
     public static void initializeYoutube() {
 
 //        try {
@@ -50,12 +58,34 @@ public class YoutubeApiEngine {
 //        } catch (IOException ex) {
 //            ex.printStackTrace();
 //        }
+        Map<String, Object> profileDataMap;
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
-            youtubeService = getServiceWithRefreshToken("1//01LLNHXylUYHwCgYIARAAGAESNwF-L9IrECJXNLKpHyjG-PlNAMdXur1FiQfLRCJDYx5JMmHLAA6FlPH6-4M8pM75fNxSme1Hu2U");
-        } catch (GeneralSecurityException ex) {
+            profileDataMap = future.get().getData();
+            profileDataMap.get("refreshToken");
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
-        } catch (IOException ex) {
+        } catch (ExecutionException ex) {
             ex.printStackTrace();
+        }
+        if (refreshToken.equals("")) {
+            try {
+                youtubeService = getService();
+            } catch (GeneralSecurityException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            try {
+                
+                youtubeService = getServiceWithRefreshToken(refreshToken);
+            } catch (GeneralSecurityException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
     }
@@ -78,6 +108,7 @@ public class YoutubeApiEngine {
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets, SCOPES).setAccessType("offline")
                 .build();
         Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+        refreshToken = credential.getRefreshToken();
         System.out.println("Access token: " + credential.getRefreshToken());
         return credential;
     }

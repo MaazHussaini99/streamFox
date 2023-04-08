@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -50,7 +51,35 @@ public class NetflixWebviewController  implements Initializable {
    
    @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-         //  System.out.println("Hello");
+       frontPane.setVisible(false);
+        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
+
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
+        tt.setByX(-200);
+        tt.play();
+
+        topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                App.xOffset = event.getSceneX();
+                App.yOffset = event.getSceneY();
+            }
+
+        }
+        );
+
+        //move around here
+        topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                App.stage.setX(event.getScreenX() - App.xOffset);
+                App.stage.setY(event.getScreenY() - App.yOffset);
+            }
+        });
+        
          engine = view.getEngine();
          engine.load("https://www.netflix.com/Login");
      

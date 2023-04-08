@@ -222,6 +222,11 @@ public class PrimaryProfileController implements Initializable {
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
+    @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
+    }
+
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {

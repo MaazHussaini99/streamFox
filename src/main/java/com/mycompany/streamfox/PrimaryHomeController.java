@@ -76,7 +76,6 @@ public class PrimaryHomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -161,6 +160,11 @@ public class PrimaryHomeController implements Initializable {
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
+    }
+    
+    @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
     }
 
     @FXML

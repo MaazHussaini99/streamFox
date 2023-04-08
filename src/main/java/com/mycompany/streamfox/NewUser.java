@@ -92,5 +92,4 @@ public class NewUser {
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("prime").set(watchtimeMap);
     }
-
 }

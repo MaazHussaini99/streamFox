@@ -208,6 +208,11 @@ public class PrimarySearchResultsController implements Initializable {
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
     }
+        @FXML
+    void switchToNetflix(ActionEvent event) throws IOException {
+        App.setRoot("NetflixSignIn");
+    }
+
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {

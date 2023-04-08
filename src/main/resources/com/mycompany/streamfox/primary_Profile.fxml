@@ -161,6 +161,15 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@NetflixGray.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -170,7 +179,7 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets top="200.0" />
+                        <Insets top="157.0" />
                      </VBox.margin>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" minHeight="38.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="39.0" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
@@ -195,14 +204,15 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Netflix" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
-                        <Insets top="201.0" />
+                        <Insets top="157.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="User">
                      <VBox.margin>
-                        <Insets top="4.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>

@@ -41,7 +41,7 @@ public final class UserData {
         setWatchtime();
     }
 
-    private void setProfile() {
+    public void setProfile() {
         DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
@@ -53,6 +53,11 @@ public final class UserData {
         }
     }
 
+    public void updateProfile(Map<String, Object> profileMap) {
+        FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile").set(profileMap);
+    }
+
+    
     private void setServiceList() {
         DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("servicesList");
         ApiFuture<DocumentSnapshot> future = docRef.get();

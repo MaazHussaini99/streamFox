@@ -193,6 +193,7 @@ public class AuthController implements Initializable {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
+                
                 //add primary screen functionality
                 userCreatedAlert();
             } catch (FirebaseAuthException ex) {

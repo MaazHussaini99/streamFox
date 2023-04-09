@@ -122,7 +122,7 @@
                            </children>
                         </VBox>
                         <Circle fx:id="profCircle" fill="#a2bfd9" layoutX="379.0" layoutY="64.0" onMouseClicked="#changePic" radius="50.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="saveBtn" layoutX="429.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveFunc" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="347.0" />
+                        <Button fx:id="saveBtn" layoutX="429.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveChanges" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="347.0" />
                         <Button fx:id="cancelBtn" layoutX="550.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancelFunc" styleClass="ProfileButtons" text="Cancel" underline="true" visible="false" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="347.0" />
                         <BarChart layoutX="14.0" layoutY="402.0" prefHeight="400.0" prefWidth="601.0">
                           <xAxis>

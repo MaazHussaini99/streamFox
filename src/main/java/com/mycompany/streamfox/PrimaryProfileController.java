@@ -4,16 +4,28 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.Storage.BlobWriteOption;
+import com.google.cloud.storage.Storage.PredefinedAcl;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.cloud.StorageClient;
 import static com.mycompany.streamfox.App.scene;
 import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import javafx.animation.FadeTransition;
@@ -22,9 +34,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,15 +51,30 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javax.mail.Session;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class PrimaryProfileController implements Initializable {
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @FXML
     private Button YTBtn;
-    
+
     @FXML
     private AnchorPane backPane;
 
@@ -71,10 +101,10 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private ImageView ytLogoView;
-    
+
     @FXML
     private Circle userProfView;
-    
+
     @FXML
     private TextField profEmailTxt;
 
@@ -83,7 +113,7 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private Button userNameMenuBtn;
-    
+
     @FXML
     private TextField profLastNameTxt;
 
@@ -95,6 +125,8 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private AnchorPane topBar;
+
+    private DialogPane dialog;
 
     private int onOff = 0;
 
@@ -131,7 +163,8 @@ public class PrimaryProfileController implements Initializable {
             }
         });
         setValues();
-        userNameMenuBtn.setText( ((String)userData.getProfileDataMap().get("fname"))+ " " +((String) userData.getProfileDataMap().get("lname")));
+        userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
+
     }
 
     private void setValues() {
@@ -185,20 +218,66 @@ public class PrimaryProfileController implements Initializable {
     }
 
     @FXML
-    void saveFunc(ActionEvent event) {
-        //add all new values
-    }
-
-    @FXML
     void closeCommand(MouseEvent event) {
         System.exit(0);
     }
 
     @FXML
-    void resetPassFunc(MouseEvent event) {
+    void resetPassFunc(MouseEvent event) throws FirebaseAuthException {
         //for when reset label is pressed
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.setTitle("Reset Password");
+        alert.setHeaderText("Use following link to reset your password");
+
+        WebView webView = new WebView();
+        webView.setPrefSize(600, 400);
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load("https://www.google.com/");
+        //firebaseAuth.generatePasswordResetLink(user.getUserEmail())
+        DialogPane dialogPane = new DialogPane();
+        dialogPane.setContent(webView);
+        alert.setDialogPane(dialogPane);
+        dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+        ButtonType buttonType = new ButtonType("Close", ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(buttonType);
+        alert.showAndWait();
+
+//        Properties props = new Properties();
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.smtp.host", "<your-email-service-host>");
+//        props.put("mail.smtp.port", "<your-email-service-port>");
+//
+//        Session session = Session.getInstance(props, new Authenticator() {
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication("maazhussaini@outlook.com", "dude1962");
+//            }
+//        });
+//
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress("<your-email-address>"));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getUserEmail()));
+//            message.setSubject("Password reset");
+//            message.setText("Click the following link to reset your password: " + firebaseAuth.generatePasswordResetLink(user.getUserEmail()));
+//            Transport.send(message);
+//            System.out.println("Password reset email sent");
+//        } catch (MessagingException e) {
+//            System.out.println("Error sending password reset email: " + e.getMessage());
+//        }
     }
-    
+
+    @FXML
+    void saveChanges(ActionEvent event) {
+        //for when save is pressed
+        Map<String, Object> map = UserData.getInstance().getProfileDataMap();
+        map.put("fname", profFirstNameTxt.getText());
+        map.put("lname", profLastNameTxt.getText());
+        UserData.getInstance().updateProfile(map);
+    }
+
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);
@@ -222,17 +301,17 @@ public class PrimaryProfileController implements Initializable {
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
+
     @FXML
     void switchToNetflix(ActionEvent event) throws IOException {
         App.setRoot("NetflixSignIn");
     }
 
-
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("primary_Settings");
     }
-    
+
     @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
@@ -243,7 +322,7 @@ public class PrimaryProfileController implements Initializable {
      */
     @FXML
     private void fullscreen() {
-        firebaseAuth = FirebaseAuth.getInstance();
+
         //toggles fullscreen on and off
         //TODO: make the interface more dynamic (hard)
         System.out.println("fullscreen");
@@ -251,7 +330,7 @@ public class PrimaryProfileController implements Initializable {
     }
 
     @FXML
-    void changePic(MouseEvent event) {
+    void changePic(MouseEvent event) throws IOException {
         FileChooser fileC = new FileChooser();
 
         FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
@@ -260,12 +339,35 @@ public class PrimaryProfileController implements Initializable {
         FileChooser.ExtensionFilter filterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
 
         fileC.getExtensionFilters().addAll(filterJPG, filterjpg, filterPNG, filterpng);
-        
+
         File file = fileC.showOpenDialog(null);
-        file.getAbsolutePath();
-        
+
+        StorageClient storageClient = StorageClient.getInstance(FirebaseStart.fa);
+
+        File localFile = new File(file.getAbsolutePath());
+
+// Set options for the upload
+        InputStream uploadFile = new FileInputStream(localFile); // userselection is the image path that the user chose
+        String blobString = localFile.getName();;
+        BlobInfo blobInfo = storageClient.bucket().create(blobString, uploadFile, Bucket.BlobWriteOption.userProject("streamfox-966e7"));
+        BlobId blobId = blobInfo.getBlobId();
+        Storage storage = storageClient.bucket().getStorage();
+        long duration = 1L; // Time duration for the signed URL (in minutes)
+        String signedUrl = storage.signUrl(blobInfo, duration, TimeUnit.HOURS).toString();
+
+// Print the signed URL
+        System.out.println("Signed URL: " + signedUrl);
+        //String fileUrl = blobInfo.;
+        Map<String, Object> profileMap = UserData.getInstance().getProfileDataMap();
+        profileMap.put("profileImage", signedUrl);
+        UserData.getInstance().updateProfile(profileMap);
+
+        UserData.getInstance().setProfile();
+        profCircle.setFill(new ImagePattern(new Image((String) UserData.getInstance().getProfileDataMap().get("profileImage"))));
+        userProfView.setFill(new ImagePattern(new Image((String) UserData.getInstance().getProfileDataMap().get("profileImage"))));
+        //System.out.println(fileUrl);
     }
-    
+
     @FXML
     void YTBtnEnter(MouseDragEvent event) {
         Image newImg = new Image("/src/main/resources/youtube.png");

@@ -79,33 +79,37 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos1" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="180.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos2" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="360.0" prefHeight="166.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="150.0" prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="videos3" spacing="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
+                        <VBox AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                                 <content>
+                                    <AnchorPane style="-fx-background-color: #000;">
+                                       <children>
+                                          <HBox fx:id="videos3" spacing="20.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                                 <content>
+                                    <AnchorPane style="-fx-background-color: #000;">
+                                       <children>
+                                          <HBox fx:id="videos1" spacing="20.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                                 <content>
+                                    <AnchorPane style="-fx-background-color: #000;">
+                                       <children>
+                                          <HBox fx:id="videos2" spacing="20.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
               </content>

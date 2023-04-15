@@ -102,7 +102,9 @@ public class PrimaryVideoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
+        
+        commentView.setPrefHeight(recommendedTab.getHeight());
+        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -160,6 +162,8 @@ public class PrimaryVideoController implements Initializable {
             ex.printStackTrace();
         }
 
+    if(App.stage.isFullScreen() == false)
+    {
         testvb = new VBox[help.length];
         for (int i = 0; i < help.length; i++) {
             testvb[i] = new VBox();
@@ -178,12 +182,14 @@ public class PrimaryVideoController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     try {
+                        //relatedVids.getItems().get(1).
+                               
                         recommendedTab.getChildren().clear();
                         System.out.println("working");
                         String myId = help[placeholder].id;
                         testvb = new VBox[help.length];
                         VidObj[] help = new VidObj[20];
-
+                        
                         SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
 
                         for (int i = 0; i < 20; i++) {
@@ -229,6 +235,80 @@ public class PrimaryVideoController implements Initializable {
             recommendedTab.getChildren()
                     .add(testvb[i]);
         }
+    }else{
+        webVideoView.setPrefWidth(1024);
+        webVideoView.setPrefHeight(576);
+        testvb = new VBox[help.length];
+        for (int i = 0; i < help.length; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(260);
+            imv.setFitHeight(160);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(460);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        //relatedVids.getItems().get(1).
+                               
+                        recommendedTab.getChildren().clear();
+                        System.out.println("working");
+                        String myId = help[placeholder].id;
+                        testvb = new VBox[help.length];
+                        VidObj[] help = new VidObj[20];
+                        
+                        SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
+
+                        for (int i = 0; i < 20; i++) {
+                            help[i] = new VidObj(newRelatedVids.getItems().get(i).getId().getVideoId(),
+                                    newRelatedVids.getItems().get(i).getSnippet().getTitle(),
+                                    newRelatedVids.getItems().get(i).getSnippet().getChannelTitle());
+                        }
+
+                        for (int i = 0; i < help.length; i++) {
+                            testvb[i] = new VBox();
+                            ImageView imv = new ImageView();
+                            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                            imv.setFitWidth(260);
+                            imv.setFitHeight(160);
+                            imv.setImage(img);
+                            Label tlabel = new Label();
+                            tlabel.setMaxWidth(130);
+                            tlabel.setText(help[i].title);
+
+                            testvb[i].getChildren()
+                                    .add(imv);
+                            testvb[i].getChildren()
+                                    .add(tlabel);
+
+                            recommendedTab.getChildren()
+                                    .add(testvb[i]);
+                        }
+
+                        loadPage(help[placeholder].id);
+                        titleTxt.setText(help[placeholder].title);
+                        channelTxt.setText(help[placeholder].channel);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            });
+            testvb[i].getChildren()
+                    .add(imv);
+            testvb[i].getChildren()
+                    .add(tlabel);
+
+            recommendedTab.getChildren()
+                    .add(testvb[i]);
+    }}    
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));

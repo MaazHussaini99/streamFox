@@ -9,6 +9,7 @@ import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -157,6 +158,16 @@ public class PrimaryController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
+                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    System.out.println(help[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -191,6 +202,16 @@ public class PrimaryController implements Initializable {
                     VIDload = help1[placeholder].id;
                     titleLoad = help1[placeholder].title;
                     channelLoad = help1[placeholder].channel;
+                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    System.out.println(help1[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -225,6 +246,16 @@ public class PrimaryController implements Initializable {
                     VIDload = help2[placeholder].id;
                     titleLoad = help2[placeholder].title;
                     channelLoad = help2[placeholder].channel;
+                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    System.out.println(help2[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {

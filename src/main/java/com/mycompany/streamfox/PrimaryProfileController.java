@@ -56,6 +56,10 @@ import javafx.util.Duration;
 import javax.mail.Session;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.web.WebEngine;
@@ -122,6 +126,9 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private Button saveBtn;
+       
+    @FXML
+    private BarChart watchTimeGraph;
 
     @FXML
     private AnchorPane topBar;
@@ -164,7 +171,30 @@ public class PrimaryProfileController implements Initializable {
         });
         setValues();
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
-
+        
+        
+        
+        XYChart.Series youtubeSeries = new XYChart.Series();
+        youtubeSeries.setName("Youtube");
+        youtubeSeries.getData().add(new XYChart.Data("Monday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Tuesday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Wednesday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Thursday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Friday", userData.getYTWatchDaysDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Saturday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Sunday", 0));
+        
+        XYChart.Series netflixSeries = new XYChart.Series();
+        netflixSeries.setName("Netflix");
+        netflixSeries.getData().add(new XYChart.Data("Monday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Tuesday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Wednesday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Thursday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Friday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Saturday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Sunday", 0));
+        
+        watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
     }
 
     private void setValues() {

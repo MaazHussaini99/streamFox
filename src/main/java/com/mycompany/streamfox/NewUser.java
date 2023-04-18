@@ -16,6 +16,7 @@ public class NewUser {
     private static Map<String, String> profileMap = new HashMap();
     private static Map<String, Boolean> serviceListMap = new HashMap();
     private static Map<String, Integer> watchtimeMap = new HashMap();
+    private static Map<String, Double> serviceWatchtimeMap = new HashMap();
     
 
     public static void setNewProfile(String uid, String email, String fname, String lname, String refreshToken) {
@@ -24,6 +25,7 @@ public class NewUser {
         profileMap.put("email", email);
         profileMap.put("refreshToken", refreshToken);
         profileMap.put("profileImage", "https://marketplace.canva.com/EAFEits4-uw/1/0/800w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-r0bPCSjUqg0.jpg");
+        
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("profile").set(profileMap);
     }
@@ -45,6 +47,7 @@ public class NewUser {
         watchtimeMap.put("setWeeklyLimit", 50);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("watchtime").set(watchtimeMap);
+
     }
 
     public static void setServiceWatchtime(String uid) {
@@ -52,25 +55,35 @@ public class NewUser {
         watchtimeMap.clear();
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("setDailyLimit", 0);
+        watchtimeMap.put("setWeeklyLimit", 0);
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("netflix").set(watchtimeMap);
 
         watchtimeMap.clear();
 
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("setDailyLimit", 0);
+        watchtimeMap.put("setWeeklyLimit", 0);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("youtube").set(watchtimeMap);
+                
+        
+        serviceWatchtimeMap.put("sundayWatchTime", 0.001);
+        serviceWatchtimeMap.put("mondayWatchTime", 0.001);
+        serviceWatchtimeMap.put("tuesdayWatchTime", 0.001);
+        serviceWatchtimeMap.put("wednesdayWatchTime", 0.001);
+        serviceWatchtimeMap.put("thursdayWatchTime", 0.001);
+        serviceWatchtimeMap.put("fridayWatchTime", 0.001);
+        serviceWatchtimeMap.put("saturdayWatchTime", 0.001);
+        FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("youtube").set(serviceWatchtimeMap);
 
         watchtimeMap.clear();
 
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("setDailyLimit", 0);
+        watchtimeMap.put("setWeeklyLimit", 0);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("hbomax").set(watchtimeMap);
 
@@ -78,8 +91,8 @@ public class NewUser {
 
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("setDailyLimit", 0);
+        watchtimeMap.put("setWeeklyLimit", 0);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("hulu").set(watchtimeMap);
 
@@ -87,8 +100,8 @@ public class NewUser {
 
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("setDailyLimit", 0);
+        watchtimeMap.put("setWeeklyLimit", 0);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("prime").set(watchtimeMap);
     }

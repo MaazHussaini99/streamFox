@@ -263,7 +263,7 @@ public class PrimaryProfileController implements Initializable {
         WebView webView = new WebView();
         webView.setPrefSize(600, 400);
         WebEngine webEngine = webView.getEngine();
-        webEngine.load("https://www.google.com/");
+        webEngine.load(firebaseAuth.generatePasswordResetLink(user.getUserEmail()));
         //firebaseAuth.generatePasswordResetLink(user.getUserEmail())
         DialogPane dialogPane = new DialogPane();
         dialogPane.setContent(webView);

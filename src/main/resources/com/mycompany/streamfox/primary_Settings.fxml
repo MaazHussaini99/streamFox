@@ -239,6 +239,10 @@
                         </ImageView>
                      </graphic>
                   </Button>
+               </children>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -263,7 +267,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
             <VBox prefHeight="200.0" prefWidth="179.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -274,6 +278,13 @@
                      </VBox.margin>
                   </Button>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Netflix" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Settings">
                      <VBox.margin>
                         <Insets top="160.0" />
@@ -285,9 +296,6 @@
                      </VBox.margin>
                   </Button>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </VBox>
          </children>
       </AnchorPane>

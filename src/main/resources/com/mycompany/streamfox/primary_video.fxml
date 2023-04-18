@@ -138,7 +138,7 @@
          </children></AnchorPane>
       <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.666666666666664">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToHome" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
@@ -170,6 +170,10 @@
                         </ImageView>
                      </graphic>
                   </Button>
+               </children>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -179,7 +183,7 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets top="160.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
@@ -194,7 +198,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="-0.06666666666666288" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -205,6 +209,13 @@
                      </VBox.margin>
                   </Button>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Netflix" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
                         <Insets top="161.0" />
@@ -216,9 +227,6 @@
                      </VBox.margin>
                   </Button>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </VBox>
          </children>
       </AnchorPane>

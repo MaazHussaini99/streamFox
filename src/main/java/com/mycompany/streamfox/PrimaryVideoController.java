@@ -103,7 +103,7 @@ public class PrimaryVideoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        commentView.setPrefHeight(recommendedTab.getHeight());
+       
         
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);

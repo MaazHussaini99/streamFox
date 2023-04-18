@@ -81,7 +81,7 @@ public class NetflixWebviewController  implements Initializable {
         });
         
          engine = view.getEngine();
-         engine.load("https://www.netflix.com/Login");
+         engine.load("http://streamflix.ezyro.com");
      
      
     }

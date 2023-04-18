@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.NetflixWebviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.NetflixWebviewController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -79,7 +79,7 @@
               <content>
                 <AnchorPane minHeight="454.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <WebView fx:id="view" prefHeight="454.0" prefWidth="744.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.7999999999999545" AnchorPane.topAnchor="0.0" />
+                        <WebView fx:id="view" fontScale="0.0" layoutX="149.0" layoutY="42.0" prefHeight="412.0" prefWidth="594.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="42.0" />
 
                      </children></AnchorPane>
               </content>
@@ -114,7 +114,7 @@
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Netflix.png" />
+                              <Image url="@fox.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -153,7 +153,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Netflix" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="StreamFlix" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
                      <VBox.margin>
                         <Insets top="160.0" />

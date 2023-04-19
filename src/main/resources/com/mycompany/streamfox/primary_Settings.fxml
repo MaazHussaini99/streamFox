@@ -115,7 +115,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <Label text="Netflix">
+                                    <Label text="Twitch">
                                        <font>
                                           <Font size="3.0" />
                                        </font>

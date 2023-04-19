@@ -234,7 +234,7 @@
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@NetflixGray.png" />
+                              <Image url="@TwitchGray.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -277,7 +277,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Netflix" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

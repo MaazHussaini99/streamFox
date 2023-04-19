@@ -7,12 +7,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimarySearchResultsController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -21,17 +19,17 @@
                   <Image url="@x-icon-white-25.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="716.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
+            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="715.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
                <image>
                   <Image url="@minimize.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="11.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="11.0">
+            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="10.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
                <image>
                   <Image url="@burger.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="747.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="28.0">
+            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="746.0" layoutY="3.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="29.0">
                <image>
                   <Image url="@fullscreen.png" />
                </image>
@@ -81,20 +79,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-                           <content>
-                              <AnchorPane prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="ytVids" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <Label layoutX="42.0" layoutY="14.0" style="-fx-text-fill: red; -fx-font-size: 15;" text="YouTube - Recommended">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
+                        <Label layoutX="333.0" layoutY="70.0" text="Search Results:" />
+                        <VBox fx:id="searchResultsBox" layoutX="329.0" layoutY="85.0" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -102,8 +88,34 @@
          </children></AnchorPane>
       <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
-            <VBox prefHeight="200.0" prefWidth="44.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
                <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToHome" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@youtubeGray.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Twitch.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -126,63 +138,22 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchToYT" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToYT" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@youtubeGray.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@TwitchGray.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Home" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="YouTube">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Youtube" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Twitch">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Twitch" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Settings">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
-                        <Insets top="160.0" />
+                        <Insets top="161.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">
@@ -191,6 +162,9 @@
                      </VBox.margin>
                   </Button>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
          </children>
       </AnchorPane>

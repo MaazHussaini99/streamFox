@@ -143,7 +143,7 @@ public class PrimarySettingsController implements Initializable {
         if (Netflix.isSelected()) {
 
         }
-        if (Disney.isSelected()) {
+        if (Twitch.isSelected()) {
 
         }
         if (Youtube.isSelected()) {

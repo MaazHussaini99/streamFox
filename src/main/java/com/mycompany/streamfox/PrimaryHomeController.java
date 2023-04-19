@@ -296,7 +296,11 @@ public class PrimaryHomeController implements Initializable {
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
-
+@FXML
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("TwitchPrimary");
+    }
+    
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");

@@ -333,8 +333,8 @@ public class PrimaryProfileController implements Initializable {
     }
 
     @FXML
-    void switchToNetflix(ActionEvent event) throws IOException {
-        App.setRoot("NetflixSignIn");
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("TwitchPrimary");
     }
 
     @FXML

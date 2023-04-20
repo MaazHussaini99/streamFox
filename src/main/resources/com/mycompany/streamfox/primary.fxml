@@ -77,11 +77,11 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
+                <AnchorPane minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
                         <VBox AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0">
                                  <content>
                                     <AnchorPane style="-fx-background-color: #000;">
                                        <children>
@@ -90,7 +90,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0">
                                  <content>
                                     <AnchorPane style="-fx-background-color: #000;">
                                        <children>
@@ -99,7 +99,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0">
                                  <content>
                                     <AnchorPane style="-fx-background-color: #000;">
                                        <children>
@@ -108,7 +108,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0">
                                  <content>
                                     <AnchorPane style="-fx-background-color: #000;">
                                        <children>
@@ -117,7 +117,7 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0">
                                  <content>
                                     <AnchorPane style="-fx-background-color: #000;">
                                        <children>

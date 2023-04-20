@@ -936,7 +936,7 @@ public class PrimaryController implements Initializable {
             imv.setImage(img);
             Label tlabel = new Label();
             tlabel.setMaxWidth(400);
-            tlabel.setText(help2[i].title);
+            tlabel.setText(help3[i].title);
 
             int placeholder = i;
             imv.setOnMouseClicked(new EventHandler<MouseEvent>() {

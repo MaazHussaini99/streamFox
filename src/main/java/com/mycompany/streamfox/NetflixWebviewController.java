@@ -143,7 +143,7 @@ public class NetflixWebviewController  implements Initializable {
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
     }
-
+    
     /**
      * switches the application to and from fullscreen mode
      */

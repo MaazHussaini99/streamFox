@@ -92,6 +92,8 @@ public class PrimaryVideoController implements Initializable {
 
     private int onOff = 0;
 
+    public static VidObj[] Searchresults;
+    
     VBox[] testvb;
 
     User user = User.getInstance();
@@ -394,8 +396,16 @@ public class PrimaryVideoController implements Initializable {
     }
     
     @FXML
-    void searchFunction(ActionEvent event) {
-
+    void searchFunction(ActionEvent event) throws IOException {
+        
+        Searchresults = Search.returnArray(searchTxtField.getText());
+        
+        if(searchTxtField.getText() == null){
+            System.out.println("Error in search");
+        }else{
+            App.setRoot("primary_SearchResult");
+        }
+         
     }
 
     public PrimaryVideoController() {

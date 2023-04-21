@@ -138,19 +138,19 @@ public class PrimarySettingsController implements Initializable {
 
     }
 
-    void StreamingSerivceAvailbility(ActionEvent event) throws IOException {
+ /*   void StreamingSerivceAvailbility(ActionEvent event) throws IOException {
         // Allows a user to descide what Streaming Service they have using a check
         if (Netflix.isSelected()) {
 
         }
-        if (Twitch.isSelected()) {
+//        if (Twitch.isSelected()) {
 
         }
         if (Youtube.isSelected()) {
 
         }
 
-    }
+    }*/
     
 //    FXCollections.observableList("1 Hour", "2 Hours", "3 Hours", "4 Hours",
 //                "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours", "13 Hours",
@@ -161,6 +161,29 @@ public class PrimarySettingsController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Disable Cofirmation Requiered");
         alert.setHeaderText("Please press OK or Cancel to Confirm That you Want to Disable Your Account \n or Go Back to the Previous Menu ");
+        alert.setResizable(false);
+        alert.setContentText("Are you sure? ");
+        alert.showAndWait();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (!result.isPresent()) {
+
+        } // alert is exited, no button has been pressed.
+        else if (result.get() == ButtonType.OK) {
+
+        } //oke button is pressed
+        else if (result.get() == ButtonType.CANCEL) {
+            alert.close();
+        }
+        // cancel button is pressed
+
+    }
+    
+     @FXML
+    void ResetPassword(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reset Password Cofirmation Requiered");
+        alert.setHeaderText("Please press OK or Cancel to Confirm that you would like to reset your password \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure? ");
         alert.showAndWait();

@@ -598,7 +598,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primary_Settings");
+        App.setRoot("primarySettings");
     }
     
     /**

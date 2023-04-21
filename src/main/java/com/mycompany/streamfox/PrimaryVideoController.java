@@ -425,7 +425,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
     
   @FXML
@@ -441,7 +441,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primary_Settings");
+        App.setRoot("Settings");
     }
     
     @FXML

@@ -214,4 +214,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>StreamFox</name>
 </project>

@@ -112,11 +112,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <Label onMouseClicked="#resetPassFunc" style="-fx-font-size: 14;" styleClass="profPassLabel" text="Reset Pasword">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </Label>
+                                    <Button mnemonicParsing="false" onMouseClicked="#resetPassFunc" text="Reset Password" />
                                  </children>
                               </HBox>
                            </children>
@@ -161,9 +157,9 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#playVideoMode" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@TwitchGray.jpg" />
                            </image>
@@ -208,7 +204,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

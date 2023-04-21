@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
@@ -254,11 +255,23 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     void resetPassFunc(MouseEvent event) throws FirebaseAuthException {
-        //for when reset label is pressed
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initStyle(StageStyle.UNDECORATED);
-        alert.setTitle("Reset Password");
-        alert.setHeaderText("Use following link to reset your password");
+        
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reset Password Cofirmation Requiered");
+        alert.setHeaderText("Please press OK or Cancel to Confirm that you would like to reset your password \n or Go Back to the Previous Menu ");
+        alert.setResizable(false);
+        alert.setContentText("Are you sure? ");
+        alert.showAndWait();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        /*if (!result.isPresent()) {
+
+        }*/ // alert is exited, no button has been pressed.
+         if (result.get() == ButtonType.OK) {
+            Alert passalert = new Alert(Alert.AlertType.INFORMATION);
+        passalert.initStyle(StageStyle.UNDECORATED);
+        passalert.setTitle("Reset Password");
+        passalert.setHeaderText("Use following link to reset your password");
 
         WebView webView = new WebView();
         webView.setPrefSize(600, 400);
@@ -267,13 +280,22 @@ public class PrimaryProfileController implements Initializable {
         //firebaseAuth.generatePasswordResetLink(user.getUserEmail())
         DialogPane dialogPane = new DialogPane();
         dialogPane.setContent(webView);
-        alert.setDialogPane(dialogPane);
-        dialog = alert.getDialogPane();
+        passalert.setDialogPane(dialogPane);
+        dialog = passalert.getDialogPane();
         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         ButtonType buttonType = new ButtonType("Close", ButtonData.OK_DONE);
-        alert.getButtonTypes().setAll(buttonType);
-        alert.showAndWait();
+        passalert.getButtonTypes().setAll(buttonType);
+        passalert.showAndWait();
 
+
+        } //ok button is pressed
+        else if (result.get() == ButtonType.CANCEL) {
+            alert.close();
+        }
+        // cancel button is pressed
+
+        //for when reset label is pressed
+        
 //        Properties props = new Properties();
 //        props.put("mail.smtp.auth", "true");
 //        props.put("mail.smtp.starttls.enable", "true");
@@ -329,7 +351,7 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
 
     @FXML
@@ -339,7 +361,7 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primary_Settings");
+        App.setRoot("Settings");
     }
 
     @FXML

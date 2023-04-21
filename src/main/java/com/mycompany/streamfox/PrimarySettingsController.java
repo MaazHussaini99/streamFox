@@ -128,7 +128,14 @@ public class PrimarySettingsController implements Initializable {
 
     private int onOff = 0;
     
-    int CurrentValueTest;
+    static int YoutubeValue=1;
+     static int DisneyValue=1;
+     static int TwitchValue=1;
+     
+    static int totalDaily;
+    
+     boolean hasYoutubeChanged=false;
+       boolean hasDisneyChanged=false;
 
     private void setValues() { // temp 
         DailyWatchTime.setUserData(this);
@@ -181,25 +188,7 @@ public class PrimarySettingsController implements Initializable {
     
      @FXML
     void ResetPassword(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Reset Password Cofirmation Requiered");
-        alert.setHeaderText("Please press OK or Cancel to Confirm that you would like to reset your password \n or Go Back to the Previous Menu ");
-        alert.setResizable(false);
-        alert.setContentText("Are you sure? ");
-        alert.showAndWait();
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (!result.isPresent()) {
-
-        } // alert is exited, no button has been pressed.
-        else if (result.get() == ButtonType.OK) {
-
-        } //oke button is pressed
-        else if (result.get() == ButtonType.CANCEL) {
-            alert.close();
-        }
-        // cancel button is pressed
-
+    
     }
 
     @FXML
@@ -245,6 +234,7 @@ public class PrimarySettingsController implements Initializable {
 
         }
         );
+        
 
         //move around here
         topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -280,6 +270,20 @@ public class PrimarySettingsController implements Initializable {
         
         YoutubeDailyWatchTime.setValueFactory(YoutubevalueFacDaily);
         YoutubeWeeklyWatchTime.setValueFactory(YoutubevalueFacWeekly);
+        //DailyWatchTime.getValueFactory().setValue(3);
+        
+         YoutubeDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                 YoutubeValue= YoutubeDailyWatchTime.getValue();
+                  if( hasDisneyChanged=true){
+                    totalDaily=YoutubeValue+DisneyValue;
+                    DailyWatchTime.getValueFactory().setValue(totalDaily);
+                 }
+                 hasYoutubeChanged=true;
+            } 
+        });
+         
         
         NetflixDailyWatchTime.setValueFactory(NetflixvalueFacDaily);
         NetflixWeeklyWatchTime.setValueFactory(NetflixvalueFacWeekly);
@@ -287,11 +291,30 @@ public class PrimarySettingsController implements Initializable {
         DisneyDailyWatchTime.setValueFactory(DisneyvalueFacDaily);
         DisneyWeeklyWatchTime.setValueFactory(DisneyvalueFacWeekly);
         
+
+  
+        
+   DisneyDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                 DisneyValue= DisneyDailyWatchTime.getValue();
+                 if(hasYoutubeChanged=true){
+                    totalDaily=YoutubeValue+DisneyValue;
+                    DailyWatchTime.getValueFactory().setValue(totalDaily);
+                 }
+                 hasDisneyChanged=true;
+                 
+                
+             //  System.out.println("this is Current vlaue"+CurrentValueTest);
+            } 
+        });
+  
+        
         DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                CurrentValueTest = DailyWatchTime.getValue();
-                //firebase connection here
+              //Add firebase code
+              
             } 
         });
         

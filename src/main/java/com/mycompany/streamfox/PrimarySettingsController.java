@@ -162,7 +162,6 @@ public class PrimarySettingsController implements Initializable {
 //    FXCollections.observableList("1 Hour", "2 Hours", "3 Hours", "4 Hours",
 //                "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours", "13 Hours",
 //                "14 Hours", "15 Hours", "16 Hours, 17 Hours , 18 Hours , 19 Hours, 20 Hours , 21 Hours, 22 Hours, 23 Hours , 24 Hours")
-
     @FXML
     void DisableYourAcount(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -293,7 +292,7 @@ public class PrimarySettingsController implements Initializable {
         
 
   
-        
+        //added visual indicator for all spinners
    DisneyDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -302,6 +301,7 @@ public class PrimarySettingsController implements Initializable {
                     totalDaily=YoutubeValue+DisneyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
+                 System.out.println("Hello"); 
                  hasDisneyChanged=true;
                  
                 

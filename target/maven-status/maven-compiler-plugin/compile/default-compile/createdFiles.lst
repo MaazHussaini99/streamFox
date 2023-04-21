@@ -1,5 +1,4 @@
 com/mycompany/streamfox/NewUser.class
-<<<<<<< Updated upstream
 com/mycompany/streamfox/AuthController.class
 com/mycompany/streamfox/YoutubeVids.class
 com/mycompany/streamfox/App$2.class
@@ -11,54 +10,14 @@ com/mycompany/streamfox/PrimarySearchResultsController$4.class
 com/mycompany/streamfox/PrimaryHomeController$6.class
 com/mycompany/streamfox/PrimaryVideoController$6.class
 com/mycompany/streamfox/PrimarySettingsController$5.class
-=======
-com/mycompany/streamfox/NetflixWebviewController.class
-com/mycompany/streamfox/AuthController.class
-com/mycompany/streamfox/PrimaryVideoController$2.class
-com/mycompany/streamfox/YoutubeVids.class
-com/mycompany/streamfox/PrimaryHomeController$4.class
-com/mycompany/streamfox/PrimaryController$8.class
-com/mycompany/streamfox/App$2.class
-com/mycompany/streamfox/PrimaryController$2.class
-com/mycompany/streamfox/PrimaryController.class
-com/mycompany/streamfox/App.class
-com/mycompany/streamfox/PrimarySettingsController$3.class
-com/mycompany/streamfox/PrimaryVideoController$5.class
-com/mycompany/streamfox/YoutubeApiEngine.class
-com/mycompany/streamfox/NetflixWebviewController$2.class
-com/mycompany/streamfox/PrimaryController$16.class
-com/mycompany/streamfox/PrimaryController$5.class
-com/mycompany/streamfox/User.class
-com/mycompany/streamfox/PrimaryController$11.class
-com/mycompany/streamfox/PrimaryVideoController$3.class
-com/mycompany/streamfox/PrimaryController$4.class
-com/mycompany/streamfox/PrimaryHomeController$6.class
-com/mycompany/streamfox/VidObj.class
-com/mycompany/streamfox/PrimaryProfileController.class
-com/mycompany/streamfox/PrimaryController$14.class
-com/mycompany/streamfox/PrimaryVideoController$6.class
->>>>>>> Stashed changes
 com/mycompany/streamfox/PrimarySearchResultsController$1.class
 com/mycompany/streamfox/PrimarySettingsController$2.class
 com/mycompany/streamfox/PrimaryHomeController$3.class
 com/mycompany/streamfox/PrimaryController$1.class
 com/mycompany/streamfox/PrimaryController$17.class
-<<<<<<< Updated upstream
 com/mycompany/streamfox/PrimaryVideoController$4.class
 com/mycompany/streamfox/PrimaryProfileController$1.class
 com/mycompany/streamfox/PrimaryHomeController$5.class
-=======
-com/mycompany/streamfox/PrimaryController$10.class
-com/mycompany/streamfox/PrimaryVideoController$4.class
-com/mycompany/streamfox/PrimarySettingsController$1.class
-com/mycompany/streamfox/PrimaryHomeController$2.class
-com/mycompany/streamfox/PrimaryProfileController$1.class
-com/mycompany/streamfox/PrimaryController$3.class
-com/mycompany/streamfox/UserData.class
-com/mycompany/streamfox/PrimaryHomeController$5.class
-com/mycompany/streamfox/PrimaryHomeController.class
-com/mycompany/streamfox/PrimaryVideoController$7.class
->>>>>>> Stashed changes
 com/mycompany/streamfox/AuthControllerSignUp.class
 com/mycompany/streamfox/PrimaryController$7.class
 module-info.class
@@ -67,7 +26,6 @@ com/mycompany/streamfox/PrimarySearchResultsController$2.class
 com/mycompany/streamfox/PrimarySearchResultsController.class
 com/mycompany/streamfox/PrimaryProfileController$2.class
 com/mycompany/streamfox/PrimaryController$18.class
-<<<<<<< Updated upstream
 com/mycompany/streamfox/PrimarySearchResultsController$3.class
 com/mycompany/streamfox/PrimarySettingsController.class
 com/mycompany/streamfox/PrimarySettingsController$4.class
@@ -103,17 +61,5 @@ com/mycompany/streamfox/PrimaryVideoController$1.class
 com/mycompany/streamfox/FirebaseStart.class
 com/mycompany/streamfox/PrimaryController$15.class
 com/mycompany/streamfox/PrimaryController$9.class
-=======
-com/mycompany/streamfox/PrimaryHomeController$1.class
-com/mycompany/streamfox/NetflixWebviewController$1.class
-com/mycompany/streamfox/PrimarySettingsController.class
-com/mycompany/streamfox/PrimaryVideoController$1.class
-com/mycompany/streamfox/FirebaseStart.class
-com/mycompany/streamfox/PrimaryController$15.class
-com/mycompany/streamfox/PrimaryController$6.class
-com/mycompany/streamfox/PrimaryController$9.class
-com/mycompany/streamfox/PrimaryVideoController.class
-com/mycompany/streamfox/PrimaryController$12.class
->>>>>>> Stashed changes
 com/mycompany/streamfox/App$1.class
 com/mycompany/streamfox/Comments.class

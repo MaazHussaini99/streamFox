@@ -174,6 +174,7 @@ public class PrimaryProfileController implements Initializable {
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         
         
+        //System.out.println(userData.getYTWatchDaysDataMap().get("fridayWatchTime").toString());
         
         XYChart.Series youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");

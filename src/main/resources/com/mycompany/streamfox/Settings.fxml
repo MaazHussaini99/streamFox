@@ -128,7 +128,7 @@
                                           <Insets left="13.0" right="11.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <Spinner fx:id="NetflixDailyWatchTime" />
+                                    <Spinner fx:id="TwitchDailyWatchTime" />
                                     <Spinner fx:id="NetflixWeeklyWatchTime" />
                                  </children></HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">

@@ -152,14 +152,14 @@ public class PrimaryHomeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
                     System.out.println("sec: " + seconds);
                     time += ((double)seconds / 3600);
                     
-                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
                     watchTimeMap.put("fridayWatchTime", time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                    
@@ -197,14 +197,14 @@ public class PrimaryHomeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
                     System.out.println("sec: " + seconds);
                     time += ((double)seconds / 3600);
                     
-                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
                     watchTimeMap.put("fridayWatchTime", time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                    
@@ -360,14 +360,14 @@ public class PrimaryHomeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
                     System.out.println("sec: " + seconds);
                     time += ((double)seconds / 3600);
                     
-                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
                     watchTimeMap.put("fridayWatchTime", time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                    
@@ -405,14 +405,14 @@ public class PrimaryHomeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTWatchDaysDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
                     System.out.println("sec: " + seconds);
                     time += ((double)seconds / 3600);
                     
-                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTWatchDaysDataMap();
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
                     watchTimeMap.put("fridayWatchTime", time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                    

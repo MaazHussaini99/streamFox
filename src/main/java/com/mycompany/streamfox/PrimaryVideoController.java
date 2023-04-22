@@ -138,10 +138,10 @@ public class PrimaryVideoController implements Initializable {
 
         String startVid;
 
-        if (PrimaryController.VIDload != null) {
-            startVid = PrimaryController.VIDload;
-            titleTxt.setText(PrimaryController.titleLoad);
-            channelTxt.setText(PrimaryController.channelLoad);
+        if (PrimaryYoutubeController.VIDload != null) {
+            startVid = PrimaryYoutubeController.VIDload;
+            titleTxt.setText(PrimaryYoutubeController.titleLoad);
+            channelTxt.setText(PrimaryYoutubeController.channelLoad);
         } else {
             startVid = PrimaryHomeController.VIDload;
             titleTxt.setText(PrimaryHomeController.titleLoad);

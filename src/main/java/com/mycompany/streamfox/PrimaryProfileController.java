@@ -179,7 +179,7 @@ public class PrimaryProfileController implements Initializable {
         XYChart.Series youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");
         youtubeSeries.getData().add(new XYChart.Data("Monday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTWatchDaysDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
         youtubeSeries.getData().add(new XYChart.Data("Wednesday", 0));
         youtubeSeries.getData().add(new XYChart.Data("Thursday", 0));
         youtubeSeries.getData().add(new XYChart.Data("Friday", 0));

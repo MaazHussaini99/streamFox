@@ -384,11 +384,20 @@ public class PrimarySettingsController implements Initializable {
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
             } 
         });
-  
+   
+   
+             WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+              //Add firebase code
+              
+            } 
+        });
         
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
     }
+    
 
     @FXML
     void menuMove(MouseEvent event) {

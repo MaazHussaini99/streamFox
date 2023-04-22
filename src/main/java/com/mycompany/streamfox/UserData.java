@@ -20,7 +20,7 @@ public final class UserData {
     private final static UserData INSTANCE = new UserData();
     private Map<String, Object> profileDataMap;
     private Map<String, Object> serviceListDataMap;
-    private Map<String, Object> watchDaysDataMap;
+    private Map<String, Object> DailyWatchDataMap;
     private Map<String, Object> watchTimeDataMap;
 
     public Map<String, Object> getProfileDataMap() {
@@ -35,8 +35,8 @@ public final class UserData {
         return watchTimeDataMap;
     }
     
-    public Map<String, Object> getYTWatchDaysDataMap() {
-        return watchDaysDataMap;
+    public Map<String, Object> getYTDailyWatchDataMap() {
+        return DailyWatchDataMap;
     }
     User user = User.getInstance();
 
@@ -95,7 +95,7 @@ public final class UserData {
         DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("service").document("youtube");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
-            watchDaysDataMap = future.get().getData();
+            DailyWatchDataMap = future.get().getData();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (ExecutionException ex) {

@@ -178,13 +178,13 @@ public class PrimaryProfileController implements Initializable {
         
         XYChart.Series youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");
-        youtubeSeries.getData().add(new XYChart.Data("Monday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
-        youtubeSeries.getData().add(new XYChart.Data("Wednesday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Thursday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Friday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Saturday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Sunday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
         XYChart.Series netflixSeries = new XYChart.Series();
         netflixSeries.setName("Netflix");

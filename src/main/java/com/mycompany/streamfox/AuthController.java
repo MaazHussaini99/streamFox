@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,6 +47,10 @@ import javafx.stage.StageStyle;
 
 public class AuthController implements Initializable {
 
+    
+     public static Calendar calendar = Calendar.getInstance();
+     public static int day =calendar.get(Calendar.DAY_OF_WEEK);
+      
     @FXML
     private Label accQuestionLabel;
 
@@ -105,6 +110,8 @@ public class AuthController implements Initializable {
     }
 
     void login(ActionEvent event) {
+       
+        
         String email = emailTxtField.getText();
         String password = passwordField.getText();
         if (checkRegex(email, password)) {

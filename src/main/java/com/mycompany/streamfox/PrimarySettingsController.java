@@ -331,14 +331,28 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
   
-        
+       
         DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-              //Add firebase code
-              
-            } 
+                
+                Thread  dwt = new Thread( () -> {
+                    System.out.println("Thread – Going to sleep");
+
+
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                Map<String, Object> dailyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
+        dailyWatchTimeMap.put("setDailyLimit", totalDaily);
+        UserData.getInstance().updateTotalWatchTime(dailyWatchTimeMap);
+               
         });
+                  dwt.start(); 
+                }
+            });
             YoutubeWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -389,9 +403,23 @@ public class PrimarySettingsController implements Initializable {
              WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-              //Add firebase code
-              
-            } 
+               Thread  wwt = new Thread( () -> {
+                    System.out.println("WeeklyWatchtime Thread – Going to sleep");
+
+
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                Map<String, Object> weeklyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
+        weeklyWatchTimeMap.put("setWeeklyLimit", totalWeekly);
+        UserData.getInstance().updateTotalWatchTime(weeklyWatchTimeMap);
+               
+        });
+                  wwt.start(); 
+                }
+            
         });
         
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
@@ -432,7 +460,7 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
     
 @FXML

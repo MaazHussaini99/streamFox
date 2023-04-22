@@ -598,7 +598,7 @@ public class PrimaryYoutubeController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primarySettings");
+        App.setRoot("Settings");
     }
     
     /**

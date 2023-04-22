@@ -194,8 +194,7 @@
                               </Label>
                               <HBox spacing="15.0">
                                  <children>
-                                    <Button fx:id="DisableYA" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />
-                                    <Button fx:id="RestPass" mnemonicParsing="false" onAction="#ResetPassword" text="Reset Password" />
+                                    <Button fx:id="DisableYA" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />                      
                                     <Button fx:id="DeleteYA" mnemonicParsing="false" onAction="#DeleteYourAcount" text="Delete Your Account" />
                                  </children>
                               </HBox>

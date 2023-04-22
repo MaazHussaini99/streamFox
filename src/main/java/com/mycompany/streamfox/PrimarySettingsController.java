@@ -337,7 +337,7 @@ public class PrimarySettingsController implements Initializable {
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                 
                 Thread  dwt = new Thread( () -> {
-                    System.out.println("Thread – Going to sleep");
+                    System.out.println("DailyWatchtimeThread – Going to sleep");
 
 
                     try {

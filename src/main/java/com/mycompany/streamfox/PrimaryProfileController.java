@@ -120,6 +120,12 @@ public class PrimaryProfileController implements Initializable {
     private Button userNameMenuBtn;
 
     @FXML
+    private TextField TDW; // Adam Look Here Total Daily Watch Time
+    
+    @FXML
+    private TextField WWT; // total  weekly Watch time
+    
+    @FXML
     private TextField profLastNameTxt;
 
     @FXML

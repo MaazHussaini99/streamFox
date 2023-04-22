@@ -91,7 +91,7 @@ public class PrimarySettingsController implements Initializable {
     private Spinner<Integer> TwitchDailyWatchTime;
 
     @FXML
-    private Spinner<Integer> NetflixWeeklyWatchTime;
+    private Spinner<Integer> TwitchWeeklyWatchTime;
     
     @FXML
     private Spinner<Integer> DailyWatchTime;
@@ -128,15 +128,25 @@ public class PrimarySettingsController implements Initializable {
 
     private int onOff = 0;
     
-    static int YoutubeValue=1;
-     static int DisneyValue=1;
-     static int TwitchValue=1;
+    static int YoutubeDailyValue=1;
+     static int DisneyDailyValue=1;
+     static int TwitchDailyValue=1;
+     
+    static int YoutubeWeeklyValue=1;
+     static int DisneyWeeklyValue=1;
+     static int TwitchWeeklyValue=1;
      
     static int totalDaily;
+    static int totalWeekly;
     
-     boolean hasYoutubeChanged=false;
-       boolean hasDisneyChanged=false;
-        boolean hasTwitchChanged=false;
+     boolean hasYoutubeDailyChanged=false;
+       boolean hasDisneyDailyChanged=false;
+        boolean hasTwitchDailyChanged=false;
+        
+        boolean hasYoutubeWeeklyChanged=false;
+       boolean hasDisneyWeeklyChanged=false;
+        boolean hasTwitchWeeklyChanged=false;
+
 
     private void setValues() { // temp 
         DailyWatchTime.setUserData(this);
@@ -247,7 +257,7 @@ public class PrimarySettingsController implements Initializable {
         
         SpinnerValueFactory<Integer> valueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
         valueFacDaily.setValue(24);
-        SpinnerValueFactory<Integer> NetflixvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+        SpinnerValueFactory<Integer> TwitchvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
         valueFacDaily.setValue(24);
         SpinnerValueFactory<Integer> YoutubevalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
         valueFacDaily.setValue(24);
@@ -256,7 +266,7 @@ public class PrimarySettingsController implements Initializable {
         
         SpinnerValueFactory<Integer> valueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
-        SpinnerValueFactory<Integer> NetflixvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
+        SpinnerValueFactory<Integer> TwitchvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
         SpinnerValueFactory<Integer> YoutubevalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
@@ -275,29 +285,29 @@ public class PrimarySettingsController implements Initializable {
          YoutubeDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 YoutubeValue= YoutubeDailyWatchTime.getValue();
-                  if(( hasTwitchChanged=true) ||  (hasDisneyChanged=true)){
-                    totalDaily=YoutubeValue+DisneyValue+TwitchValue;
+                 YoutubeDailyValue= YoutubeDailyWatchTime.getValue();
+                  if(( hasTwitchDailyChanged=true) ||  (hasDisneyDailyChanged=true)){
+                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
-                 hasYoutubeChanged=true;
+                 hasYoutubeDailyChanged=true;
             } 
         });
          
         
-        TwitchDailyWatchTime.setValueFactory(NetflixvalueFacDaily);
-        NetflixWeeklyWatchTime.setValueFactory(NetflixvalueFacWeekly);
+        TwitchDailyWatchTime.setValueFactory(TwitchvalueFacDaily);
+        TwitchWeeklyWatchTime.setValueFactory(TwitchvalueFacWeekly);
         
            TwitchDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 TwitchValue=   TwitchDailyWatchTime.getValue();
-                  if(( hasDisneyChanged=true) ||  (hasYoutubeChanged=true)){
-                    totalDaily=YoutubeValue+DisneyValue+TwitchValue;
+                 TwitchDailyValue= TwitchDailyWatchTime.getValue();
+                  if(( hasDisneyDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
+                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
-                hasTwitchChanged=true;
+                hasTwitchDailyChanged=true;
             } 
         });
         
@@ -310,12 +320,12 @@ public class PrimarySettingsController implements Initializable {
    DisneyDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 DisneyValue= DisneyDailyWatchTime.getValue();
-                  if(( hasTwitchChanged=true) ||  (hasYoutubeChanged=true)){
-                    totalDaily=YoutubeValue+DisneyValue+TwitchValue;
+                 DisneyDailyValue= DisneyDailyWatchTime.getValue();
+                  if(( hasTwitchDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
+                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
-                hasDisneyChanged=true;
+                hasDisneyDailyChanged=true;
                 
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
             } 
@@ -329,6 +339,52 @@ public class PrimarySettingsController implements Initializable {
               
             } 
         });
+            YoutubeWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                 YoutubeWeeklyValue= YoutubeWeeklyWatchTime.getValue();
+                  if(( hasTwitchWeeklyChanged=true) ||  (hasDisneyWeeklyChanged=true)){
+                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
+                       WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+                 }
+             //  System.out.println("this is Current vlaue"+CurrentValueTest);
+                 hasYoutubeWeeklyChanged=true;
+            } 
+        });
+         
+        
+        
+        TwitchWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                 TwitchWeeklyValue=TwitchWeeklyWatchTime.getValue();
+                  if(( hasDisneyWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
+                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
+                       WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+                 }
+                hasTwitchWeeklyChanged=true;
+            } 
+        });
+        
+    
+
+  
+        //added visual indicator for all spinners
+   DisneyWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+            @Override
+            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+                 DisneyWeeklyValue= DisneyWeeklyWatchTime.getValue();
+                  if(( hasTwitchWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
+                   totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
+                    WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+                 }
+                  
+                hasDisneyWeeklyChanged=true;
+                
+             //  System.out.println("this is Current vlaue"+CurrentValueTest);
+            } 
+        });
+  
         
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));

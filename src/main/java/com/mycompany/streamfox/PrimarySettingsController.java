@@ -195,11 +195,6 @@ public class PrimarySettingsController implements Initializable {
         // cancel button is pressed
 
     }
-    
-     @FXML
-    void ResetPassword(ActionEvent event) throws IOException {
-    
-    }
 
     @FXML
     void DeleteYourAcount(ActionEvent event) throws IOException {

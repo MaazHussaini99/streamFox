@@ -38,7 +38,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("authentication"), width, height);
         stage.initStyle(StageStyle.UNDECORATED);
         
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() 
+        {
             @Override
             public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();

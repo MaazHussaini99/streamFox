@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -81,7 +81,7 @@
       <AnchorPane fx:id="backPane" layoutY="46.0" prefHeight="454.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <content>
+               <content>
                 <AnchorPane minHeight="1000.0" minWidth="0.0" prefHeight="1024.0" prefWidth="758.0" style="-fx-background-color: #000;">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="User Profile" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
@@ -120,7 +120,7 @@
                         <Circle fx:id="profCircle" fill="#a2bfd9" layoutX="379.0" layoutY="64.0" onMouseClicked="#changePic" radius="50.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="14.0" />
                         <Button fx:id="saveBtn" layoutX="429.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveChanges" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="347.0" />
                         <Button fx:id="cancelBtn" layoutX="550.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancelFunc" styleClass="ProfileButtons" text="Cancel" underline="true" visible="false" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="347.0" />
-                        <BarChart fx:id="watchTimeGraph" layoutX="14.0" layoutY="402.0" prefHeight="400.0" prefWidth="601.0">
+                        <BarChart fx:id="watchTimeGraph" layoutX="72.0" layoutY="404.0" prefHeight="400.0" prefWidth="601.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -128,10 +128,15 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <TextField fx:id="TDW" promptText="Total Daily Watch Time" />
-                        <TextField fx:id="WWT" promptText="Total Weekly Watch Time" />
-                     </children></AnchorPane>
-              </content>
+                        <TextField layoutX="315.0" layoutY="840.0" />
+                        <Label layoutX="114.0" layoutY="850.0" text="Today's Total Daiy Watchtime :" />
+                        <Label layoutX="114.0" layoutY="918.0" text="Total Watchtime for this Week:" />
+                        <TextField layoutX="315.0" layoutY="906.0" />
+                        <Label fx:id="hoursLabel" layoutY="576.0" prefWidth="76.0" text="Hours" />
+            
+                                                                                                                     </children>
+                  </AnchorPane>
+               </content>
             </ScrollPane>
          </children></AnchorPane>
       <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.60000000000002">

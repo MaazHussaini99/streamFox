@@ -120,12 +120,6 @@ public class PrimaryProfileController implements Initializable {
     private Button userNameMenuBtn;
 
     @FXML
-    private TextField TDW; // Adam Look Here Total Daily Watch Time
-    
-    @FXML
-    private TextField WWT; // total  weekly Watch time
-    // b
-    @FXML
     private TextField profLastNameTxt;
 
     @FXML
@@ -139,6 +133,9 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private AnchorPane topBar;
+    
+    @FXML
+    private Label hoursLabel;
 
     private DialogPane dialog;
 
@@ -159,7 +156,11 @@ public class PrimaryProfileController implements Initializable {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
         tt.setByX(-200);
         tt.play();
+        hoursLabel.setRotate(270);
+        
+          
 
+           
         topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -181,7 +182,8 @@ public class PrimaryProfileController implements Initializable {
         
         
         //System.out.println(userData.getYTWatchDaysDataMap().get("fridayWatchTime").toString());
-        
+        NumberAxis yAxis = new NumberAxis(); 
+           yAxis.setLabel("score");
         XYChart.Series youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");
         youtubeSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
@@ -203,6 +205,7 @@ public class PrimaryProfileController implements Initializable {
         netflixSeries.getData().add(new XYChart.Data("Sunday", 0));
         
         watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+      
     }
 
     private void setValues() {

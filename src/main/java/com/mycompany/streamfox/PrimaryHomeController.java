@@ -79,6 +79,13 @@ public class PrimaryHomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         YoutubeApiEngine.initializeYoutube();
+        try {
+            TwitchApiEngine.initializeTwitch();
+            TwitchApiEngine.getVideo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);

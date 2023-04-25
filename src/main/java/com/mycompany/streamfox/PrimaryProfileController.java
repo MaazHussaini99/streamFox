@@ -19,6 +19,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -143,6 +144,13 @@ public class PrimaryProfileController implements Initializable {
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
+    
+    @FXML
+    
+    private Label setTotalWeeklyWatchTime;
+    @FXML
+    
+    private Label setTotalDailyWatchtime;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -157,6 +165,10 @@ public class PrimaryProfileController implements Initializable {
         tt.setByX(-200);
         tt.play();
         hoursLabel.setRotate(270);
+        setTotalDailyWatchtime.setText(Double.toString((double)  userData.getYTDailyWatchDataMap().get(dateString)));
+        setTotalWeeklyWatchTime.setText(Double.toString((double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime")));
+        
+        
         
           
 

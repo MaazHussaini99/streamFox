@@ -76,6 +76,7 @@ public class PrimarySearchResultsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         VidObj[] help = PrimaryVideoController.Searchresults;
         
         frontPane.setVisible(false);

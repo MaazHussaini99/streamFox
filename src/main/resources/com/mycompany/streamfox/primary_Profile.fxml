@@ -128,13 +128,13 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <TextField layoutX="315.0" layoutY="840.0" />
                         <Label layoutX="114.0" layoutY="850.0" text="Today's Total Daiy Watchtime :" />
                         <Label layoutX="114.0" layoutY="918.0" text="Total Watchtime for this Week:" />
-                        <TextField layoutX="315.0" layoutY="906.0" />
                         <Label fx:id="hoursLabel" layoutY="576.0" prefWidth="76.0" text="Hours" />
+                        <Label fx:id="setTotalDailyWatchtime" layoutX="310.0" layoutY="847.0" prefHeight="21.0" prefWidth="125.0" />
+                        <Label fx:id="setTotalWeeklyWatchTime" layoutX="313.0" layoutY="918.0" prefHeight="18.0" prefWidth="125.0" />
             
-                                                                                                                     </children>
+                                                                                                                                                                                             </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
@@ -233,5 +233,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <Label layoutX="316.0" layoutY="859.0" prefHeight="21.0" prefWidth="179.0" text="Label" />
    </children>
 </AnchorPane>

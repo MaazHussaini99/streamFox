@@ -326,7 +326,7 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
   
-       
+       /*
         DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -347,7 +347,7 @@ public class PrimarySettingsController implements Initializable {
         });
                   dwt.start(); 
                 }
-            });
+            });*/
             YoutubeWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -361,6 +361,8 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
          
+           
+     
         
         
         TwitchWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
@@ -394,7 +396,7 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
    
-   
+   /*
              WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -415,7 +417,7 @@ public class PrimarySettingsController implements Initializable {
                   wwt.start(); 
                 }
             
-        });
+        });*/
              
            
         
@@ -475,6 +477,15 @@ public class PrimarySettingsController implements Initializable {
         App.setRoot("primary_Home");
     }
 
+    @FXML
+    void saveSettingsChanges(ActionEvent event) {
+        //for when save is pressed
+           Map<String, Object> WatchTimeLimitMap = UserData.getInstance().getWatchTimeDataMap();
+       WatchTimeLimitMap.put("setDailyLimit", totalDaily);
+           WatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
+        UserData.getInstance().updateTotalWatchTime(WatchTimeLimitMap);
+        
+    }
     /**
      * switches the application to and from fullscreen mode
      */

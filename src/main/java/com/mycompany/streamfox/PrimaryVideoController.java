@@ -81,10 +81,10 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private Label channelTxt;
-
+    
     @FXML
     private VBox recommendedTab;
-
+    
     @FXML
     private Label titleTxt;
 
@@ -102,6 +102,10 @@ public class PrimaryVideoController implements Initializable {
     SearchListResponse relatedVids;
     CommentThreadListResponse comments;
 
+    static String startVid;
+    static String titleStartText;
+    static String channelStartText;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -136,17 +140,10 @@ public class PrimaryVideoController implements Initializable {
 
         we = webVideoView.getEngine();
 
-        String startVid;
-
-        if (PrimaryYoutubeController.VIDload != null) {
-            startVid = PrimaryYoutubeController.VIDload;
-            titleTxt.setText(PrimaryYoutubeController.titleLoad);
-            channelTxt.setText(PrimaryYoutubeController.channelLoad);
-        } else {
-            startVid = PrimaryHomeController.VIDload;
-            titleTxt.setText(PrimaryHomeController.titleLoad);
-            channelTxt.setText(PrimaryHomeController.channelLoad);
-        }
+       
+            titleTxt.setText(titleStartText);
+            channelTxt.setText(channelStartText);
+        
 
         System.out.println(startVid);
         loadPage(startVid);

@@ -76,7 +76,13 @@ public class PrimarySearchResultsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        VidObj[] help = PrimaryVideoController.Searchresults;
+        VidObj[] help;
+        
+        if(PrimaryVideoController.Searchresults != null)
+         help = PrimaryVideoController.Searchresults;
+        else{
+         help = PrimaryYoutubeController.Searchresults;
+        }
         
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -107,7 +113,7 @@ public class PrimarySearchResultsController implements Initializable {
     
     if(App.stage.isFullScreen() == false){
         
-        testvb = new VBox[10];
+        testvb = new VBox[26];
         for (int i = 0; i < help.length; i++) {
             testvb[i] = new VBox();
             ImageView imv = new ImageView();
@@ -125,9 +131,9 @@ public class PrimarySearchResultsController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -148,22 +154,22 @@ public class PrimarySearchResultsController implements Initializable {
             testvb[i] = new VBox();
             ImageView imv = new ImageView();
             Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
+            imv.setFitWidth(800);
+            imv.setFitHeight(400);
             imv.setImage(img);
             Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
+            tlabel.setMaxWidth(800);
             tlabel.setText(help[i].title);
 
             int placeholder = i;
             imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
+                
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -273,10 +279,86 @@ public class PrimarySearchResultsController implements Initializable {
     @FXML
     private void fullscreen() {
         firebaseAuth = FirebaseAuth.getInstance();
-        //toggles fullscreen on and off
-        //TODO: make the interface more dynamic (hard)
+        
+        VidObj[] help = PrimaryVideoController.Searchresults;
+        
+        searchResultsBox.getChildren().clear();
         System.out.println("fullscreen");
         App.fullscreen();
+        if(App.stage.isFullScreen() == false){
+        
+        testvb = new VBox[26];
+        for (int i = 0; i < help.length; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(400);
+            imv.setFitHeight(200);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(400);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                    try {
+                        playVideoMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            testvb[i].getChildren().add(imv);
+            testvb[i].getChildren().add(tlabel);
+
+            searchResultsBox.getChildren().add(testvb[i]);
+        }
+        
+    }else{
+        
+        testvb = new VBox[26];
+        for (int i = 0; i < help.length; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(800);
+            imv.setFitHeight(400);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(800);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                    try {
+                        playVideoMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            testvb[i].getChildren().add(imv);
+            testvb[i].getChildren().add(tlabel);
+
+            searchResultsBox.getChildren().add(testvb[i]);
+        }
+        
+    }
+        
 
     }
 

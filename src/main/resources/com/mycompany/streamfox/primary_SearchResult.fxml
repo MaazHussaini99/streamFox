@@ -111,9 +111,9 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@TwitchGray.jpg" />
                            </image>
@@ -154,7 +154,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Twitch" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
                         <Insets top="161.0" />

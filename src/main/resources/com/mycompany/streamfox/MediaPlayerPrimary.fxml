@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryVideoController">
+   <children>
+      <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fx:id="closeWindow" fitHeight="25.0" fitWidth="25.0" layoutX="773.0" layoutY="2.0" onMouseClicked="#closeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@x-icon-white-25.jpg" />
+               </image>
+            </ImageView>
+            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" />
+            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@find.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fx:id="minimizeWindow" fitHeight="32.0" fitWidth="32.0" layoutX="741.0" layoutY="-2.0" onMouseClicked="#minimizeCommand" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="52.0">
+               <image>
+                  <Image url="@minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="menuOpen" fitHeight="25.0" fitWidth="32.0" layoutX="10.0" layoutY="9.0" onMouseClicked="#menuMove" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+               <image>
+                  <Image url="@burger.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="748.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="27.0">
+               <image>
+                  <Image url="@fullscreen.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="46.0" prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@home.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="9.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@youtube.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@setting.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="220.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@user.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="backPane" layoutY="46.0" prefHeight="454.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="47.0" prefHeight="450.0" prefWidth="750.0" stylesheets="@primarystylesheet.css" AnchorPane.bottomAnchor="3.6000000000000227" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="2.6000000000000227" AnchorPane.topAnchor="0.0">
+               <content>
+                  <AnchorPane prefHeight="1024.0" prefWidth="735.0" style="-fx-background-color: #000;" stylesheets="@primarystylesheet.css">
+                     <children>
+                        <Line endX="60.0" layoutX="665.0" layoutY="15.0" startX="-59.0" stroke="RED" AnchorPane.rightAnchor="9.700000000000045" AnchorPane.topAnchor="14.5" />
+                        <VBox fx:id="recommendedTab" prefHeight="200.0" prefWidth="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="All Current Video files" wrappingWidth="127.0" />
+                           </children></VBox>
+                        <ListView fx:id="VideoInfo" layoutX="314.0" layoutY="67.0" onMouseClicked="#handleMouseClick" prefHeight="292.0" prefWidth="196.0" />
+                        <Button mnemonicParsing="false" onAction="#UpdateListData" prefHeight="31.0" prefWidth="127.0" text="List">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="LoadFiles" mnemonicParsing="false" onAction="#LoadFromFiles" prefHeight="31.0" prefWidth="83.0" text="Load">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAddVideotoDBWindow" prefHeight="31.0" prefWidth="127.0" text="Add Video">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.666666666666664">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="44.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToHome" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@youtubeGray.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Twitch.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToYT" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Media%20Player.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSettings" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@setting.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProfile" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <Circle fx:id="userProfView" fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <Label fx:id="VideoName1" prefHeight="41.0" prefWidth="234.0" text="Current Video" textAlignment="CENTER">
+                     <font>
+                        <Font name="Baghdad Regular" size="23.0" />
+                     </font>
+                  </Label>
+                  <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="400.0" preserveRatio="false" />
+                  <Slider fx:id="VideoDurationBar" max="300.0" prefHeight="24.0" prefWidth="615.0" showTickMarks="true" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="prevButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#prevVideoClicked" prefHeight="31.0" prefWidth="223.0" text="Previous" textAlignment="CENTER">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <ToggleButton fx:id="playorPause" mnemonicParsing="false" onAction="#playorPausemethod" prefHeight="30.0" prefWidth="127.0" snapToPixel="false" text="Play">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </ToggleButton>
+                        <Button fx:id="nextButton" disable="true" mnemonicParsing="false" onAction="#nextVideoClicked" prefHeight="31.0" prefWidth="224.0" text="Next Video" textAlignment="CENTER">
+                           <font>
+                              <Font name="Baghdad Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="-0.06666666666666288" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Youtube" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Youtube" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" style="-fx-background-color: gray;" text="HomeMedia" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
+                     <VBox.margin>
+                        <Insets top="161.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="userNameMenuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToProfile" text="User">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Label fx:id="VideoName" layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="234.0" text="Current Video" textAlignment="CENTER">
+         <font>
+            <Font name="Baghdad Regular" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

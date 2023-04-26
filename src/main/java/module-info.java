@@ -19,7 +19,11 @@ module com.mycompany.streamfox {
     requires mail;
     requires google.cloud.storage;
     requires okhttp3;
-    opens com.mycompany.streamfox to javafx.fxml, google.cloud.firestore;
+    requires com.google.gson;
+    requires java.base;
+    requires javafx.media;
+    requires java.sql;
+    opens com.mycompany.streamfox to javafx.fxml,com.google.gson, google.cloud.firestore;
     exports com.mycompany.streamfox;
     
     

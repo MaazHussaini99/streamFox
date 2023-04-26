@@ -133,8 +133,10 @@
                         <Label fx:id="hoursLabel" layoutY="576.0" prefWidth="76.0" text="Hours" />
                         <Label fx:id="setTotalDailyWatchtime" layoutX="310.0" layoutY="847.0" prefHeight="21.0" prefWidth="125.0" />
                         <Label fx:id="setTotalWeeklyWatchTime" layoutX="313.0" layoutY="918.0" prefHeight="18.0" prefWidth="125.0" />
+                        <Label fx:id="dailyTimeUnitLabel" layoutX="481.0" layoutY="850.0" text="Hours" />
+                        <Label fx:id="weeklyTimeUnitLabel" layoutX="481.0" layoutY="918.0" text="Hours" />
             
-                                                                                                                                                                                             </children>
+                                                                                                                                                                                                                                       </children>
                   </AnchorPane>
                </content>
             </ScrollPane>

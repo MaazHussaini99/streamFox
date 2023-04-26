@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -151,6 +152,28 @@ public class PrimaryProfileController implements Initializable {
     @FXML
     
     private Label setTotalDailyWatchtime;
+    
+      @FXML
+    
+    private Label dailyTimeUnitLabel;
+      
+           
+      @FXML
+    
+    private Label weeklyTimeUnitLabel;
+       String  unitLabelDay;
+         String  unitLabelWeek;
+      
+      
+      
+      
+      
+      
+    
+    
+    
+    double  tempDailyWatchTime;
+    double  tempWeeklyWatchTime;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -165,8 +188,39 @@ public class PrimaryProfileController implements Initializable {
         tt.setByX(-200);
         tt.play();
         hoursLabel.setRotate(270);
-        setTotalDailyWatchtime.setText(Double.toString((double)  userData.getYTDailyWatchDataMap().get(dateString)));
-        setTotalWeeklyWatchTime.setText(Double.toString((double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime")));
+        tempDailyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);
+          tempWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+         unitLabelDay="Hours";
+        unitLabelWeek="Hours";
+         
+         if(tempDailyWatchTime<1) {
+             tempDailyWatchTime= Math.round( tempDailyWatchTime*60);
+              unitLabelDay="Minutes";
+             
+         }
+         
+              
+         if(tempWeeklyWatchTime<1) {
+             tempWeeklyWatchTime= Math.round( tempWeeklyWatchTime*60);
+             unitLabelWeek="Minutes";
+             
+         }
+         
+         dailyTimeUnitLabel.setText(  unitLabelDay);
+         weeklyTimeUnitLabel.setText(unitLabelWeek);
+          hoursLabel.setText(unitLabelDay);
+         
+         
+         
+
+        
+    
+        
+      
+       
+        setTotalDailyWatchtime.setText(Double.toString( tempDailyWatchTime));
+        setTotalWeeklyWatchTime.setText(Double.toString(tempWeeklyWatchTime));
+       
         
         
         

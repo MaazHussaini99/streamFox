@@ -1,5 +1,6 @@
 com\mycompany\streamfox\VidObj.class
 com\mycompany\streamfox\AuthControllerSignUp.class
+com\mycompany\streamfox\HomeMediaController$5.class
 com\mycompany\streamfox\PrimarySettingsController$7.class
 com\mycompany\streamfox\App.class
 com\mycompany\streamfox\PrimaryYoutubeController$3.class
@@ -12,6 +13,7 @@ com\mycompany\streamfox\LiveTVController$1.class
 com\mycompany\streamfox\PrimaryVideoController$6.class
 com\mycompany\streamfox\PrimaryHomeMediaController$1.class
 com\mycompany\streamfox\PrimarySettingsController$4.class
+com\mycompany\streamfox\HomeMediaController$2.class
 com\mycompany\streamfox\PrimaryHomeController$2.class
 com\mycompany\streamfox\LiveTVController$4.class
 com\mycompany\streamfox\PrimarySettingsController$1.class
@@ -33,9 +35,11 @@ module-info.class
 com\mycompany\streamfox\PrimarySearchResultsController$3.class
 com\mycompany\streamfox\LiveTVController$6.class
 com\mycompany\streamfox\PrimarySettingsController$9.class
+com\mycompany\streamfox\HomeMediaController.class
 com\mycompany\streamfox\PrimarySearchResultsController$4.class
 com\mycompany\streamfox\PrimaryVideoController$3.class
 com\mycompany\streamfox\AuthController.class
+com\mycompany\streamfox\HomeMediaController$4.class
 com\mycompany\streamfox\PrimaryHomeController$4.class
 com\mycompany\streamfox\PrimaryYoutubeController$6.class
 com\mycompany\streamfox\PrimarySettingsController$3.class
@@ -58,6 +62,8 @@ com\mycompany\streamfox\PrimaryProfileController$1.class
 com\mycompany\streamfox\App$2.class
 com\mycompany\streamfox\PrimarySettingsController$5.class
 com\mycompany\streamfox\LiveTVController.class
+com\mycompany\streamfox\HomeMediaController$3.class
+com\mycompany\streamfox\HomeMediaController$6.class
 com\mycompany\streamfox\PrimaryYoutubeController$4.class
 com\mycompany\streamfox\PrimaryVideoController$2.class
 com\mycompany\streamfox\PrimarySearchResultsController$2.class
@@ -66,6 +72,7 @@ com\mycompany\streamfox\PrimaryYoutubeController$8.class
 com\mycompany\streamfox\PrimaryYoutubeController$1.class
 com\mycompany\streamfox\App$1.class
 com\mycompany\streamfox\FirebaseStart.class
+com\mycompany\streamfox\HomeMediaController$7.class
 com\mycompany\streamfox\PrimaryHomeMediaController$3.class
 com\mycompany\streamfox\PrimarySearchResultsController$6.class
 com\mycompany\streamfox\PrimaryYoutubeController$17.class
@@ -80,6 +87,7 @@ com\mycompany\streamfox\PrimaryYoutubeController$16.class
 com\mycompany\streamfox\PrimaryYoutubeController$2.class
 com\mycompany\streamfox\TwitchApiEngine.class
 com\mycompany\streamfox\PrimaryHomeController$1.class
+com\mycompany\streamfox\HomeMediaController$1.class
 com\mycompany\streamfox\PrimaryYoutubeController$10.class
 com\mycompany\streamfox\LiveTVController$2.class
 com\mycompany\streamfox\PrimaryVideoController$7.class

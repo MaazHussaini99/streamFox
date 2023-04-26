@@ -119,6 +119,39 @@
                               <Font name="Baghdad Regular" size="13.0" />
                            </font>
                         </Button>
+                        <VBox spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
+                           <children>
+                              <Label fx:id="VideoName" prefHeight="41.0" prefWidth="234.0" text="Current Video" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Baghdad Regular" size="23.0" />
+                                 </font>
+                              </Label>
+                              <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="400.0" preserveRatio="false" />
+                              <Slider fx:id="VideoDurationBar" max="300.0" prefHeight="24.0" prefWidth="615.0" showTickMarks="true" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <VBox.margin>
+                                    <Insets bottom="30.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Button fx:id="prevButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#prevVideoClicked" prefHeight="31.0" prefWidth="223.0" text="Previous" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Baghdad Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <ToggleButton fx:id="playorPause" mnemonicParsing="false" onAction="#playorPausemethod" prefHeight="30.0" prefWidth="127.0" snapToPixel="false" text="Play">
+                                       <font>
+                                          <Font name="Baghdad Regular" size="13.0" />
+                                       </font>
+                                    </ToggleButton>
+                                    <Button fx:id="nextButton" disable="true" mnemonicParsing="false" onAction="#nextVideoClicked" prefHeight="31.0" prefWidth="224.0" text="Next Video" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Baghdad Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>
@@ -182,39 +215,6 @@
                   </Button>
                </children>
             </VBox>
-            <VBox spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
-               <children>
-                  <Label fx:id="VideoName1" prefHeight="41.0" prefWidth="234.0" text="Current Video" textAlignment="CENTER">
-                     <font>
-                        <Font name="Baghdad Regular" size="23.0" />
-                     </font>
-                  </Label>
-                  <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="400.0" preserveRatio="false" />
-                  <Slider fx:id="VideoDurationBar" max="300.0" prefHeight="24.0" prefWidth="615.0" showTickMarks="true" />
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                     <children>
-                        <Button fx:id="prevButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#prevVideoClicked" prefHeight="31.0" prefWidth="223.0" text="Previous" textAlignment="CENTER">
-                           <font>
-                              <Font name="Baghdad Regular" size="13.0" />
-                           </font>
-                        </Button>
-                        <ToggleButton fx:id="playorPause" mnemonicParsing="false" onAction="#playorPausemethod" prefHeight="30.0" prefWidth="127.0" snapToPixel="false" text="Play">
-                           <font>
-                              <Font name="Baghdad Regular" size="13.0" />
-                           </font>
-                        </ToggleButton>
-                        <Button fx:id="nextButton" disable="true" mnemonicParsing="false" onAction="#nextVideoClicked" prefHeight="31.0" prefWidth="224.0" text="Next Video" textAlignment="CENTER">
-                           <font>
-                              <Font name="Baghdad Regular" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="-0.06666666666666288" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
@@ -246,10 +246,5 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Label fx:id="VideoName" layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="234.0" text="Current Video" textAlignment="CENTER">
-         <font>
-            <Font name="Baghdad Regular" size="23.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

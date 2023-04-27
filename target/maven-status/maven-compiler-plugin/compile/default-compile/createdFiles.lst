@@ -1,4 +1,5 @@
 com/mycompany/streamfox/PrimaryYoutubeController$6.class
+com/mycompany/streamfox/PrimaryProfileController$3.class
 com/mycompany/streamfox/NewUser.class
 com/mycompany/streamfox/AuthController.class
 com/mycompany/streamfox/YoutubeVids.class
@@ -49,6 +50,7 @@ com/mycompany/streamfox/PrimaryProfileController.class
 com/mycompany/streamfox/PrimaryYoutubeController$4.class
 com/mycompany/streamfox/Search.class
 com/mycompany/streamfox/PrimaryYoutubeController$12.class
+com/mycompany/streamfox/PrimaryProfileController$4.class
 com/mycompany/streamfox/PrimarySettingsController$8.class
 com/mycompany/streamfox/PrimarySettingsController$1.class
 com/mycompany/streamfox/PrimaryHomeController$2.class

@@ -5,7 +5,9 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -135,8 +137,11 @@
                         <Label fx:id="setTotalWeeklyWatchTime" layoutX="313.0" layoutY="918.0" prefHeight="18.0" prefWidth="125.0" />
                         <Label fx:id="dailyTimeUnitLabel" layoutX="481.0" layoutY="850.0" text="Hours" />
                         <Label fx:id="weeklyTimeUnitLabel" layoutX="481.0" layoutY="918.0" text="Hours" />
+                        <RadioButton fx:id="youtubeOption" layoutX="121.0" layoutY="805.0" mnemonicParsing="false" text="Youtube" textFill="WHITE" />
+                        <RadioButton fx:id="twitchOption" layoutX="271.0" layoutY="805.0" mnemonicParsing="false" text="Twitch" textFill="WHITE" />
+                        <CheckBox fx:id="showAllServices" layoutX="525.0" layoutY="804.0" mnemonicParsing="false" text="Show All " textFill="WHITE" />
             
-                                                                                                                                                                                                                                       </children>
+                                                                                                                                                                                                                                                                                                               </children>
                   </AnchorPane>
                </content>
             </ScrollPane>

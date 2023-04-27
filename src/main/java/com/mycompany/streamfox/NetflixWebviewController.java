@@ -72,26 +72,12 @@ public class NetflixWebviewController  implements Initializable {
         );
 
         //move around here
-        topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                App.stage.setX(event.getScreenX() - App.xOffset);
-                App.stage.setY(event.getScreenY() - App.yOffset);
-            }
-        });
-        
-         engine = view.getEngine();
-         engine.load("https://www.netflix.com/Login");
+    
      
      
     }
     
     
-    public void loadpage(){
-    
-       
-    
-    }
 @FXML
     void menuMove(MouseEvent event) {
         if (onOff == 0) {
@@ -125,12 +111,12 @@ public class NetflixWebviewController  implements Initializable {
 
         @FXML
     void switchToNetflix(ActionEvent event) throws IOException {
-        App.setRoot("NetflixSignIn");
+        App.setRoot("TwitchPrimary");
     }
     
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
 
     @FXML
@@ -143,7 +129,7 @@ public class NetflixWebviewController  implements Initializable {
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
     }
-
+    
     /**
      * switches the application to and from fullscreen mode
      */

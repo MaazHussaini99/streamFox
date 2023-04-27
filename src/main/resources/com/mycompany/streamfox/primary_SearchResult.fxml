@@ -77,10 +77,10 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
+                <AnchorPane minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <Label layoutX="333.0" layoutY="70.0" text="Search Results:" />
-                        <VBox fx:id="searchResultsBox" layoutX="329.0" layoutY="85.0" prefHeight="200.0" prefWidth="100.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="333.0" layoutY="70.0" text="Search Results:" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="333.0" />
+                        <VBox fx:id="searchResultsBox" alignment="TOP_CENTER" layoutX="329.0" layoutY="85.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="85.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -111,11 +111,11 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@NetflixGray.png" />
+                              <Image url="@TwitchGray.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -154,7 +154,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Netflix" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" text="Twitch" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSettings" text="Settings">
                      <VBox.margin>
                         <Insets top="161.0" />

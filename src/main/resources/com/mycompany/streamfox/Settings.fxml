@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimarySettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimarySettingsController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -115,7 +115,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <Label text="Netflix">
+                                    <Label text="Twitch">
                                        <font>
                                           <Font size="3.0" />
                                        </font>
@@ -128,8 +128,8 @@
                                           <Insets left="13.0" right="11.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <Spinner fx:id="NetflixDailyWatchTime" />
-                                    <Spinner fx:id="NetflixWeeklyWatchTime" />
+                                    <Spinner fx:id="TwitchDailyWatchTime" />
+                                    <Spinner fx:id="TwitchWeeklyWatchTime" />
                                  </children></HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
@@ -195,6 +195,7 @@
                               <HBox spacing="15.0">
                                  <children>
                                     <Button fx:id="DisableYA" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />
+                                    <Button fx:id="RestPass" mnemonicParsing="false" onAction="#ResetPassword" text="Reset Password" />
                                     <Button fx:id="DeleteYA" mnemonicParsing="false" onAction="#DeleteYourAcount" text="Delete Your Account" />
                                  </children>
                               </HBox>
@@ -230,15 +231,19 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="32.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@NetflixGray.png" />
+                              <Image url="@TwitchGray.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
+               </children>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -263,7 +268,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
             <VBox prefHeight="200.0" prefWidth="179.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -273,7 +278,14 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Netflix" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Twitch" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Settings">
                      <VBox.margin>
                         <Insets top="160.0" />
@@ -285,9 +297,6 @@
                      </VBox.margin>
                   </Button>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </VBox>
          </children>
       </AnchorPane>

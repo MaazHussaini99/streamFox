@@ -81,10 +81,10 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     private Label channelTxt;
-
+    
     @FXML
     private VBox recommendedTab;
-
+    
     @FXML
     private Label titleTxt;
 
@@ -92,6 +92,8 @@ public class PrimaryVideoController implements Initializable {
 
     private int onOff = 0;
 
+    public static VidObj[] Searchresults;
+    
     VBox[] testvb;
 
     User user = User.getInstance();
@@ -100,9 +102,15 @@ public class PrimaryVideoController implements Initializable {
     SearchListResponse relatedVids;
     CommentThreadListResponse comments;
 
+    static String startVid;
+    static String titleStartText;
+    static String channelStartText;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
+        
+       
+        
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -132,17 +140,10 @@ public class PrimaryVideoController implements Initializable {
 
         we = webVideoView.getEngine();
 
-        String startVid;
-
-        if (PrimaryController.VIDload != null) {
-            startVid = PrimaryController.VIDload;
-            titleTxt.setText(PrimaryController.titleLoad);
-            channelTxt.setText(PrimaryController.channelLoad);
-        } else {
-            startVid = PrimaryHomeController.VIDload;
-            titleTxt.setText(PrimaryHomeController.titleLoad);
-            channelTxt.setText(PrimaryHomeController.channelLoad);
-        }
+       
+            titleTxt.setText(titleStartText);
+            channelTxt.setText(channelStartText);
+        
 
         System.out.println(startVid);
         loadPage(startVid);
@@ -160,6 +161,8 @@ public class PrimaryVideoController implements Initializable {
             ex.printStackTrace();
         }
 
+    if(App.stage.isFullScreen() == false)
+    {
         testvb = new VBox[help.length];
         for (int i = 0; i < help.length; i++) {
             testvb[i] = new VBox();
@@ -178,12 +181,14 @@ public class PrimaryVideoController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     try {
+                        //relatedVids.getItems().get(1).
+                               
                         recommendedTab.getChildren().clear();
                         System.out.println("working");
                         String myId = help[placeholder].id;
                         testvb = new VBox[help.length];
                         VidObj[] help = new VidObj[20];
-
+                        
                         SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
 
                         for (int i = 0; i < 20; i++) {
@@ -229,6 +234,80 @@ public class PrimaryVideoController implements Initializable {
             recommendedTab.getChildren()
                     .add(testvb[i]);
         }
+    }else{
+        webVideoView.setPrefWidth(1024);
+        webVideoView.setPrefHeight(576);
+        testvb = new VBox[help.length];
+        for (int i = 0; i < help.length; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(260);
+            imv.setFitHeight(160);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(460);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        //relatedVids.getItems().get(1).
+                               
+                        recommendedTab.getChildren().clear();
+                        System.out.println("working");
+                        String myId = help[placeholder].id;
+                        testvb = new VBox[help.length];
+                        VidObj[] help = new VidObj[20];
+                        
+                        SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
+
+                        for (int i = 0; i < 20; i++) {
+                            help[i] = new VidObj(newRelatedVids.getItems().get(i).getId().getVideoId(),
+                                    newRelatedVids.getItems().get(i).getSnippet().getTitle(),
+                                    newRelatedVids.getItems().get(i).getSnippet().getChannelTitle());
+                        }
+
+                        for (int i = 0; i < help.length; i++) {
+                            testvb[i] = new VBox();
+                            ImageView imv = new ImageView();
+                            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                            imv.setFitWidth(260);
+                            imv.setFitHeight(160);
+                            imv.setImage(img);
+                            Label tlabel = new Label();
+                            tlabel.setMaxWidth(130);
+                            tlabel.setText(help[i].title);
+
+                            testvb[i].getChildren()
+                                    .add(imv);
+                            testvb[i].getChildren()
+                                    .add(tlabel);
+
+                            recommendedTab.getChildren()
+                                    .add(testvb[i]);
+                        }
+
+                        loadPage(help[placeholder].id);
+                        titleTxt.setText(help[placeholder].title);
+                        channelTxt.setText(help[placeholder].channel);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            });
+            testvb[i].getChildren()
+                    .add(imv);
+            testvb[i].getChildren()
+                    .add(tlabel);
+
+            recommendedTab.getChildren()
+                    .add(testvb[i]);
+    }}    
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
@@ -314,8 +393,16 @@ public class PrimaryVideoController implements Initializable {
     }
     
     @FXML
-    void searchFunction(ActionEvent event) {
-
+    void searchFunction(ActionEvent event) throws IOException {
+        
+        Searchresults = Search.returnArray(searchTxtField.getText());
+        
+        if(searchTxtField.getText() == null){
+            System.out.println("Error in search");
+        }else{
+            App.setRoot("primary_SearchResult");
+        }
+         
     }
 
     public PrimaryVideoController() {
@@ -335,12 +422,12 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
     
-    @FXML
-    void switchToNetflix(ActionEvent event) throws IOException {
-        App.setRoot("NetflixSignIn");
+  @FXML
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("TwitchPrimary");
     }
 
 
@@ -351,7 +438,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primary_Settings");
+        App.setRoot("Settings");
     }
     
     @FXML

@@ -16,8 +16,14 @@ module com.mycompany.streamfox {
     requires com.google.api.client;
     requires google.api.client;
     requires jdk.httpserver;
+    requires mail;
+    requires google.cloud.storage;
+    requires okhttp3;
     opens com.mycompany.streamfox to javafx.fxml, google.cloud.firestore;
     exports com.mycompany.streamfox;
+    
+    
+    
     
     
     

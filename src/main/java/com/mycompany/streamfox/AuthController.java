@@ -139,9 +139,6 @@ public class AuthController implements Initializable {
                     } catch (FirebaseAuthException ex) {
                         ex.printStackTrace();
                     }
-                    YoutubeApiEngine.initializeYoutube();
-
-
                     //Add primary screen functionality
                     App.setWidth(800);
                     App.setHeight(500);
@@ -196,6 +193,7 @@ public class AuthController implements Initializable {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
+                
                 //add primary screen functionality
                 userCreatedAlert();
             } catch (FirebaseAuthException ex) {

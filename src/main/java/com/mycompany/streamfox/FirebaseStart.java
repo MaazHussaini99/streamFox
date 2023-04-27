@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.StorageClient;
 
 import java.io.IOException;
 
@@ -19,24 +20,24 @@ import java.io.IOException;
  *
  * @author maazh
  */
-
 public class FirebaseStart {
+
     public static Firestore db;
-    
-    public static void initializeFirebase() throws FileNotFoundException, IOException{
+    public static FirebaseApp fa;
+    public static void initializeFirebase() throws FileNotFoundException, IOException {
         FileInputStream serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://streamfox-966e7.firebaseio.com/")
+                .setStorageBucket("streamfox-966e7.appspot.com")
                 .build();
 
-        FirebaseApp.initializeApp(options);
+        fa = FirebaseApp.initializeApp(options);
     }
-    
-    
+
     @SuppressWarnings("ThrowableResultIgnored")
-        public static void initializeFirestore(){
+    public static void initializeFirestore() {
         FileInputStream serviceAccount = null;
         try {
             serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");

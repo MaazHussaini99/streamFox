@@ -20,6 +20,7 @@ public final class UserData {
     private final static UserData INSTANCE = new UserData();
     private Map<String, Object> profileDataMap;
     private Map<String, Object> serviceListDataMap;
+    private Map<String, Object> DailyWatchDataMap;
     private Map<String, Object> watchTimeDataMap;
 
     public Map<String, Object> getProfileDataMap() {
@@ -33,16 +34,21 @@ public final class UserData {
     public Map<String, Object> getWatchTimeDataMap() {
         return watchTimeDataMap;
     }
+    
+    public Map<String, Object> getYTDailyWatchDataMap() {
+        return DailyWatchDataMap;
+    }
     User user = User.getInstance();
 
     UserData() {
         setProfile();
         setServiceList();
         setWatchtime();
+        setYTWatchtime();
     }
 
-    private void setProfile() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("profile");
+    public void setProfile() {
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             profileDataMap = future.get().getData();
@@ -53,8 +59,16 @@ public final class UserData {
         }
     }
 
+    public void updateProfile(Map<String, Object> profileMap) {
+        FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile").set(profileMap);
+    }
+
+     public void updateWatchTimeYT(Map<String, Object> watchDataMap) {
+        FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("service").document("youtube").set(watchDataMap);
+    }
+    
     private void setServiceList() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("servicesList");
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("servicesList");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             serviceListDataMap = future.get().getData();
@@ -66,7 +80,7 @@ public final class UserData {
     }
 
     private void setWatchtime() {
-        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document("user").collection("settings").document("watchtime");
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("watchtime");
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             watchTimeDataMap = future.get().getData();
@@ -77,6 +91,18 @@ public final class UserData {
         }
     }
 
+     private void setYTWatchtime() {
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("service").document("youtube");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        try {
+            DailyWatchDataMap = future.get().getData();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (ExecutionException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public static UserData getInstance() {
         return INSTANCE;
     }

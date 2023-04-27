@@ -14,11 +14,20 @@ public class VidObj {
     String id;
     String title;
     String channel;
+    String vidLength;
     public VidObj(String id, String title, String channel){
         this.id = id;
         this.title = title;
         this.channel = channel;
     }
+    
+    public VidObj(String id, String title, String channel,String vidLength){
+        this.id = id;
+        this.title = title;
+        this.channel = channel;
+        this.vidLength = vidLength;
+    }
+    
     /*
     public VidObj[] help = {new VidObj("YLt73w6criQ", "I Paid A Real Assassin To Try To Kill Me", "MrBeast"),
     new VidObj("dT6taoucBX4", "SCREAMS SCREAMS and MORE SCREAMS [Fears To Fathom: Norwood Hitchhike]", "CoryxKenshin"),

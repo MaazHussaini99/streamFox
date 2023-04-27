@@ -269,3 +269,92 @@ image-view:hover{
     -fx-font-family: "Montserrat";
     -fx-cursor:hand;
 }
+
+.chart {
+    -fx-background-color: #000;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+}
+
+.chart .text{
+    -fx-background-color: #000;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+}
+
+.chart-content {
+    -fx-background-color: #000;
+}
+
+.chart-content .text{
+    -fx-background-color: #000;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+}
+
+.chart-plot-background {
+    -fx-background-color: #000;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #121212;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #121212;
+}
+
+.chart-legend {
+    -fx-background-color: #000;
+    -fx-text-fill:white;
+    -fx-font-family: "Montserrat";
+}
+
+.chart-legend-item{
+   
+    -fx-text-fill:white;
+    -fx-font-family: "Montserrat";
+}
+
+.chart-legend-item-symbol{
+   
+    -fx-background-radius: 10 10 10 10;
+}
+
+.axis-minor-tick-mark {
+    -fx-fill: null;
+    -fx-stroke: #323232;
+}
+
+.axis{
+    -fx-tick-label-fill: white;
+    -fx-font-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+.axis .text{
+    -fx-tick-label-fill: white;
+    -fx-font-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+.axis-item{
+    -fx-font-fill: white;
+    -fx-font-family: "Montserrat";
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: red;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #8a8484;
+}
+
+.default-color2.chart-bar {
+    -fx-bar-fill: #e3c3c3;
+}
+
+.default-color3.chart-bar {
+    -fx-bar-fill: gray;
+}

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="330.0" styleClass="backgroundColor" stylesheets="@cssAuth.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.AuthControllerSignUp">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="330.0" styleClass="backgroundColor" stylesheets="@cssAuth.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.AuthControllerSignUp">
    <children>
       <BorderPane layoutY="-1.0" prefHeight="400.0" prefWidth="330.0" stylesheets="@cssAuth.css">
          <bottom>
@@ -49,7 +49,7 @@
                      </VBox.margin>
                   </Label>
                   <PasswordField fx:id="passwordField" />
-                  <Button fx:id="signInBtn" mnemonicParsing="false" onAction="#preformActionBtn" prefHeight="25.6" prefWidth="260.0" stylesheets="@cssAuth.css" text="Sign Up">
+                  <Button fx:id="signInBtn" mnemonicParsing="false" onAction="#signUp" prefHeight="25.6" prefWidth="260.0" stylesheets="@cssAuth.css" text="Sign Up">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin></Button>

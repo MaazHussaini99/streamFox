@@ -12,6 +12,7 @@ import static com.mycompany.streamfox.YoutubeApiEngine.getService;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -76,6 +77,16 @@ public class PrimaryHomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        YoutubeApiEngine.initializeYoutube();
+        try {
+            TwitchApiEngine.initializeTwitch();
+            TwitchApiEngine.getVideo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -118,12 +129,15 @@ public class PrimaryHomeController implements Initializable {
             for (int i = 0; i < 50; i++) {
                 help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(), 
                         mostPopularVids.getItems().get(i).getSnippet().getTitle(), 
-                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
+                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle(),
+                        mostPopularVids.getItems().get(i).getContentDetails().getDuration());
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
+        
+    if(App.stage.isFullScreen() == false){    
         testvb = new VBox[help.length];
         for (int i = 0; i < 20; i++) {
             testvb[i] = new VBox();
@@ -145,6 +159,62 @@ public class PrimaryHomeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    System.out.println(help[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
+                   
+                    try {
+                        playVideoMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            testvb[i].getChildren().add(imv);
+            testvb[i].getChildren().add(tlabel);
+
+            ytVids.getChildren().add(testvb[i]);
+        }}else{
+        
+        testvb = new VBox[help.length];
+        for (int i = 0; i < 20; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(400);
+            imv.setFitHeight(200);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(400);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    System.out.println(help[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
+                   
                     try {
                         playVideoMode(event);
                     } catch (IOException ex) {
@@ -157,7 +227,9 @@ public class PrimaryHomeController implements Initializable {
 
             ytVids.getChildren().add(testvb[i]);
         }
+    }
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
+       
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
     }
@@ -229,9 +301,13 @@ public class PrimaryHomeController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
-
+@FXML
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("TwitchPrimary");
+    }
+    
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
@@ -239,7 +315,7 @@ public class PrimaryHomeController implements Initializable {
     
         @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primary_Settings");
+        App.setRoot("Settings");
     }
 
     /**
@@ -251,7 +327,115 @@ public class PrimaryHomeController implements Initializable {
         //toggles fullscreen on and off
         //TODO: make the interface more dynamic (hard)
         System.out.println("fullscreen");
+        ytVids.getChildren().clear();
+        
+        VidObj[] help = new VidObj[50];
+        try {
+            VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
+            
+            for (int i = 0; i < 50; i++) {
+                help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(), 
+                        mostPopularVids.getItems().get(i).getSnippet().getTitle(), 
+                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle(),
+                        mostPopularVids.getItems().get(i).getContentDetails().getDuration());
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         App.fullscreen();
+        
+        if(App.stage.isFullScreen() == false){    
+        testvb = new VBox[help.length];
+        for (int i = 0; i < 20; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(200);
+            imv.setFitHeight(100);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(200);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    System.out.println(help[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
+                   
+                    try {
+                        playVideoMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            testvb[i].getChildren().add(imv);
+            testvb[i].getChildren().add(tlabel);
+
+            ytVids.getChildren().add(testvb[i]);
+        }}else{
+        
+        testvb = new VBox[help.length];
+        for (int i = 0; i < 20; i++) {
+            testvb[i] = new VBox();
+            ImageView imv = new ImageView();
+            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+            imv.setFitWidth(400);
+            imv.setFitHeight(200);
+            imv.setImage(img);
+            Label tlabel = new Label();
+            tlabel.setMaxWidth(400);
+            tlabel.setText(help[i].title);
+
+            int placeholder = i;
+            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
+                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    System.out.println(help[placeholder].vidLength);
+                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
+                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
+                    System.out.println("sec: " + seconds);
+                    time += ((double)seconds / 3600);
+                    
+                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                    watchTimeMap.put("fridayWatchTime", time);
+                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
+                   
+                    try {
+                        playVideoMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            testvb[i].getChildren().add(imv);
+            testvb[i].getChildren().add(tlabel);
+
+            ytVids.getChildren().add(testvb[i]);
+        }
+    }
     }
 
 }

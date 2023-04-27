@@ -19,11 +19,13 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -57,12 +59,18 @@ import javafx.util.Duration;
 import javax.mail.Session;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javax.mail.Authenticator;
@@ -133,6 +141,9 @@ public class PrimaryProfileController implements Initializable {
 
     @FXML
     private AnchorPane topBar;
+    
+    @FXML
+    private Label hoursLabel;
 
     private DialogPane dialog;
 
@@ -140,10 +151,53 @@ public class PrimaryProfileController implements Initializable {
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
+    
+    @FXML
+    
+    private Label setTotalWeeklyWatchTime;
+    
+    @FXML
+    
+    private Label setTotalDailyWatchtime;
+    
+      @FXML
+    
+    private Label dailyTimeUnitLabel;
+      
+        @FXML
+    
+    private RadioButton youtubeOption;
+                   
+      @FXML
+     private RadioButton  twitchOption;
+      
+    
+      @FXML
+    private Label weeklyTimeUnitLabel;
+       String  unitLabelDay;
+         String  unitLabelWeek;
+      
+      @FXML
+    private CheckBox showAllServices;
+      
+      
+      
+      
+    
+    
+    
+    double  tempDailyWatchTime;
+    double  tempWeeklyWatchTime;
+    
+    private  XYChart.Series youtubeSeries;
+    
+    private XYChart.Series netflixSeries;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+       // showAllServices.setSelected(true);
+         ToggleGroup group=new ToggleGroup();
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
@@ -153,7 +207,46 @@ public class PrimaryProfileController implements Initializable {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
         tt.setByX(-200);
         tt.play();
+        hoursLabel.setRotate(270);
+        tempDailyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);
+          tempWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+         unitLabelDay="Hours";
+        unitLabelWeek="Hours";
+         
+         if(tempDailyWatchTime<1) {
+             tempDailyWatchTime= Math.round( tempDailyWatchTime*60);
+              unitLabelDay="Minutes";
+             
+         }
+         
+              
+         if(tempWeeklyWatchTime<1) {
+             tempWeeklyWatchTime= Math.round( tempWeeklyWatchTime*60);
+             unitLabelWeek="Minutes";
+             
+         }
+         
+         dailyTimeUnitLabel.setText(  unitLabelDay);
+         weeklyTimeUnitLabel.setText(unitLabelWeek);
+          hoursLabel.setText(unitLabelDay);
+         
+         
+         
 
+        
+    
+        
+      
+       
+        setTotalDailyWatchtime.setText(Double.toString( tempDailyWatchTime));
+        setTotalWeeklyWatchTime.setText(Double.toString(tempWeeklyWatchTime));
+       
+        
+        
+        
+          
+
+           
         topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -175,30 +268,130 @@ public class PrimaryProfileController implements Initializable {
         
         
         //System.out.println(userData.getYTWatchDaysDataMap().get("fridayWatchTime").toString());
-        
-        XYChart.Series youtubeSeries = new XYChart.Series();
+        NumberAxis yAxis = new NumberAxis(); 
+           yAxis.setLabel("score");
+           
+           
+       youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");
-        youtubeSeries.getData().add(new XYChart.Data("Monday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
-        youtubeSeries.getData().add(new XYChart.Data("Wednesday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Thursday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Friday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Saturday", 0));
-        youtubeSeries.getData().add(new XYChart.Data("Sunday", 0));
+        youtubeSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-        XYChart.Series netflixSeries = new XYChart.Series();
+        netflixSeries = new XYChart.Series();
         netflixSeries.setName("Netflix");
-        netflixSeries.getData().add(new XYChart.Data("Monday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Tuesday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Wednesday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Thursday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Friday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Saturday", 0));
-        netflixSeries.getData().add(new XYChart.Data("Sunday", 0));
+        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-        watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
-    }
+          //watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+     showAllServices.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(newValue){
+                 youtubeOption.setSelected(false);
+                 twitchOption.setSelected(false);
+               youtubeSeries = new XYChart.Series();
+     youtubeSeries.setName("Youtube");
+      youtubeSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+       youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+   youtubeSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+       youtubeSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+        
+               netflixSeries = new XYChart.Series();
+        netflixSeries.setName("Netflix");
+        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+       netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+         netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+         //  */
+
+               watchTimeGraph.getData().setAll(youtubeSeries,netflixSeries);
+
+            }else{
+
+                 watchTimeGraph.getData().removeAll(youtubeSeries,netflixSeries);
+                  watchTimeGraph.getData().clear();
+                 
+            }
+        }
+    });
+    
+     
+
+youtubeOption.setToggleGroup(group);
+twitchOption.setToggleGroup(group);
+
+
+ 
+//watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+  public void changed(ObservableValue<? extends Toggle> ov,
+      Toggle old_toggle, Toggle new_toggle) {
+    if (group.getSelectedToggle() == youtubeOption) {
+         //watchTimeGraph.getData().setAll(youtubeSeries);
+         watchTimeGraph.getData().removeAll(youtubeSeries);
+        watchTimeGraph.getData().clear();
+           
+          //    watchTimeGraph.layout();
+                youtubeSeries = new XYChart.Series();
+        youtubeSeries.setName("Youtube");
+        youtubeSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+           
+              watchTimeGraph.getData().setAll(youtubeSeries);
+  
+    }
+    else if(group.getSelectedToggle() == twitchOption) {
+            //  watchTimeGraph.getData().clear();
+          watchTimeGraph.getData().removeAll(netflixSeries);
+           watchTimeGraph.getData().clear();
+             // watchTimeGraph.layout();
+                netflixSeries = new XYChart.Series();
+        netflixSeries.setName("Netflix");
+        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+        
+              watchTimeGraph.getData().setAll(netflixSeries );
+  }
+    
+}
+   
+});
+
+
+
+        
+        
+   //   watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+    }
+    
+    
     private void setValues() {
         profFirstNameTxt.setText((String) userData.getProfileDataMap().get("fname"));
         profLastNameTxt.setText((String) userData.getProfileDataMap().get("lname"));

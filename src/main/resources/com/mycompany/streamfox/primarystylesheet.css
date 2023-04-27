@@ -30,6 +30,9 @@
     -fx-cursor:hand;
 }
 
+.default-color0.chart-bar { -fx-bar-fill: red;}
+.default-color1.chart-bar { -fx-bar-fill:purple; }
+
 .nameFields{
     -fx-pref-width: 120;
     -fx-max-width: 120;
@@ -358,3 +361,4 @@ image-view:hover{
 .default-color3.chart-bar {
     -fx-bar-fill: gray;
 }
+

@@ -195,11 +195,6 @@ public class PrimarySettingsController implements Initializable {
         // cancel button is pressed
 
     }
-    
-     @FXML
-    void ResetPassword(ActionEvent event) throws IOException {
-    
-    }
 
     @FXML
     void DeleteYourAcount(ActionEvent event) throws IOException {
@@ -331,14 +326,28 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
   
-        
+       /*
         DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-              //Add firebase code
-              
-            } 
+                
+                Thread  dwt = new Thread( () -> {
+                    System.out.println("DailyWatchtimeThread – Going to sleep");
+
+
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                Map<String, Object> dailyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
+        dailyWatchTimeMap.put("setDailyLimit", totalDaily);
+        UserData.getInstance().updateTotalWatchTime(dailyWatchTimeMap);
+               
         });
+                  dwt.start(); 
+                }
+            });*/
             YoutubeWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
@@ -352,6 +361,8 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
          
+           
+     
         
         
         TwitchWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
@@ -385,14 +396,30 @@ public class PrimarySettingsController implements Initializable {
             } 
         });
    
-   
+   /*
              WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-              //Add firebase code
-              
-            } 
+               Thread  wwt = new Thread( () -> {
+                    System.out.println("WeeklyWatchtime Thread – Going to sleep");
+
+
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                Map<String, Object> weeklyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
+        weeklyWatchTimeMap.put("setWeeklyLimit", totalWeekly);
+        UserData.getInstance().updateTotalWatchTime(weeklyWatchTimeMap);
+               
         });
+                  wwt.start(); 
+                }
+            
+        });*/
+             
+           
         
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
@@ -432,7 +459,7 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("Youtube");
     }
     
 @FXML
@@ -450,6 +477,15 @@ public class PrimarySettingsController implements Initializable {
         App.setRoot("primary_Home");
     }
 
+    @FXML
+    void saveSettingsChanges(ActionEvent event) {
+        //for when save is pressed
+           Map<String, Object> WatchTimeLimitMap = UserData.getInstance().getWatchTimeDataMap();
+       WatchTimeLimitMap.put("setDailyLimit", totalDaily);
+           WatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
+        UserData.getInstance().updateTotalWatchTime(WatchTimeLimitMap);
+        
+    }
     /**
      * switches the application to and from fullscreen mode
      */

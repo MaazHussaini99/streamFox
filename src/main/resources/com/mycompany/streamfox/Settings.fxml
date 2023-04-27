@@ -80,7 +80,7 @@
       <AnchorPane fx:id="backPane" layoutY="46.0" prefHeight="454.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <content>
+               <content>
                 <AnchorPane minHeight="700.0" minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
                         <VBox layoutX="72.0" layoutY="68.0" spacing="40.0" AnchorPane.leftAnchor="72.0">
@@ -130,7 +130,8 @@
                                     </CheckBox>
                                     <Spinner fx:id="TwitchDailyWatchTime" />
                                     <Spinner fx:id="TwitchWeeklyWatchTime" />
-                                 </children></HBox>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
                                     <Label text="Disney">
@@ -139,14 +140,15 @@
                                        </font>
                                     </Label>
             
-                                    <CheckBox fx:id="Disney" mnemonicParsing="false" wrapText="true">
+                                                <CheckBox fx:id="Disney" mnemonicParsing="false" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </CheckBox>
                                     <Spinner fx:id="DisneyDailyWatchTime" />
                                     <Spinner fx:id="DisneyWeeklyWatchTime" />
-                                 </children></HBox>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
                                     <Label text="Youtube">
@@ -161,7 +163,8 @@
                                     </CheckBox>
                                     <Spinner fx:id="YoutubeDailyWatchTime" />
                                     <Spinner fx:id="YoutubeWeeklyWatchTime" />
-                                 </children></HBox>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
                                     <Label text="Total">
@@ -174,11 +177,12 @@
                                     </Label>
                                     <Spinner fx:id="DailyWatchTime" />
                                     <Spinner fx:id="WeeklyWatchTime" />
-                                 </children></HBox>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                         <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="Settings" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-
+            
                         <Label layoutX="407.0" layoutY="40.0" text="Duration Settings">
                            <font>
                               <Font size="6.0" />
@@ -186,24 +190,25 @@
                         </Label>
                         <VBox alignment="CENTER" layoutX="164.0" layoutY="441.0">
                            <children>
-      
-                                    <Label style="-fx-font-size: 16;" text="Account Settings">
+            
+                                          <Label style="-fx-font-size: 16;" text="Account Settings">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox spacing="15.0">
                                  <children>
-                                    <Button fx:id="DisableYA" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />
-                                    <Button fx:id="RestPass" mnemonicParsing="false" onAction="#ResetPassword" text="Reset Password" />
+                                    <Button fx:id="DisableYA" mnemonicParsing="false" onAction="#DisableYourAcount" text="Disable Your Account" />                      
                                     <Button fx:id="DeleteYA" mnemonicParsing="false" onAction="#DeleteYourAcount" text="Delete Your Account" />
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
-
-                     </children></AnchorPane>
-              </content>
+                        <Button fx:id="saveSettingsChanges" layoutX="429.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveSettingsChanges" styleClass="ProfileButtons" text="Save Changes" />
+            
+                     </children>
+                  </AnchorPane>
+               </content>
             </ScrollPane>
          </children></AnchorPane>
       <AnchorPane prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.60000000000002">

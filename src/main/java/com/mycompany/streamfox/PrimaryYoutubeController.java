@@ -7,6 +7,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -185,7 +186,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -193,7 +194,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -229,7 +230,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help1[placeholder].id;
                     titleLoad = help1[placeholder].title;
                     channelLoad = help1[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help1[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -237,7 +238,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -273,7 +274,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help2[placeholder].id;
                     titleLoad = help2[placeholder].title;
                     channelLoad = help2[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help2[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -281,7 +282,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -317,7 +318,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -325,7 +326,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -361,7 +362,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help1[placeholder].id;
                     titleLoad = help1[placeholder].title;
                     channelLoad = help1[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help1[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -369,7 +370,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -405,7 +406,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help2[placeholder].id;
                     titleLoad = help2[placeholder].title;
                     channelLoad = help2[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help2[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -413,7 +414,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -450,7 +451,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help3[placeholder].id;
                     titleLoad = help3[placeholder].title;
                     channelLoad = help3[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help3[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help3[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -458,7 +459,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -495,7 +496,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help4[placeholder].id;
                     titleLoad = help4[placeholder].title;
                     channelLoad = help4[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help4[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help4[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -503,7 +504,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -617,7 +618,7 @@ public class PrimaryYoutubeController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primarySettings");
+        App.setRoot("Settings");
     }
     
     /**
@@ -701,7 +702,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -709,7 +710,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -745,7 +746,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help1[placeholder].id;
                     titleLoad = help1[placeholder].title;
                     channelLoad = help1[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help1[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -753,7 +754,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -789,7 +790,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help2[placeholder].id;
                     titleLoad = help2[placeholder].title;
                     channelLoad = help2[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help2[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -797,7 +798,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -833,7 +834,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help[placeholder].id;
                     titleLoad = help[placeholder].title;
                     channelLoad = help[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get( dateString);
                     System.out.println(help[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -841,7 +842,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put( dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -877,7 +878,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help1[placeholder].id;
                     titleLoad = help1[placeholder].title;
                     channelLoad = help1[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help1[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -885,7 +886,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -921,7 +922,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help2[placeholder].id;
                     titleLoad = help2[placeholder].title;
                     channelLoad = help2[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help2[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -929,7 +930,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -966,7 +967,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help3[placeholder].id;
                     titleLoad = help3[placeholder].title;
                     channelLoad = help3[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help3[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help3[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -974,7 +975,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);
@@ -1011,7 +1012,7 @@ public class PrimaryYoutubeController implements Initializable {
                     VIDload = help4[placeholder].id;
                     titleLoad = help4[placeholder].title;
                     channelLoad = help4[placeholder].channel;
-                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
+                    double time = (double)userData.getYTDailyWatchDataMap().get(dateString);
                     System.out.println(help4[placeholder].vidLength);
                     java.time.Duration d = java.time.Duration.parse(help4[placeholder].vidLength);
                     int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
@@ -1019,7 +1020,7 @@ public class PrimaryYoutubeController implements Initializable {
                     time += ((double)seconds / 3600);
                     
                     Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-                    watchTimeMap.put("fridayWatchTime", time);
+                    watchTimeMap.put(dateString, time);
                     UserData.getInstance().updateWatchTimeYT(watchTimeMap);
                     try {
                         playVideoMode(event);

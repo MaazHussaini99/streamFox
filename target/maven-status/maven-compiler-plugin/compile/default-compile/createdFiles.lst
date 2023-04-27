@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com/mycompany/streamfox/PrimaryYoutubeController$6.class
 com/mycompany/streamfox/PrimaryProfileController$3.class
 com/mycompany/streamfox/NewUser.class
@@ -69,3 +70,5 @@ com/mycompany/streamfox/PrimaryVideoController$1.class
 com/mycompany/streamfox/FirebaseStart.class
 com/mycompany/streamfox/App$1.class
 com/mycompany/streamfox/Comments.class
+=======
+>>>>>>> master

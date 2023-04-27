@@ -598,7 +598,7 @@ group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
         BlobInfo blobInfo = storageClient.bucket().create(blobString, uploadFile, Bucket.BlobWriteOption.userProject("streamfox-966e7"));
         BlobId blobId = blobInfo.getBlobId();
         Storage storage = storageClient.bucket().getStorage();
-        long duration = 1L; // Time duration for the signed URL (in minutes)
+        long duration = 34839483L; // Time duration for the signed URL (in minutes)
         String signedUrl = storage.signUrl(blobInfo, duration, TimeUnit.HOURS).toString();
 
 // Print the signed URL

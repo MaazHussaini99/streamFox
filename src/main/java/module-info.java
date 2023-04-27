@@ -18,8 +18,10 @@ module com.mycompany.streamfox {
     requires jdk.httpserver;
     requires mail;
     requires google.cloud.storage;
+    requires okhttp3;
     opens com.mycompany.streamfox to javafx.fxml, google.cloud.firestore;
     exports com.mycompany.streamfox;
+    
     
     
     

@@ -66,30 +66,29 @@ public class YoutubeApiEngine {
         try {
             profileDataMap = future.get().getData();
             refreshToken = (String) profileDataMap.get("refreshToken");
+            if (refreshToken == "") {
+                try {
+                    youtubeService = getService();
+                    profileDataMap.put("refreshToken", refreshToken);
+                    ApiFuture<WriteResult> update = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile").update(profileDataMap);
+                } catch (GeneralSecurityException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                try {
+                    youtubeService = getServiceWithRefreshToken(refreshToken);
+                } catch (GeneralSecurityException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (ExecutionException ex) {
             ex.printStackTrace();
-        }
-        if (refreshToken == "") {
-            try {
-                youtubeService = getService();
-                
-                profileDataMap.put("refreshToken", refreshToken);
-                ApiFuture<WriteResult> update = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("profile").update(profileDataMap);
-            } catch (GeneralSecurityException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            try {
-                youtubeService = getServiceWithRefreshToken(refreshToken);
-            } catch (GeneralSecurityException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
 
     }

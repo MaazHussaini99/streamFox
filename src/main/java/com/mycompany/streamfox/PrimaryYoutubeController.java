@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -56,6 +57,8 @@ public class PrimaryYoutubeController implements Initializable {
     @FXML
     private Circle userProfView;
 
+    public static VidObj[] Searchresults;
+    
     @FXML
     private Button userNameMenuBtn;
 
@@ -73,6 +76,9 @@ public class PrimaryYoutubeController implements Initializable {
     
     @FXML
     private HBox videos5;
+    
+    @FXML
+    private TextField searchTxtField;
 
     VBox[] testvb;
 
@@ -521,6 +527,19 @@ public class PrimaryYoutubeController implements Initializable {
 
     }
 
+    @FXML
+    void searchFunction(ActionEvent event) throws IOException {
+        
+        Searchresults = Search.returnArray(searchTxtField.getText());
+        
+        if(searchTxtField.getText() == null){
+            System.out.println("Error in search");
+        }else{
+            App.setRoot("primary_SearchResult");
+        }
+         
+    }
+    
     @FXML
     void menuMove(MouseEvent event) {
         if (onOff == 0) {

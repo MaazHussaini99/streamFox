@@ -76,6 +76,7 @@ public class NewUser {
         serviceWatchtimeMap.put("thursdayWatchTime", 0.001);
         serviceWatchtimeMap.put("fridayWatchTime", 0.001);
         serviceWatchtimeMap.put("saturdayWatchTime", 0.001);
+        serviceWatchtimeMap.put("WeeklyWatchTime", 0.001);
         FirebaseStart.db.collection("maaz example").document(uid).collection("service").document("youtube").set(serviceWatchtimeMap);
 
         watchtimeMap.clear();

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.NetflixWebviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.ChatWebviewController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -132,6 +132,12 @@
                   </Button>
                </children>
             </VBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToNetflix" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css" />
+            <ImageView fitHeight="46.0" fitWidth="32.0" layoutX="7.0" layoutY="410.0" onMouseClicked="#switchToNetflix" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Chat%20Icon%20-%20Dark.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
@@ -155,6 +161,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: gray;" text="Chat" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -20,7 +20,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
-public class NetflixWebviewController  implements Initializable {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
+import javafx.scene.web.WebView;
+public class ChatWebviewController  implements Initializable {
 
    @FXML
    private WebView view;
@@ -49,9 +57,14 @@ public class NetflixWebviewController  implements Initializable {
     
      private int onOff = 0;
    
-   @Override
+      @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-       frontPane.setVisible(false);
+         //  System.out.println("Hello");
+         engine = view.getEngine();
+         engine.load("http://streamflix.ezyro.com/2chatroom-master/indexold.html");
+     
+     
+     frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
         ft.setFromValue(1);
         ft.setToValue(0);
@@ -77,6 +90,15 @@ public class NetflixWebviewController  implements Initializable {
      
     }
     
+    
+    public void loadpage(){
+    
+       
+    
+    }
+  
+     
+
     
 @FXML
     void menuMove(MouseEvent event) {

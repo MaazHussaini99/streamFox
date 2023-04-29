@@ -13,9 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryVideoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.TwitchController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -94,9 +93,8 @@
                <content>
                   <AnchorPane prefHeight="1024.0" prefWidth="735.0" style="-fx-background-color: #000;" stylesheets="@primarystylesheet.css">
                      <children>
-                        <VBox layoutX="47.0" layoutY="14.0" spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
+                        <VBox fx:id="browserVBox" layoutX="47.0" layoutY="14.0" spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
                            <children>
-                              <WebView fx:id="webVideoView" prefHeight="288.0" prefWidth="512.0" />
                               <Label fx:id="titleTxt" prefHeight="19.0" prefWidth="518.0" style="-fx-font-size: 16;" styleClass="titleText" text="Title of Video Here" />
                               <HBox alignment="CENTER_LEFT" spacing="5.0">
                                  <children>
@@ -200,7 +198,7 @@
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Youtube" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" style="-fx-background-color: gray;" text="Twitch">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTwitch" style="-fx-background-color: gray;" text="Twitch">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

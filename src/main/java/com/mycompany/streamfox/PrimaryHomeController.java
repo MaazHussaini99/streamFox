@@ -81,7 +81,7 @@ public class PrimaryHomeController implements Initializable {
         YoutubeApiEngine.initializeYoutube();
         try {
             TwitchApiEngine.initializeTwitch();
-            TwitchApiEngine.getVideo();
+            TwitchVids.getTopVideos();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -305,7 +305,7 @@ public class PrimaryHomeController implements Initializable {
     }
 @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("TwitchPrimary");
+        App.setRoot("Twitch_video_");
     }
     
     @FXML

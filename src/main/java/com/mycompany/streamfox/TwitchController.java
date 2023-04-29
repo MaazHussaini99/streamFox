@@ -1,15 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.streamfox;
 
 import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
-import com.google.api.services.youtube.model.VideoListResponse;
-import com.google.firebase.auth.FirebaseAuth;
-import static com.mycompany.streamfox.App.scene;
-import static com.mycompany.streamfox.App.height;
-import static com.mycompany.streamfox.App.width;
-import static com.mycompany.streamfox.App.xOffset;
-import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryVideoController.channelStartText;
+import static com.mycompany.streamfox.PrimaryVideoController.startVid;
+import static com.mycompany.streamfox.PrimaryVideoController.titleStartText;
+import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.engine.Engine;
+import com.teamdev.jxbrowser.engine.EngineOptions;
+import com.teamdev.jxbrowser.engine.ProprietaryFeature;
+import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
+import com.teamdev.jxbrowser.view.javafx.BrowserView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,12 +26,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,47 +38,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
-public class PrimaryVideoController implements Initializable {
-
-    private FirebaseAuth firebaseAuth;
+public class TwitchController {
 
     @FXML
     private AnchorPane backPane;
-
-    @FXML
-    private AnchorPane frontPane;
-
-    @FXML
-    private AnchorPane topBar;
-
-    @FXML
-    private ImageView closeWindow;
-
-    @FXML
-    private Circle userProfView;
-
-    @FXML
-    private ListView<String> commentView;
-
-    @FXML
-    private TextField searchTxtField;
-
-    @FXML
-    private Button userNameMenuBtn;
-
-    @FXML
-    private ImageView minimizeWindow;
-
-    @FXML
-    private ImageView menuOpen;
-
-    @FXML
-    private WebView webVideoView;
 
     @FXML
     private ImageView channelPic;
@@ -83,16 +54,54 @@ public class PrimaryVideoController implements Initializable {
     private Label channelTxt;
 
     @FXML
+    private ImageView closeWindow;
+
+    @FXML
+    private ImageView closeWindow1;
+
+    @FXML
+    private ListView<?> commentView;
+
+    @FXML
+    private AnchorPane frontPane;
+
+    @FXML
+    private ImageView menuOpen;
+
+    @FXML
+    private ImageView minimizeWindow;
+
+    @FXML
     private VBox recommendedTab;
 
     @FXML
+    private TextField searchTxtField;
+
+    @FXML
     private Label titleTxt;
+
+    @FXML
+    private AnchorPane topBar;
+
+    @FXML
+    private Button userNameMenuBtn;
+
+    @FXML
+    private Circle userProfView;
+
+    @FXML
+    private VBox browserVBox;
 
     private WebEngine we;
 
     private int onOff = 0;
 
     public static VidObj[] Searchresults;
+
+    private BrowserView view;
+    private EngineOptions options;
+    private Engine engine;
+    private Browser browser;
 
     VBox[] testvb;
 
@@ -106,8 +115,23 @@ public class PrimaryVideoController implements Initializable {
     static String titleStartText;
     static String channelStartText;
 
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
+                .enableProprietaryFeature(ProprietaryFeature.AAC)
+                .enableProprietaryFeature(ProprietaryFeature.H_264)
+                .licenseKey("1BNDHFSC1G5ZOFBWG6WQUSLCBTDAYZZXMAP2GRH6RECP8NHENP4ZY4YHBV1MUUDQTXFCFF")
+                .build();
+
+        engine = Engine.newInstance(options);
+        browser = engine.newBrowser();
+        loadPage(startVid);
+        view = BrowserView.newInstance(browser);
+        view.setPrefSize(300, 500);
+        view.setVisible(true);
+        browserVBox.getChildren().add(0, view);
+        
+        
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -136,13 +160,13 @@ public class PrimaryVideoController implements Initializable {
             }
         });
 
-        we = webVideoView.getEngine();
+        //we = webVideoView.getEngine();
 
         titleTxt.setText(titleStartText);
         channelTxt.setText(channelStartText);
 
         System.out.println(startVid);
-        loadPage(startVid);
+        
 
         VidObj[] help = new VidObj[20];
         try {
@@ -230,8 +254,8 @@ public class PrimaryVideoController implements Initializable {
                         .add(testvb[i]);
             }
         } else {
-            webVideoView.setPrefWidth(1024);
-            webVideoView.setPrefHeight(576);
+            //webVideoView.setPrefWidth(1024);
+            //webVideoView.setPrefHeight(576);
             testvb = new VBox[help.length];
             for (int i = 0; i < help.length; i++) {
                 testvb[i] = new VBox();
@@ -325,35 +349,80 @@ public class PrimaryVideoController implements Initializable {
             ex.printStackTrace();
         }
 
-        commentView.setItems(obComments);
-        commentView.setCellFactory(param -> new ListCell<String>() {
-            private ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    setText(item);
-                    int index = getIndex();
-                    String imageUrl = imageUrls.get(index);
-                    imageView.setImage(new Image(imageUrl));
-                    setGraphic(imageView);
-                    // set the width's
-                    setMinWidth(param.getWidth());
-                    setMaxWidth(param.getWidth());
-                    setPrefWidth(param.getWidth());
-                    // allow wrapping
-                    setWrapText(true);
-                }
-            }
-        });
+//        commentView.setItems(obComments);
+//        commentView.setCellFactory(param -> new ListCell<String>() {
+//            private ImageView imageView = new ImageView();
+//
+//            @Override
+//            protected void updateItem(String item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (empty || item == null) {
+//                    setGraphic(null);
+//                    setText(null);
+//                } else {
+//                    setText(item);
+//                    int index = getIndex();
+//                    String imageUrl = imageUrls.get(index);
+//                    imageView.setImage(new Image(imageUrl));
+//                    setGraphic(imageView);
+//                    // set the width's
+//                    setMinWidth(param.getWidth());
+//                    setMaxWidth(param.getWidth());
+//                    setPrefWidth(param.getWidth());
+//                    // allow wrapping
+//                    setWrapText(true);
+//                }
+//            }
+//        });
     }
 
-    public void loadPage(String VID) {
-        we.load("https://www.youtube.com/embed/" + VID);
+    @FXML
+    void closeCommand(MouseEvent event) {
+
+    }
+
+    @FXML
+    void fullscreen(MouseEvent event) {
+
+    }
+
+    @FXML
+    void minimizeCommand(MouseEvent event) {
+
+    }
+
+    @FXML
+    void searchFunction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToHome(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToNetflix(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToProfile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSettings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToTwitch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToYT(ActionEvent event) {
 
     }
 
@@ -388,161 +457,8 @@ public class PrimaryVideoController implements Initializable {
 
     }
 
-    @FXML
-    void searchFunction(ActionEvent event) throws IOException {
-
-        Searchresults = Search.returnArray(searchTxtField.getText());
-
-        if (searchTxtField.getText() == null) {
-            System.out.println("Error in search");
-        } else {
-            App.setRoot("primary_SearchResult");
-        }
-
+    public void loadPage(String vid) {
+        browser.navigation().loadUrl("https://player.twitch.tv/?channel=shroud&parent=localhost&autoplay=false");
+        //we.load("https://player.twitch.tv/?video=41280532217&parent=localhost&autoplay=false");
     }
-
-    public PrimaryVideoController() {
-        User user = User.getInstance();
-        System.out.println(user);
-    }
-
-    @FXML
-    void closeCommand(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    void switchToHome(ActionEvent event) throws IOException {
-        App.setRoot("primary_Home");
-    }
-
-    @FXML
-    void switchToYT(ActionEvent event) throws IOException {
-        App.setRoot("Youtube");
-    }
-
-    @FXML
-    void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("TwitchPrimary");
-    }
-
-    @FXML
-    void switchToProfile(ActionEvent event) throws IOException {
-        App.setRoot("primary_Profile");
-    }
-
-    @FXML
-    void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("Settings");
-    }
-
-    @FXML
-    void minimizeCommand(MouseEvent event) {
-        App.stage.setIconified(true);
-    }
-
-    /**
-     * exits the application
-     */
-    @FXML
-    private void exit() {
-        System.out.println("exit");
-        System.exit(0);
-    }
-
-    /**
-     * switches the application to and from fullscreen mode
-     */
-    @FXML
-    private void fullscreen() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        App.fullscreen();
-
-        VidObj[] help = new VidObj[20];
-        for (int i = 0; i < 20; i++) {
-            help[i] = new VidObj(relatedVids.getItems().get(i).getId().getVideoId(),
-                    relatedVids.getItems().get(i).getSnippet().getTitle(),
-                    relatedVids.getItems().get(i).getSnippet().getChannelTitle());
-        }
-
-        testvb = new VBox[7];
-
-        if (webVideoView.getPrefWidth() == 512) {
-            webVideoView.setPrefWidth(1024);
-            webVideoView.setPrefHeight(576);
-            recommendedTab.getChildren().clear();
-            testvb = new VBox[help.length];
-            for (int i = 0; i < help.length; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(260);
-                imv.setFitHeight(160);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(260);
-                tlabel.setText(help[i].title);
-
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        System.out.println("working");
-
-                        loadPage(help[placeholder].id);
-                        titleTxt.setText(help[placeholder].title);
-                        channelTxt.setText(help[placeholder].channel);
-//                        try {
-//                            CommentThreadListResponse response = Comments.getCommentsFromVideo(help[placeholder].id);
-//                            response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName();
-//                        } catch (IOException ex) {
-//                            ex.printStackTrace();
-//                        }
-                    }
-                });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
-
-                recommendedTab.getChildren().add(testvb[i]);
-            }
-
-        } else {
-            webVideoView.setPrefWidth(512);
-            webVideoView.setPrefHeight(288);
-            recommendedTab.getChildren().clear();
-            testvb = new VBox[help.length];
-            for (int i = 0; i < help.length; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(130);
-                imv.setFitHeight(80);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(130);
-                tlabel.setText(help[i].title);
-
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        System.out.println("working");
-
-                        loadPage(help[placeholder].id);
-                        titleTxt.setText(help[placeholder].title);
-                        channelTxt.setText(help[placeholder].channel);
-                    }
-                });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
-
-                recommendedTab.getChildren().add(testvb[i]);
-            }
-        }
-
-        //TODO: make the interface more dynamic (hard)
-    }
-
 }

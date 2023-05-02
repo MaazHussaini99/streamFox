@@ -257,9 +257,9 @@ public class PrimarySearchResultsController implements Initializable {
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
     }
-  @FXML
+    @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("TwitchPrimary");
+        App.setRoot("Twitch_video_");
     }
 
 

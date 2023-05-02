@@ -51,6 +51,5 @@ public class FirebaseStart {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
     }
 }

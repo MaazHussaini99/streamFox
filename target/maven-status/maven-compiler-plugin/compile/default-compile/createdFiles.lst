@@ -23,6 +23,7 @@ com\mycompany\streamfox\PrimaryHomeController$3.class
 com\mycompany\streamfox\PrimarySettingsController$2.class
 com\mycompany\streamfox\PrimaryHomeController.class
 com\mycompany\streamfox\Comments.class
+com\mycompany\streamfox\TwitchController$1.class
 com\mycompany\streamfox\TwitchController.class
 com\mycompany\streamfox\PrimaryYoutubeController$5.class
 module-info.class
@@ -33,6 +34,7 @@ com\mycompany\streamfox\PrimaryVideoController$3.class
 com\mycompany\streamfox\AuthController.class
 com\mycompany\streamfox\PrimaryHomeController$4.class
 com\mycompany\streamfox\PrimaryYoutubeController$6.class
+com\mycompany\streamfox\TwitchController$2.class
 com\mycompany\streamfox\PrimarySettingsController$3.class
 com\mycompany\streamfox\NetflixWebviewController.class
 com\mycompany\streamfox\PrimaryYoutubeController$13.class

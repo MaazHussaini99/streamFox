@@ -356,11 +356,6 @@ public class PrimaryProfileController implements Initializable {
     }
 
     @FXML
-    void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("TwitchPrimary");
-    }
-
-    @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
     }
@@ -369,7 +364,10 @@ public class PrimaryProfileController implements Initializable {
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
     }
-
+    @FXML
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_video_");
+    }
     /**
      * switches the application to and from fullscreen mode
      */

@@ -59,10 +59,10 @@ public class TwitchController implements Initializable{
     private ImageView closeWindow;
 
     @FXML
-    private ImageView closeWindow1;
-
+    private VBox videoView;
+    
     @FXML
-    private ListView<?> commentView;
+    private ImageView closeWindow1;
 
     @FXML
     private AnchorPane frontPane;
@@ -92,6 +92,9 @@ public class TwitchController implements Initializable{
     private Circle userProfView;
 
     @FXML
+    private AnchorPane basePane;
+    
+    @FXML
     private VBox browserVBox;
 
     @FXML
@@ -117,318 +120,131 @@ public class TwitchController implements Initializable{
     static String startVid;
     static String titleStartText;
     static String channelStartText;
+    
+    private EngineOptions options;
+    private Engine engine;
+    private Browser browser;
+    private BrowserView view;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        EngineOptions options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
+        options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
                 .enableProprietaryFeature(ProprietaryFeature.AAC)
                 .enableProprietaryFeature(ProprietaryFeature.H_264)
                 .licenseKey("1BNDHFSC1G5ZOFBWG6WQUSLCBTDAYZZXMAP2GRH6RECP8NHENP4ZY4YHBV1MUUDQTXFCFF")
                 .build();
 
-        Engine engine = Engine.newInstance(options);
-        Browser browser = engine.newBrowser();
+        
+        engine = Engine.newInstance(options);
+        browser = engine.newBrowser();
+        //loadPage(startVid);
         browser.navigation().loadUrl("https://player.twitch.tv/?channel=shroud&parent=localhost&autoplay=false");
-
-        BrowserView view = BrowserView.newInstance(browser);
-        view.setPrefSize(300, 500);
+        view = BrowserView.newInstance(browser);
+        view.setPrefSize(512, 288);
+        
         view.setVisible(true);
+        
+        videoView.getChildren().add(view);
+        
 
-        webVBox.setPrefSize(800, 1200);
-        webVBox.setLayoutX(200);
-        webVBox.setLayoutX(100);
-        webVBox.getChildren().add(view); // add label to the top of the VBox
+        frontPane.setVisible(false);
+        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
 
-//        frontPane.setVisible(false);
-//        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
-//        ft.setFromValue(1);
-//        ft.setToValue(0);
-//        ft.play();
-//
-//        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
-//        tt.setByX(-200);
-//        tt.play();
-//
-//        topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                App.xOffset = event.getSceneX();
-//                App.yOffset = event.getSceneY();
-//            }
-//        });
-//
-//        //move around here
-//        topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                App.stage.setX(event.getScreenX() - App.xOffset);
-//                App.stage.setY(event.getScreenY() - App.yOffset);
-//            }
-//        });
-//
-//        //we = webVideoView.getEngine();
-//        titleTxt.setText(titleStartText);
-//        channelTxt.setText(channelStartText);
-//
-//        System.out.println(startVid);
-//
-//        VidObj[] help = new VidObj[20];
-//        try {
-//            relatedVids = YoutubeVids.getRelatedVids(startVid);
-//
-//            for (int i = 0; i < 20; i++) {
-//                help[i] = new VidObj(relatedVids.getItems().get(i).getId().getVideoId(),
-//                        relatedVids.getItems().get(i).getSnippet().getTitle(),
-//                        relatedVids.getItems().get(i).getSnippet().getChannelTitle());
-//            }
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        if (App.stage.isFullScreen() == false) {
-//            testvb = new VBox[help.length];
-//            for (int i = 0; i < help.length; i++) {
-//                testvb[i] = new VBox();
-//                ImageView imv = new ImageView();
-//                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-//                imv.setFitWidth(130);
-//                imv.setFitHeight(80);
-//                imv.setImage(img);
-//                Label tlabel = new Label();
-//                tlabel.setMaxWidth(130);
-//                tlabel.setText(help[i].title);
-//
-//                int placeholder = i;
-//                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        try {
-//                            //relatedVids.getItems().get(1).
-//
-//                            recommendedTab.getChildren().clear();
-//                            System.out.println("working");
-//                            String myId = help[placeholder].id;
-//                            testvb = new VBox[help.length];
-//                            VidObj[] help = new VidObj[20];
-//
-//                            SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
-//
-//                            for (int i = 0; i < 20; i++) {
-//                                help[i] = new VidObj(newRelatedVids.getItems().get(i).getId().getVideoId(),
-//                                        newRelatedVids.getItems().get(i).getSnippet().getTitle(),
-//                                        newRelatedVids.getItems().get(i).getSnippet().getChannelTitle());
-//                            }
-//
-//                            for (int i = 0; i < help.length; i++) {
-//                                testvb[i] = new VBox();
-//                                ImageView imv = new ImageView();
-//                                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-//                                imv.setFitWidth(130);
-//                                imv.setFitHeight(80);
-//                                imv.setImage(img);
-//                                Label tlabel = new Label();
-//                                tlabel.setMaxWidth(130);
-//                                tlabel.setText(help[i].title);
-//
-//                                testvb[i].getChildren()
-//                                        .add(imv);
-//                                testvb[i].getChildren()
-//                                        .add(tlabel);
-//
-//                                recommendedTab.getChildren()
-//                                        .add(testvb[i]);
-//                            }
-//
-//                            loadPage(help[placeholder].id);
-//                            titleTxt.setText(help[placeholder].title);
-//                            channelTxt.setText(help[placeholder].channel);
-//                        } catch (IOException ex) {
-//                            ex.printStackTrace();
-//                        }
-//
-//                    }
-//                });
-//                testvb[i].getChildren()
-//                        .add(imv);
-//                testvb[i].getChildren()
-//                        .add(tlabel);
-//
-//                recommendedTab.getChildren()
-//                        .add(testvb[i]);
-//            }
-//        } else {
-//            //webVideoView.setPrefWidth(1024);
-//            //webVideoView.setPrefHeight(576);
-//            testvb = new VBox[help.length];
-//            for (int i = 0; i < help.length; i++) {
-//                testvb[i] = new VBox();
-//                ImageView imv = new ImageView();
-//                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-//                imv.setFitWidth(260);
-//                imv.setFitHeight(160);
-//                imv.setImage(img);
-//                Label tlabel = new Label();
-//                tlabel.setMaxWidth(460);
-//                tlabel.setText(help[i].title);
-//
-//                int placeholder = i;
-//                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        try {
-//                            //relatedVids.getItems().get(1).
-//
-//                            recommendedTab.getChildren().clear();
-//                            System.out.println("working");
-//                            String myId = help[placeholder].id;
-//                            testvb = new VBox[help.length];
-//                            VidObj[] help = new VidObj[20];
-//
-//                            SearchListResponse newRelatedVids = YoutubeVids.getRelatedVids(myId);
-//
-//                            for (int i = 0; i < 20; i++) {
-//                                help[i] = new VidObj(newRelatedVids.getItems().get(i).getId().getVideoId(),
-//                                        newRelatedVids.getItems().get(i).getSnippet().getTitle(),
-//                                        newRelatedVids.getItems().get(i).getSnippet().getChannelTitle());
-//                            }
-//
-//                            for (int i = 0; i < help.length; i++) {
-//                                testvb[i] = new VBox();
-//                                ImageView imv = new ImageView();
-//                                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-//                                imv.setFitWidth(260);
-//                                imv.setFitHeight(160);
-//                                imv.setImage(img);
-//                                Label tlabel = new Label();
-//                                tlabel.setMaxWidth(130);
-//                                tlabel.setText(help[i].title);
-//
-//                                testvb[i].getChildren()
-//                                        .add(imv);
-//                                testvb[i].getChildren()
-//                                        .add(tlabel);
-//
-//                                recommendedTab.getChildren()
-//                                        .add(testvb[i]);
-//                            }
-//
-//                            loadPage(help[placeholder].id);
-//                            titleTxt.setText(help[placeholder].title);
-//                            channelTxt.setText(help[placeholder].channel);
-//                        } catch (IOException ex) {
-//                            ex.printStackTrace();
-//                        }
-//
-//                    }
-//                });
-//                testvb[i].getChildren()
-//                        .add(imv);
-//                testvb[i].getChildren()
-//                        .add(tlabel);
-//
-//                recommendedTab.getChildren()
-//                        .add(testvb[i]);
-//            }
-//        }
-//
-//        userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
-//        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-//
-//        //adding comments
-//        ObservableList<String> obComments = observableArrayList();
-//        ObservableList<String> imageUrls = observableArrayList();
-//
-//        try {
-//            comments = Comments.getCommentsFromVideo(startVid);
-//            for (CommentThread commentThread : comments.getItems()) {
-//                String authorName = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName();
-//                String text = commentThread.getSnippet().getTopLevelComment().getSnippet().getTextOriginal();
-//                String imageUrl = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl();
-//                obComments.add(authorName + ": " + text);
-//                imageUrls.add(imageUrl);
-//            }
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
+        tt.setByX(-200);
+        tt.play();
 
-//        commentView.setItems(obComments);
-//        commentView.setCellFactory(param -> new ListCell<String>() {
-//            private ImageView imageView = new ImageView();
-//
-//            @Override
-//            protected void updateItem(String item, boolean empty) {
-//                super.updateItem(item, empty);
-//                if (empty || item == null) {
-//                    setGraphic(null);
-//                    setText(null);
-//                } else {
-//                    setText(item);
-//                    int index = getIndex();
-//                    String imageUrl = imageUrls.get(index);
-//                    imageView.setImage(new Image(imageUrl));
-//                    setGraphic(imageView);
-//                    // set the width's
-//                    setMinWidth(param.getWidth());
-//                    setMaxWidth(param.getWidth());
-//                    setPrefWidth(param.getWidth());
-//                    // allow wrapping
-//                    setWrapText(true);
-//                }
-//            }
-//        });
+        topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                App.xOffset = event.getSceneX();
+                App.yOffset = event.getSceneY();
+            }
+        });
+
+        //move around here
+        topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                App.stage.setX(event.getScreenX() - App.xOffset);
+                App.stage.setY(event.getScreenY() - App.yOffset);
+            }
+        });
+
+        //titleTxt.setText(titleStartText);
+        //channelTxt.setText(channelStartText);
+
+        System.out.println(startVid);
+        
+        userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
+        userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+
     }
 
+    @FXML
+    void searchFunction(ActionEvent event) throws IOException {
+        
+    }
+    
     @FXML
     void closeCommand(MouseEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
-    void fullscreen(MouseEvent event) {
+    void switchToHome(ActionEvent event) throws IOException {
+        App.setRoot("primary_Home");
+    }
 
+    @FXML
+    void switchToYT(ActionEvent event) throws IOException {
+        App.setRoot("Youtube");
+    }
+
+    @FXML
+    void switchToTwitch(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_video_");
+    }
+
+    @FXML
+    void switchToProfile(ActionEvent event) throws IOException {
+        App.setRoot("primary_Profile");
+    }
+
+    @FXML
+    void switchToSettings(ActionEvent event) throws IOException {
+        App.setRoot("Settings");
     }
 
     @FXML
     void minimizeCommand(MouseEvent event) {
-
+        App.stage.setIconified(true);
     }
 
+    /**
+     * exits the application
+     */
     @FXML
-    void searchFunction(ActionEvent event) {
-
+    private void exit() {
+        System.out.println("exit");
+        System.exit(0);
     }
 
+    /**
+     * switches the application to and from fullscreen mode
+     */
     @FXML
-    void switchToHome(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToNetflix(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToProfile(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToSettings(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToTwitch(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToYT(ActionEvent event) {
-
+    private void fullscreen() {
+        App.fullscreen();
+        if(App.stage.isFullScreen() == false){
+            view.setPrefSize(512, 288);
+        }else{
+            view.setPrefSize(1024,576);
+        }
     }
 
     @FXML

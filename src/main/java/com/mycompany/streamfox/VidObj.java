@@ -18,7 +18,7 @@ public class VidObj {
     String gameId;
     String thumbnail;
     String boxArt;
-
+    
     public VidObj(String id, String title, String channel) {
         this.id = id;
         this.title = title;

@@ -79,6 +79,7 @@ public class PrimarySearchResultsController implements Initializable {
         
         VidObj[] help;
         help = SearchControllerresults;
+
         
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);

@@ -139,7 +139,7 @@ public class TwitchController implements Initializable{
         engine = Engine.newInstance(options);
         browser = engine.newBrowser();
         //loadPage(startVid);
-        browser.navigation().loadUrl("https://player.twitch.tv/?channel=shroud&parent=localhost&autoplay=false");
+        browser.navigation().loadUrl("https://player.twitch.tv/?video="+startVid+"&parent=localhost&autoplay=false");
         view = BrowserView.newInstance(browser);
         view.setPrefSize(512, 288);
         

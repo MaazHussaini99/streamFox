@@ -136,7 +136,7 @@ public class PrimaryVideoController implements Initializable {
                         String uid = childSnapshot.getKey();
                         String comment = childSnapshot.child(uid).getValue(String.class);
                         //System.out.println("UID: " + uid + ", Comment: " + comment);
-                        obComments.add( + ": " + comment);
+                        obComments.add( "Maaz Hussaini"+ ": " + comment);
                     }
                     
                     imageUrls.add(userData.getProfileDataMap().get("profileImage").toString());
@@ -419,7 +419,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void searchFunction(ActionEvent event) throws IOException {
-
+        
         Searchresults = Search.returnArray(searchTxtField.getText());
         PrimarySearchResultsController.SearchControllerresults = Searchresults;
         if (searchTxtField.getText() == null) {
@@ -478,7 +478,7 @@ public class PrimaryVideoController implements Initializable {
         System.out.println("exit");
         System.exit(0);
     }
-
+    
     /**
      * switches the application to and from fullscreen mode
      */

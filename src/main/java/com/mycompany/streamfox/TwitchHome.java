@@ -7,6 +7,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.vid;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -63,15 +64,19 @@ public class TwitchHome implements Initializable {
     private HBox twitchVids;
     
     @FXML
+    private HBox twitchVids1;
+
+    @FXML
+    private HBox twitchVids2;
+    
+    @FXML
     private TextField searchTxtField;
 
     VBox[] testvb;
-
+    
     private int onOff = 0;
 
-    public static String VIDload;
-    public static String titleLoad;
-    public static String channelLoad;
+   
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
@@ -111,8 +116,132 @@ public class TwitchHome implements Initializable {
         VidObj[] help2 = new VidObj[10];
         VidObj[] help3 = new VidObj[10];
         VidObj[] help4 = new VidObj[10];
-        
-        
+        for(int i = 0; i< 10;i++){
+            VBox tempVB = new VBox();
+            ImageView imv = new ImageView();
+            String currentBoxArt = vid[0][i].thumbnail;
+            String currentTitle = vid[0][i].title;
+            Label l1 = new Label(currentTitle);
+                int width = 200;
+                int height = 100;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+            
+                Image img2 = new Image(formattedString);
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img2);
+                
+                int placeholder = i;
+                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    
+                    TwitchController.startVid = vid[0][placeholder].id;
+                    TwitchController.titleStartText = vid[0][placeholder].title;
+                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    try {
+                        switchToTwitchVideo(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+                
+            tempVB.getChildren().add(imv);
+            tempVB.getChildren().add(l1);
+            
+            twitchVids.getChildren().add(tempVB);
+            
+        }
+        for(int j = 0; j< 10;j++){
+            VBox tempVB = new VBox();
+            ImageView imv = new ImageView();
+            String currentBoxArt = vid[1][j].thumbnail;
+            String currentTitle = vid[1][j].title;
+            Label l1 = new Label(currentTitle);
+                int width = 200;
+                int height = 100;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+               
+                Image img2 = new Image(formattedString);
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img2);
+                
+                int placeholder = j;
+                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    
+                    TwitchController.startVid = vid[0][placeholder].id;
+                    TwitchController.titleStartText = vid[0][placeholder].title;
+                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    
+                    try {
+                        switchToTwitchVideo(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+                
+            tempVB.getChildren().add(imv);
+            tempVB.getChildren().add(l1);
+            
+            twitchVids.getChildren().add(tempVB);
+        }
+        for(int l = 0; l< 10;l++){
+            VBox tempVB = new VBox();
+            ImageView imv = new ImageView();
+            String currentBoxArt = vid[2][l].thumbnail;
+            String currentTitle = vid[2][l].title;
+            Label l1 = new Label(currentTitle);
+                int width = 200;
+                int height = 100;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+               
+                Image img2 = new Image(formattedString);
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img2);
+                
+                int placeholder = l;
+                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+                    
+                    TwitchController.startVid = vid[0][placeholder].id;
+                    TwitchController.titleStartText = vid[0][placeholder].title;
+                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    
+                    try {
+                        switchToTwitchVideo(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+                
+            tempVB.getChildren().add(imv);
+            tempVB.getChildren().add(l1);
+            
+            twitchVids.getChildren().add(tempVB);
+        }
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
@@ -160,7 +289,7 @@ public class TwitchHome implements Initializable {
         UserData userData = new UserData();
         System.out.println(user);
     }
-
+    
     @FXML
     void closeCommand(MouseEvent event) {
         System.exit(0);
@@ -201,7 +330,7 @@ public class TwitchHome implements Initializable {
     }
     
     @FXML
-    void switchToTwitchVideo(ActionEvent event) throws IOException {
+    void switchToTwitchVideo(MouseEvent event) throws IOException {
         App.setRoot("Twitch_video_");
     }
     
@@ -210,6 +339,10 @@ public class TwitchHome implements Initializable {
         App.setRoot("primarySettings");
     }
     
+    @FXML
+    void switchToYT(ActionEvent event) {
+
+    }
     /**
      * switches the application to and from fullscreen mode
      */

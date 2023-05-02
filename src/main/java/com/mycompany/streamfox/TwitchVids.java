@@ -47,7 +47,6 @@ public class TwitchVids {
         String id;
         String boxArt;
         VidObj[][] array = new VidObj[5][];
-
         String games = gameRequest();
 
         JSONObject json = new JSONObject(games);
@@ -59,7 +58,6 @@ public class TwitchVids {
             System.out.println(dataObj);
             id = dataObj.getString("id");
             boxArt = dataObj.getString("box_art_url");
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .callTimeout(30, TimeUnit.SECONDS)
                     .build();
@@ -99,7 +97,6 @@ public class TwitchVids {
                 }
                 array[j] = arr;
             }
-
             //System.out.println("***************************");
             //System.out.println(arr.toString());
         }

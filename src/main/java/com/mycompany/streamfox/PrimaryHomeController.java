@@ -71,8 +71,11 @@ public class PrimaryHomeController implements Initializable {
     private HBox ytVids;
 
     VBox[] testvb;
+    VBox[] testvb2;
 
     private int onOff = 0;
+
+    public static VidObj[][] vid;
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
@@ -88,7 +91,7 @@ public class PrimaryHomeController implements Initializable {
         try {
             TwitchApiEngine.initializeTwitch();
             //TwitchVids.getVideo("1802420975");
-            VidObj[][] vid = TwitchVids.getTopVideos();
+            vid = TwitchVids.getTopVideos();
             System.out.println(vid[0][0].title);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -122,6 +125,7 @@ public class PrimaryHomeController implements Initializable {
         });
         ytVids.setSpacing(20);
 
+        twitchVids.setSpacing(20);
         //initialize youtube
         /*try {
             Comments.getCommentsFromVideo("QC6Q4Fge3uE");
@@ -141,7 +145,6 @@ public class PrimaryHomeController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         if (App.stage.isFullScreen() == false) {
             testvb = new VBox[help.length];
             for (int i = 0; i < 20; i++) {
@@ -163,18 +166,8 @@ public class PrimaryHomeController implements Initializable {
                         System.out.println("working");
                         PrimaryVideoController.startVid = help[placeholder].id;
                         PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].title;
-//                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
-//                    System.out.println(help[placeholder].vidLength);
-//                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
-//                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
-//                    System.out.println("sec: " + seconds);
-//                    time += ((double)seconds / 3600);
-//                    
-//                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-//                    watchTimeMap.put("fridayWatchTime", time);
-//                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
-
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
+                        channelLoad = help[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
@@ -186,6 +179,45 @@ public class PrimaryHomeController implements Initializable {
                 testvb[i].getChildren().add(tlabel);
 
                 ytVids.getChildren().add(testvb[i]);
+            }
+                        testvb2 = new VBox[vid.length];
+
+            for (int j = 0; j < 5; j++) {
+                testvb2[j] = new VBox();
+                ImageView imv2 = new ImageView();
+                String currentBoxArt = vid[j][0].boxArt;
+                int width = 100;
+                int height = 150;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+                System.out.println(vid[0][0].gameId);
+                System.out.println(vid[1][0].gameId);
+                Image img2 = new Image(formattedString);
+                imv2.setFitWidth(75);
+                imv2.setFitHeight(150);
+                imv2.setImage(img2);
+
+                int placeholder = j;
+                imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        try {
+                            twitchMode(event);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+
+                testvb2[j].getChildren().add(imv2);
+
+                twitchVids.getChildren().add(testvb2[j]);
+
             }
         } else {
 
@@ -209,29 +241,53 @@ public class PrimaryHomeController implements Initializable {
                         System.out.println("working");
                         PrimaryVideoController.startVid = help[placeholder].id;
                         PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].title;
-//                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
-//                    System.out.println(help[placeholder].vidLength);
-//                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
-//                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
-//                    System.out.println("sec: " + seconds);
-//                    time += ((double)seconds / 3600);
-//                    
-//                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-//                    watchTimeMap.put("fridayWatchTime", time);
-//                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
-
-                        try {
-                            playVideoMode(event);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
                     }
                 });
                 testvb[i].getChildren().add(imv);
                 testvb[i].getChildren().add(tlabel);
 
                 ytVids.getChildren().add(testvb[i]);
+
+            }
+            testvb2 = new VBox[vid.length];
+
+            for (int j = 0; j < 5; j++) {
+                testvb2[j] = new VBox();
+                ImageView imv2 = new ImageView();
+                String currentBoxArt = vid[j][0].boxArt;
+                int width = 100;
+                int height = 150;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+                System.out.println(vid[0][0].gameId);
+                System.out.println(vid[1][0].gameId);
+                Image img2 = new Image(formattedString);
+                imv2.setFitWidth(75);
+                imv2.setFitHeight(150);
+                imv2.setImage(img2);
+
+                int placeholder = j;
+                imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        try {
+                            twitchMode(event);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+
+                testvb2[j].getChildren().add(imv2);
+
+                twitchVids.getChildren().add(testvb2[j]);
+
             }
         }
 
@@ -247,7 +303,8 @@ public class PrimaryHomeController implements Initializable {
     }
 
     @FXML
-    void menuMove(MouseEvent event) {
+    void menuMove(MouseEvent event
+    ) {
         if (onOff == 0) {
             frontPane.setVisible(true);
             FadeTransition ft = new FadeTransition(Duration.seconds(0.2), frontPane);
@@ -304,6 +361,11 @@ public class PrimaryHomeController implements Initializable {
     @FXML
     void playVideoMode(MouseEvent event) throws IOException {
         App.setRoot("primary_video");
+    }
+
+    @FXML
+    void twitchMode(MouseEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
     }
 
     @FXML
@@ -375,17 +437,7 @@ public class PrimaryHomeController implements Initializable {
                         System.out.println("working");
                         PrimaryVideoController.startVid = help[placeholder].id;
                         PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].title;
-//                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
-//                    System.out.println(help[placeholder].vidLength);
-//                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
-//                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
-//                    System.out.println("sec: " + seconds);
-//                    time += ((double)seconds / 3600);
-//                    
-//                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-//                    watchTimeMap.put("fridayWatchTime", time);
-//                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
 
                         try {
                             playVideoMode(event);
@@ -393,6 +445,7 @@ public class PrimaryHomeController implements Initializable {
                             ex.printStackTrace();
                         }
                     }
+
                 });
                 testvb[i].getChildren().add(imv);
                 testvb[i].getChildren().add(tlabel);
@@ -422,22 +475,6 @@ public class PrimaryHomeController implements Initializable {
                         PrimaryVideoController.startVid = help[placeholder].id;
                         PrimaryVideoController.titleStartText = help[placeholder].title;
                         PrimaryVideoController.channelStartText = help[placeholder].title;
-//                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
-//                    System.out.println(help[placeholder].vidLength);
-//                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
-//                    int seconds = (int)d.get(java.time.temporal.ChronoUnit.SECONDS);
-//                    System.out.println("sec: " + seconds);
-//                    time += ((double)seconds / 3600);
-//                    
-//                    Map<String, Object> watchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
-//                    watchTimeMap.put("fridayWatchTime", time);
-//                    UserData.getInstance().updateWatchTimeYT(watchTimeMap);
-
-                        try {
-                            playVideoMode(event);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -447,5 +484,4 @@ public class PrimaryHomeController implements Initializable {
             }
         }
     }
-
 }

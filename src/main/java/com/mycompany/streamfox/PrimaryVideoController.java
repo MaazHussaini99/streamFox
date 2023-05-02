@@ -423,7 +423,7 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("TwitchPrimary");
+        App.setRoot("Twitch_video_");
     }
 
     @FXML

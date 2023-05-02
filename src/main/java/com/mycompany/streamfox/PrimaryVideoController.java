@@ -5,11 +5,17 @@ import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.VideoListResponse;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import static com.mycompany.streamfox.App.scene;
 import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.FirebaseStart.getDatabaseReference;
+import static com.mycompany.streamfox.PrimaryYoutubeController.Searchresults;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -108,6 +114,71 @@ public class PrimaryVideoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //adding comments
+        ObservableList<String> obComments = observableArrayList();
+        ObservableList<String> imageUrls = observableArrayList();
+        DatabaseReference videoRef = getDatabaseReference("videoId");
+        try {
+            comments = Comments.getCommentsFromVideo(startVid);
+            for (CommentThread commentThread : comments.getItems()) {
+                String authorName = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName();
+                String text = commentThread.getSnippet().getTopLevelComment().getSnippet().getTextOriginal();
+                String imageUrl = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl();
+                obComments.add(authorName + ": " + text);
+                imageUrls.add(imageUrl);
+            }
+            videoRef.child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        String uid = childSnapshot.getKey();
+                        String comment = childSnapshot.child(uid).getValue(String.class);
+                        //System.out.println("UID: " + uid + ", Comment: " + comment);
+                        obComments.add( + ": " + comment);
+                    }
+                    
+                    imageUrls.add(userData.getProfileDataMap().get("profileImage").toString());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors that occur while reading the data
+                }
+            });
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        commentView.setItems(obComments);
+        commentView.setCellFactory(param -> new ListCell<String>() {
+            private ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setText(item);
+                    int index = getIndex();
+                    String imageUrl = imageUrls.get(index);
+
+                    imageView.setImage(new Image(imageUrl));
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+                    setGraphic(imageView);
+                    // set the width's
+                    setMinWidth(param.getWidth());
+                    setMaxWidth(param.getWidth());
+                    setPrefWidth(param.getWidth());
+                    // allow wrapping
+                    setWrapText(true);
+                }
+            }
+        });
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -308,48 +379,6 @@ public class PrimaryVideoController implements Initializable {
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
-        //adding comments
-        ObservableList<String> obComments = observableArrayList();
-        ObservableList<String> imageUrls = observableArrayList();
-
-        try {
-            comments = Comments.getCommentsFromVideo(startVid);
-            for (CommentThread commentThread : comments.getItems()) {
-                String authorName = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName();
-                String text = commentThread.getSnippet().getTopLevelComment().getSnippet().getTextOriginal();
-                String imageUrl = commentThread.getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl();
-                obComments.add(authorName + ": " + text);
-                imageUrls.add(imageUrl);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        commentView.setItems(obComments);
-        commentView.setCellFactory(param -> new ListCell<String>() {
-            private ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    setText(item);
-                    int index = getIndex();
-                    String imageUrl = imageUrls.get(index);
-                    imageView.setImage(new Image(imageUrl));
-                    setGraphic(imageView);
-                    // set the width's
-                    setMinWidth(param.getWidth());
-                    setMaxWidth(param.getWidth());
-                    setPrefWidth(param.getWidth());
-                    // allow wrapping
-                    setWrapText(true);
-                }
-            }
-        });
     }
 
     public void loadPage(String VID) {
@@ -392,7 +421,7 @@ public class PrimaryVideoController implements Initializable {
     void searchFunction(ActionEvent event) throws IOException {
 
         Searchresults = Search.returnArray(searchTxtField.getText());
-
+        PrimarySearchResultsController.SearchControllerresults = Searchresults;
         if (searchTxtField.getText() == null) {
             System.out.println("Error in search");
         } else {

@@ -17,6 +17,7 @@ public class VidObj {
     String vidLength;
     String gameId;
     String thumbnail;
+    String boxArt;
 
     public VidObj(String id, String title, String channel) {
         this.id = id;
@@ -31,11 +32,12 @@ public class VidObj {
         this.vidLength = vidLength;
     }
 
-    public VidObj(String id, String title, String channel, String gameId, String thumbnail) {
+    public VidObj(String id, String title, String channel, String gameId, String thumbnail, String boxArt) {
         this.id = id;
         this.title = title;
         this.channel = channel;
         this.gameId = gameId;
         this.thumbnail = thumbnail;
+        this.boxArt = boxArt;
     }
 }

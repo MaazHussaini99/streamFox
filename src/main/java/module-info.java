@@ -25,6 +25,4 @@ module com.mycompany.streamfox {
     opens com.mycompany.streamfox to javafx.fxml, google.cloud.firestore;
     exports com.mycompany.streamfox;
     
-    
-
 }

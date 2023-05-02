@@ -81,7 +81,9 @@ public class PrimaryHomeController implements Initializable {
         YoutubeApiEngine.initializeYoutube();
         try {
             TwitchApiEngine.initializeTwitch();
-            TwitchVids.getTopVideos();
+            //TwitchVids.getVideo("1802420975");
+            VidObj[][] vid = TwitchVids.getTopVideos();
+            System.out.println(vid[0][0].title);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

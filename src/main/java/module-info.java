@@ -21,7 +21,10 @@ module com.mycompany.streamfox {
     requires okhttp3;
     requires jxbrowser;
     requires jxbrowser.javafx;
+    requires json;
     opens com.mycompany.streamfox to javafx.fxml, google.cloud.firestore;
     exports com.mycompany.streamfox;
+    
+    
 
 }

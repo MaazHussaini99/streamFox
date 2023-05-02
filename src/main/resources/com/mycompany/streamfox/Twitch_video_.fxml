@@ -92,8 +92,7 @@
                <content>
                   <AnchorPane fx:id="basePane" prefHeight="1024.0" prefWidth="735.0" style="-fx-background-color: #000;" stylesheets="@primarystylesheet.css">
                      <children>
-                        <VBox fx:id="webVBox" />
-                        <VBox fx:id="browserVBox" layoutX="32.0" layoutY="236.0" spacing="5.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="236.0">
+                        <VBox fx:id="browserVBox" layoutX="32.0" layoutY="236.0" spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="14.0">
                            <children>
                               <VBox fx:id="videoView" />
                               <Label fx:id="titleTxt" prefHeight="19.0" prefWidth="518.0" style="-fx-font-size: 16;" styleClass="titleText" text="Title of Video Here" />

@@ -390,9 +390,9 @@ public class PrimaryVideoController implements Initializable {
 
     @FXML
     void searchFunction(ActionEvent event) throws IOException {
-
+        
         Searchresults = Search.returnArray(searchTxtField.getText());
-
+        PrimarySearchResultsController.SearchControllerresults = Searchresults;
         if (searchTxtField.getText() == null) {
             System.out.println("Error in search");
         } else {
@@ -449,7 +449,7 @@ public class PrimaryVideoController implements Initializable {
         System.out.println("exit");
         System.exit(0);
     }
-
+    
     /**
      * switches the application to and from fullscreen mode
      */

@@ -182,9 +182,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                   PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
@@ -226,9 +226,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help1[placeholder].id;
-                    titleLoad = help1[placeholder].title;
-                    channelLoad = help1[placeholder].channel;
+                   PrimaryVideoController.startVid = help1[placeholder].id;
+                    PrimaryVideoController.titleStartText = help1[placeholder].title;
+                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help1[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
@@ -270,9 +270,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help2[placeholder].id;
-                    titleLoad = help2[placeholder].title;
-                    channelLoad = help2[placeholder].channel;
+                    PrimaryVideoController.startVid = help2[placeholder].id;
+                    PrimaryVideoController.titleStartText = help2[placeholder].title;
+                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help2[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
@@ -314,9 +314,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                   PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
@@ -358,9 +358,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help1[placeholder].id;
-                    titleLoad = help1[placeholder].title;
-                    channelLoad = help1[placeholder].channel;
+                    PrimaryVideoController.startVid = help1[placeholder].id;
+                    PrimaryVideoController.titleStartText = help1[placeholder].title;
+                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help1[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
@@ -402,9 +402,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help2[placeholder].id;
-                    titleLoad = help2[placeholder].title;
-                    channelLoad = help2[placeholder].channel;
+                    PrimaryVideoController.startVid = help2[placeholder].id;
+                    PrimaryVideoController.titleStartText = help2[placeholder].title;
+                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help2[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
@@ -447,9 +447,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help3[placeholder].id;
-                    titleLoad = help3[placeholder].title;
-                    channelLoad = help3[placeholder].channel;
+                    PrimaryVideoController.startVid = help3[placeholder].id;
+                    PrimaryVideoController.titleStartText = help3[placeholder].title;
+                    PrimaryVideoController.channelStartText = help3[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help3[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help3[placeholder].vidLength);
@@ -492,9 +492,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help4[placeholder].id;
-                    titleLoad = help4[placeholder].title;
-                    channelLoad = help4[placeholder].channel;
+                   PrimaryVideoController.startVid = help4[placeholder].id;
+                    PrimaryVideoController.titleStartText = help4[placeholder].title;
+                    PrimaryVideoController.channelStartText = help4[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help4[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help4[placeholder].vidLength);
@@ -530,7 +530,7 @@ public class PrimaryYoutubeController implements Initializable {
     void searchFunction(ActionEvent event) throws IOException {
         
         Searchresults = Search.returnArray(searchTxtField.getText());
-        
+        PrimarySearchResultsController.SearchControllerresults = Searchresults;
         if(searchTxtField.getText() == null){
             System.out.println("Error in search");
         }else{
@@ -698,9 +698,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
@@ -742,9 +742,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help1[placeholder].id;
-                    titleLoad = help1[placeholder].title;
-                    channelLoad = help1[placeholder].channel;
+                    PrimaryVideoController.startVid = help1[placeholder].id;
+                    PrimaryVideoController.titleStartText = help1[placeholder].title;
+                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help1[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
@@ -786,9 +786,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help2[placeholder].id;
-                    titleLoad = help2[placeholder].title;
-                    channelLoad = help2[placeholder].channel;
+                    PrimaryVideoController.startVid = help2[placeholder].id;
+                    PrimaryVideoController.titleStartText = help2[placeholder].title;
+                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help2[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
@@ -830,9 +830,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
+                    PrimaryVideoController.startVid = help[placeholder].id;
+                    PrimaryVideoController.titleStartText = help[placeholder].title;
+                    PrimaryVideoController.channelStartText = help[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help[placeholder].vidLength);
@@ -874,9 +874,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help1[placeholder].id;
-                    titleLoad = help1[placeholder].title;
-                    channelLoad = help1[placeholder].channel;
+                    PrimaryVideoController.startVid = help1[placeholder].id;
+                    PrimaryVideoController.titleStartText = help1[placeholder].title;
+                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help1[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help1[placeholder].vidLength);
@@ -918,9 +918,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help2[placeholder].id;
-                    titleLoad = help2[placeholder].title;
-                    channelLoad = help2[placeholder].channel;
+                    PrimaryVideoController.startVid = help2[placeholder].id;
+                    PrimaryVideoController.titleStartText = help2[placeholder].title;
+                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help2[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help2[placeholder].vidLength);
@@ -963,9 +963,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help3[placeholder].id;
-                    titleLoad = help3[placeholder].title;
-                    channelLoad = help3[placeholder].channel;
+                   PrimaryVideoController.startVid = help3[placeholder].id;
+                    PrimaryVideoController.titleStartText = help3[placeholder].title;
+                    PrimaryVideoController.channelStartText = help3[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help3[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help3[placeholder].vidLength);
@@ -1008,9 +1008,9 @@ public class PrimaryYoutubeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
-                    VIDload = help4[placeholder].id;
-                    titleLoad = help4[placeholder].title;
-                    channelLoad = help4[placeholder].channel;
+                   PrimaryVideoController.startVid = help4[placeholder].id;
+                    PrimaryVideoController.titleStartText = help4[placeholder].title;
+                    PrimaryVideoController.channelStartText = help4[placeholder].channel;
 //                    double time = (double)userData.getYTDailyWatchDataMap().get("fridayWatchTime");
 //                    System.out.println(help4[placeholder].vidLength);
 //                    java.time.Duration d = java.time.Duration.parse(help4[placeholder].vidLength);

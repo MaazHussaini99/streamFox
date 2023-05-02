@@ -47,9 +47,11 @@ public class FirebaseStart {
         FirestoreOptions firestoreOptions = null;
         try {
             firestoreOptions = FirestoreOptions.getDefaultInstance().toBuilder().setProjectId("streamfox-966e7").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
-            db = firestoreOptions.getService();
+              
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        db = firestoreOptions.getService();
     }
+    
 }

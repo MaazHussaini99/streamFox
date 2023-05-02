@@ -72,17 +72,14 @@ public class PrimarySearchResultsController implements Initializable {
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
+    public static VidObj[] SearchControllerresults;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         VidObj[] help;
         
-        if(PrimaryVideoController.Searchresults != null)
-         help = PrimaryVideoController.Searchresults;
-        else{
-         help = PrimaryYoutubeController.Searchresults;
-        }
+       help = SearchControllerresults;
         
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);

@@ -46,8 +46,8 @@ public class TwitchVids {
     public static VidObj[][] getTopVideos() throws IOException {
         String id;
         VidObj[][] array = new VidObj[5][];
+        String boxArt;
         
-        VidObj[] arr = new VidObj[50];
         String games = gameRequest();
 
         JSONObject json = new JSONObject(games);
@@ -56,7 +56,8 @@ public class TwitchVids {
         for (int j = 0; j < 5; j++) {
             JSONObject dataObj = dataArray.getJSONObject(j);
             id = dataObj.getString("id");
-
+            
+            boxArt = dataObj.getString("box_art_url");
             OkHttpClient client = new OkHttpClient.Builder()
                     .callTimeout(30, TimeUnit.SECONDS)
                     .build();
@@ -80,7 +81,7 @@ public class TwitchVids {
 
                 String responseBody = response.body().string();
                 JSONObject json1 = new JSONObject(responseBody);
-
+                VidObj[] arr = new VidObj[50];
                 JSONArray dataArray1 = json1.getJSONArray("data");
                 for (int i = 0; i < dataArray1.length(); i++) {
 
@@ -91,13 +92,13 @@ public class TwitchVids {
                     String channel = dataObj1.getString("user_name");
                     String thumbnail = dataObj1.getString("thumbnail_url");
 //                  System.out.println("Title: " + title);
-                    VidObj vid = new VidObj(id1, title, channel, id, thumbnail);
+                    VidObj vid = new VidObj(id1, title, channel, id, thumbnail, boxArt);
                     arr[i] = vid;
                 }
                 array[j] = arr;
             }
-            System.out.println("***************************");
-            System.out.println(arr.toString());
+            //System.out.println("***************************");
+            //System.out.println(arr.toString());
         }
         return array;
     }

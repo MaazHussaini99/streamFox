@@ -543,6 +543,8 @@ group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
         alert.setHeaderText("Please press OK or Cancel to Confirm that you would like to reset your password \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
 
         Optional<ButtonType> result = alert.showAndWait();

@@ -40,6 +40,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.Spinner;
@@ -112,6 +113,8 @@ public class PrimarySettingsController implements Initializable {
     @FXML
     private Button userNameMenuBtn;
     
+     private DialogPane dialog;
+    
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
     
@@ -168,6 +171,8 @@ public class PrimarySettingsController implements Initializable {
         alert.setHeaderText("Please press OK or Cancel to Confirm That you Want to Disable Your Account \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure? ");
+         dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -191,6 +196,8 @@ public class PrimarySettingsController implements Initializable {
         alert.setHeaderText("Please press OK or Cancel to Confirm that you want to Delete your Account \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure?,Changes can not be undone");
+         dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -449,7 +456,10 @@ public class PrimarySettingsController implements Initializable {
       //Setting the content of the dialog
              alert.setHeaderText("Watchtime Limits Settings have been Changed");
       alert.setContentText("your settings have been saved");
+       dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
              alert.showAndWait();
+             
         
     }
     /**

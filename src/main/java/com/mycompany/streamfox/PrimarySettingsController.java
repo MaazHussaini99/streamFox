@@ -274,11 +274,10 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  YoutubeDailyValue= YoutubeDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true)){
+                  if( hasTwitchDailyChanged=true){
                     totalDaily=YoutubeDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
-                  //else if ( totalDaily>totalWeekly){
                     
                 // }
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
@@ -294,7 +293,7 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  TwitchDailyValue= TwitchDailyWatchTime.getValue();
-                  if( (hasYoutubeDailyChanged=true)){
+                  if( hasYoutubeDailyChanged=true){
                     totalDaily=YoutubeDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }

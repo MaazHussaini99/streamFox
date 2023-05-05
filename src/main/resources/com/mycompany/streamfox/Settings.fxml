@@ -123,7 +123,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <CheckBox fx:id="Netflix" mnemonicParsing="false" wrapText="true">
+                                    <CheckBox fx:id="twitchCheckBox" mnemonicParsing="false" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="13.0" right="11.0" />
                                        </HBox.margin>
@@ -134,31 +134,15 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
-                                    <Label text="Disney">
-                                       <font>
-                                          <Font size="3.0" />
-                                       </font>
-                                    </Label>
-            
-                                                <CheckBox fx:id="Disney" mnemonicParsing="false" wrapText="true">
-                                       <HBox.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                    <Spinner fx:id="DisneyDailyWatchTime" />
-                                    <Spinner fx:id="DisneyWeeklyWatchTime" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="100.0">
-                                 <children>
                                     <Label text="Youtube">
                                        <font>
                                           <Font size="3.0" />
                                        </font>
                                     </Label>
-                                    <CheckBox fx:id="Youtube" mnemonicParsing="false" wrapText="true">
+            
+                                                                                                <CheckBox fx:id="youtubeCheckBox" mnemonicParsing="false" wrapText="true">
                                        <HBox.margin>
-                                          <Insets right="10.0" />
+                                          <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </CheckBox>
                                     <Spinner fx:id="YoutubeDailyWatchTime" />
@@ -183,7 +167,7 @@
                         </VBox>
                         <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 20;" text="Settings" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
             
-                        <Label layoutX="407.0" layoutY="40.0" text="Duration Settings">
+                                                                        <Label layoutX="407.0" layoutY="40.0" text="Duration Settings">
                            <font>
                               <Font size="6.0" />
                            </font>
@@ -191,7 +175,7 @@
                         <VBox alignment="CENTER" layoutX="164.0" layoutY="441.0">
                            <children>
             
-                                          <Label style="-fx-font-size: 16;" text="Account Settings">
+                                                                                          <Label style="-fx-font-size: 16;" text="Account Settings">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -206,7 +190,7 @@
                         </VBox>
                         <Button fx:id="saveSettingsChanges" layoutX="429.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveSettingsChanges" styleClass="ProfileButtons" text="Save Changes" />
             
-                     </children>
+                                                                     </children>
                   </AnchorPane>
                </content>
             </ScrollPane>

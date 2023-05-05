@@ -35,6 +35,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
@@ -79,13 +80,7 @@ public class PrimarySettingsController implements Initializable {
     private AnchorPane frontPane;
     
     @FXML
-    private Spinner<Integer> DisneyDailyWatchTime;
-
-    @FXML
-    private Spinner<Integer> DisneyWeeklyWatchTime;
-
-    @FXML
-    private CheckBox Netflix;
+    private CheckBox twitchCheckBox;
 
     @FXML
     private Spinner<Integer> TwitchDailyWatchTime;
@@ -100,7 +95,7 @@ public class PrimarySettingsController implements Initializable {
     private Spinner<Integer> WeeklyWatchTime;
 
     @FXML
-    private CheckBox Youtube;
+    private CheckBox youtubeCheckBox;
 
     @FXML
     private Spinner<Integer> YoutubeDailyWatchTime;
@@ -113,9 +108,6 @@ public class PrimarySettingsController implements Initializable {
     private Button DisableYA;
     @FXML
     private MenuButton StreamingServiceMenu;
-
-    @FXML
-    private CheckBox Disney;
     
     @FXML
     private Button userNameMenuBtn;
@@ -129,22 +121,18 @@ public class PrimarySettingsController implements Initializable {
     private int onOff = 0;
     
     static int YoutubeDailyValue=1;
-     static int DisneyDailyValue=1;
      static int TwitchDailyValue=1;
      
     static int YoutubeWeeklyValue=1;
-     static int DisneyWeeklyValue=1;
      static int TwitchWeeklyValue=1;
      
     static int totalDaily;
     static int totalWeekly;
     
      boolean hasYoutubeDailyChanged=false;
-       boolean hasDisneyDailyChanged=false;
         boolean hasTwitchDailyChanged=false;
         
         boolean hasYoutubeWeeklyChanged=false;
-       boolean hasDisneyWeeklyChanged=false;
         boolean hasTwitchWeeklyChanged=false;
 
 
@@ -256,8 +244,7 @@ public class PrimarySettingsController implements Initializable {
         valueFacDaily.setValue(24);
         SpinnerValueFactory<Integer> YoutubevalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
         valueFacDaily.setValue(24);
-        SpinnerValueFactory<Integer> DisneyvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
-        valueFacDaily.setValue(24);
+        
         
         SpinnerValueFactory<Integer> valueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
@@ -265,8 +252,7 @@ public class PrimarySettingsController implements Initializable {
         valueFacWeekly.setValue(168);
         SpinnerValueFactory<Integer> YoutubevalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
-        SpinnerValueFactory<Integer> DisneyvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
-        valueFacWeekly.setValue(168);
+    
         
         
         //Setting watch time area we need listeners for each, and as the value is changed it should update firebase in the listener
@@ -281,8 +267,8 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  YoutubeDailyValue= YoutubeDailyWatchTime.getValue();
-                  if((( hasTwitchDailyChanged=true) ||  (hasDisneyDailyChanged=true)) && ( totalDaily>totalWeekly)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
+                  if(( hasTwitchDailyChanged=true)){
+                    totalDaily=YoutubeDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
                   //else if ( totalDaily>totalWeekly){
@@ -301,33 +287,14 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  TwitchDailyValue= TwitchDailyWatchTime.getValue();
-                  if(( hasDisneyDailyChanged=true) ||  (hasYoutubeDailyChanged=true)&&( totalDaily<totalWeekly)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
+                  if( (hasYoutubeDailyChanged=true)){
+                    totalDaily=YoutubeDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
                 hasTwitchDailyChanged=true;
             } 
         });
-        
-        DisneyDailyWatchTime.setValueFactory(DisneyvalueFacDaily);
-        DisneyWeeklyWatchTime.setValueFactory(DisneyvalueFacWeekly);
-        
-
-  
-        //added visual indicator for all spinners
-   DisneyDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
-            @Override
-            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 DisneyDailyValue= DisneyDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true) ||  (hasYoutubeDailyChanged=true) &&( totalDaily<totalWeekly)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
-                    DailyWatchTime.getValueFactory().setValue(totalDaily);
-                 }
-                hasDisneyDailyChanged=true;
-                
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-            } 
-        });
+    
   
        /*
         DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
@@ -355,8 +322,8 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  YoutubeWeeklyValue= YoutubeWeeklyWatchTime.getValue();
-                  if(( hasTwitchWeeklyChanged=true) ||  (hasDisneyWeeklyChanged=true)){
-                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
+                  if(( hasTwitchWeeklyChanged=true)){
+                    totalWeekly=YoutubeWeeklyValue+TwitchWeeklyValue;
                        WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
                  }
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
@@ -372,8 +339,8 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  TwitchWeeklyValue=TwitchWeeklyWatchTime.getValue();
-                  if(( hasDisneyWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
-                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
+                  if((hasYoutubeWeeklyChanged=true)){
+                    totalWeekly=YoutubeWeeklyValue+TwitchWeeklyValue;
                        WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
                  }
                 hasTwitchWeeklyChanged=true;
@@ -384,20 +351,7 @@ public class PrimarySettingsController implements Initializable {
 
   
         //added visual indicator for all spinners
-   DisneyWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
-            @Override
-            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 DisneyWeeklyValue= DisneyWeeklyWatchTime.getValue();
-                  if(( hasTwitchWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
-                   totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
-                    WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
-                 }
-                  
-                hasDisneyWeeklyChanged=true;
-                
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-            } 
-        });
+   
    
    /*
              WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
@@ -483,10 +437,19 @@ public class PrimarySettingsController implements Initializable {
     @FXML
     void saveSettingsChanges(ActionEvent event) {
         //for when save is pressed
+        
            Map<String, Object> WatchTimeLimitMap = UserData.getInstance().getWatchTimeDataMap();
        WatchTimeLimitMap.put("setDailyLimit", totalDaily);
            WatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
         UserData.getInstance().updateTotalWatchTime(WatchTimeLimitMap);
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      //Setting the title
+      alert.setTitle("Streamfox Settings Change notification");
+      ButtonType type = new ButtonType("Ok", ButtonData.OK_DONE);
+      //Setting the content of the dialog
+             alert.setHeaderText("Watchtime Limits Settings have been Changed");
+      alert.setContentText("your settings have been saved");
+             alert.showAndWait();
         
     }
     /**

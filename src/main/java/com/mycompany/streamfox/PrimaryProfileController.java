@@ -217,7 +217,7 @@ public class PrimaryProfileController implements Initializable {
     
     private  XYChart.Series youtubeSeries;
     
-    private XYChart.Series netflixSeries;
+    private XYChart.Series twitchSeries;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -370,17 +370,17 @@ public class PrimaryProfileController implements Initializable {
         youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
         youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-        netflixSeries = new XYChart.Series();
-        netflixSeries.setName("Netflix");
-        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+        twitchSeries = new XYChart.Series();
+        twitchSeries.setName("Twitch");
+        twitchSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-          //watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+          //watchTimeGraph.getData().addAll(youtubeSeries,twitchSeries);
      showAllServices.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
         @Override
@@ -398,22 +398,22 @@ public class PrimaryProfileController implements Initializable {
         youtubeSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
         youtubeSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-               netflixSeries = new XYChart.Series();
-        netflixSeries.setName("Netflix");
-        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
-       netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
-         netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+               twitchSeries = new XYChart.Series();
+        twitchSeries.setName("Twitch");
+        twitchSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+       twitchSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+         twitchSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
          //  */
 
-               watchTimeGraph.getData().setAll(youtubeSeries,netflixSeries);
+               watchTimeGraph.getData().setAll(youtubeSeries,twitchSeries);
 
             }else{
 
-                 watchTimeGraph.getData().removeAll(youtubeSeries,netflixSeries);
+                 watchTimeGraph.getData().removeAll(youtubeSeries,twitchSeries);
                   watchTimeGraph.getData().clear();
                  
             }
@@ -427,7 +427,7 @@ twitchOption.setToggleGroup(group);
 
 
  
-//watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+//watchTimeGraph.getData().addAll(youtubeSeries,twitchSeries);
 group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
   public void changed(ObservableValue<? extends Toggle> ov,
       Toggle old_toggle, Toggle new_toggle) {
@@ -452,20 +452,20 @@ group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
     }
     else if(group.getSelectedToggle() == twitchOption) {
             //  watchTimeGraph.getData().clear();
-          watchTimeGraph.getData().removeAll(netflixSeries);
+          watchTimeGraph.getData().removeAll(twitchSeries);
            watchTimeGraph.getData().clear();
              // watchTimeGraph.layout();
-                netflixSeries = new XYChart.Series();
-        netflixSeries.setName("Netflix");
-        netflixSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
-        netflixSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
+                twitchSeries = new XYChart.Series();
+        twitchSeries.setName("Twitch");
+        twitchSeries.getData().add(new XYChart.Data("Monday", userData.getYTDailyWatchDataMap().get("mondayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Tuesday", userData.getYTDailyWatchDataMap().get("tuesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Wednesday", userData.getYTDailyWatchDataMap().get("wednesdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Thursday", userData.getYTDailyWatchDataMap().get("thursdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Friday", userData.getYTDailyWatchDataMap().get("fridayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Saturday", userData.getYTDailyWatchDataMap().get("saturdayWatchTime")));
+        twitchSeries.getData().add(new XYChart.Data("Sunday", userData.getYTDailyWatchDataMap().get("sundayWatchTime")));
         
-              watchTimeGraph.getData().setAll(netflixSeries );
+              watchTimeGraph.getData().setAll(twitchSeries );
   }
     
 }
@@ -476,7 +476,7 @@ group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 
         
         
-   //   watchTimeGraph.getData().addAll(youtubeSeries,netflixSeries);
+   //   watchTimeGraph.getData().addAll(youtubeSeries,twitchSeries);
     }
     
     

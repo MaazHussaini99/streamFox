@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -152,17 +155,26 @@ public class PrimaryProfileController implements Initializable {
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
     
-    @FXML
-    
-    private Label setTotalWeeklyWatchTime;
+
     
     @FXML
     
-    private Label setTotalDailyWatchtime;
+    private Label setTotalDailyWatchtimeHours;
     
-      @FXML
+   @FXML
     
-    private Label dailyTimeUnitLabel;
+    private Label setTotalDailyWatchtimeMinutes;
+   
+    @FXML
+    
+    private Label setTotalWeeklyWatchTimeHours;
+    
+   @FXML
+    
+    private Label setTotalWeeklyWatchTimeMinutes;
+    
+ 
+
       
         @FXML
     
@@ -172,10 +184,24 @@ public class PrimaryProfileController implements Initializable {
      private RadioButton  twitchOption;
       
     
+            @FXML
+    
+    private Label dailyTimeUnitLabelForHours;
+            
       @FXML
-    private Label weeklyTimeUnitLabel;
-       String  unitLabelDay;
-         String  unitLabelWeek;
+    private Label weeklyTimeUnitLabelForHours;
+      
+       @FXML
+    
+    private Label dailyTimeUnitLabelForMinutes;
+            
+      @FXML
+    private Label weeklyTimeUnitLabelForMinutes;
+      
+       String   unitLabelDayForHours;
+         String  unitLabelWeeklyForHours;
+                String    unitLabelDayForMinutes;
+         String  unitLabelWeeklyForMinutes;
       
       @FXML
     private CheckBox showAllServices;
@@ -210,36 +236,98 @@ public class PrimaryProfileController implements Initializable {
         hoursLabel.setRotate(270);
         tempDailyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);
           tempWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
-         unitLabelDay="Hours";
-        unitLabelWeek="Hours";
+         unitLabelDayForHours="Hours";
+         unitLabelDayForMinutes="Minutes";
+           unitLabelWeeklyForHours="Hours";
+        unitLabelWeeklyForMinutes="Minutes";
+        
+                  String dailyTime= String.valueOf( Math.round( tempDailyWatchTime*60) );
+               String weeklyTime= String.valueOf( Math.round( tempWeeklyWatchTime*60) );
+   SimpleDateFormat dailyDF= new SimpleDateFormat("mm");
+ String dailyminutes = null;
+ String dailyhours = null;
+            try {
+  Date dt = dailyDF.parse(dailyTime);
+        dailyminutes=(dailyDF.format(dt));
+    dailyDF= new SimpleDateFormat("HH");
+     dailyhours=(dailyDF.format(dt));
+} catch (ParseException e) {
+    e.printStackTrace();
+}
+                 
+        SimpleDateFormat weeklyDF = new SimpleDateFormat("mm");
+ String weeklyminutes = null;
+ String weeklyhours = null;
+            try {
+  Date dt = weeklyDF.parse(weeklyTime);
+        weeklyminutes=(weeklyDF.format(dt));
+    weeklyDF= new SimpleDateFormat("HH");
+     weeklyhours=(weeklyDF.format(dt));
+} catch (ParseException e) {
+    e.printStackTrace();
+}
+    
          
          if(tempDailyWatchTime<1) {
              tempDailyWatchTime= Math.round( tempDailyWatchTime*60);
-              unitLabelDay="Minutes";
-             
+                    unitLabelDayForHours="Minutes";
+                    unitLabelDayForMinutes="";
+                   setTotalDailyWatchtimeMinutes.setText(unitLabelDayForMinutes);
+                      SimpleDateFormat dailyunderLimitDF= new SimpleDateFormat("mm");
+  dailyminutes = null;
+ dailyhours = null;
+            try {
+  Date dt = dailyDF.parse(dailyTime);
+        dailyminutes=(dailyDF.format(dt));
+    dailyDF= new SimpleDateFormat("HH");
+     dailyhours=(dailyDF.format(dt));
+} catch (ParseException e) {
+    e.printStackTrace();
+}
+                   
+         }
+         else{
+             setTotalDailyWatchtimeMinutes.setText(dailyminutes);
          }
          
               
          if(tempWeeklyWatchTime<1) {
              tempWeeklyWatchTime= Math.round( tempWeeklyWatchTime*60);
-             unitLabelWeek="Minutes";
+                   unitLabelWeeklyForHours="Minutes";
+                    unitLabelWeeklyForMinutes="";
+                       SimpleDateFormat weeklyunderLimitDF = new SimpleDateFormat("mm");
+ weeklyminutes = null;
+ weeklyhours = null;
+            try {
+  Date dt = weeklyDF.parse(weeklyTime);
+        weeklyminutes=(weeklyDF.format(dt));
+    weeklyDF= new SimpleDateFormat("HH");
+     weeklyhours=(weeklyDF.format(dt));
+} catch (ParseException e) {
+    e.printStackTrace();
+}
              
          }
+         else{
+                    setTotalWeeklyWatchTimeMinutes.setText(weeklyminutes);
+         }
          
-         dailyTimeUnitLabel.setText(  unitLabelDay);
-         weeklyTimeUnitLabel.setText(unitLabelWeek);
-          hoursLabel.setText(unitLabelDay);
+          dailyTimeUnitLabelForHours.setText(   unitLabelDayForHours);
+          dailyTimeUnitLabelForMinutes.setText(unitLabelDayForMinutes);
+         weeklyTimeUnitLabelForHours.setText( unitLabelWeeklyForHours);
+         weeklyTimeUnitLabelForMinutes.setText( unitLabelWeeklyForMinutes);
          
+          hoursLabel.setText(unitLabelDayForHours);
          
+   
+            
          
-
-        
-    
-        
-      
+             //System.out.println("this is  the time in minutes and hours"+time); //String.valueOf(Math.round( tempDailyWatchTime*60)));
        
-        setTotalDailyWatchtime.setText(Double.toString( tempDailyWatchTime));
-        setTotalWeeklyWatchTime.setText(Double.toString(tempWeeklyWatchTime));
+  
+       setTotalDailyWatchtimeHours.setText(dailyhours);
+
+           setTotalWeeklyWatchTimeHours.setText(weeklyhours);
        
         
         

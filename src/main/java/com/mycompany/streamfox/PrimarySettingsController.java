@@ -281,10 +281,13 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  YoutubeDailyValue= YoutubeDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true) ||  (hasDisneyDailyChanged=true)){
+                  if((( hasTwitchDailyChanged=true) ||  (hasDisneyDailyChanged=true)) && ( totalDaily>totalWeekly)){
                     totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
+                  //else if ( totalDaily>totalWeekly){
+                    
+                // }
              //  System.out.println("this is Current vlaue"+CurrentValueTest);
                  hasYoutubeDailyChanged=true;
             } 
@@ -298,7 +301,7 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  TwitchDailyValue= TwitchDailyWatchTime.getValue();
-                  if(( hasDisneyDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
+                  if(( hasDisneyDailyChanged=true) ||  (hasYoutubeDailyChanged=true)&&( totalDaily<totalWeekly)){
                     totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }
@@ -316,7 +319,7 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                  DisneyDailyValue= DisneyDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
+                  if(( hasTwitchDailyChanged=true) ||  (hasYoutubeDailyChanged=true) &&( totalDaily<totalWeekly)){
                     totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
                     DailyWatchTime.getValueFactory().setValue(totalDaily);
                  }

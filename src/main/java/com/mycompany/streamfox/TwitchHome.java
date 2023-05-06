@@ -183,9 +183,9 @@ public class TwitchHome implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     
-                    TwitchController.startVid = vid[0][placeholder].id;
-                    TwitchController.titleStartText = vid[0][placeholder].title;
-                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    TwitchController.startVid = vid[1][placeholder].id;
+                    TwitchController.titleStartText = vid[1][placeholder].title;
+                    TwitchController.channelStartText = vid[1][placeholder].channel;
                     
                     try {
                         switchToTwitchVideo(event);
@@ -225,9 +225,9 @@ public class TwitchHome implements Initializable {
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     
-                    TwitchController.startVid = vid[0][placeholder].id;
-                    TwitchController.titleStartText = vid[0][placeholder].title;
-                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    TwitchController.startVid = vid[2][placeholder].id;
+                    TwitchController.titleStartText = vid[2][placeholder].title;
+                    TwitchController.channelStartText = vid[2][placeholder].channel;
                     
                     try {
                         switchToTwitchVideo(event);

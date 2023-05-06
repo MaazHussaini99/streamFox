@@ -7,6 +7,12 @@ package com.mycompany.streamfox;
 import com.google.api.client.util.Data;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -61,10 +67,9 @@ public class TwitchVids {
             OkHttpClient client = new OkHttpClient.Builder()
                     .callTimeout(30, TimeUnit.SECONDS)
                     .build();
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.twitch.tv/helix/videos").newBuilder();
 
-            urlBuilder.addQueryParameter("game_id", id);
-            urlBuilder.addQueryParameter("first", "50");
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.twitch.tv/helix/videos").newBuilder();
+            urlBuilder.addQueryParameter("query", "gta");
 
             String url = urlBuilder.build().toString();
 
@@ -80,6 +85,7 @@ public class TwitchVids {
                 //System.out.println(response.body().string());
 
                 String responseBody = response.body().string();
+                System.out.println(responseBody);
                 JSONObject json1 = new JSONObject(responseBody);
                 VidObj[] arr = new VidObj[50];
                 JSONArray dataArray1 = json1.getJSONArray("data");

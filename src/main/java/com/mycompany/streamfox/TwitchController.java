@@ -43,8 +43,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import com.teamdev.jxbrowser.fullscreen.event.FullScreenEvent;
+import com.teamdev.jxbrowser.fullscreen.*;
+import javafx.stage.Screen;
 
-public class TwitchController implements Initializable{
+public class TwitchController implements Initializable {
 
     @FXML
     private AnchorPane backPane;
@@ -60,7 +63,7 @@ public class TwitchController implements Initializable{
 
     @FXML
     private VBox videoView;
-    
+
     @FXML
     private ImageView closeWindow1;
 
@@ -93,7 +96,7 @@ public class TwitchController implements Initializable{
 
     @FXML
     private AnchorPane basePane;
-    
+
     @FXML
     private VBox browserVBox;
 
@@ -120,7 +123,7 @@ public class TwitchController implements Initializable{
     static String startVid;
     static String titleStartText;
     static String channelStartText;
-    
+
     private EngineOptions options;
     private Engine engine;
     private Browser browser;
@@ -132,21 +135,28 @@ public class TwitchController implements Initializable{
         options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
                 .enableProprietaryFeature(ProprietaryFeature.AAC)
                 .enableProprietaryFeature(ProprietaryFeature.H_264)
+                .enableProprietaryFeature(ProprietaryFeature.WIDEVINE)
                 .licenseKey("1BNDHFSC1G5ZOFBWG6WQUSLCBTDAYZZXMAP2GRH6RECP8NHENP4ZY4YHBV1MUUDQTXFCFF")
                 .build();
 
-        
         engine = Engine.newInstance(options);
         browser = engine.newBrowser();
         //loadPage(startVid);
-        browser.navigation().loadUrl("https://player.twitch.tv/?video="+startVid+"&parent=localhost&autoplay=false");
+        browser.navigation().loadUrl("https://player.twitch.tv/?channel=" + channelStartText + "&parent=localhost&autoplay=false");
         view = BrowserView.newInstance(browser);
         view.setPrefSize(512, 288);
-        
+
         view.setVisible(true);
-        
+
+//        FullScreen fullScreen = browser.fullScreen();
+//        fullScreen.addFullScreenListener(event -> {
+//            if (event.isFullScreen()) {
+//                System.out.println("Entered full screen mode");
+//            } else {
+//                System.out.println("Exited full screen mode");
+//            }
+//        });
         videoView.getChildren().add(view);
-        
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -177,9 +187,8 @@ public class TwitchController implements Initializable{
 
         //titleTxt.setText(titleStartText);
         //channelTxt.setText(channelStartText);
-
         System.out.println(startVid);
-        
+
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
 
@@ -187,9 +196,9 @@ public class TwitchController implements Initializable{
 
     @FXML
     void searchFunction(ActionEvent event) throws IOException {
-        
+
     }
-    
+
     @FXML
     void closeCommand(MouseEvent event) {
         System.exit(0);
@@ -240,10 +249,10 @@ public class TwitchController implements Initializable{
     @FXML
     private void fullscreen() {
         App.fullscreen();
-        if(App.stage.isFullScreen() == false){
+        if (App.stage.isFullScreen() == false) {
             view.setPrefSize(512, 288);
-        }else{
-            view.setPrefSize(1024,576);
+        } else {
+            view.setPrefSize(1024, 576);
         }
     }
 

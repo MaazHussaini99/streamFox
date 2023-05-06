@@ -473,6 +473,38 @@ public class PrimaryVideoController implements Initializable {
         System.out.println("exit");
         System.exit(0);
     }
+    @FXML
+private void watchTimeDuration(MouseEvent event) {
+    if (event.getClickCount() == 1) {
+        // If this is the first click, start the timer
+        startTimer();
+    } else if (event.getClickCount() == 2) {
+        // If this is the second click, stop the timer and store the time
+        stopTimer();
+        storeTime();
+    }
+}
+
+@FXML
+private Label timerText;
+private long startTime;
+private long stopTime;
+private long elapsedTime;
+
+private void startTimer() {
+    startTime = System.currentTimeMillis();
+}
+
+private void stopTimer() {
+    stopTime = System.currentTimeMillis();
+    elapsedTime = stopTime - startTime;
+}
+
+private void storeTime() {
+    // Store the elapsed time in a variable or do whatever you need to with it
+    long timeInSeconds = elapsedTime / 1000;
+    timerText.setText("Elapsed time: " + timeInSeconds + " seconds");
+}
 
     /**
      * switches the application to and from fullscreen mode

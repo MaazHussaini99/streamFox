@@ -26,6 +26,7 @@ com/mycompany/streamfox/AuthControllerSignUp.class
 module-info.class
 com/mycompany/streamfox/PrimarySearchResultsController$2.class
 com/mycompany/streamfox/PrimarySearchResultsController.class
+.netbeans_automatic_build
 com/mycompany/streamfox/PrimaryProfileController$2.class
 com/mycompany/streamfox/PrimaryYoutubeController$13.class
 com/mycompany/streamfox/PrimaryYoutubeController$2.class
@@ -52,6 +53,7 @@ com/mycompany/streamfox/Search.class
 com/mycompany/streamfox/PrimaryYoutubeController$12.class
 com/mycompany/streamfox/PrimaryProfileController$4.class
 com/mycompany/streamfox/PrimarySearchResultsController$5.class
+com/mycompany/streamfox/PrimarySettingsController$8.class
 com/mycompany/streamfox/PrimarySettingsController$1.class
 com/mycompany/streamfox/PrimaryHomeController$2.class
 com/mycompany/streamfox/UserData.class
@@ -61,6 +63,7 @@ com/mycompany/streamfox/PrimaryYoutubeController.class
 com/mycompany/streamfox/PrimaryYoutubeController$16.class
 com/mycompany/streamfox/PrimaryYoutubeController$5.class
 com/mycompany/streamfox/PrimarySearchResultsController$6.class
+com/mycompany/streamfox/PrimarySettingsController$7.class
 com/mycompany/streamfox/PrimaryYoutubeController$10.class
 com/mycompany/streamfox/PrimaryHomeController$1.class
 com/mycompany/streamfox/NetflixWebviewController$1.class

@@ -142,7 +142,7 @@ public class TwitchController implements Initializable {
         engine = Engine.newInstance(options);
         browser = engine.newBrowser();
         //loadPage(startVid);
-        browser.navigation().loadUrl("https://player.twitch.tv/?channel=" + channelStartText + "&parent=localhost&autoplay=false");
+        browser.navigation().loadUrl("https://player.twitch.tv/?channel="+channelStartText+"&parent=localhost&autoplay=false");
         view = BrowserView.newInstance(browser);
         view.setPrefSize(512, 288);
 
@@ -185,8 +185,9 @@ public class TwitchController implements Initializable {
             }
         });
 
-        //titleTxt.setText(titleStartText);
-        //channelTxt.setText(channelStartText);
+
+        titleTxt.setText(titleStartText);
+        channelTxt.setText(channelStartText);
         System.out.println(startVid);
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));

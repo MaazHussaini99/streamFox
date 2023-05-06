@@ -53,6 +53,9 @@ public class PrimaryHomeController implements Initializable {
     private HBox twitchVids;
 
     @FXML
+    private Button twitchLiveBtn;
+
+    @FXML
     private ImageView minimizeWindow;
 
     @FXML
@@ -180,7 +183,7 @@ public class PrimaryHomeController implements Initializable {
 
                 ytVids.getChildren().add(testvb[i]);
             }
-                        testvb2 = new VBox[vid.length];
+            testvb2 = new VBox[vid.length];
 
             for (int j = 0; j < 5; j++) {
                 testvb2[j] = new VBox();
@@ -195,7 +198,7 @@ public class PrimaryHomeController implements Initializable {
                 System.out.println(vid[0][0].gameId);
                 System.out.println(vid[1][0].gameId);
                 Image img2 = new Image(formattedString);
-                imv2.setFitWidth(75);
+                imv2.setFitWidth(100);
                 imv2.setFitHeight(150);
                 imv2.setImage(img2);
 
@@ -289,6 +292,48 @@ public class PrimaryHomeController implements Initializable {
                 twitchVids.getChildren().add(testvb2[j]);
 
             }
+        }
+
+        testvb2 = new VBox[vid.length];
+
+        for (int j = 0; j < 5; j++) {
+            testvb2[j] = new VBox();
+            ImageView imv2 = new ImageView();
+            String currentBoxArt = vid[j][0].boxArt;
+            int width = 100;
+            int height = 150;
+            String formattedString = currentBoxArt
+                    .replace("{width}", String.valueOf(width))
+                    .replace("{height}", String.valueOf(height));
+            System.out.println(formattedString);
+            System.out.println(vid[0][0].gameId);
+            System.out.println(vid[1][0].gameId);
+            Image img2 = new Image(formattedString);
+            imv2.setFitWidth(200);
+            imv2.setFitHeight(300);
+            imv2.setImage(img2);
+
+            int placeholder = j;
+            imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+
+                    TwitchHome.indexVid = placeholder;
+
+                    try {
+                        twitchMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+            testvb2[j].getChildren().add(imv2);
+
+            twitchVids.getChildren().add(testvb2[j]);
+
         }
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
@@ -415,8 +460,15 @@ public class PrimaryHomeController implements Initializable {
 
         App.fullscreen();
 
-        if (App.stage.isFullScreen() == false) {
+        twitchVids.getChildren().clear();
 
+        VBox v1 = new VBox();
+        Label l = new Label("Twitch Live Streaming");
+        v1.getChildren().addAll(twitchLiveBtn, l);
+
+        twitchVids.getChildren().add(v1);
+
+        if (App.stage.isFullScreen() == false) {
             testvb = new VBox[help.length];
             for (int i = 0; i < 20; i++) {
                 testvb[i] = new VBox();
@@ -438,6 +490,7 @@ public class PrimaryHomeController implements Initializable {
                         PrimaryVideoController.startVid = help[placeholder].id;
                         PrimaryVideoController.titleStartText = help[placeholder].title;
                         PrimaryVideoController.channelStartText = help[placeholder].channel;
+                        channelLoad = help[placeholder].channel;
 
                         try {
                             playVideoMode(event);
@@ -445,13 +498,53 @@ public class PrimaryHomeController implements Initializable {
                             ex.printStackTrace();
                         }
                     }
-
                 });
                 testvb[i].getChildren().add(imv);
                 testvb[i].getChildren().add(tlabel);
-
                 ytVids.getChildren().add(testvb[i]);
             }
+            testvb2 = new VBox[vid.length];
+
+            for (int j = 0; j < 5; j++) {
+                testvb2[j] = new VBox();
+                ImageView imv2 = new ImageView();
+                String currentBoxArt = vid[j][0].boxArt;
+                int width = 100;
+                int height = 150;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+                System.out.println(vid[0][0].gameId);
+                System.out.println(vid[1][0].gameId);
+                Image img2 = new Image(formattedString);
+                imv2.setFitWidth(100);
+                imv2.setFitHeight(150);
+                imv2.setImage(img2);
+
+                int placeholder = j;
+                imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        TwitchHome.indexVid = placeholder;
+
+                        try {
+                            twitchMode(event);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+
+                testvb2[j].getChildren().add(imv2);
+
+                twitchVids.getChildren().add(testvb2[j]);
+
+            }
+
         } else {
 
             testvb = new VBox[help.length];
@@ -483,5 +576,46 @@ public class PrimaryHomeController implements Initializable {
                 ytVids.getChildren().add(testvb[i]);
             }
         }
+
+        testvb2 = new VBox[vid.length];
+
+        for (int j = 0; j < 5; j++) {
+            testvb2[j] = new VBox();
+            ImageView imv2 = new ImageView();
+            String currentBoxArt = vid[j][0].boxArt;
+            int width = 200;
+            int height = 300;
+            String formattedString = currentBoxArt
+                    .replace("{width}", String.valueOf(width))
+                    .replace("{height}", String.valueOf(height));
+            System.out.println(formattedString);
+            System.out.println(vid[0][0].gameId);
+            System.out.println(vid[1][0].gameId);
+            Image img2 = new Image(formattedString);
+            imv2.setFitWidth(200);
+            imv2.setFitHeight(300);
+            imv2.setImage(img2);
+
+            int placeholder = j;
+            imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("working");
+
+                    try {
+                        twitchMode(event);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+            testvb2[j].getChildren().add(imv2);
+
+            twitchVids.getChildren().add(testvb2[j]);
+
+        }
+
     }
 }

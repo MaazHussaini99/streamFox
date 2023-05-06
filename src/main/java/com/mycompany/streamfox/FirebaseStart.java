@@ -43,26 +43,9 @@ public class FirebaseStart {
         db = FirestoreClient.getFirestore(fa);
     }
 
+
     public static DatabaseReference getDatabaseReference(String path) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(fa);
         return firebaseDatabase.getReference(path);
     }
-
-//    @SuppressWarnings("ThrowableResultIgnored")
-//    public static void initializeFirestore() {
-//        FileInputStream serviceAccount = null;
-//        try {
-//            serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
-//        } catch (FileNotFoundException ex) {
-//            ex.printStackTrace();
-//        }
-//        FirestoreOptions firestoreOptions = null;
-//        try {
-//            firestoreOptions = FirestoreOptions.getDefaultInstance().toBuilder().setProjectId("streamfox-966e7").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
-//            db = firestoreOptions.getService();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//        
-//    }
 }

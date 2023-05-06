@@ -68,9 +68,9 @@ public class TwitchVids {
                     .callTimeout(30, TimeUnit.SECONDS)
                     .build();
 
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.twitch.tv/helix/videos").newBuilder();
-            urlBuilder.addQueryParameter("query", "gta");
-
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.twitch.tv/helix/streams").newBuilder();
+            urlBuilder.addQueryParameter("game_id", id);
+            urlBuilder.addQueryParameter("first", "50");
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder()

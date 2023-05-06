@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.cloud.StorageClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,33 +34,18 @@ public class FirebaseStart {
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://streamfox-966e7-default-rtdb.firebaseio.com/")
+                .setDatabaseUrl("https://streamfox-966e7.firebaseio.com/")
+                .setFirestoreOptions(FirestoreOptions.getDefaultInstance())
                 .setStorageBucket("streamfox-966e7.appspot.com")
                 .build();
 
         fa = FirebaseApp.initializeApp(options);
+        db = FirestoreClient.getFirestore(fa);
     }
+
 
     public static DatabaseReference getDatabaseReference(String path) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(fa);
         return firebaseDatabase.getReference(path);
-    }
-
-    @SuppressWarnings("ThrowableResultIgnored")
-    public static void initializeFirestore() {
-        FileInputStream serviceAccount = null;
-        try {
-            serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        FirestoreOptions firestoreOptions = null;
-        try {
-            firestoreOptions = FirestoreOptions.getDefaultInstance().toBuilder().setProjectId("streamfox-966e7").setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
-            db = firestoreOptions.getService();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
     }
 }

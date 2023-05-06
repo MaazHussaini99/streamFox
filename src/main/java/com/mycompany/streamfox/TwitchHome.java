@@ -76,7 +76,7 @@ public class TwitchHome implements Initializable {
     
     private int onOff = 0;
 
-   
+    public static int indexVid;
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
@@ -116,12 +116,15 @@ public class TwitchHome implements Initializable {
         VidObj[] help2 = new VidObj[10];
         VidObj[] help3 = new VidObj[10];
         VidObj[] help4 = new VidObj[10];
-        for(int i = 0; i< 10;i++){
+        
+        int i;
+        for(i = 0; i< 10;i++){
             VBox tempVB = new VBox();
             ImageView imv = new ImageView();
-            String currentBoxArt = vid[0][i].thumbnail;
-            String currentTitle = vid[0][i].title;
+            String currentBoxArt = vid[indexVid][i].thumbnail;
+            String currentTitle = vid[indexVid][i].title;
             Label l1 = new Label(currentTitle);
+            l1.setMaxWidth(200);
                 int width = 200;
                 int height = 100;
                 String formattedString = currentBoxArt
@@ -135,15 +138,15 @@ public class TwitchHome implements Initializable {
                 imv.setImage(img2);
                 
                 int placeholder = i;
-                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     
-                    TwitchController.startVid = vid[0][placeholder].id;
-                    TwitchController.titleStartText = vid[0][placeholder].title;
-                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    TwitchController.startVid = vid[indexVid][placeholder].channel;
+                    TwitchController.titleStartText = vid[indexVid][placeholder].title;
+                    TwitchController.channelStartText = vid[indexVid][placeholder].channel;
                     try {
                         switchToTwitchVideo(event);
                     } catch (IOException ex) {
@@ -155,15 +158,17 @@ public class TwitchHome implements Initializable {
             tempVB.getChildren().add(imv);
             tempVB.getChildren().add(l1);
             
+            twitchVids.setSpacing(20);
             twitchVids.getChildren().add(tempVB);
             
         }
-        for(int j = 0; j< 10;j++){
+        for( ; i< 20;i++){
             VBox tempVB = new VBox();
             ImageView imv = new ImageView();
-            String currentBoxArt = vid[1][j].thumbnail;
-            String currentTitle = vid[1][j].title;
+            String currentBoxArt = vid[indexVid][i].thumbnail;
+            String currentTitle = vid[indexVid][i].title;
             Label l1 = new Label(currentTitle);
+            l1.setMaxWidth(200);
                 int width = 200;
                 int height = 100;
                 String formattedString = currentBoxArt
@@ -176,16 +181,16 @@ public class TwitchHome implements Initializable {
                 imv.setFitHeight(100);
                 imv.setImage(img2);
                 
-                int placeholder = j;
-                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     
-                    TwitchController.startVid = vid[0][placeholder].id;
-                    TwitchController.titleStartText = vid[0][placeholder].title;
-                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    TwitchController.startVid = vid[indexVid][placeholder].id;
+                    TwitchController.titleStartText = vid[indexVid][placeholder].title;
+                    TwitchController.channelStartText = vid[indexVid][placeholder].channel;
                     
                     try {
                         switchToTwitchVideo(event);
@@ -198,14 +203,16 @@ public class TwitchHome implements Initializable {
             tempVB.getChildren().add(imv);
             tempVB.getChildren().add(l1);
             
-            twitchVids.getChildren().add(tempVB);
+            twitchVids1.setSpacing(20);
+            twitchVids1.getChildren().add(tempVB);
         }
-        for(int l = 0; l< 10;l++){
+        for( ; i< 30;i++){
             VBox tempVB = new VBox();
             ImageView imv = new ImageView();
-            String currentBoxArt = vid[2][l].thumbnail;
-            String currentTitle = vid[2][l].title;
+            String currentBoxArt = vid[indexVid][i].thumbnail;
+            String currentTitle = vid[indexVid][i].title;
             Label l1 = new Label(currentTitle);
+            l1.setMaxWidth(200);
                 int width = 200;
                 int height = 100;
                 String formattedString = currentBoxArt
@@ -218,16 +225,16 @@ public class TwitchHome implements Initializable {
                 imv.setFitHeight(100);
                 imv.setImage(img2);
                 
-                int placeholder = l;
-                l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
                     
-                    TwitchController.startVid = vid[0][placeholder].id;
-                    TwitchController.titleStartText = vid[0][placeholder].title;
-                    TwitchController.channelStartText = vid[0][placeholder].channel;
+                    TwitchController.startVid = vid[indexVid][placeholder].id;
+                    TwitchController.titleStartText = vid[indexVid][placeholder].title;
+                    TwitchController.channelStartText = vid[indexVid][placeholder].channel;
                     
                     try {
                         switchToTwitchVideo(event);
@@ -240,7 +247,8 @@ public class TwitchHome implements Initializable {
             tempVB.getChildren().add(imv);
             tempVB.getChildren().add(l1);
             
-            twitchVids.getChildren().add(tempVB);
+            twitchVids2.setSpacing(20);
+            twitchVids2.getChildren().add(tempVB);
         }
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));

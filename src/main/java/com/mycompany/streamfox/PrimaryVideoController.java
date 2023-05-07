@@ -21,7 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -106,8 +108,14 @@ public class PrimaryVideoController implements Initializable {
     static String titleStartText;
     static String channelStartText;
     
+    private long startTime = 0;
+private long stopTime = 0;
+private boolean running = false;
+private long elapsedTime = 0;
+ private DialogPane dialog;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          startTimer();
         
        
         
@@ -415,36 +423,100 @@ public class PrimaryVideoController implements Initializable {
         System.exit(0);
     }
 
-    @FXML
+      @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
+         stopTimer();
+    long elapsedMinutes = elapsedTime / 60000; // convert to minutes
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                         alert.setTitle("Your watchtime has been recored");
+                         alert.setHeaderText("watchtime Notfication");
+                        alert.setContentText("your current daily watchtime is: " + elapsedMinutes+"Minutes");
+                         dialog = alert.getDialogPane();
+                         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                        alert.showAndWait();
+            
     }
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("Youtube");
+             stopTimer();
+    long elapsedMinutes = elapsedTime / 60000; // convert to minutes
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                         alert.setTitle("Your watchtime has been recored");
+                         alert.setHeaderText("watchtime Notfication");
+                        alert.setContentText("your current daily watchtime is: " + elapsedMinutes+" Minutes");
+                         dialog = alert.getDialogPane();
+                         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                        alert.showAndWait();
+            
     }
     
   @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
         App.setRoot("TwitchPrimary");
+             stopTimer();
+    long elapsedMinutes = elapsedTime / 60000; // convert to minutes
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                         alert.setTitle("Your watchtime has been recored");
+                         alert.setHeaderText("watchtime Notfication");
+                        alert.setContentText("your current daily watchtime is: " + elapsedMinutes+" Minutes");
+                         dialog = alert.getDialogPane();
+                         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                        alert.showAndWait();
+            
     }
+    
 
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
+             stopTimer();
+    long elapsedMinutes = elapsedTime / 60000; // convert to minutes
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                         alert.setTitle("Your watchtime has been recored");
+                         alert.setHeaderText("watchtime Notfication");
+                        alert.setContentText("your current daily watchtime is: " + elapsedMinutes+" Minutes");
+                         dialog = alert.getDialogPane();
+                         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                        alert.showAndWait();
+            
     }
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
+             stopTimer();
+    long elapsedMinutes = elapsedTime / 60000; // convert to minutes
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                         alert.setTitle("Your watchtime has been recored");
+                         alert.setHeaderText("watchtime Notfication");
+                        alert.setContentText("your current daily watchtime is: " + elapsedMinutes+" Minutes");
+                         dialog = alert.getDialogPane();
+                         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                        alert.showAndWait();
+            
     }
     
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);
     }
+    
+    
+    private void startTimer() {
+    startTime = System.currentTimeMillis();
+    running = true;
+   
+}
+    
+    private void stopTimer() {
+    stopTime = System.currentTimeMillis();
+    running = false;
+    elapsedTime = stopTime - startTime;
+}
 
     /**
      * exits the application

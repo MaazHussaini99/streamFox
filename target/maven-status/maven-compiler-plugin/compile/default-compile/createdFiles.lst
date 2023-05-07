@@ -26,7 +26,6 @@ com/mycompany/streamfox/AuthControllerSignUp.class
 module-info.class
 com/mycompany/streamfox/PrimarySearchResultsController$2.class
 com/mycompany/streamfox/PrimarySearchResultsController.class
-.netbeans_automatic_build
 com/mycompany/streamfox/PrimaryProfileController$2.class
 com/mycompany/streamfox/PrimaryYoutubeController$13.class
 com/mycompany/streamfox/PrimaryYoutubeController$2.class

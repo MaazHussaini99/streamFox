@@ -133,15 +133,19 @@
                         <Label layoutX="114.0" layoutY="850.0" text="Today's Total Daiy Watchtime :" />
                         <Label layoutX="114.0" layoutY="918.0" text="Total Watchtime for this Week:" />
                         <Label fx:id="hoursLabel" layoutY="576.0" prefWidth="76.0" text="Hours" />
-                        <Label fx:id="setTotalDailyWatchtime" layoutX="310.0" layoutY="847.0" prefHeight="21.0" prefWidth="125.0" />
-                        <Label fx:id="setTotalWeeklyWatchTime" layoutX="313.0" layoutY="918.0" prefHeight="18.0" prefWidth="125.0" />
-                        <Label fx:id="dailyTimeUnitLabel" layoutX="481.0" layoutY="850.0" text="Hours" />
-                        <Label fx:id="weeklyTimeUnitLabel" layoutX="481.0" layoutY="918.0" text="Hours" />
+                        <Label fx:id="setTotalDailyWatchtimeHours" layoutX="310.0" layoutY="847.0" prefHeight="21.0" prefWidth="32.0" />
+                        <Label fx:id="setTotalWeeklyWatchTimeHours" layoutX="313.0" layoutY="918.0" prefHeight="18.0" prefWidth="32.0" />
+                        <Label fx:id="dailyTimeUnitLabelForHours" layoutX="342.0" layoutY="850.0" text="Hours" />
+                        <Label fx:id="weeklyTimeUnitLabelForHours" layoutX="342.0" layoutY="918.0" text="Hours" />
                         <RadioButton fx:id="youtubeOption" layoutX="121.0" layoutY="805.0" mnemonicParsing="false" text="Youtube" textFill="WHITE" />
                         <RadioButton fx:id="twitchOption" layoutX="271.0" layoutY="805.0" mnemonicParsing="false" text="Twitch" textFill="WHITE" />
                         <CheckBox fx:id="showAllServices" layoutX="525.0" layoutY="804.0" mnemonicParsing="false" text="Show All " textFill="WHITE" />
+                        <Label fx:id="dailyTimeUnitLabelForMinutes" layoutX="429.0" layoutY="848.0" prefHeight="20.0" prefWidth="113.0" text="Minutes" />
+                        <Label fx:id="setTotalDailyWatchtimeMinutes" layoutX="394.0" layoutY="847.0" prefHeight="21.0" prefWidth="32.0" />
+                        <Label fx:id="setTotalWeeklyWatchTimeMinutes" layoutX="398.0" layoutY="916.0" prefHeight="20.0" prefWidth="25.0" />
+                        <Label fx:id="weeklyTimeUnitLabelForMinutes" layoutX="429.0" layoutY="916.0" prefHeight="20.0" prefWidth="113.0" text="Minutes" />
             
-                                                                                                                                                                                                                                                                                                               </children>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                         </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
@@ -240,6 +244,5 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Label layoutX="316.0" layoutY="859.0" prefHeight="21.0" prefWidth="179.0" text="Label" />
    </children>
 </AnchorPane>

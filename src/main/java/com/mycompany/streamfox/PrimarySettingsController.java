@@ -33,12 +33,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.Spinner;
@@ -79,13 +82,7 @@ public class PrimarySettingsController implements Initializable {
     private AnchorPane frontPane;
     
     @FXML
-    private Spinner<Integer> DisneyDailyWatchTime;
-
-    @FXML
-    private Spinner<Integer> DisneyWeeklyWatchTime;
-
-    @FXML
-    private CheckBox Netflix;
+    private CheckBox twitchCheckBox;
 
     @FXML
     private Spinner<Integer> TwitchDailyWatchTime;
@@ -100,7 +97,7 @@ public class PrimarySettingsController implements Initializable {
     private Spinner<Integer> WeeklyWatchTime;
 
     @FXML
-    private CheckBox Youtube;
+    private CheckBox youtubeCheckBox;
 
     @FXML
     private Spinner<Integer> YoutubeDailyWatchTime;
@@ -113,12 +110,11 @@ public class PrimarySettingsController implements Initializable {
     private Button DisableYA;
     @FXML
     private MenuButton StreamingServiceMenu;
-
-    @FXML
-    private CheckBox Disney;
     
     @FXML
     private Button userNameMenuBtn;
+    
+     private DialogPane dialog;
     
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
@@ -129,22 +125,18 @@ public class PrimarySettingsController implements Initializable {
     private int onOff = 0;
     
     static int YoutubeDailyValue=1;
-     static int DisneyDailyValue=1;
      static int TwitchDailyValue=1;
      
     static int YoutubeWeeklyValue=1;
-     static int DisneyWeeklyValue=1;
      static int TwitchWeeklyValue=1;
      
     static int totalDaily;
     static int totalWeekly;
     
      boolean hasYoutubeDailyChanged=false;
-       boolean hasDisneyDailyChanged=false;
         boolean hasTwitchDailyChanged=false;
         
         boolean hasYoutubeWeeklyChanged=false;
-       boolean hasDisneyWeeklyChanged=false;
         boolean hasTwitchWeeklyChanged=false;
 
 
@@ -180,6 +172,8 @@ public class PrimarySettingsController implements Initializable {
         alert.setHeaderText("Please press OK or Cancel to Confirm That you Want to Disable Your Account \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure? ");
+         dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -203,6 +197,8 @@ public class PrimarySettingsController implements Initializable {
         alert.setHeaderText("Please press OK or Cancel to Confirm that you want to Delete your Account \n or Go Back to the Previous Menu ");
         alert.setResizable(false);
         alert.setContentText("Are you sure?,Changes can not be undone");
+         dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -256,8 +252,7 @@ public class PrimarySettingsController implements Initializable {
         valueFacDaily.setValue(24);
         SpinnerValueFactory<Integer> YoutubevalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
         valueFacDaily.setValue(24);
-        SpinnerValueFactory<Integer> DisneyvalueFacDaily = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
-        valueFacDaily.setValue(24);
+        
         
         SpinnerValueFactory<Integer> valueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
@@ -265,8 +260,7 @@ public class PrimarySettingsController implements Initializable {
         valueFacWeekly.setValue(168);
         SpinnerValueFactory<Integer> YoutubevalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
         valueFacWeekly.setValue(168);
-        SpinnerValueFactory<Integer> DisneyvalueFacWeekly = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,168);
-        valueFacWeekly.setValue(168);
+    
         
         
         //Setting watch time area we need listeners for each, and as the value is changed it should update firebase in the listener
@@ -277,88 +271,146 @@ public class PrimarySettingsController implements Initializable {
         YoutubeWeeklyWatchTime.setValueFactory(YoutubevalueFacWeekly);
         //DailyWatchTime.getValueFactory().setValue(3);
         
-         YoutubeDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+        YoutubeDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 YoutubeDailyValue= YoutubeDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true) ||  (hasDisneyDailyChanged=true)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
-                    DailyWatchTime.getValueFactory().setValue(totalDaily);
-                 }
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-                 hasYoutubeDailyChanged=true;
-            } 
+                YoutubeDailyValue = YoutubeDailyWatchTime.getValue();
+                if (hasTwitchDailyChanged = true) {
+                    totalDaily = YoutubeDailyValue + TwitchDailyValue;
+                    if (totalDaily < totalWeekly) {
+                        DailyWatchTime.getValueFactory().setValue(totalDaily);
+                        //   YoutubeDailyWatchTime.setDisable(f);
+                    } else {
+
+                        DailyWatchTime.getValueFactory().setValue(totalWeekly);
+                        totalDaily = totalWeekly;
+                        if (totalDaily == totalWeekly) {
+                            YoutubeDailyWatchTime.decrement();
+
+                            Node increment = YoutubeDailyWatchTime.lookup(".increment-arrow-button");
+                            if (increment != null) {
+                                increment.getOnMouseReleased().handle(null);
+                            }
+
+                            Node decrement = YoutubeDailyWatchTime.lookup(".decrement-arrow-button");
+                            if (decrement != null) {
+                                decrement.getOnMouseReleased().handle(null);
+                            }
+
+                            YoutubeDailyWatchTime.setDisable(true); // disable the spinner
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Warning");
+                            alert.setHeaderText("Daily watch time is greater than weekly watch time!");
+                            alert.setContentText("You cannot increment the spinner further. You can decrease the value.");
+                            dialog = alert.getDialogPane();
+                            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                            alert.showAndWait();
+
+                            YoutubeDailyWatchTime.setDisable(false); // re-enable the spinner after alert is dismissed
+
+                        }
+                    }
+                }
+                hasYoutubeDailyChanged = true;
+            }
         });
          
-        
-        TwitchDailyWatchTime.setValueFactory(TwitchvalueFacDaily);
+               TwitchDailyWatchTime.setValueFactory(TwitchvalueFacDaily);
         TwitchWeeklyWatchTime.setValueFactory(TwitchvalueFacWeekly);
-        
-           TwitchDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
+
+        TwitchDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 TwitchDailyValue= TwitchDailyWatchTime.getValue();
-                  if(( hasDisneyDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
-                    DailyWatchTime.getValueFactory().setValue(totalDaily);
-                 }
-                hasTwitchDailyChanged=true;
-            } 
-        });
-        
-        DisneyDailyWatchTime.setValueFactory(DisneyvalueFacDaily);
-        DisneyWeeklyWatchTime.setValueFactory(DisneyvalueFacWeekly);
-        
+                TwitchDailyValue = TwitchDailyWatchTime.getValue();
+                if (hasYoutubeDailyChanged = true) {
+                    totalDaily = YoutubeDailyValue + TwitchDailyValue;
+                    if (totalDaily < totalWeekly) {
+                        DailyWatchTime.getValueFactory().setValue(totalDaily);
 
-  
-        //added visual indicator for all spinners
-   DisneyDailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
-            @Override
-            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 DisneyDailyValue= DisneyDailyWatchTime.getValue();
-                  if(( hasTwitchDailyChanged=true) ||  (hasYoutubeDailyChanged=true)){
-                    totalDaily=YoutubeDailyValue+DisneyDailyValue+TwitchDailyValue;
-                    DailyWatchTime.getValueFactory().setValue(totalDaily);
-                 }
-                hasDisneyDailyChanged=true;
-                
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-            } 
-        });
-  
-       /*
-        DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
-            @Override
-            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                
-                Thread  dwt = new Thread( () -> {
-                    System.out.println("DailyWatchtimeThread – Going to sleep");
+                    } else {
+                        DailyWatchTime.getValueFactory().setValue(totalWeekly);
+                        totalDaily = totalWeekly;
+                        if (totalDaily == totalWeekly) {
+                             TwitchDailyWatchTime.decrement();
 
+                            Node increment =  TwitchDailyWatchTime.lookup(".increment-arrow-button");
+                            if (increment != null) {
+                                increment.getOnMouseReleased().handle(null);
+                            }
 
-                    try {
-                        Thread.sleep(15000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
+                            Node decrement = TwitchDailyWatchTime.lookup(".decrement-arrow-button");
+                            if (decrement != null) {
+                                decrement.getOnMouseReleased().handle(null);
+                            }
+
+                             TwitchDailyWatchTime.setDisable(true); // disable the spinner
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Warning");
+                            alert.setHeaderText("Daily watch time is greater than weekly watch time!");
+                            alert.setContentText("You cannot increment the spinner further. You can decrease the value.");
+                            dialog = alert.getDialogPane();
+                            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                            alert.showAndWait();
+
+                             TwitchDailyWatchTime.setDisable(false); // re-enable the spinner after alert is dismissed
+
+                        }
+
                     }
-                Map<String, Object> dailyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
-        dailyWatchTimeMap.put("setDailyLimit", totalDaily);
-        UserData.getInstance().updateTotalWatchTime(dailyWatchTimeMap);
-               
-        });
-                  dwt.start(); 
                 }
-            });*/
+                hasTwitchDailyChanged = true;
+            }
+        });
+    
+  
+      DailyWatchTime.valueProperty().addListener(new ChangeListener<Integer>() {
+    @Override
+    public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
+        totalDaily = DailyWatchTime.getValue();
+        if ( totalDaily > totalWeekly) {
+   DailyWatchTime.decrement();
+
+                            Node increment =   DailyWatchTime.lookup(".increment-arrow-button");
+                            if (increment != null) {
+                                increment.getOnMouseReleased().handle(null);
+                            }
+
+                            Node decrement =  DailyWatchTime.lookup(".decrement-arrow-button");
+                            if (decrement != null) {
+                                decrement.getOnMouseReleased().handle(null);
+                            }
+
+                              DailyWatchTime.setDisable(true); // disable the spinner
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Warning");
+                            alert.setHeaderText("Daily watch time is greater than weekly watch time!");
+                            alert.setContentText("You cannot increment the spinner further. You can decrease the value.");
+                            dialog = alert.getDialogPane();
+                            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+                            alert.showAndWait();
+
+                            DailyWatchTime.setDisable(false); // re-enable the spinner after alert is dismissed
+        } 
+    }
+});
             YoutubeWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 YoutubeWeeklyValue= YoutubeWeeklyWatchTime.getValue();
-                  if(( hasTwitchWeeklyChanged=true) ||  (hasDisneyWeeklyChanged=true)){
-                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
-                       WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
-                 }
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-                 hasYoutubeWeeklyChanged=true;
-            } 
+                  YoutubeWeeklyValue = YoutubeWeeklyWatchTime.getValue();
+        if (hasTwitchWeeklyChanged) {
+            totalWeekly = YoutubeWeeklyValue + TwitchWeeklyValue;
+            if (totalWeekly > totalDaily) {
+                  WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+            }
+                    else{
+            totalWeekly = totalDaily;
+                WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+                 
+            }
+          
+        }
+        hasYoutubeWeeklyChanged = true;
+    }
         });
          
            
@@ -368,56 +420,39 @@ public class PrimarySettingsController implements Initializable {
         TwitchWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 TwitchWeeklyValue=TwitchWeeklyWatchTime.getValue();
-                  if(( hasDisneyWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
-                    totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
-                       WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
-                 }
-                hasTwitchWeeklyChanged=true;
-            } 
+                TwitchWeeklyValue = TwitchWeeklyWatchTime.getValue();
+        if (hasYoutubeWeeklyChanged) {
+            totalWeekly = YoutubeWeeklyValue + TwitchWeeklyValue;
+            if (totalWeekly >totalDaily) {
+                 WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+            
+      
+        }
+            else{    
+                totalWeekly = totalDaily;
+                WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
+            }
+           
+            }
+        hasTwitchWeeklyChanged = true;
+    }
         });
         
     
 
   
         //added visual indicator for all spinners
-   DisneyWeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
-            @Override
-            public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-                 DisneyWeeklyValue= DisneyWeeklyWatchTime.getValue();
-                  if(( hasTwitchWeeklyChanged=true) ||  (hasYoutubeWeeklyChanged=true)){
-                   totalWeekly=YoutubeWeeklyValue+DisneyWeeklyValue+TwitchWeeklyValue;
-                    WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
-                 }
-                  
-                hasDisneyWeeklyChanged=true;
-                
-             //  System.out.println("this is Current vlaue"+CurrentValueTest);
-            } 
-        });
    
-   /*
+   
+   
              WeeklyWatchTime.valueProperty().addListener(new ChangeListener<Integer>(){
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
-               Thread  wwt = new Thread( () -> {
-                    System.out.println("WeeklyWatchtime Thread – Going to sleep");
-
-
-                    try {
-                        Thread.sleep(15000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                Map<String, Object> weeklyWatchTimeMap = UserData.getInstance().getWatchTimeDataMap();
-        weeklyWatchTimeMap.put("setWeeklyLimit", totalWeekly);
-        UserData.getInstance().updateTotalWatchTime(weeklyWatchTimeMap);
-               
-        });
-                  wwt.start(); 
+               totalWeekly=WeeklyWatchTime.getValue();
+             
                 }
             
-        });*/
+        });
              
            
         
@@ -480,10 +515,22 @@ public class PrimarySettingsController implements Initializable {
     @FXML
     void saveSettingsChanges(ActionEvent event) {
         //for when save is pressed
+        
            Map<String, Object> WatchTimeLimitMap = UserData.getInstance().getWatchTimeDataMap();
        WatchTimeLimitMap.put("setDailyLimit", totalDaily);
            WatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
         UserData.getInstance().updateTotalWatchTime(WatchTimeLimitMap);
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      //Setting the title
+      alert.setTitle("Streamfox Settings Change notification");
+      ButtonType type = new ButtonType("Ok", ButtonData.OK_DONE);
+      //Setting the content of the dialog
+             alert.setHeaderText("Watchtime Limits Settings have been Changed");
+      alert.setContentText("your settings have been saved");
+       dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+             alert.showAndWait();
+             
         
     }
     /**

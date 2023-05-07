@@ -351,14 +351,31 @@ image-view:hover{
 }
 
 .default-color1.chart-bar {
-    -fx-bar-fill: #8a8484;
+    -fx-bar-fill: #6441a5;
 }
+
 
 .default-color2.chart-bar {
-    -fx-bar-fill: #e3c3c3;
+    -fx-bar-fill: #6441a5;
+}
+.default-color3.chart-bar {
+    -fx-bar-fill: red;
+}
+.default-color4.chart-bar {
+    -fx-bar-fill: #6441a5;
 }
 
-.default-color3.chart-bar {
-    -fx-bar-fill: gray;
+.default-color5.chart-bar {
+    -fx-bar-fill: red;
 }
+
+
+.default-color6.chart-bar {
+    -fx-bar-fill: red;
+}
+
+.default-color7.chart-bar {
+    -fx-bar-fill: #6441a5;
+}
+
 

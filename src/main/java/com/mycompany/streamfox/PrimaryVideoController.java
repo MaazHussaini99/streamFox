@@ -14,10 +14,13 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.AuthController.day;
 import static com.mycompany.streamfox.FirebaseStart.getDatabaseReference;
 import static com.mycompany.streamfox.PrimaryYoutubeController.Searchresults;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -110,6 +113,9 @@ public class PrimaryVideoController implements Initializable {
     SearchListResponse relatedVids;
     CommentThreadListResponse comments;
 
+  public static String dateString;
+  public static String yesterDayString;
+  public static double totalWeeklyWatchTime;
     static String startVid;
     static String titleStartText;
     static String channelStartText;
@@ -379,6 +385,47 @@ public class PrimaryVideoController implements Initializable {
                         .add(testvb[i]);
             }
         }
+          switch (day) {
+              case Calendar.MONDAY:
+        dateString = "mondayWatchTime";
+       // yesterDayString="sundayWatchTime";
+        
+        break;
+
+    case Calendar.TUESDAY:
+        dateString = "tuesdayWatchTime";
+         yesterDayString="mondayWatchTime";
+        break;
+
+    case Calendar.WEDNESDAY:
+        dateString = "wednesdayWatchTime";
+         yesterDayString="tuesdayWatchTime";
+        break;
+
+    case Calendar.THURSDAY:
+        dateString = "thursdayWatchTime";
+         yesterDayString = "wednesdayWatchTime";
+        
+        break;
+
+    case Calendar.FRIDAY:
+        dateString = "fridayWatchTime";
+           yesterDayString = "thursdayWatchTime";
+        break;
+
+    case Calendar.SATURDAY:
+           //   TommorrowString = "sundayWatchTime";
+        dateString = "saturdayWatchTime";
+            yesterDayString= "fridayWatchTime";
+        break;
+
+
+    case Calendar.SUNDAY:
+        dateString = "sundayWatchTime";
+             yesterDayString = "saturdayWatchTime";
+        
+        break;
+    }
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
@@ -442,12 +489,14 @@ public class PrimaryVideoController implements Initializable {
     @FXML
     void closeCommand(MouseEvent event) {
         System.exit(0);
+           storeWatchtime();
     }
 
     @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
         stopTimer();
+           storeWatchtime();
 
     }
 
@@ -455,7 +504,7 @@ public class PrimaryVideoController implements Initializable {
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("Youtube");
         stopTimer();
-
+           storeWatchtime();
     }
 
     @FXML
@@ -463,6 +512,7 @@ public class PrimaryVideoController implements Initializable {
 
         App.setRoot("Twitch_Primary");
         stopTimer();
+           storeWatchtime();
 
     }
 
@@ -470,6 +520,7 @@ public class PrimaryVideoController implements Initializable {
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
         stopTimer();
+           storeWatchtime();
 
     }
 
@@ -477,6 +528,7 @@ public class PrimaryVideoController implements Initializable {
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
         stopTimer();
+           storeWatchtime();
     }
 
     @FXML
@@ -494,6 +546,7 @@ public class PrimaryVideoController implements Initializable {
         stopTime = System.currentTimeMillis();
         running = false;
         elapsedTime = stopTime - startTime;
+     
     }
 
     /**
@@ -596,8 +649,125 @@ public class PrimaryVideoController implements Initializable {
                 recommendedTab.getChildren().add(testvb[i]);
             }
         }
+    }
+         double  totalWatchTimeFromYesterday;
+    
+      //double  totalWatchTimeForToday;
+    public void caluluateTotalWeeklyWatchtime(){
+          //int Tommorrow =(int)  userData.getProfileDataMap().get("tommorrow's Date");
+   
+        
+       //if(today == Tommorrow){
+           //  totalWatchTimeFromYesterday=(double)  userData.getYTDailyWatchDataMap().get(YestardyString);
+        //totalWatchTimeForToday=(double)  userData.getYTDailyWatchDataMap().get();                 
+        
+     //  }
+        
+           // double totalWatchTimeForToday=(double)  userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+                  //  totalWeeklyWatchTime= totalWatchTimeForToday;
+         //totalWatchTimeFromYesterday=(double)  userData.getYTDailyWatchDataMap().get(yesterDayString);
+         
+                switch (day) {
+              case Calendar.MONDAY:
+        dateString = "mondayWatchTime";
+         totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));            
+           Map<String, Object> WeeklyWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                     WeeklyWatchTimeMap.put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklyWatchTimeMap);
+                    
+                // totalWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);       
+        
+        break;
+
+    case Calendar.TUESDAY:
+       dateString = "tuesdayWatchTime";
+            totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
+           Map<String, Object> WeeklyTuesdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                     WeeklyTuesdayWatchTimeMap.put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklyTuesdayWatchTimeMap);
+                    
+                 //totalWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);       
+        
+        break;
+
+
+    case Calendar.WEDNESDAY:
+        dateString = "wednesdayWatchTime";
+    totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));     
+           Map<String, Object> WeeklyWednesdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                     WeeklyWednesdayWatchTimeMap.put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklyWednesdayWatchTimeMap);
+    
+        break;
+
+    case Calendar.THURSDAY:
+        dateString = "thursdayWatchTime";
+                   totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");  
+            totalWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
+           Map<String, Object> WeeklyThursdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                     WeeklyThursdayWatchTimeMap .put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklyThursdayWatchTimeMap );
+                    
+                 //otalWeeklyWatchTime=(double)  userData.getYTDailyWatchDataMap().get(dateString);   
+        
+        break;
+
+    case Calendar.FRIDAY:
+        dateString = "fridayWatchTime";
+                totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");  
+            totalWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
+           Map<String, Object> WeeklyFridayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                    WeeklyFridayWatchTimeMap .put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(     WeeklyFridayWatchTimeMap);
+                    
+        break;
+
+    case Calendar.SATURDAY:
+             
+        dateString = "saturdayWatchTime";
+            totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime"); 
+           totalWeeklyWatchTime=    totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
+           Map<String, Object> WeeklySaturdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                  WeeklySaturdayWatchTimeMap.put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklySaturdayWatchTimeMap);
+        break;
+    //    break;
+
+
+    case Calendar.SUNDAY:
+        dateString = "sundayWatchTime";
+            totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime"); 
+           totalWeeklyWatchTime=    totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
+           Map<String, Object> WeeklySundayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                  WeeklySundayWatchTimeMap .put("WeeklyWatchTime", totalWeeklyWatchTime) ;
+                    UserData.getInstance().updateWatchTimeYT(  WeeklySundayWatchTimeMap);
+        
+        break;
+    }
 
         //TODO: make the interface more dynamic (hard)
     }
-
+    
+    public void storeWatchtime(){
+          double currenttime = (double)userData.getYTDailyWatchDataMap().get(dateString);
+          double miunteswatchtime = (double) elapsedTime /6000; // convert to minutes
+         double newwatchtime = (double) elapsedTime / (1000 * 60 * 60); // convert to hours
+          System.out.println("the watch time "+ miunteswatchtime );
+               System.out.println("the watch time "+newwatchtime );
+               currenttime +=  newwatchtime;
+        
+            Map<String, Object> dailyWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
+                        //caluluateTotalWeeklyWatchtime(time);
+                     dailyWatchTimeMap .put(dateString, currenttime);
+                
+                    UserData.getInstance().updateWatchTimeYT( dailyWatchTimeMap);
+                      caluluateTotalWeeklyWatchtime();
+        
+    }
 }
+    
+      
+

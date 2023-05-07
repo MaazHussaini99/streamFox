@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryHomeController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -79,22 +79,58 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="42.0" prefHeight="454.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #000;">
+                <AnchorPane minWidth="0.0" style="-fx-background-color: #000;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0" prefWidth="746.0" AnchorPane.leftAnchor="41.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-                           <content>
-                              <AnchorPane prefWidth="1121.0" style="-fx-background-color: #000;">
-                                 <children>
-                                    <HBox fx:id="ytVids" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <Label layoutX="42.0" layoutY="14.0" style="-fx-text-fill: red; -fx-font-size: 15;" text="YouTube - Recommended">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
+                        <VBox spacing="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                           <children>
+                              <Label style="-fx-text-fill: red; -fx-font-size: 15;" text="YouTube - Recommended">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0" prefWidth="746.0">
+                                 <content>
+                                    <AnchorPane prefWidth="1121.0" style="-fx-background-color: #000;">
+                                       <children>
+                                          <HBox fx:id="ytVids" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <Label style="-fx-text-fill: purple; -fx-font-size: 15;" text="Twitch - Recommended">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="250.0" prefWidth="746.0">
+                                 <content>
+                                    <AnchorPane prefWidth="1121.0" style="-fx-background-color: #000;">
+                                       <children>
+                                          <HBox fx:id="twitchVids">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="10.0">
+                                                   <children>
+                                                      <Button fx:id="twitchLiveBtn" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fx:id="liveLogo" fitHeight="200.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@twitchButtonLogo.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Label text="Twitch Live Streaming" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <HBox prefHeight="100.0" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
               </content>
@@ -146,7 +182,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToNetflix" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToTwitch" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -162,7 +198,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.60000000000002">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -172,7 +208,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToNetflix" text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTwitch" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

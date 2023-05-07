@@ -27,7 +27,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -111,6 +113,11 @@ public class PrimaryVideoController implements Initializable {
     static String startVid;
     static String titleStartText;
     static String channelStartText;
+    private long startTime = 0;
+    private long stopTime = 0;
+    private boolean running = false;
+    private long elapsedTime = 0;
+    private DialogPane dialog;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -174,6 +181,8 @@ public class PrimaryVideoController implements Initializable {
                 }
             }
         });
+
+        startTimer();
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -438,31 +447,53 @@ public class PrimaryVideoController implements Initializable {
     @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
+        stopTimer();
+
     }
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("Youtube");
+        stopTimer();
+
     }
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+
+        App.setRoot("Twitch_Primary");
+        stopTimer();
+
     }
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
+        stopTimer();
+
     }
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
+        stopTimer();
     }
 
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);
+    }
+
+    private void startTimer() {
+        startTime = System.currentTimeMillis();
+        running = true;
+
+    }
+
+    private void stopTimer() {
+        stopTime = System.currentTimeMillis();
+        running = false;
+        elapsedTime = stopTime - startTime;
     }
 
     /**

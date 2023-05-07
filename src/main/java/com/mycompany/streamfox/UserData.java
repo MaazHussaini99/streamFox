@@ -70,6 +70,10 @@ public final class UserData {
         FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("service").document("youtube").set(watchDataMap);
     }
 
+    public void updateTotalWatchTime(Map<String, Object> watchDataMap) {
+        FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("watchtime").set(watchDataMap);
+    }
+
     private void setServiceList() {
         DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(user.getUid()).collection("settings").document("servicesList");
         ApiFuture<DocumentSnapshot> future = docRef.get();

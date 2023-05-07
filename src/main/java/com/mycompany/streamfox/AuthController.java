@@ -13,6 +13,7 @@ import static com.mycompany.streamfox.App.scene;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,6 +23,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,6 +53,15 @@ import javafx.stage.StageStyle;
 
 public class AuthController implements Initializable {
 
+    
+   public static Calendar calendar = Calendar.getInstance();
+    public static int day =calendar.get(Calendar.DAY_OF_WEEK);
+   // public static Instant todayDate=  Instant.now();
+     //   public static int today =2;//nstant.now().atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
+          //  System.out.println("todya is "+today);
+  //  public static int tomorrow =  todayDate.plus(1, ChronoUnit.DAYS).atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
+    
+      
     @FXML
     private Label accQuestionLabel;
 
@@ -73,6 +89,9 @@ public class AuthController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         passwordField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+       
+        
+    
     }
 
     @FXML
@@ -105,6 +124,8 @@ public class AuthController implements Initializable {
     }
 
     void login(ActionEvent event) {
+       
+        
         String email = emailTxtField.getText();
         String password = passwordField.getText();
         if (checkRegex(email, password)) {

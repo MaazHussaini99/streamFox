@@ -7,6 +7,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -162,28 +163,29 @@ public class PrimaryYoutubeController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    if(App.stage.isFullScreen() == false){
-        testvb = new VBox[10];
-        for (int i = 0; i < help.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help[i].title);
+        if (App.stage.isFullScreen() == false) {
+            testvb = new VBox[10];
+            for (int i = 0; i < help.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help[placeholder].id;
-                    PrimaryVideoController.titleStartText = help[placeholder].title;
-                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help[placeholder].id;
+                        PrimaryVideoController.titleStartText = help[placeholder].title;
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
@@ -196,27 +198,28 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos1.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help1.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help1[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help1.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help1[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help1[placeholder].id;
-                    PrimaryVideoController.titleStartText = help1[placeholder].title;
-                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help1[placeholder].id;
+                        PrimaryVideoController.titleStartText = help1[placeholder].title;
+                        PrimaryVideoController.channelStartText = help1[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
@@ -229,66 +232,70 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos2.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help2.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help2[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help2.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help2[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help2[placeholder].id;
-                    PrimaryVideoController.titleStartText = help2[placeholder].title;
-                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help2[placeholder].id;
+                        PrimaryVideoController.titleStartText = help2[placeholder].title;
+                        PrimaryVideoController.channelStartText = help2[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
                 testvb[i].getChildren().add(tlabel);
-                
-            videos3.getChildren().add(testvb[i]);
-        }
-    }else{
-        testvb = new VBox[10];
-        for (int i = 0; i < help.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                videos3.getChildren().add(testvb[i]);
+            }
+        } else {
+            testvb = new VBox[10];
+            for (int i = 0; i < help.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help[i].title);
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help[placeholder].id;
-                    PrimaryVideoController.titleStartText = help[placeholder].title;
-                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help[placeholder].id;
+                        PrimaryVideoController.titleStartText = help[placeholder].title;
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -296,32 +303,34 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos1.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help1.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help1[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help1.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help1[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help1[placeholder].id;
-                    PrimaryVideoController.titleStartText = help1[placeholder].title;
-                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help1[placeholder].id;
+                        PrimaryVideoController.titleStartText = help1[placeholder].title;
+                        PrimaryVideoController.channelStartText = help1[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -329,32 +338,34 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos2.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help2.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help2[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help2.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help2[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help2[placeholder].id;
-                    PrimaryVideoController.titleStartText = help2[placeholder].title;
-                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help2[placeholder].id;
+                        PrimaryVideoController.titleStartText = help2[placeholder].title;
+                        PrimaryVideoController.channelStartText = help2[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -365,31 +376,33 @@ public class PrimaryYoutubeController implements Initializable {
             }
 
             testvb = new VBox[10];
-        for (int i = 0; i < help3.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help3[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help2[i].title);
+            for (int i = 0; i < help3.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help3[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help2[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help3[placeholder].id;
-                    PrimaryVideoController.titleStartText = help3[placeholder].title;
-                    PrimaryVideoController.channelStartText = help3[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help3[placeholder].id;
+                        PrimaryVideoController.titleStartText = help3[placeholder].title;
+                        PrimaryVideoController.channelStartText = help3[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -400,31 +413,33 @@ public class PrimaryYoutubeController implements Initializable {
             }
 
             testvb = new VBox[10];
-        for (int i = 0; i < help4.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help4[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help4[i].title);
+            for (int i = 0; i < help4.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help4[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help4[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help4[placeholder].id;
-                    PrimaryVideoController.titleStartText = help4[placeholder].title;
-                    PrimaryVideoController.channelStartText = help4[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help4[placeholder].id;
+                        PrimaryVideoController.titleStartText = help4[placeholder].title;
+                        PrimaryVideoController.channelStartText = help4[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -445,7 +460,7 @@ public class PrimaryYoutubeController implements Initializable {
 
         Searchresults = Search.returnArray(searchTxtField.getText());
         PrimarySearchResultsController.SearchControllerresults = Searchresults;
-        if(searchTxtField.getText() == null){
+        if (searchTxtField.getText() == null) {
             System.out.println("Error in search");
         } else {
             App.setRoot("primary_SearchResult");
@@ -531,7 +546,7 @@ public class PrimaryYoutubeController implements Initializable {
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
-        App.setRoot("primarySettings");
+        App.setRoot("Settings");
     }
 
     /**
@@ -593,33 +608,35 @@ public class PrimaryYoutubeController implements Initializable {
             ex.printStackTrace();
         }
 
-    if(App.stage.isFullScreen() == false){
-        testvb = new VBox[10];
-        for (int i = 0; i < help.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help[i].title);
+        if (App.stage.isFullScreen() == false) {
+            testvb = new VBox[10];
+            for (int i = 0; i < help.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help[placeholder].id;
-                    PrimaryVideoController.titleStartText = help[placeholder].title;
-                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help[placeholder].id;
+                        PrimaryVideoController.titleStartText = help[placeholder].title;
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -628,32 +645,34 @@ public class PrimaryYoutubeController implements Initializable {
                 videos1.getChildren().add(testvb[i]);
             }
 
-        testvb = new VBox[10];
-        for (int i = 0; i < help1.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help1[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help1.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help1[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help1[placeholder].id;
-                    PrimaryVideoController.titleStartText = help1[placeholder].title;
-                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help1[placeholder].id;
+                        PrimaryVideoController.titleStartText = help1[placeholder].title;
+                        PrimaryVideoController.channelStartText = help1[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -662,66 +681,70 @@ public class PrimaryYoutubeController implements Initializable {
                 videos2.getChildren().add(testvb[i]);
             }
 
-        testvb = new VBox[10];
-        for (int i = 0; i < help2.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
-            imv.setFitWidth(200);
-            imv.setFitHeight(100);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(200);
-            tlabel.setText(help2[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help2.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
+                imv.setFitWidth(200);
+                imv.setFitHeight(100);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(200);
+                tlabel.setText(help2[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help2[placeholder].id;
-                    PrimaryVideoController.titleStartText = help2[placeholder].title;
-                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help2[placeholder].id;
+                        PrimaryVideoController.titleStartText = help2[placeholder].title;
+                        PrimaryVideoController.channelStartText = help2[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
                 testvb[i].getChildren().add(tlabel);
 
-            videos3.getChildren().add(testvb[i]);
-        }
-    }else{
-        testvb = new VBox[10];
-        for (int i = 0; i < help.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help[i].title);
+                videos3.getChildren().add(testvb[i]);
+            }
+        } else {
+            testvb = new VBox[10];
+            for (int i = 0; i < help.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help[placeholder].id;
-                    PrimaryVideoController.titleStartText = help[placeholder].title;
-                    PrimaryVideoController.channelStartText = help[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help[placeholder].id;
+                        PrimaryVideoController.titleStartText = help[placeholder].title;
+                        PrimaryVideoController.channelStartText = help[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -729,32 +752,34 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos1.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help1.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help1[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help1.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help1[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help1[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help1[placeholder].id;
-                    PrimaryVideoController.titleStartText = help1[placeholder].title;
-                    PrimaryVideoController.channelStartText = help1[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help1[placeholder].id;
+                        PrimaryVideoController.titleStartText = help1[placeholder].title;
+                        PrimaryVideoController.channelStartText = help1[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -762,32 +787,34 @@ public class PrimaryYoutubeController implements Initializable {
 
                 videos2.getChildren().add(testvb[i]);
             }
-        testvb = new VBox[10];
-        for (int i = 0; i < help2.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help2[i].title);
+            testvb = new VBox[10];
+            for (int i = 0; i < help2.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help2[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help2[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    PrimaryVideoController.startVid = help2[placeholder].id;
-                    PrimaryVideoController.titleStartText = help2[placeholder].title;
-                    PrimaryVideoController.channelStartText = help2[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help2[placeholder].id;
+                        PrimaryVideoController.titleStartText = help2[placeholder].title;
+                        PrimaryVideoController.channelStartText = help2[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -798,31 +825,33 @@ public class PrimaryYoutubeController implements Initializable {
             }
 
             testvb = new VBox[10];
-        for (int i = 0; i < help3.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help3[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help3[i].title);
+            for (int i = 0; i < help3.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help3[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help3[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help3[placeholder].id;
-                    PrimaryVideoController.titleStartText = help3[placeholder].title;
-                    PrimaryVideoController.channelStartText = help3[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help3[placeholder].id;
+                        PrimaryVideoController.titleStartText = help3[placeholder].title;
+                        PrimaryVideoController.channelStartText = help3[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -833,31 +862,33 @@ public class PrimaryYoutubeController implements Initializable {
             }
 
             testvb = new VBox[10];
-        for (int i = 0; i < help4.length; i++) {
-            testvb[i] = new VBox();
-            ImageView imv = new ImageView();
-            Image img = new Image("https://img.youtube.com/vi/" + help4[i].id + "/sddefault.jpg");
-            imv.setFitWidth(400);
-            imv.setFitHeight(200);
-            imv.setImage(img);
-            Label tlabel = new Label();
-            tlabel.setMaxWidth(400);
-            tlabel.setText(help4[i].title);
+            for (int i = 0; i < help4.length; i++) {
+                testvb[i] = new VBox();
+                ImageView imv = new ImageView();
+                Image img = new Image("https://img.youtube.com/vi/" + help4[i].id + "/sddefault.jpg");
+                imv.setFitWidth(400);
+                imv.setFitHeight(200);
+                imv.setImage(img);
+                Label tlabel = new Label();
+                tlabel.setMaxWidth(400);
+                tlabel.setText(help4[i].title);
 
-            int placeholder = i;
-            imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                int placeholder = i;
+                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                   PrimaryVideoController.startVid = help4[placeholder].id;
-                    PrimaryVideoController.titleStartText = help4[placeholder].title;
-                    PrimaryVideoController.channelStartText = help4[placeholder].channel;
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println("working");
+
+                        PrimaryVideoController.startVid = help4[placeholder].id;
+                        PrimaryVideoController.titleStartText = help4[placeholder].title;
+                        PrimaryVideoController.channelStartText = help4[placeholder].channel;
                         try {
                             playVideoMode(event);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);

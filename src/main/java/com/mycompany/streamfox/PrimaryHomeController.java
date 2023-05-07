@@ -8,10 +8,17 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.AuthController.day;
 import static com.mycompany.streamfox.YoutubeApiEngine.getService;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
+import java.time.DayOfWeek;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -20,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -86,10 +94,63 @@ public class PrimaryHomeController implements Initializable {
     public static String VIDload;
     public static String titleLoad;
     public static String channelLoad;
+    public static String dateString;
+    public static String yesterDayString;
+    public static String twoDaysAgoString;
+
+    public static double totalWeeklyWatchTime;
+
+// int currentDayOfYesterdayValue = Instant.now().minus(1, ChronoUnit.DAYS).atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
+    boolean hasWatchtimeChanged = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //  Map<String, Object> profileMap = UserData.getInstance().getProfileDataMap();
+        //  profileMap.put("tommorrow's Date",  tomorrow );
+        // UserData.getInstance().updateProfile(profileMap);
+        switch (day) {
+            case Calendar.MONDAY:
+                dateString = "mondayWatchTime";
+                // yesterDayString="sundayWatchTime";
 
+                break;
+
+            case Calendar.TUESDAY:
+                dateString = "tuesdayWatchTime";
+                yesterDayString = "mondayWatchTime";
+                break;
+
+            case Calendar.WEDNESDAY:
+                dateString = "wednesdayWatchTime";
+                yesterDayString = "tuesdayWatchTime";
+                break;
+
+            case Calendar.THURSDAY:
+                dateString = "thursdayWatchTime";
+                yesterDayString = "wednesdayWatchTime";
+
+                break;
+
+            case Calendar.FRIDAY:
+                dateString = "fridayWatchTime";
+                yesterDayString = "thursdayWatchTime";
+                break;
+
+            case Calendar.SATURDAY:
+                //   TommorrowString = "sundayWatchTime";
+                dateString = "saturdayWatchTime";
+                yesterDayString = "fridayWatchTime";
+                break;
+
+            case Calendar.SUNDAY:
+                dateString = "sundayWatchTime";
+                yesterDayString = "saturdayWatchTime";
+
+                break;
+        }
+        //double totalWatchTimeForToday=(double)  userData.getYTDailyWatchDataMap().get(dateString);
+
+        //     totalWeeklyWatchTime+=totalWatchTimeForToday;
         YoutubeApiEngine.initializeYoutube();
         try {
             TwitchApiEngine.initializeTwitch();
@@ -318,6 +379,7 @@ public class PrimaryHomeController implements Initializable {
 
                 @Override
                 public void handle(MouseEvent event) {
+
                     System.out.println("working");
 
                     TwitchHome.indexVid = placeholder;
@@ -497,6 +559,7 @@ public class PrimaryHomeController implements Initializable {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     }
                 });
                 testvb[i].getChildren().add(imv);
@@ -602,6 +665,9 @@ public class PrimaryHomeController implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     System.out.println("working");
+                    VIDload = help[placeholder].id;
+                    titleLoad = help[placeholder].title;
+                    channelLoad = help[placeholder].channel;
 
                     try {
                         twitchMode(event);

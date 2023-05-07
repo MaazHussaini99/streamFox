@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Calendar;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +27,7 @@ public class App extends Application {
     static int width = 330;
     static int height = 400;
     
+  
     @Override
     public void start(Stage stage) throws IOException {
         
@@ -36,7 +38,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("authentication"), width, height);
         stage.initStyle(StageStyle.UNDECORATED);
         
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() 
+        {
             @Override
             public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();

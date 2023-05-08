@@ -146,10 +146,87 @@ public class TwitchController implements Initializable {
     private Browser browser;
     private BrowserView view;
 
+          @FXML
+    private WebView chatroom;
+
+    WebEngine chatroomengine;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        DatabaseReference videoRef = getDatabaseReference(startVid);
+        //  System.out.println("Hello");
+        chatroomengine = chatroom.getEngine();
+        if (App.stage.isFullScreen() == false) {
+              
+                chatroom.setMinSize(200, 100);
+        }
+        chatroomengine.loadContent("<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "	<head>\n"
+                + "		<meta charset=\"UTF-8\" />\n"
+                + "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+                + "		<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />\n"
+                + "		<link\n"
+                + "			rel=\"stylesheet\"\n"
+                + "			href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\"\n"
+                + "			integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\"\n"
+                + "			crossorigin=\"anonymous\"\n"
+                + "		/>\n"
+                + "		<link rel=\"stylesheet\" href=\"css/style.css\" />\n"
+                + "    \n"
+                + "		<title>StreamFox </title>\n"
+                + "	</head>\n"
+                + "	<body>\n"
+                + "	<Font Color = \"White\" >\n"
+                + "	<body style=\"background-color: 	 black	;\">\n"
+                + "		<div class=\"join-container\">\n"
+                + "			<header class=\"join-header\">\n"
+                + "				<h1><i class=\"fa fa-comments\" ;\" ></i> StreamFox Chat, <Font Color = \"White\">  </h1>\n"
+                + "			</header>\n"
+                + "			<main class=\"join-main\">\n"
+                + "				<form action=\"chat.html\">\n"
+                + "					<div class=\"form-control\">\n"
+                + "						<label for=\"username\">Username</label>\n"
+                + "						<input\n"
+                + "							type=\"text\"\n"
+                + "							name=\"username\"\n"
+                + "							id=\"username\"\n"
+                + "							placeholder=\"Streamfox username...\"\n"
+                + "							required\n"
+                + "						/>\n"
+                + "					</div>\n"
+                + "					<div class=\"form-control\">\n"
+                + "                        <p>Enter the name of your ChatRoom:</p>\n"
+                + "<input \n"
+                + "							type=\"text\"\n"
+                + "							name=\"key\"\n"
+                + "							placeholder=\"chatroom ...\"\n"
+                + "							required\n"
+                + "id=\"key\" onkeyup='updateRedirect()' class='center'>\n"
+                + "<br>\n"
+                + "<br>\n"
+                + "<a class=\"btn\" id='join' href='javascript:;' type=\"submit\">Join</a>\n"
+                + "<br>\n"
+                + "<br>\n"
+                + "\n"
+                + "					</div>\n"
+                + "				</form>\n"
+                + "			</main>\n"
+                + "		</div>\n"
+                + "        <script>\n"
+                + "        function updateRedirect() {\n"
+                + "document.getElementById(\"join\").href = \"https://d66f3864-46f8-47cf-a043-50b7ef7731af.id.repl.co//chat.html?username=\"+document.getElementById(\"username\").value+\"&room=\"+document.getElementById(\"key\").value;\n"
+                + "style=\"background-color: Gray	;\"\n"
+                + "\n"
+                + "\n"
+                + "}\n"
+                + "        </script>\n"
+                + "\n"
+                + "	</body>\n"
+                + "\n"
+                + "</html>");
+    
+           DatabaseReference videoRef = getDatabaseReference(startVid);
 
         videoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

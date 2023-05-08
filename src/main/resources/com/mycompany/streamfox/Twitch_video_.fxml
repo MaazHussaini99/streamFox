@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.TwitchController">
    <children>
@@ -132,6 +133,7 @@
                               </HBox>
                               <Label text="StreamFox Comments" />
                               <ListView fx:id="platformCommentView" prefHeight="200.0" prefWidth="200.0" />
+                              <WebView fx:id="chatroom" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </VBox>
                         <Label layoutX="606.0" layoutY="6.0" style="-fx-text-fill: red;" text="Recommended" AnchorPane.rightAnchor="34.00000000000004" AnchorPane.topAnchor="0.0" />

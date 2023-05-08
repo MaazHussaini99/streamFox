@@ -651,7 +651,6 @@ public class PrimaryVideoController implements Initializable {
 
 
     case Calendar.WEDNESDAY:
-        dateString = "wednesdayWatchTime";
     totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");   
             totalYoutubeWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));     
            Map<String, Object> WeeklyWednesdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
@@ -661,7 +660,6 @@ public class PrimaryVideoController implements Initializable {
         break;
 
     case Calendar.THURSDAY:
-        dateString = "thursdayWatchTime";
                    totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");  
             totalYoutubeWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
            Map<String, Object> WeeklyThursdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
@@ -673,7 +671,7 @@ public class PrimaryVideoController implements Initializable {
         break;
 
     case Calendar.FRIDAY:
-        dateString = "fridayWatchTime";
+ 
                 totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime");  
             totalYoutubeWeeklyWatchTime= totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
            Map<String, Object> WeeklyFridayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
@@ -684,7 +682,7 @@ public class PrimaryVideoController implements Initializable {
 
     case Calendar.SATURDAY:
              
-        dateString = "saturdayWatchTime";
+
             totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime"); 
            totalYoutubeWeeklyWatchTime=    totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
            Map<String, Object> WeeklySaturdayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();
@@ -695,7 +693,7 @@ public class PrimaryVideoController implements Initializable {
 
 
     case Calendar.SUNDAY:
-        dateString = "sundayWatchTime";
+  
             totalWatchTimeFromYesterday= (double)  userData.getYTDailyWatchDataMap().get( "WeeklyWatchTime"); 
            totalYoutubeWeeklyWatchTime=  totalWatchTimeFromYesterday+((double)  userData.getYTDailyWatchDataMap().get(dateString));
            Map<String, Object> WeeklySundayWatchTimeMap = UserData.getInstance().getYTDailyWatchDataMap();

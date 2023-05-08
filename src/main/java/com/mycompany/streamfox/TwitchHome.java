@@ -338,7 +338,7 @@ public class TwitchHome implements Initializable {
 
     @FXML
     void switchToTwitchVideo(MouseEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+           App.setRoot("Twitch_video");
     }
 
     @FXML

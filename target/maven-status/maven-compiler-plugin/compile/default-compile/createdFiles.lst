@@ -39,7 +39,6 @@ com/mycompany/streamfox/TwitchHome.class
 com/mycompany/streamfox/PrimaryVideoController.class
 com/mycompany/streamfox/PrimaryYoutubeController$9.class
 com/mycompany/streamfox/PrimaryHomeController$7.class
-com/mycompany/streamfox/NetflixWebviewController.class
 com/mycompany/streamfox/PrimaryVideoController$2.class
 com/mycompany/streamfox/TwitchHome$2.class
 com/mycompany/streamfox/TwitchApiEngine.class
@@ -78,7 +77,6 @@ com/mycompany/streamfox/PrimaryHomeController$11.class
 com/mycompany/streamfox/PrimaryVideoController$8.class
 com/mycompany/streamfox/PrimaryYoutubeController$10.class
 com/mycompany/streamfox/PrimaryHomeController$1.class
-com/mycompany/streamfox/NetflixWebviewController$1.class
 com/mycompany/streamfox/PrimaryYoutubeController$17.class
 com/mycompany/streamfox/PrimaryVideoController$1.class
 com/mycompany/streamfox/FirebaseStart.class

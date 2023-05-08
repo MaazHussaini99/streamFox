@@ -649,7 +649,7 @@ group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
     }
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+           App.setRoot("Twitch_video");
     }
     /**
      * switches the application to and from fullscreen mode

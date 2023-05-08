@@ -56,11 +56,6 @@ public class AuthController implements Initializable {
     
    public static Calendar calendar = Calendar.getInstance();
     public static int day =calendar.get(Calendar.DAY_OF_WEEK);
-   // public static Instant todayDate=  Instant.now();
-     //   public static int today =2;//nstant.now().atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
-          //  System.out.println("todya is "+today);
-  //  public static int tomorrow =  todayDate.plus(1, ChronoUnit.DAYS).atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
-    
       
     @FXML
     private Label accQuestionLabel;

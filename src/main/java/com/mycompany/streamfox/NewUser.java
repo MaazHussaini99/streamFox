@@ -18,7 +18,7 @@ public class NewUser {
     private static Map<String, Integer> watchtimeMap = new HashMap();
     private static Map<String, Double> serviceWatchtimeMap = new HashMap();
 
-    public static void setNewProfile(String uid, String email, String fname, String lname, String refreshToken) {
+    public static void setNewUserProfile(String uid, String email, String fname, String lname, String refreshToken) {
         profileMap.put("fname", fname);
         profileMap.put("lname", lname);
         profileMap.put("email", email);
@@ -28,7 +28,7 @@ public class NewUser {
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("profile").set(profileMap);
     }
 
-    public static void setNewServiceList(String uid) {
+    public static void setNewUserServiceList(String uid) {
         serviceListMap.put("hbomax", true);
         serviceListMap.put("hulu", true);
         serviceListMap.put("netflix", true);
@@ -38,7 +38,7 @@ public class NewUser {
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("serviceList").set(serviceListMap);
     }
 
-    public static void setNewWatchtime(String uid) {
+    public static void setNewUserSettingsWatchtime(String uid) {
         watchtimeMap.put("currentDailyWatchtime", 0);
         watchtimeMap.put("currentWeeklyWatchtime", 0);
         watchtimeMap.put("setDailyLimit", 6);
@@ -48,7 +48,7 @@ public class NewUser {
 
     }
 
-    public static void setServiceWatchtime(String uid) {
+    public static void setNewUserServiceWatchtime(String uid) {
 
         serviceWatchtimeMap.put("currentDailyWatchtime", 0.001);
         serviceWatchtimeMap.put("currentWeeklyWatchtime", 0.001);

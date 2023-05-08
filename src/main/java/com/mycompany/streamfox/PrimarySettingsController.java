@@ -458,7 +458,7 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+        App.setRoot("Twitch_video");
     }
 
     @FXML
@@ -475,10 +475,21 @@ public class PrimarySettingsController implements Initializable {
     void saveSettingsChanges(ActionEvent event) {
         //for when save is pressed
 
-        Map<String, Object> WatchTimeLimitMap = UserData.getInstance().getWatchTimeDataMap();
-        WatchTimeLimitMap.put("setDailyLimit", totalDaily);
-        WatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
-        UserData.getInstance().updateTotalWatchTime(WatchTimeLimitMap);
+        Map<String, Object> totalSettingsWatchTimeLimitMap = UserData.getInstance().getWatchTimeSettingsDataMap();
+        totalSettingsWatchTimeLimitMap.put("setDailyLimit", totalDaily);
+        totalSettingsWatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
+        UserData.getInstance().updateSettingsForTotalWatchTime(totalSettingsWatchTimeLimitMap);
+        
+          Map<String, Object> totalTwitchWatchTimeLimitMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+         totalTwitchWatchTimeLimitMap.put("setDailyLimit", TwitchDailyValue);
+         totalTwitchWatchTimeLimitMap.put("setWeeklyLimit", TwitchWeeklyValue);
+        UserData.getInstance().updateTwitchWatchTime( totalTwitchWatchTimeLimitMap);
+        
+            Map<String, Object> totalYoutubeWatchTimeLimitMap = UserData.getInstance().getYTDailyWatchDataMap();
+          totalYoutubeWatchTimeLimitMap.put("setDailyLimit", YoutubeDailyValue);
+         totalYoutubeWatchTimeLimitMap.put("setWeeklyLimit", YoutubeWeeklyValue);
+        UserData.getInstance().updateYoutubeWatchTime( totalYoutubeWatchTimeLimitMap);
+        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         //Setting the title
         alert.setTitle("Streamfox Settings Change notification");

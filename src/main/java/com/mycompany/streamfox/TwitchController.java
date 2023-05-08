@@ -7,6 +7,8 @@ package com.mycompany.streamfox;
 import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
+import static com.mycompany.streamfox.AuthController.day;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import static com.mycompany.streamfox.PrimaryVideoController.channelStartText;
 import static com.mycompany.streamfox.PrimaryVideoController.startVid;
 import static com.mycompany.streamfox.PrimaryVideoController.titleStartText;
@@ -45,6 +47,8 @@ import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import com.teamdev.jxbrowser.fullscreen.event.FullScreenEvent;
 import com.teamdev.jxbrowser.fullscreen.*;
+import java.util.Calendar;
+import java.util.Map;
 import javafx.stage.Screen;
 
 public class TwitchController implements Initializable {
@@ -120,9 +124,14 @@ public class TwitchController implements Initializable {
     SearchListResponse relatedVids;
     CommentThreadListResponse comments;
 
+      public static double totalTwitchWeeklyWatchTime;
     static String startVid;
     static String titleStartText;
     static String channelStartText;
+       private long startTime = 0;
+    private long stopTime = 0;
+       private boolean running = false;
+    private long elapsedTime = 0;
 
     private EngineOptions options;
     private Engine engine;
@@ -192,6 +201,8 @@ public class TwitchController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+        
+      
 
     }
 
@@ -208,26 +219,36 @@ public class TwitchController implements Initializable {
     @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
+             stopTimer();
+           storeWatchtime();
     }
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
         App.setRoot("Youtube");
+             stopTimer();
+           storeWatchtime();
     }
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+           App.setRoot("Twitch_video");
+                stopTimer();
+           storeWatchtime();
     }
 
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
+             stopTimer();
+           storeWatchtime();
     }
 
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
+             stopTimer();
+           storeWatchtime();
     }
 
     @FXML
@@ -286,6 +307,113 @@ public class TwitchController implements Initializable {
             onOff = 0;
         }
 
+    }
+     private void startTimer() {
+        startTime = System.currentTimeMillis();
+        running = true;
+
+    }
+
+    private void stopTimer() {
+        stopTime = System.currentTimeMillis();
+        running = false;
+        elapsedTime = stopTime - startTime;
+     
+    }
+    
+         double  totalTwitchWatchTimeFromYesterday;
+    
+    public void caluluateTwitchTotalWeeklyWatchtime(){
+        
+         
+                switch (day) {
+              case Calendar.MONDAY:
+         totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));            
+           Map<String, Object> WeeklyWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                     WeeklyWatchTimeMap.put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(  WeeklyWatchTimeMap);
+                    
+        
+        break;
+
+    case Calendar.TUESDAY:
+          totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));   
+           Map<String, Object> WeeklyTuesdayWatchTimeMap =UserData.getInstance().getTwitchDailyWatchDataMap();
+                     WeeklyTuesdayWatchTimeMap.put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(  WeeklyTuesdayWatchTimeMap);
+                     
+        
+        break;
+
+
+    case Calendar.WEDNESDAY:
+   totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+             totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));      
+           Map<String, Object> WeeklyWednesdayWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                     WeeklyWednesdayWatchTimeMap.put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(  WeeklyWednesdayWatchTimeMap);
+    
+        break;
+
+    case Calendar.THURSDAY:
+                 totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+            totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));   
+           Map<String, Object> WeeklyThursdayWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                     WeeklyThursdayWatchTimeMap .put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(  WeeklyThursdayWatchTimeMap );
+                    
+   
+        
+        break;
+
+    case Calendar.FRIDAY:
+              totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+             totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));   
+           Map<String, Object> WeeklyFridayWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                    WeeklyFridayWatchTimeMap .put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(     WeeklyFridayWatchTimeMap);
+                    
+        break;
+
+    case Calendar.SATURDAY:
+             
+            totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+           totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));   
+           Map<String, Object> WeeklySaturdayWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                  WeeklySaturdayWatchTimeMap.put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime( WeeklySaturdayWatchTimeMap);
+        break;
+
+
+    case Calendar.SUNDAY:
+           totalTwitchWatchTimeFromYesterday= (double)  userData.getTwitchDailyWatchDataMap().get( "WeeklyWatchTime");   
+         totalTwitchWeeklyWatchTime=  totalTwitchWatchTimeFromYesterday+((double)  userData.getTwitchDailyWatchDataMap().get(dateString));   
+           Map<String, Object> WeeklySundayWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                  WeeklySundayWatchTimeMap .put("WeeklyWatchTime", totalTwitchWeeklyWatchTime) ;
+                    UserData.getInstance().updateTwitchWatchTime(  WeeklySundayWatchTimeMap);
+        
+        break;
+    }
+
+        //TODO: make the interface more dynamic (hard)
+    }
+     public void storeWatchtime(){
+          double currenttime = (double)userData.getTwitchDailyWatchDataMap().get(dateString);
+          double miunteswatchtime = (double) elapsedTime /6000; // convert to minutes
+         double newwatchtime = (double) elapsedTime / (1000 * 60 * 60); // convert to hours
+          System.out.println("the watch time "+ miunteswatchtime );
+               System.out.println("the watch time "+newwatchtime );
+               currenttime +=  newwatchtime;
+        
+            Map<String, Object> dailyWatchTimeMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+                        //caluluateTotalWeeklyWatchtime(time);
+                     dailyWatchTimeMap .put(dateString, currenttime);
+                
+                     UserData.getInstance().updateTwitchWatchTime( dailyWatchTimeMap);
+                      caluluateTwitchTotalWeeklyWatchtime();
+        
     }
 
     public void loadPage(String vid) {

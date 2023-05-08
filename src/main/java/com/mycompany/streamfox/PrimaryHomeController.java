@@ -111,7 +111,7 @@ public class PrimaryHomeController implements Initializable {
         switch (day) {
             case Calendar.MONDAY:
                 dateString = "mondayWatchTime";
-                // yesterDayString="sundayWatchTime";
+                yesterDayString="sundayWatchTime";
 
                 break;
 
@@ -482,7 +482,7 @@ public class PrimaryHomeController implements Initializable {
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+        App.setRoot("Twitch_video");
     }
 
     @FXML

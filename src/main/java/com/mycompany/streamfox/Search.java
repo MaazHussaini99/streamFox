@@ -7,6 +7,9 @@ package com.mycompany.streamfox;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import java.io.IOException;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -45,4 +48,8 @@ public class Search {
         }
         return help;
     }
+    
+      
+     
+    
 }

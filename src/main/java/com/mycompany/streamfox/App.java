@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Optional;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
@@ -98,5 +101,7 @@ public class App extends Application {
     public static void setHeight(int heightNew){
         height = heightNew;
     } 
+
+
 
 }

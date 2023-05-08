@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -166,4 +169,8 @@ public class TwitchVids {
         }
     }
 
-}
+     
+
+    } 
+    
+

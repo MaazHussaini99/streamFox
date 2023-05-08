@@ -20,6 +20,7 @@ import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -28,7 +29,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -111,7 +114,7 @@ public class PrimaryHomeController implements Initializable {
         switch (day) {
             case Calendar.MONDAY:
                 dateString = "mondayWatchTime";
-                yesterDayString="sundayWatchTime";
+                yesterDayString = "sundayWatchTime";
 
                 break;
 
@@ -684,4 +687,50 @@ public class PrimaryHomeController implements Initializable {
         }
 
     }
+
+    public void CheckTotalWatchTimeLimit() {
+
+        double tempDailyWatchTime = (double) userData.getWatchTimeSettingsDataMap().get("setDailyWatchTime");
+        double tempWeeklyWatchTime = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyWatchTime");
+        String dailyTime = String.valueOf(Math.round(tempDailyWatchTime * 60));
+        String weeklyTime = String.valueOf(Math.round(tempWeeklyWatchTime * 60));
+
+        double dailywatchtimelimit = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+        System.out.print("current Daily Watch time Limit is" + dailywatchtimelimit);
+
+        double WeeklyWatchtimelimit = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+        String dailyLimit = String.valueOf(Math.round(dailywatchtimelimit * 60));
+        String WeeklyLimit = String.valueOf(Math.round(WeeklyWatchtimelimit * 60));
+
+        System.out.print("current Daily Watch time Limit is" + dailyLimit);
+
+        System.out.print("current Weekly Watch time Limit is" + WeeklyLimit);
+
+        if (dailyLimit.equals(dailyTime) || WeeklyLimit.equals(weeklyTime)) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+            alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                System.exit(0);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+
+        }
+
+    }
+
 }

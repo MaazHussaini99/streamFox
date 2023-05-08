@@ -342,7 +342,11 @@ public class PrimarySettingsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Integer> ov, Integer t, Integer t1) {
                 totalDaily = DailyWatchTime.getValue();
-                if (totalDaily > totalWeekly) {
+               YoutubeDailyValue = YoutubeDailyWatchTime.getValue();
+                YoutubeWeeklyValue = YoutubeWeeklyWatchTime.getValue();
+                    TwitchDailyValue = TwitchDailyWatchTime.getValue();
+                TwitchWeeklyValue = TwitchWeeklyWatchTime.getValue();
+                if (totalDaily > totalWeekly && YoutubeDailyValue > totalWeekly && TwitchDailyValue > totalWeekly   ) {
                     DailyWatchTime.decrement();
 
                     Node increment = DailyWatchTime.lookup(".increment-arrow-button");
@@ -374,7 +378,7 @@ public class PrimarySettingsController implements Initializable {
                 YoutubeWeeklyValue = YoutubeWeeklyWatchTime.getValue();
                 if (hasTwitchWeeklyChanged) {
                     totalWeekly = YoutubeWeeklyValue + TwitchWeeklyValue;
-                    if (totalWeekly > totalDaily) {
+                    if (totalWeekly > totalDaily)   {
                         WeeklyWatchTime.getValueFactory().setValue(totalWeekly);
                     } else {
                         totalWeekly = totalDaily;
@@ -503,6 +507,49 @@ public class PrimarySettingsController implements Initializable {
 
     }
 
+      public void CheckTotalWatchTimeLimit() {
+
+        double tempDailyWatchTime = (double) userData.getWatchTimeSettingsDataMap().get("setDailyWatchTime");
+        double tempWeeklyWatchTime = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyWatchTime");
+        String dailyTime = String.valueOf(Math.round(tempDailyWatchTime * 60));
+        String weeklyTime = String.valueOf(Math.round(tempWeeklyWatchTime * 60));
+
+        double dailywatchtimelimit = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+        System.out.print("current Daily Watch time Limit is" + dailywatchtimelimit);
+
+        double WeeklyWatchtimelimit = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+        String dailyLimit = String.valueOf(Math.round(dailywatchtimelimit * 60));
+        String WeeklyLimit = String.valueOf(Math.round(WeeklyWatchtimelimit * 60));
+
+        System.out.print("current Daily Watch time Limit is" + dailyLimit);
+
+        System.out.print("current Weekly Watch time Limit is" + WeeklyLimit);
+
+        if (dailyLimit.equals(dailyTime) || WeeklyLimit.equals(weeklyTime)) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                System.exit(0);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+
+        }
+
+    } 
+    
     /**
      * switches the application to and from fullscreen mode
      */

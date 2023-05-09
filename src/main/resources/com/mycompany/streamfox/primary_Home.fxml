@@ -106,24 +106,7 @@
                                  <content>
                                     <AnchorPane prefWidth="1121.0" style="-fx-background-color: #000;">
                                        <children>
-                                          <HBox fx:id="twitchVids">
-                                             <children>
-                                                <VBox alignment="CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Button fx:id="twitchLiveBtn" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fx:id="liveLogo" fitHeight="200.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@twitchButtonLogo.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Label text="Twitch Live Streaming" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
+                                          <HBox fx:id="twitchVids" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -182,7 +165,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToTwitch" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#twitchMode1" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -208,7 +191,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTwitch" text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#twitchMode1" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -273,6 +273,20 @@ image-view:hover{
     -fx-cursor:hand;
 }
 
+.comment-button{
+    -fx-background-radius: 0 20 20 0;
+    -fx-background-color: #505050;
+    -fx-font-size: 11pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-min-width: 80;
+    -fx-pref-width: 80;
+    -fx-min-height: 35.2;
+    -fx-pref-height: 35.2;
+    -fx-font-family: "Montserrat";
+    -fx-cursor:hand;
+}
+
 .chart {
     -fx-background-color: #000;
     -fx-font-family: "Montserrat";

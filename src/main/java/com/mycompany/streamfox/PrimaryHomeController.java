@@ -61,9 +61,6 @@ public class PrimaryHomeController implements Initializable {
     private HBox twitchVids;
 
     @FXML
-    private Button twitchLiveBtn;
-
-    @FXML
     private ImageView minimizeWindow;
 
     @FXML
@@ -320,8 +317,8 @@ public class PrimaryHomeController implements Initializable {
                 testvb2[j] = new VBox();
                 ImageView imv2 = new ImageView();
                 String currentBoxArt = vid[j][0].boxArt;
-                int width = 100;
-                int height = 150;
+                int width = 200;
+                int height = 300;
                 String formattedString = currentBoxArt
                         .replace("{width}", String.valueOf(width))
                         .replace("{height}", String.valueOf(height));
@@ -329,8 +326,8 @@ public class PrimaryHomeController implements Initializable {
                 System.out.println(vid[0][0].gameId);
                 System.out.println(vid[1][0].gameId);
                 Image img2 = new Image(formattedString);
-                imv2.setFitWidth(75);
-                imv2.setFitHeight(150);
+                imv2.setFitWidth(200);
+                imv2.setFitHeight(300);
                 imv2.setImage(img2);
 
                 int placeholder = j;
@@ -353,49 +350,6 @@ public class PrimaryHomeController implements Initializable {
                 twitchVids.getChildren().add(testvb2[j]);
 
             }
-        }
-
-        testvb2 = new VBox[vid.length];
-
-        for (int j = 0; j < 5; j++) {
-            testvb2[j] = new VBox();
-            ImageView imv2 = new ImageView();
-            String currentBoxArt = vid[j][0].boxArt;
-            int width = 100;
-            int height = 150;
-            String formattedString = currentBoxArt
-                    .replace("{width}", String.valueOf(width))
-                    .replace("{height}", String.valueOf(height));
-            System.out.println(formattedString);
-            System.out.println(vid[0][0].gameId);
-            System.out.println(vid[1][0].gameId);
-            Image img2 = new Image(formattedString);
-            imv2.setFitWidth(200);
-            imv2.setFitHeight(300);
-            imv2.setImage(img2);
-
-            int placeholder = j;
-            imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent event) {
-
-                    System.out.println("working");
-
-                    TwitchHome.indexVid = placeholder;
-
-                    try {
-                        twitchMode(event);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            });
-
-            testvb2[j].getChildren().add(imv2);
-
-            twitchVids.getChildren().add(testvb2[j]);
-
         }
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
@@ -474,6 +428,11 @@ public class PrimaryHomeController implements Initializable {
     void twitchMode(MouseEvent event) throws IOException {
         App.setRoot("Twitch_Primary");
     }
+    
+    @FXML
+    void twitchMode1(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
+    }
 
     @FXML
     void switchToYT(ActionEvent event) throws IOException {
@@ -505,7 +464,8 @@ public class PrimaryHomeController implements Initializable {
         //TODO: make the interface more dynamic (hard)
         System.out.println("fullscreen");
         ytVids.getChildren().clear();
-
+        twitchVids.getChildren().clear();
+        
         VidObj[] help = new VidObj[50];
         try {
             VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
@@ -521,15 +481,7 @@ public class PrimaryHomeController implements Initializable {
         }
 
         App.fullscreen();
-
-        twitchVids.getChildren().clear();
-
-        VBox v1 = new VBox();
-        Label l = new Label("Twitch Live Streaming");
-        v1.getChildren().addAll(twitchLiveBtn, l);
-
-        twitchVids.getChildren().add(v1);
-
+        
         if (App.stage.isFullScreen() == false) {
             testvb = new VBox[help.length];
             for (int i = 0; i < 20; i++) {

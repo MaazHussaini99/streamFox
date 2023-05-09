@@ -144,7 +144,6 @@ public class PrimaryVideoController implements Initializable {
     private long stopTime = 0;
     private boolean running = false;
     private long elapsedTime = 0;
-    private DialogPane dialog;
     private Thread myThread;
     private final Lock lock = new ReentrantLock();
     boolean isThreadCompleted = false;

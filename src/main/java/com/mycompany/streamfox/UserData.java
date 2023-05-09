@@ -24,8 +24,15 @@ public final class UserData {
     private Map<String, Object> serviceListDataMap;
     private Map<String, Object> youtubeDailyWatchDataMap;
     private Map<String, Object> twitchDailyWatchDataMap;
-
     private Map<String, Object> watchTimeSettingsDataMap;
+    private Map<String, Object> DailyWatchDataMap;
+    private Map<String, Object> watchTimeDataMap;
+    private Map<String, Object> profileDataMapImage;
+
+    public Map<String, Object> getProfileDataMapImage() {
+        return profileDataMapImage;
+    }
+
     private String[] users;
 
     public Map<String, Object> getProfileDataMap() {
@@ -67,6 +74,19 @@ public final class UserData {
         } catch (ExecutionException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public Map<String, Object> setProfileImage(String uid) {
+        DocumentReference docRef = FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("profile");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        try {
+            return profileDataMapImage = future.get().getData();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (ExecutionException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public void updateProfile(Map<String, Object> profileMap) {

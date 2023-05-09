@@ -24,8 +24,8 @@
                   <Image url="@x-icon-white-25.jpg" />
                </image>
             </ImageView>
-            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" />
-            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button">
+            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" />
+            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button" AnchorPane.rightAnchor="204.8">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,6 +125,15 @@
                                     <Insets bottom="30.0" />
                                  </VBox.margin>
                               </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField fx:id="commentText" promptText="Add your comment here. . . " styleClass="search-field" />
+                                    <Button fx:id="submitComment" mnemonicParsing="false" onAction="#submitComment" styleClass="comment-button" text="Submit" />
+                                 </children>
+                              </HBox>
+                              <Label text="StreamFox Comments" />
+                              <ListView fx:id="platformCommentView" layoutX="10.0" layoutY="499.0" prefHeight="232.0" prefWidth="550.0" />
+                              <Label text="YouTube Comments" />
                               <ListView fx:id="commentView" prefHeight="462.0" prefWidth="550.0" />
                            </children>
                         </VBox>
@@ -161,7 +170,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#twitchMode" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -198,7 +207,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="-0.06666666666666288" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
+      <AnchorPane fx:id="frontPane" prefHeight="454.0" prefWidth="179.0" style="-fx-background-color: #121212;" visible="false" AnchorPane.bottomAnchor="-0.06666666666666288" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="45.666666666666664">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -208,7 +217,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false"  text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#twitchMode" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

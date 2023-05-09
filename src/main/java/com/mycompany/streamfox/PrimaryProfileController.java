@@ -677,6 +677,12 @@ public class PrimaryProfileController implements Initializable {
         App.setRoot("Twitch_video");
     }
 
+    @FXML
+    void twitchMode(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
+    }
+    
+
     /**
      * switches the application to and from fullscreen mode
      */

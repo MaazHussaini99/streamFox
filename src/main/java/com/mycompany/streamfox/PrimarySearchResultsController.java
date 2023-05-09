@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +65,11 @@ public class PrimarySearchResultsController implements Initializable {
 
     private int onOff = 0;
 
+    public static VidObj[] Searchresults;
+    
+    @FXML
+    private TextField searchTxtField;
+    
     private boolean fullscreenBool;
 
     public static String VIDload;
@@ -229,6 +235,19 @@ public class PrimarySearchResultsController implements Initializable {
         System.exit(0);
     }
 
+     @FXML
+    void searchFunction(ActionEvent event) throws IOException {
+
+        Searchresults = Search.returnArray(searchTxtField.getText());
+        PrimarySearchResultsController.SearchControllerresults = Searchresults;
+        if (searchTxtField.getText() == null) {
+            System.out.println("Error in search");
+        } else {
+            App.setRoot("primary_SearchResult");
+        }
+
+    }
+    
     @FXML
     void minimizeCommand(MouseEvent event) {
         App.stage.setIconified(true);
@@ -259,6 +278,11 @@ public class PrimarySearchResultsController implements Initializable {
     }
 
     @FXML
+    void twitchMode(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
+    }
+    
+    @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
     }
@@ -275,8 +299,10 @@ public class PrimarySearchResultsController implements Initializable {
     private void fullscreen() {
         firebaseAuth = FirebaseAuth.getInstance();
 
-        VidObj[] help = PrimaryVideoController.Searchresults;
+        VidObj[] help;
 
+        help = SearchControllerresults;
+        
         searchResultsBox.getChildren().clear();
         System.out.println("fullscreen");
         App.fullscreen();

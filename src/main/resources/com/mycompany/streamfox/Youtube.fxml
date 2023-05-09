@@ -35,8 +35,8 @@
                   <Image url="@fullscreen.png" />
                </image>
             </ImageView>
-            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" />
-            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button">
+            <TextField fx:id="searchTxtField" layoutX="240.0" layoutY="4.0" styleClass="search-field" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" />
+            <Button layoutX="560.0" layoutY="4.0" minHeight="35.0" minWidth="122.0" mnemonicParsing="false" onAction="#searchFunction" prefHeight="35.0" prefWidth="122.0" styleClass="search-button" AnchorPane.rightAnchor="204.8">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -169,7 +169,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#twitchMode" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -216,7 +216,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTwitch" text="Twitch" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#twitchMode" text="Twitch" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -35,8 +35,8 @@ public class FirebaseStart {
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://streamfox-966e7-default-rtdb.firebaseio.com/")
-                .setFirestoreOptions(FirestoreOptions.getDefaultInstance())
                 .setStorageBucket("streamfox-966e7.appspot.com")
+                .setFirestoreOptions(FirestoreOptions.getDefaultInstance())
                 .build();
 
         fa = FirebaseApp.initializeApp(options);

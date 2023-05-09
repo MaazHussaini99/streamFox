@@ -416,6 +416,11 @@ public class TwitchController implements Initializable {
     }
 
     @FXML
+    void twitchMode(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
+    }
+
+    @FXML
     void switchToHome(ActionEvent event) throws IOException {
         App.setRoot("primary_Home");
         stopTimer();

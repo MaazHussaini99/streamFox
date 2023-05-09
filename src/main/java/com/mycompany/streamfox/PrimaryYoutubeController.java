@@ -545,6 +545,11 @@ public class PrimaryYoutubeController implements Initializable {
     }
 
     @FXML
+    void twitchMode(ActionEvent event) throws IOException {
+        App.setRoot("Twitch_Primary");
+    }
+    
+    @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("Settings");
     }

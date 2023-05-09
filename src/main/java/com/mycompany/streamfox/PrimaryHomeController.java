@@ -20,6 +20,7 @@ import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -28,7 +29,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
@@ -96,6 +100,7 @@ public class PrimaryHomeController implements Initializable {
     public static String twoDaysAgoString;
 
     public static double totalWeeklyWatchTime;
+    private DialogPane dialog;
 
 // int currentDayOfYesterdayValue = Instant.now().minus(1, ChronoUnit.DAYS).atZone(ZoneId.systemDefault()).getDayOfWeek().getValue();
     boolean hasWatchtimeChanged = false;
@@ -108,7 +113,7 @@ public class PrimaryHomeController implements Initializable {
         switch (day) {
             case Calendar.MONDAY:
                 dateString = "mondayWatchTime";
-                // yesterDayString="sundayWatchTime";
+                yesterDayString = "sundayWatchTime";
 
                 break;
 
@@ -355,6 +360,48 @@ public class PrimaryHomeController implements Initializable {
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
 
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+        CheckTotalWatchTimeLimit();
+    }
+
+    void CheckTotalWatchTimeLimit() {
+
+        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
+        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
+        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
+
+        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+
+        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+
+        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+
+        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
+
+        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+            alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                System.exit(0);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+        }
 
     }
 
@@ -441,7 +488,7 @@ public class PrimaryHomeController implements Initializable {
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+        App.setRoot("Twitch_video");
     }
 
     @FXML

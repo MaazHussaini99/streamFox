@@ -15,10 +15,10 @@ public class NewUser {
 
     private static Map<String, String> profileMap = new HashMap();
     private static Map<String, Boolean> serviceListMap = new HashMap();
-    private static Map<String, Integer> watchtimeMap = new HashMap();
+    private static Map<String, Double> watchtimeMap = new HashMap();
     private static Map<String, Double> serviceWatchtimeMap = new HashMap();
 
-    public static void setNewProfile(String uid, String email, String fname, String lname, String refreshToken) {
+    public static void setNewUserProfile(String uid, String email, String fname, String lname, String refreshToken) {
         profileMap.put("fname", fname);
         profileMap.put("lname", lname);
         profileMap.put("email", email);
@@ -28,7 +28,7 @@ public class NewUser {
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("profile").set(profileMap);
     }
 
-    public static void setNewServiceList(String uid) {
+    public static void setNewUserServiceList(String uid) {
         serviceListMap.put("hbomax", true);
         serviceListMap.put("hulu", true);
         serviceListMap.put("netflix", true);
@@ -38,17 +38,17 @@ public class NewUser {
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("serviceList").set(serviceListMap);
     }
 
-    public static void setNewWatchtime(String uid) {
-        watchtimeMap.put("currentDailyWatchtime", 0);
-        watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+    public static void setNewUserSettingsWatchtime(String uid) {
+        watchtimeMap.put("currentDailyWatchtime", 0.001);
+        watchtimeMap.put("currentWeeklyWatchtime", 0.001);
+        watchtimeMap.put("setDailyLimit", 6.001);
+        watchtimeMap.put("setWeeklyLimit", 42.001);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("watchtime").set(watchtimeMap);
 
     }
 
-    public static void setServiceWatchtime(String uid) {
+    public static void setNewUserServiceWatchtime(String uid) {
 
         serviceWatchtimeMap.put("currentDailyWatchtime", 0.001);
         serviceWatchtimeMap.put("currentWeeklyWatchtime", 0.001);

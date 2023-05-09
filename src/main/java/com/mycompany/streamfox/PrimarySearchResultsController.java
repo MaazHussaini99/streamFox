@@ -274,7 +274,7 @@ public class PrimarySearchResultsController implements Initializable {
 
     @FXML
     void switchToTwitch(ActionEvent event) throws IOException {
-        App.setRoot("Twitch_video_");
+        App.setRoot("Twitch_video");
     }
 
     @FXML

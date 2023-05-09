@@ -15,7 +15,7 @@ public class NewUser {
 
     private static Map<String, String> profileMap = new HashMap();
     private static Map<String, Boolean> serviceListMap = new HashMap();
-    private static Map<String, Integer> watchtimeMap = new HashMap();
+    private static Map<String, Double> watchtimeMap = new HashMap();
     private static Map<String, Double> serviceWatchtimeMap = new HashMap();
 
     public static void setNewUserProfile(String uid, String email, String fname, String lname, String refreshToken) {
@@ -39,10 +39,10 @@ public class NewUser {
     }
 
     public static void setNewUserSettingsWatchtime(String uid) {
-        watchtimeMap.put("currentDailyWatchtime", 0);
-        watchtimeMap.put("currentWeeklyWatchtime", 0);
-        watchtimeMap.put("setDailyLimit", 6);
-        watchtimeMap.put("setWeeklyLimit", 50);
+        watchtimeMap.put("currentDailyWatchtime", 0.001);
+        watchtimeMap.put("currentWeeklyWatchtime", 0.001);
+        watchtimeMap.put("setDailyLimit", 6.001);
+        watchtimeMap.put("setWeeklyLimit", 42.001);
 
         FirebaseStart.db.collection("maaz example").document(uid).collection("settings").document("watchtime").set(watchtimeMap);
 

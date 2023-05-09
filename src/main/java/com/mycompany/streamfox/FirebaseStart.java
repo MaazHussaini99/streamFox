@@ -43,7 +43,6 @@ public class FirebaseStart {
         db = FirestoreClient.getFirestore(fa);
     }
 
-
     public static DatabaseReference getDatabaseReference(String path) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance(fa);
         return firebaseDatabase.getReference(path);

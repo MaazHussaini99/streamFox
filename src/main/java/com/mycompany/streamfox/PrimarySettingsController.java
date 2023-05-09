@@ -14,6 +14,7 @@ import static com.mycompany.streamfox.App.height;
 import static com.mycompany.streamfox.App.width;
 import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -418,6 +419,49 @@ public class PrimarySettingsController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+        CheckTotalWatchTimeLimit();
+    }
+
+    void CheckTotalWatchTimeLimit() {
+
+        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
+        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
+        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
+
+        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+
+        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+
+        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+
+        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
+
+        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+            alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                System.exit(0);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+        }
+
     }
 
     @FXML
@@ -473,23 +517,23 @@ public class PrimarySettingsController implements Initializable {
 
     @FXML
     void saveSettingsChanges(ActionEvent event) {
-        //for when save is pressed
+//        //for when save is pressed
 
         Map<String, Object> totalSettingsWatchTimeLimitMap = UserData.getInstance().getWatchTimeSettingsDataMap();
-        totalSettingsWatchTimeLimitMap.put("setDailyLimit", totalDaily);
-        totalSettingsWatchTimeLimitMap.put("setWeeklyLimit", totalWeekly);
+        totalSettingsWatchTimeLimitMap.put("setDailyLimit", totalDaily % 1 == 0 ? totalDaily + 0.01 : totalDaily);
+        totalSettingsWatchTimeLimitMap.put("setWeeklyLimit", totalWeekly % 1 == 0 ? totalWeekly + 0.01 : totalWeekly);
         UserData.getInstance().updateSettingsForTotalWatchTime(totalSettingsWatchTimeLimitMap);
-        
-          Map<String, Object> totalTwitchWatchTimeLimitMap = UserData.getInstance().getTwitchDailyWatchDataMap();
-         totalTwitchWatchTimeLimitMap.put("setDailyLimit", TwitchDailyValue);
-         totalTwitchWatchTimeLimitMap.put("setWeeklyLimit", TwitchWeeklyValue);
-        UserData.getInstance().updateTwitchWatchTime( totalTwitchWatchTimeLimitMap);
-        
-            Map<String, Object> totalYoutubeWatchTimeLimitMap = UserData.getInstance().getYTDailyWatchDataMap();
-          totalYoutubeWatchTimeLimitMap.put("setDailyLimit", YoutubeDailyValue);
-         totalYoutubeWatchTimeLimitMap.put("setWeeklyLimit", YoutubeWeeklyValue);
-        UserData.getInstance().updateYoutubeWatchTime( totalYoutubeWatchTimeLimitMap);
-        
+
+        Map<String, Object> totalTwitchWatchTimeLimitMap = UserData.getInstance().getTwitchDailyWatchDataMap();
+        totalTwitchWatchTimeLimitMap.put("setDailyLimit", TwitchDailyValue % 1 == 0 ? TwitchDailyValue + 0.01 : TwitchDailyValue);
+        totalTwitchWatchTimeLimitMap.put("setWeeklyLimit", TwitchWeeklyValue % 1 == 0 ? TwitchWeeklyValue + 0.01 : TwitchWeeklyValue);
+        UserData.getInstance().updateTwitchWatchTime(totalTwitchWatchTimeLimitMap);
+
+        Map<String, Object> totalYoutubeWatchTimeLimitMap = UserData.getInstance().getYTDailyWatchDataMap();
+        totalYoutubeWatchTimeLimitMap.put("setDailyLimit", YoutubeDailyValue % 1 == 0 ? YoutubeDailyValue + 0.01 : YoutubeDailyValue);
+        totalYoutubeWatchTimeLimitMap.put("setWeeklyLimit", YoutubeWeeklyValue % 1 == 0 ? YoutubeWeeklyValue + 0.01 : YoutubeWeeklyValue);
+        UserData.getInstance().updateYoutubeWatchTime(totalYoutubeWatchTimeLimitMap);
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         //Setting the title
         alert.setTitle("Streamfox Settings Change notification");

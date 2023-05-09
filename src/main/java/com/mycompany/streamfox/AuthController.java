@@ -53,10 +53,9 @@ import javafx.stage.StageStyle;
 
 public class AuthController implements Initializable {
 
-    
-   public static Calendar calendar = Calendar.getInstance();
-    public static int day =calendar.get(Calendar.DAY_OF_WEEK);
-      
+    public static Calendar calendar = Calendar.getInstance();
+    public static int day = calendar.get(Calendar.DAY_OF_WEEK);
+
     @FXML
     private Label accQuestionLabel;
 
@@ -79,14 +78,11 @@ public class AuthController implements Initializable {
 
     private DialogPane dialog;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailTxtField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         passwordField.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
-       
-        
-    
+
     }
 
     @FXML
@@ -119,8 +115,7 @@ public class AuthController implements Initializable {
     }
 
     void login(ActionEvent event) {
-       
-        
+
         String email = emailTxtField.getText();
         String password = passwordField.getText();
         if (checkRegex(email, password)) {
@@ -159,13 +154,10 @@ public class AuthController implements Initializable {
                     App.setWidth(800);
                     App.setHeight(500);
                     App.scene = new Scene(loadFXML("primary_Home"), App.width, App.height);
-                    
-                    
-                    
-                    App.stage.setScene(App.scene);
-                    
-                    //App.setRoot("primary");
 
+                    App.stage.setScene(App.scene);
+
+                    //App.setRoot("primary");
                 }
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -209,7 +201,7 @@ public class AuthController implements Initializable {
             CreateRequest req = new CreateRequest().setEmail(email).setPassword(password);
             try {
                 firebaseAuth.createUser(req);
-                
+
                 //add primary screen functionality
                 userCreatedAlert();
             } catch (FirebaseAuthException ex) {
@@ -289,10 +281,10 @@ public class AuthController implements Initializable {
         dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
         alert.showAndWait();
     }
-    
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
+
 }

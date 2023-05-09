@@ -164,7 +164,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#twitchMode" style="-fx-background-color: gray;" styleClass="imagebutton" stylesheets="@primarystylesheet.css">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -210,7 +210,7 @@
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToHome" text="Home" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToYT" text="Youtube" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTwitch" style="-fx-background-color: gray;" text="Twitch">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#twitchMode" style="-fx-background-color: gray;" text="Twitch">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

@@ -131,17 +131,16 @@ public class AuthControllerSignUp implements Initializable {
                     User user = User.getInstance();
                     user.setUserEmail(email);
                     user.setUid(userRecord.getUid());
-                    
+
                     //setting new user
-                    NewUser.setNewProfile(user.getUid(), user.getUserEmail(), firstNameField.getText(), lastNameField.getText(), YoutubeApiEngine.refreshToken);
-                    NewUser.setNewServiceList(user.getUid());
-                    NewUser.setNewWatchtime(user.getUid());
-                    NewUser.setServiceWatchtime(user.getUid());
+                    NewUser.setNewUserProfile(user.getUid(), user.getUserEmail(), firstNameField.getText(), lastNameField.getText(), YoutubeApiEngine.refreshToken);
+                    NewUser.setNewUserServiceList(user.getUid());
+                    NewUser.setNewUserSettingsWatchtime(user.getUid());
+                    NewUser.setNewUserServiceWatchtime(user.getUid());
                     //System.out.println(user);
                 } catch (FirebaseAuthException ex) {
                     ex.printStackTrace();
                 }
-                
 
                 App.setRoot("authentication");
             } catch (FirebaseAuthException ex) {

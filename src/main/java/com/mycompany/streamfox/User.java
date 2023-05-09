@@ -11,18 +11,18 @@ import com.google.firebase.auth.UserRecord;
  * @author maazh
  */
 public final class User {
-    
+
     private final static User INSTANCE = new User();
     private String userEmail;
     private String uid;
 
     private User() {
     }
-    
-    public static User getInstance(){
+
+    public static User getInstance() {
         return INSTANCE;
     }
-    
+
     public String getUserEmail() {
         return userEmail;
     }
@@ -31,7 +31,7 @@ public final class User {
     public String toString() {
         return "User{" + "userEmail=" + userEmail + ", uid=" + uid + '}';
     }
-    
+
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }

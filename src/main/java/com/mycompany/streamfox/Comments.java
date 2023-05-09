@@ -23,8 +23,7 @@ public class Comments {
         response = request.setKey("src/main/resources/youtube.json")
                 .setVideoId(videoId)
                 .execute();
-        
-        
+
 //        System.out.println("Comment: " + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getTextOriginal());
 //        System.out.println("Name:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName());
 //        System.out.println("Image URL:" + response.getItems().get(0).getSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl());

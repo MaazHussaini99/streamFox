@@ -7,10 +7,13 @@ package com.mycompany.streamfox;
 import com.google.api.services.youtube.model.CommentThread;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.internal.NonNull;
 import static com.mycompany.streamfox.FirebaseStart.getDatabaseReference;
 import static com.mycompany.streamfox.PrimaryVideoController.channelStartText;
 import static com.mycompany.streamfox.PrimaryVideoController.startVid;
@@ -50,6 +53,7 @@ import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import com.teamdev.jxbrowser.fullscreen.event.FullScreenEvent;
 import com.teamdev.jxbrowser.fullscreen.*;
+import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.stage.Screen;
 
@@ -145,73 +149,10 @@ public class TwitchController implements Initializable {
     private Engine engine;
     private Browser browser;
     private BrowserView view;
+    private Thread myThread;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        DatabaseReference videoRef = getDatabaseReference(startVid);
-
-        videoRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot uidSnapshot : dataSnapshot.getChildren()) {
-                    String uid = uidSnapshot.getKey();
-                    DatabaseReference uidRef = videoRef.child(uid);
-
-                    uidRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
-                                String commentId = commentSnapshot.getKey();
-                                String comment = commentSnapshot.child("text").getValue(String.class);
-                                platComments.add(userData.setProfileImage(uid).get("fname").toString() + " "
-                                        + userData.setProfileImage(uid).get("lname").toString() + ": " + comment);
-                                platImageUrls.add(userData.setProfileImage(uid).get("profileImage").toString());
-                                System.out.println(comment);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            // Handle errors that occur while reading the data
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle errors that occur while reading the data
-            }
-        });
-        platformCommentView.setItems(platComments);
-        platformCommentView.setCellFactory(param -> new ListCell<String>() {
-            private ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    setText(item);
-                    int index = getIndex();
-                    String imageUrl = platImageUrls.get(index);
-
-                    imageView.setImage(new Image(imageUrl));
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-                    setGraphic(imageView);
-                    // set the width's
-                    setMinWidth(param.getWidth());
-                    setMaxWidth(param.getWidth());
-                    setPrefWidth(param.getWidth());
-                    // allow wrapping
-                    setWrapText(true);
-                }
-            }
-        });
 
         options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
                 .enableProprietaryFeature(ProprietaryFeature.AAC)
@@ -226,18 +167,11 @@ public class TwitchController implements Initializable {
         browser.navigation().loadUrl("https://player.twitch.tv/?channel=" + channelStartText + "&parent=localhost&autoplay=false");
         view = BrowserView.newInstance(browser);
         view.setPrefSize(512, 288);
-
         view.setVisible(true);
 
-//        FullScreen fullScreen = browser.fullScreen();
-//        fullScreen.addFullScreenListener(event -> {
-//            if (event.isFullScreen()) {
-//                System.out.println("Entered full screen mode");
-//            } else {
-//                System.out.println("Exited full screen mode");
-//            }
-//        });
         videoView.getChildren().add(view);
+
+        runOnce();
 
         frontPane.setVisible(false);
         FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
@@ -280,6 +214,80 @@ public class TwitchController implements Initializable {
 
     }
 
+    void runOnce() {
+        DatabaseReference videoRef = getDatabaseReference(startVid);
+        myThread = new Thread(() -> {
+            System.out.println("Lock Started");
+            // code to be executed with the lock
+            videoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot uidSnapshot : dataSnapshot.getChildren()) {
+                        String uid = uidSnapshot.getKey();
+                        DatabaseReference uidRef = videoRef.child(uid);
+
+                        uidRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
+                                    String commentId = commentSnapshot.getKey();
+                                    String comment = commentSnapshot.child("text").getValue(String.class);
+                                    platComments.add(userData.setProfileImage(uid).get("fname").toString() + " "
+                                            + userData.setProfileImage(uid).get("lname").toString() + ": " + comment);
+                                    platImageUrls.add(userData.setProfileImage(uid).get("profileImage").toString());
+                                    System.out.println(comment);
+                                }
+                                // use Platform.runLater to update the UI after the thread completes
+                                Platform.runLater(() -> {
+                                    platformCommentView.setItems(platComments);
+                                    platformCommentView.setCellFactory(param -> new ListCell<String>() {
+                                        private ImageView imageView = new ImageView();
+
+                                        @Override
+                                        protected void updateItem(String item, boolean empty) {
+                                            super.updateItem(item, empty);
+                                            if (empty || item == null) {
+                                                setGraphic(null);
+                                                setText(null);
+                                            } else {
+                                                setText(item);
+                                                int index = getIndex();
+                                                String imageUrl = platImageUrls.get(index);
+
+                                                imageView.setImage(new Image(imageUrl));
+                                                imageView.setFitWidth(50);
+                                                imageView.setFitHeight(50);
+                                                setGraphic(imageView);
+                                                // set the width's
+                                                setMinWidth(param.getWidth());
+                                                setMaxWidth(param.getWidth());
+                                                setPrefWidth(param.getWidth());
+                                                // allow wrapping
+                                                setWrapText(true);
+                                            }
+                                        }
+                                    });
+                                    System.out.println("Lock ended");
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                // Handle errors that occur while reading the data
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors that occur while reading the data
+                }
+            });
+        });
+        myThread.start();
+    }
+
     @FXML
     void submitComment(ActionEvent event) throws IOException {
 
@@ -289,101 +297,59 @@ public class TwitchController implements Initializable {
         String newCommentText = commentText.getText();
         String newCommentId = uidRef.push().getKey(); // Generate a new comment ID
 
-        uidRef.child(newCommentId).child("text").setValue(newCommentText, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError != null) {
-                    // Handle the error
-                    System.out.println("Failed to add comment: " + databaseError.getMessage());
-                } else {
-                    // The comment was added successfully
-                    System.out.println("New comment added with ID: " + newCommentId);
+        Thread submitCommentThread = new Thread(() -> {
+
+            uidRef.child(newCommentId).child("text").setValue(newCommentText, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError != null) {
+                        // Handle the error
+
+                        System.out.println("Failed to add comment: " + databaseError.getMessage());
+                    } else {
+                        // The comment was added successfully
+                        platComments.add(userData.setProfileImage(user.getUid()).get("fname").toString() + " "
+                                + userData.setProfileImage(user.getUid()).get("lname").toString() + ": " + newCommentText);
+                        platImageUrls.add(userData.setProfileImage(user.getUid()).get("profileImage").toString());
+                        System.out.println("New comment added with ID: " + newCommentId);
+
+                        Platform.runLater(() -> {
+                            // Update the UI
+                            platformCommentView.setItems(platComments);
+                            platformCommentView.setCellFactory(param -> new ListCell<String>() {
+                                private ImageView imageView = new ImageView();
+
+                                @Override
+                                protected void updateItem(String item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (empty || item == null) {
+                                        setGraphic(null);
+                                        setText(null);
+                                    } else {
+                                        setText(item);
+                                        int index = getIndex();
+                                        String imageUrl = platImageUrls.get(index);
+
+                                        imageView.setImage(new Image(imageUrl));
+                                        imageView.setFitWidth(50);
+                                        imageView.setFitHeight(50);
+                                        setGraphic(imageView);
+                                        // set the width's
+                                        setMinWidth(param.getWidth());
+                                        setMaxWidth(param.getWidth());
+                                        setPrefWidth(param.getWidth());
+                                        // allow wrapping
+                                        setWrapText(true);
+                                    }
+                                }
+                            });
+                        });
+                    }
                 }
-            }
+            });
+
         });
-        platComments.clear();
-        platImageUrls.clear();
-
-        videoRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot uidSnapshot : dataSnapshot.getChildren()) {
-                    String uid = uidSnapshot.getKey();
-                    DatabaseReference uidRef = videoRef.child(uid);
-
-                    uidRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
-                                String commentId = commentSnapshot.getKey();
-                                String comment = commentSnapshot.child("text").getValue(String.class);
-                                platComments.add(userData.setProfileImage(uid).get("fname").toString() + " "
-                                        + userData.setProfileImage(uid).get("fname").toString() + ": " + comment);
-                                platImageUrls.add(userData.setProfileImage(uid).get("profileImage").toString());
-                                System.out.println(comment);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            // Handle errors that occur while reading the data
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle errors that occur while reading the data
-            }
-        });
-
-//        videoRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot commentSnapshot : dataSnapshot.getChildren()) {
-//                    String commentId = commentSnapshot.getKey();
-//                    String comment = commentSnapshot.child("text").getValue(String.class);
-//                    platComments.add("Maaz Hussaini" + ": " + comment);
-//                    platImageUrls.add(userData.getProfileDataMap().get("profileImage").toString());
-//                    System.out.println(comment);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle errors that occur while reading the data
-//            }
-//        });
-        platformCommentView.setItems(platComments);
-        platformCommentView.setCellFactory(param -> new ListCell<String>() {
-            private ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    setText(item);
-                    int index = getIndex();
-                    String imageUrl = platImageUrls.get(index);
-
-                    imageView.setImage(new Image(imageUrl));
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-                    setGraphic(imageView);
-                    // set the width's
-                    setMinWidth(param.getWidth());
-                    setMaxWidth(param.getWidth());
-                    setPrefWidth(param.getWidth());
-                    // allow wrapping
-                    setWrapText(true);
-                }
-            }
-        });
-
+        submitCommentThread.start();
     }
 
     @FXML

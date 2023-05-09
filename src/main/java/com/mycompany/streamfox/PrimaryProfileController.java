@@ -347,8 +347,6 @@ public class PrimaryProfileController implements Initializable {
 
         youtubeSeries = new XYChart.Series();
         youtubeSeries.setName("Youtube");
-        youtubeSeries = new XYChart.Series();
-        youtubeSeries.setName("Youtube");
         youtubeSeries.getData().add(new XYChart.Data("Monday", fixWatchTime(userData.getYTDailyWatchDataMap().get("mondayWatchTime"))));
         youtubeSeries.getData().add(new XYChart.Data("Tuesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("tuesdayWatchTime"))));
         youtubeSeries.getData().add(new XYChart.Data("Wednesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("wednesdayWatchTime"))));
@@ -376,6 +374,7 @@ public class PrimaryProfileController implements Initializable {
                     youtubeOption.setSelected(false);
                     twitchOption.setSelected(false);
                     youtubeSeries = new XYChart.Series();
+                       youtubeSeries.setName("Youtube");
                     youtubeSeries.getData().add(new XYChart.Data("Monday", fixWatchTime(userData.getYTDailyWatchDataMap().get("mondayWatchTime"))));
                     youtubeSeries.getData().add(new XYChart.Data("Tuesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("tuesdayWatchTime"))));
                     youtubeSeries.getData().add(new XYChart.Data("Wednesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("wednesdayWatchTime"))));
@@ -420,6 +419,7 @@ public class PrimaryProfileController implements Initializable {
 
                     //    watchTimeGraph.layout();
                     youtubeSeries = new XYChart.Series();
+                       youtubeSeries.setName("Youtube");
                     youtubeSeries.getData().add(new XYChart.Data("Monday", fixWatchTime(userData.getYTDailyWatchDataMap().get("mondayWatchTime"))));
                     youtubeSeries.getData().add(new XYChart.Data("Tuesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("tuesdayWatchTime"))));
                     youtubeSeries.getData().add(new XYChart.Data("Wednesday", fixWatchTime(userData.getYTDailyWatchDataMap().get("wednesdayWatchTime"))));

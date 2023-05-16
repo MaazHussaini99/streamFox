@@ -64,6 +64,9 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -453,50 +456,86 @@ public class PrimaryProfileController implements Initializable {
         });
 
         //   watchTimeGraph.getData().addAll(youtubeSeries,twitchSeries);
-        CheckTotalWatchTimeLimit();
+//        CheckTotalWatchTimeLimit();
     }
-
-    void CheckTotalWatchTimeLimit() {
-
-        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
-        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
-        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
-        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
-
-        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
-        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
-
-        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
-
-        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
-
-        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
-
-        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
-            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+    
+    
+    
+    @FXML
+    public void  logOut(MouseEvent event) throws IOException{
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout Notification");
+            alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
             alert.setResizable(false);
             alert.setContentText("Are you sure? ");
             dialog = alert.getDialogPane();
             dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-            alert.showAndWait();
+     //       alert.showAndWait();
 
             Optional<ButtonType> result = alert.showAndWait();
             if (!result.isPresent()) {
 
             } // alert is exited, no button has been pressed.
             else if (result.get() == ButtonType.OK) {
-                System.exit(0);
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
             } //oke button is pressed
             else if (result.get() == ButtonType.CANCEL) {
                 alert.close();
 
             }
-        }
-
+        
     }
+private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+//    void CheckTotalWatchTimeLimit() {
+//
+//        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
+//        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+//        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
+//        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
+//
+//        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+//        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+//
+//        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+//
+//        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+//
+//        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
+//
+//        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
+//
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+//            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+//            alert.setResizable(false);
+//            alert.setContentText("Are you sure? ");
+//            dialog = alert.getDialogPane();
+//            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+//            alert.showAndWait();
+//
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if (!result.isPresent()) {
+//
+//            } // alert is exited, no button has been pressed.
+//            else if (result.get() == ButtonType.OK) {
+//                System.exit(0);
+//            } //oke button is pressed
+//            else if (result.get() == ButtonType.CANCEL) {
+//                alert.close();
+//
+//            }
+//        }
+//
+//    }
 
     private void setValues() {
         profFirstNameTxt.setText((String) userData.getProfileDataMap().get("fname"));

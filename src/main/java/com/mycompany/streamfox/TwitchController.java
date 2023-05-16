@@ -14,7 +14,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import static com.mycompany.streamfox.FirebaseStart.getDatabaseReference;
+<<<<<<< Updated upstream
 
+=======
+import static com.mycompany.streamfox.PrimaryHomeController.dateString;
+>>>>>>> Stashed changes
 import static com.mycompany.streamfox.PrimaryVideoController.channelStartText;
 import static com.mycompany.streamfox.PrimaryVideoController.startVid;
 import static com.mycompany.streamfox.PrimaryVideoController.titleStartText;
@@ -62,7 +66,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 =======
 import static javafx.collections.FXCollections.observableArrayList;
+<<<<<<< Updated upstream
 >>>>>>> master
+=======
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+>>>>>>> Stashed changes
 import javafx.stage.Screen;
 
 public class TwitchController implements Initializable {
@@ -167,6 +177,7 @@ public class TwitchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+<<<<<<< Updated upstream
         DatabaseReference videoRef = getDatabaseReference(startVid);
 
         videoRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -292,10 +303,69 @@ public class TwitchController implements Initializable {
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
         CheckTotalWatchTimeLimit();
         startTimer();
+=======
+        try {
+            options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
+                    .enableProprietaryFeature(ProprietaryFeature.AAC)
+                    .enableProprietaryFeature(ProprietaryFeature.H_264)
+                    .enableProprietaryFeature(ProprietaryFeature.WIDEVINE)
+                    .licenseKey("1BNDHFSC1G5ZOFBWG6WQUSLCBTDAYZZXMAP2GRH6RECP8NHENP4ZY4YHBV1MUUDQTXFCFF")
+                    .build();
+            
+            engine = Engine.newInstance(options);
+            browser = engine.newBrowser();
+            //loadPage(startVid);
+            browser.navigation().loadUrl("https://player.twitch.tv/?channel=" + channelStartText + "&parent=localhost&autoplay=false");
+            view = BrowserView.newInstance(browser);
+            view.setPrefSize(512, 288);
+            view.setVisible(true);
+            
+            videoView.getChildren().add(view);
+            
+            runOnce();
+            
+            frontPane.setVisible(false);
+            FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.play();
+            
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
+            tt.setByX(-200);
+            tt.play();
+            
+            topBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    App.xOffset = event.getSceneX();
+                    App.yOffset = event.getSceneY();
+                }
+            });
+            
+            //move around here
+            topBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    App.stage.setX(event.getScreenX() - App.xOffset);
+                    App.stage.setY(event.getScreenY() - App.yOffset);
+                }
+            });
+            
+            titleTxt.setText(titleStartText);
+            channelTxt.setText(channelStartText);
+            System.out.println(startVid);
+            
+            userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
+            userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
+            CheckTotalWatchTimeLimit();
+            startTimer();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+>>>>>>> Stashed changes
 
     }
-
-    void CheckTotalWatchTimeLimit() {
+    void CheckTotalWatchTimeLimit() throws IOException {
 
         double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
         double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
@@ -326,8 +396,13 @@ public class TwitchController implements Initializable {
             if (!result.isPresent()) {
 
             } // alert is exited, no button has been pressed.
-            else if (result.get() == ButtonType.OK) {
-                System.exit(0);
+           else if (result.get() == ButtonType.OK) {
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
             } //oke button is pressed
             else if (result.get() == ButtonType.CANCEL) {
                 alert.close();
@@ -336,7 +411,40 @@ public class TwitchController implements Initializable {
         }
 
     }
+    
+     @FXML
+    public void  logOut(MouseEvent event) throws IOException{
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout Notification");
+            alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+     //       alert.showAndWait();
 
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
     @FXML
     void searchFunction(ActionEvent event) throws IOException {
 
@@ -447,6 +555,8 @@ public class TwitchController implements Initializable {
         });
 
     }
+    
+    
 
     @FXML
     void closeCommand(MouseEvent event) {

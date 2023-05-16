@@ -27,7 +27,10 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -360,10 +363,10 @@ public class PrimaryHomeController implements Initializable {
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
 
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-        CheckTotalWatchTimeLimit();
+ //       CheckTotalWatchTimeLimit();
     }
 
-    void CheckTotalWatchTimeLimit() {
+    void CheckTotalWatchTimeLimit() throws IOException {
 
         double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
         double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
@@ -393,9 +396,14 @@ public class PrimaryHomeController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (!result.isPresent()) {
 
-            } // alert is exited, no button has been pressed.
+             } // alert is exited, no button has been pressed.
             else if (result.get() == ButtonType.OK) {
-                System.exit(0);
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
             } //oke button is pressed
             else if (result.get() == ButtonType.CANCEL) {
                 alert.close();
@@ -404,6 +412,41 @@ public class PrimaryHomeController implements Initializable {
         }
 
     }
+    
+        @FXML
+    public void  logOut(MouseEvent event) throws IOException{
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout Notification");
+            alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+     //       alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+    }
+        
+private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
 
     @FXML
     void switchToNetflix(ActionEvent event) throws IOException {

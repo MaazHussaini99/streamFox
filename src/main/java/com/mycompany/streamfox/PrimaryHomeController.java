@@ -85,6 +85,11 @@ public class PrimaryHomeController implements Initializable {
     @FXML
     private HBox ytVids;
 
+    @FXML
+    private Button youtubeButton;
+
+    @FXML
+    private Button youtubeButtonMenu;
     VBox[] testvb;
     VBox[] testvb2;
 
@@ -113,6 +118,96 @@ public class PrimaryHomeController implements Initializable {
         //  Map<String, Object> profileMap = UserData.getInstance().getProfileDataMap();
         //  profileMap.put("tommorrow's Date",  tomorrow );
         // UserData.getInstance().updateProfile(profileMap);
+        System.out.println("The value of YouTube: " + (boolean) userData.getServiceListDataMap().get("youtube"));
+        if ((boolean) userData.getServiceListDataMap().get("youtube") == false) {
+            ytVids.setVisible(false);
+            youtubeButton.setVisible(false);
+            youtubeButtonMenu.setVisible(false);
+        } else {
+            YoutubeApiEngine.initializeYoutube();
+            ytVids.setSpacing(20);
+            VidObj[] help = new VidObj[50];
+            try {
+                VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
+
+                for (int i = 0; i < 50; i++) {
+                    help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(),
+                            mostPopularVids.getItems().get(i).getSnippet().getTitle(),
+                            mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
+                    //mostPopularVids.getItems().get(i).getContentDetails().getDuration());
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if (App.stage.isFullScreen() == false) {
+                testvb = new VBox[help.length];
+                for (int i = 0; i < 20; i++) {
+                    testvb[i] = new VBox();
+                    ImageView imv = new ImageView();
+                    Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                    imv.setFitWidth(200);
+                    imv.setFitHeight(100);
+                    imv.setImage(img);
+                    Label tlabel = new Label();
+                    tlabel.setMaxWidth(200);
+                    tlabel.setText(help[i].title);
+
+                    int placeholder = i;
+                    imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                        @Override
+                        public void handle(MouseEvent event) {
+                            System.out.println("working");
+                            PrimaryVideoController.startVid = help[placeholder].id;
+                            PrimaryVideoController.titleStartText = help[placeholder].title;
+                            PrimaryVideoController.channelStartText = help[placeholder].channel;
+                            channelLoad = help[placeholder].channel;
+                            try {
+                                playVideoMode(event);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    });
+                    testvb[i].getChildren().add(imv);
+                    testvb[i].getChildren().add(tlabel);
+
+                    ytVids.getChildren().add(testvb[i]);
+                }
+            } else {
+                testvb = new VBox[help.length];
+                for (int i = 0; i < 20; i++) {
+                    testvb[i] = new VBox();
+                    ImageView imv = new ImageView();
+                    Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                    imv.setFitWidth(400);
+                    imv.setFitHeight(200);
+                    imv.setImage(img);
+                    Label tlabel = new Label();
+                    tlabel.setMaxWidth(400);
+                    tlabel.setText(help[i].title);
+
+                    int placeholder = i;
+                    imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                        @Override
+                        public void handle(MouseEvent event) {
+                            System.out.println("working");
+                            PrimaryVideoController.startVid = help[placeholder].id;
+                            PrimaryVideoController.titleStartText = help[placeholder].title;
+                            PrimaryVideoController.channelStartText = help[placeholder].channel;
+                        }
+                    });
+                    testvb[i].getChildren().add(imv);
+                    testvb[i].getChildren().add(tlabel);
+
+                    ytVids.getChildren().add(testvb[i]);
+
+                }
+            }
+
+        }
+
         switch (day) {
             case Calendar.MONDAY:
                 dateString = "mondayWatchTime";
@@ -156,7 +251,6 @@ public class PrimaryHomeController implements Initializable {
         //double totalWatchTimeForToday=(double)  userData.getYTDailyWatchDataMap().get(dateString);
 
         //     totalWeeklyWatchTime+=totalWatchTimeForToday;
-        YoutubeApiEngine.initializeYoutube();
         try {
             TwitchApiEngine.initializeTwitch();
             //TwitchVids.getVideo("1802420975");
@@ -192,63 +286,16 @@ public class PrimaryHomeController implements Initializable {
                 App.stage.setY(event.getScreenY() - App.yOffset);
             }
         });
-        ytVids.setSpacing(20);
 
-        twitchVids.setSpacing(20);
         //initialize youtube
         /*try {
             Comments.getCommentsFromVideo("QC6Q4Fge3uE");
         } catch (IOException ex) {
             ex.printStackTrace();
         }*/
-        VidObj[] help = new VidObj[50];
-        try {
-            VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
-
-            for (int i = 0; i < 50; i++) {
-                help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(),
-                        mostPopularVids.getItems().get(i).getSnippet().getTitle(),
-                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
-                //mostPopularVids.getItems().get(i).getContentDetails().getDuration());
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        twitchVids.setSpacing(20);
         if (App.stage.isFullScreen() == false) {
-            testvb = new VBox[help.length];
-            for (int i = 0; i < 20; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(200);
-                imv.setFitHeight(100);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(200);
-                tlabel.setText(help[i].title);
 
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        System.out.println("working");
-                        PrimaryVideoController.startVid = help[placeholder].id;
-                        PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].channel;
-                        channelLoad = help[placeholder].channel;
-                        try {
-                            playVideoMode(event);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
-
-                ytVids.getChildren().add(testvb[i]);
-            }
             testvb2 = new VBox[vid.length];
 
             for (int j = 0; j < 5; j++) {
@@ -290,35 +337,6 @@ public class PrimaryHomeController implements Initializable {
             }
         } else {
 
-            testvb = new VBox[help.length];
-            for (int i = 0; i < 20; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(400);
-                imv.setFitHeight(200);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(400);
-                tlabel.setText(help[i].title);
-
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        System.out.println("working");
-                        PrimaryVideoController.startVid = help[placeholder].id;
-                        PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].channel;
-                    }
-                });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
-
-                ytVids.getChildren().add(testvb[i]);
-
-            }
             testvb2 = new VBox[vid.length];
 
             for (int j = 0; j < 5; j++) {
@@ -518,7 +536,7 @@ private static Parent loadFXML(String fxml) throws IOException {
     void twitchMode(MouseEvent event) throws IOException {
         App.setRoot("Twitch_Primary");
     }
-    
+
     @FXML
     void twitchMode1(ActionEvent event) throws IOException {
         App.setRoot("Twitch_Primary");
@@ -552,62 +570,101 @@ private static Parent loadFXML(String fxml) throws IOException {
         firebaseAuth = FirebaseAuth.getInstance();
         //toggles fullscreen on and off
         //TODO: make the interface more dynamic (hard)
-        System.out.println("fullscreen");
-        ytVids.getChildren().clear();
-        twitchVids.getChildren().clear();
-        
-        VidObj[] help = new VidObj[50];
-        try {
-            VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
+        if ((boolean) userData.getServiceListDataMap().get("youtube") == false) {
+            ytVids.setVisible(false);
+            youtubeButton.setVisible(false);
+            youtubeButtonMenu.setVisible(false);
+        } else {
+            YoutubeApiEngine.initializeYoutube();
+            ytVids.getChildren().clear();
+            ytVids.setSpacing(20);
+            VidObj[] help = new VidObj[50];
+            try {
+                VideoListResponse mostPopularVids = YoutubeVids.getMostPopularVids();
 
-            for (int i = 0; i < 50; i++) {
-                help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(),
-                        mostPopularVids.getItems().get(i).getSnippet().getTitle(),
-                        mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
-                //mostPopularVids.getItems().get(i).getContentDetails().getDuration());
+                for (int i = 0; i < 50; i++) {
+                    help[i] = new VidObj(mostPopularVids.getItems().get(i).getId(),
+                            mostPopularVids.getItems().get(i).getSnippet().getTitle(),
+                            mostPopularVids.getItems().get(i).getSnippet().getChannelTitle());
+                    //mostPopularVids.getItems().get(i).getContentDetails().getDuration());
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            if (App.stage.isFullScreen() == false) {
+                testvb = new VBox[help.length];
+                for (int i = 0; i < 20; i++) {
+                    testvb[i] = new VBox();
+                    ImageView imv = new ImageView();
+                    Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                    imv.setFitWidth(200);
+                    imv.setFitHeight(100);
+                    imv.setImage(img);
+                    Label tlabel = new Label();
+                    tlabel.setMaxWidth(200);
+                    tlabel.setText(help[i].title);
+
+                    int placeholder = i;
+                    imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                        @Override
+                        public void handle(MouseEvent event) {
+                            System.out.println("working");
+                            PrimaryVideoController.startVid = help[placeholder].id;
+                            PrimaryVideoController.titleStartText = help[placeholder].title;
+                            PrimaryVideoController.channelStartText = help[placeholder].channel;
+                            channelLoad = help[placeholder].channel;
+                            try {
+                                playVideoMode(event);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    });
+                    testvb[i].getChildren().add(imv);
+                    testvb[i].getChildren().add(tlabel);
+
+                    ytVids.getChildren().add(testvb[i]);
+                }
+            } else {
+                testvb = new VBox[help.length];
+                for (int i = 0; i < 20; i++) {
+                    testvb[i] = new VBox();
+                    ImageView imv = new ImageView();
+                    Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
+                    imv.setFitWidth(400);
+                    imv.setFitHeight(200);
+                    imv.setImage(img);
+                    Label tlabel = new Label();
+                    tlabel.setMaxWidth(400);
+                    tlabel.setText(help[i].title);
+
+                    int placeholder = i;
+                    imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                        @Override
+                        public void handle(MouseEvent event) {
+                            System.out.println("working");
+                            PrimaryVideoController.startVid = help[placeholder].id;
+                            PrimaryVideoController.titleStartText = help[placeholder].title;
+                            PrimaryVideoController.channelStartText = help[placeholder].channel;
+                        }
+                    });
+                    testvb[i].getChildren().add(imv);
+                    testvb[i].getChildren().add(tlabel);
+
+                    ytVids.getChildren().add(testvb[i]);
+
+                }
+            }
+
         }
+        
+        twitchVids.getChildren().clear();
 
         App.fullscreen();
-        
+
         if (App.stage.isFullScreen() == false) {
-            testvb = new VBox[help.length];
-            for (int i = 0; i < 20; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(200);
-                imv.setFitHeight(100);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(200);
-                tlabel.setText(help[i].title);
-
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        System.out.println("working");
-                        PrimaryVideoController.startVid = help[placeholder].id;
-                        PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].channel;
-                        channelLoad = help[placeholder].channel;
-
-                        try {
-                            playVideoMode(event);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-
-                    }
-                });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
-                ytVids.getChildren().add(testvb[i]);
-            }
             testvb2 = new VBox[vid.length];
 
             for (int j = 0; j < 5; j++) {
@@ -652,77 +709,45 @@ private static Parent loadFXML(String fxml) throws IOException {
 
         } else {
 
-            testvb = new VBox[help.length];
-            for (int i = 0; i < 20; i++) {
-                testvb[i] = new VBox();
-                ImageView imv = new ImageView();
-                Image img = new Image("https://img.youtube.com/vi/" + help[i].id + "/sddefault.jpg");
-                imv.setFitWidth(400);
-                imv.setFitHeight(200);
-                imv.setImage(img);
-                Label tlabel = new Label();
-                tlabel.setMaxWidth(400);
-                tlabel.setText(help[i].title);
+            testvb2 = new VBox[vid.length];
 
-                int placeholder = i;
-                imv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            for (int j = 0; j < 5; j++) {
+                testvb2[j] = new VBox();
+                ImageView imv2 = new ImageView();
+                String currentBoxArt = vid[j][0].boxArt;
+                int width = 200;
+                int height = 300;
+                String formattedString = currentBoxArt
+                        .replace("{width}", String.valueOf(width))
+                        .replace("{height}", String.valueOf(height));
+                System.out.println(formattedString);
+                System.out.println(vid[0][0].gameId);
+                System.out.println(vid[1][0].gameId);
+                Image img2 = new Image(formattedString);
+                imv2.setFitWidth(200);
+                imv2.setFitHeight(300);
+                imv2.setImage(img2);
+
+                int placeholder = j;
+                imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
                     public void handle(MouseEvent event) {
                         System.out.println("working");
-                        PrimaryVideoController.startVid = help[placeholder].id;
-                        PrimaryVideoController.titleStartText = help[placeholder].title;
-                        PrimaryVideoController.channelStartText = help[placeholder].title;
+
+                        try {
+                            twitchMode(event);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
-                testvb[i].getChildren().add(imv);
-                testvb[i].getChildren().add(tlabel);
 
-                ytVids.getChildren().add(testvb[i]);
+                testvb2[j].getChildren().add(imv2);
+
+                twitchVids.getChildren().add(testvb2[j]);
+
             }
-        }
-
-        testvb2 = new VBox[vid.length];
-
-        for (int j = 0; j < 5; j++) {
-            testvb2[j] = new VBox();
-            ImageView imv2 = new ImageView();
-            String currentBoxArt = vid[j][0].boxArt;
-            int width = 200;
-            int height = 300;
-            String formattedString = currentBoxArt
-                    .replace("{width}", String.valueOf(width))
-                    .replace("{height}", String.valueOf(height));
-            System.out.println(formattedString);
-            System.out.println(vid[0][0].gameId);
-            System.out.println(vid[1][0].gameId);
-            Image img2 = new Image(formattedString);
-            imv2.setFitWidth(200);
-            imv2.setFitHeight(300);
-            imv2.setImage(img2);
-
-            int placeholder = j;
-            imv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("working");
-                    VIDload = help[placeholder].id;
-                    titleLoad = help[placeholder].title;
-                    channelLoad = help[placeholder].channel;
-
-                    try {
-                        twitchMode(event);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            });
-
-            testvb2[j].getChildren().add(imv2);
-
-            twitchVids.getChildren().add(testvb2[j]);
-
         }
 
     }

@@ -170,6 +170,35 @@ public class PrimarySettingsController implements Initializable {
         // cancel button is pressed
 
     }
+    
+        @FXML
+    public void  logOut(MouseEvent event) throws IOException{
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout Notification");
+            alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
+            alert.setResizable(false);
+            alert.setContentText("Are you sure? ");
+            dialog = alert.getDialogPane();
+            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+     //       alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (!result.isPresent()) {
+
+            } // alert is exited, no button has been pressed.
+            else if (result.get() == ButtonType.OK) {
+                
+                 App.setWidth(330);
+                    App.setHeight(400);
+                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+                    App.stage.setScene(App.scene);
+            } //oke button is pressed
+            else if (result.get() == ButtonType.CANCEL) {
+                alert.close();
+
+            }
+    }
 
     @FXML
     void DeleteYourAcount(ActionEvent event) throws IOException {
@@ -254,9 +283,13 @@ public class PrimarySettingsController implements Initializable {
                 YoutubeDailyValue = YoutubeDailyWatchTime.getValue();
                 if (hasTwitchDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
-                    if (totalDaily < totalWeekly) {
+<<<<<<< Updated upstream
+                  if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue )  {
+=======
+                    if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue ) {
+>>>>>>> Stashed changes
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
-                        //   YoutubeDailyWatchTime.setDisable(f);
+            
                     } else {
 
                         DailyWatchTime.getValueFactory().setValue(totalWeekly);
@@ -301,7 +334,11 @@ public class PrimarySettingsController implements Initializable {
                 TwitchDailyValue = TwitchDailyWatchTime.getValue();
                 if (hasYoutubeDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
-                    if (totalDaily < totalWeekly) {
+<<<<<<< Updated upstream
+                    
+=======
+>>>>>>> Stashed changes
+                    if (totalDaily < totalWeekly && TwitchDailyValue < TwitchWeeklyValue && TwitchDailyValue < totalWeekly && totalDaily < TwitchWeeklyValue ) {
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
 
                     } else {
@@ -419,50 +456,51 @@ public class PrimarySettingsController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-        CheckTotalWatchTimeLimit();
+      //  CheckTotalWatchTimeLimit();
     }
 
-    void CheckTotalWatchTimeLimit() {
-
-        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
-        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
-        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
-        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
-
-        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
-        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
-
-        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
-
-        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
-
-        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
-
-        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
-            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
-            alert.setResizable(false);
-            alert.setContentText("Are you sure? ");
-            dialog = alert.getDialogPane();
-            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-            alert.showAndWait();
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (!result.isPresent()) {
-
-            } // alert is exited, no button has been pressed.
-            else if (result.get() == ButtonType.OK) {
-                System.exit(0);
-            } //oke button is pressed
-            else if (result.get() == ButtonType.CANCEL) {
-                alert.close();
-
-            }
-        }
-
-    }
+    
+//    void CheckTotalWatchTimeLimit() {
+//
+//        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
+//        double tempYTWeeklyWatchTime = (double) userData.getYTDailyWatchDataMap().get("WeeklyWatchTime");
+//        double tempTwitchDailyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get(dateString);
+//        double tempTwitchWeeklyWatchTime = (double) userData.getTwitchDailyWatchDataMap().get("WeeklyWatchTime");
+//
+//        double dailyWatchtimeLimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setDailyLimit");
+//        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+//
+//        double weeklyWatchtimelimitForAllServices = (double) userData.getWatchTimeSettingsDataMap().get("setWeeklyLimit");
+//
+//        System.out.print("current Daily Watch time Limit is" + dailyWatchtimeLimitForAllServices);
+//
+//        System.out.print("current Weekly Watch time Limit is" + weeklyWatchtimelimitForAllServices);
+//
+//        if ((tempYTDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempYTWeeklyWatchTime >= weeklyWatchtimelimitForAllServices) || (tempTwitchDailyWatchTime >= dailyWatchtimeLimitForAllServices) || (tempTwitchWeeklyWatchTime >= weeklyWatchtimelimitForAllServices)) {
+//
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Sorry Your Watchtime Limit has Been Reached");
+//            alert.setHeaderText("Please press OK to Confirm and take a break or CANCEL to Continue Watching ");
+//            alert.setResizable(false);
+//            alert.setContentText("Are you sure? ");
+//            dialog = alert.getDialogPane();
+//            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+//            alert.showAndWait();
+//
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if (!result.isPresent()) {
+//
+//            } // alert is exited, no button has been pressed.
+//            else if (result.get() == ButtonType.OK) {
+//                System.exit(0);
+//            } //oke button is pressed
+//            else if (result.get() == ButtonType.CANCEL) {
+//                alert.close();
+//
+//            }
+//        }
+//
+//    }
 
     @FXML
     void menuMove(MouseEvent event) {

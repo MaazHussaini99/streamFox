@@ -9,6 +9,7 @@ import static com.mycompany.streamfox.App.xOffset;
 import static com.mycompany.streamfox.App.yOffset;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -16,7 +17,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
@@ -75,6 +81,7 @@ public class PrimarySearchResultsController implements Initializable {
     public static String VIDload;
     public static String titleLoad;
     public static String channelLoad;
+    private DialogPane dialog;
 
     User user = User.getInstance();
     UserData userData = UserData.getInstance();
@@ -281,7 +288,7 @@ public class PrimarySearchResultsController implements Initializable {
     void twitchMode(ActionEvent event) throws IOException {
         App.setRoot("Twitch_Primary");
     }
-    
+
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");
@@ -290,6 +297,40 @@ public class PrimarySearchResultsController implements Initializable {
     @FXML
     void switchToSettings(ActionEvent event) throws IOException {
         App.setRoot("primary_Settings");
+    }
+
+    @FXML
+    public void logOut(MouseEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Notification");
+        alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
+        alert.setResizable(false);
+        alert.setContentText("Are you sure? ");
+        dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+        //       alert.showAndWait();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (!result.isPresent()) {
+
+        } // alert is exited, no button has been pressed.
+        else if (result.get() == ButtonType.OK) {
+
+            App.setWidth(330);
+            App.setHeight(400);
+            App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+            App.stage.setScene(App.scene);
+        } //oke button is pressed
+        else if (result.get() == ButtonType.CANCEL) {
+            alert.close();
+
+        }
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     /**

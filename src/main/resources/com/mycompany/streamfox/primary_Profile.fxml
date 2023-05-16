@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@primarystylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.streamfox.PrimaryProfileController">
    <children>
       <AnchorPane fx:id="topBar" prefHeight="46.0" prefWidth="800.0" style="-fx-background-color: #121212;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -39,6 +39,11 @@
             <ImageView fx:id="closeWindow1" fitHeight="25.0" fitWidth="25.0" layoutX="747.0" layoutY="2.0" onMouseClicked="#fullscreen" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="28.0">
                <image>
                   <Image url="@fullscreen.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimizeWindow1" fitHeight="25.0" fitWidth="32.0" layoutX="684.0" layoutY="6.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logout.png" />
                </image>
             </ImageView>
          </children>
@@ -115,12 +120,13 @@
                               <HBox alignment="CENTER_LEFT" spacing="100.0">
                                  <children>
                                     <Button mnemonicParsing="false" onMouseClicked="#resetPassFunc" text="Reset Password" />
+                                    <Button fx:id="LogoutButton" mnemonicParsing="false" onMouseClicked="#logOut" prefWidth="166.0" text="Log Out" />
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
                         <Circle fx:id="profCircle" fill="#a2bfd9" layoutX="379.0" layoutY="64.0" onMouseClicked="#changePic" radius="50.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="saveBtn" layoutX="429.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveChanges" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="347.0" />
+                        <Button fx:id="saveBtn" layoutX="563.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveChanges" styleClass="ProfileButtons" text="Save Changes" AnchorPane.leftAnchor="563.0" AnchorPane.topAnchor="347.0" />
                         <Button fx:id="cancelBtn" layoutX="550.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancelFunc" styleClass="ProfileButtons" text="Cancel" underline="true" visible="false" AnchorPane.leftAnchor="550.0" AnchorPane.topAnchor="347.0" />
                         <BarChart fx:id="watchTimeGraph" layoutX="72.0" layoutY="404.0" prefHeight="400.0" prefWidth="601.0">
                           <xAxis>
@@ -145,7 +151,7 @@
                         <Label fx:id="setTotalWeeklyWatchTimeMinutes" layoutX="398.0" layoutY="916.0" prefHeight="20.0" prefWidth="25.0" />
                         <Label fx:id="weeklyTimeUnitLabelForMinutes" layoutX="429.0" layoutY="916.0" prefHeight="20.0" prefWidth="113.0" text="Minutes" />
             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         </children>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </children>
                   </AnchorPane>
                </content>
             </ScrollPane>

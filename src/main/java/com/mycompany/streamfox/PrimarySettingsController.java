@@ -33,8 +33,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -170,34 +173,39 @@ public class PrimarySettingsController implements Initializable {
         // cancel button is pressed
 
     }
-    
-        @FXML
-    public void  logOut(MouseEvent event) throws IOException{
-             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout Notification");
-            alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
-            alert.setResizable(false);
-            alert.setContentText("Are you sure? ");
-            dialog = alert.getDialogPane();
-            dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-     //       alert.showAndWait();
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (!result.isPresent()) {
+    @FXML
+    public void logOut(MouseEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout Notification");
+        alert.setHeaderText("Please press OK to logout  or CANCEL to Continue Watching ");
+        alert.setResizable(false);
+        alert.setContentText("Are you sure? ");
+        dialog = alert.getDialogPane();
+        dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
+        //       alert.showAndWait();
 
-            } // alert is exited, no button has been pressed.
-            else if (result.get() == ButtonType.OK) {
-                
-                 App.setWidth(330);
-                    App.setHeight(400);
-                    App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (!result.isPresent()) {
 
-                    App.stage.setScene(App.scene);
-            } //oke button is pressed
-            else if (result.get() == ButtonType.CANCEL) {
-                alert.close();
+        } // alert is exited, no button has been pressed.
+        else if (result.get() == ButtonType.OK) {
 
-            }
+            App.setWidth(330);
+            App.setHeight(400);
+            App.scene = new Scene(loadFXML("authentication"), App.width, App.height);
+
+            App.stage.setScene(App.scene);
+        } //oke button is pressed
+        else if (result.get() == ButtonType.CANCEL) {
+            alert.close();
+
+        }
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     @FXML
@@ -283,13 +291,11 @@ public class PrimarySettingsController implements Initializable {
                 YoutubeDailyValue = YoutubeDailyWatchTime.getValue();
                 if (hasTwitchDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
-<<<<<<< Updated upstream
-                  if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue )  {
-=======
-                    if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue ) {
->>>>>>> Stashed changes
+
+                    if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue) {
+
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
-            
+
                     } else {
 
                         DailyWatchTime.getValueFactory().setValue(totalWeekly);
@@ -334,11 +340,8 @@ public class PrimarySettingsController implements Initializable {
                 TwitchDailyValue = TwitchDailyWatchTime.getValue();
                 if (hasYoutubeDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
-<<<<<<< Updated upstream
-                    
-=======
->>>>>>> Stashed changes
-                    if (totalDaily < totalWeekly && TwitchDailyValue < TwitchWeeklyValue && TwitchDailyValue < totalWeekly && totalDaily < TwitchWeeklyValue ) {
+
+                    if (totalDaily < totalWeekly && TwitchDailyValue < TwitchWeeklyValue && TwitchDailyValue < totalWeekly && totalDaily < TwitchWeeklyValue) {
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
 
                     } else {
@@ -456,10 +459,9 @@ public class PrimarySettingsController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-      //  CheckTotalWatchTimeLimit();
+        //  CheckTotalWatchTimeLimit();
     }
 
-    
 //    void CheckTotalWatchTimeLimit() {
 //
 //        double tempYTDailyWatchTime = (double) userData.getYTDailyWatchDataMap().get(dateString);
@@ -501,7 +503,6 @@ public class PrimarySettingsController implements Initializable {
 //        }
 //
 //    }
-
     @FXML
     void menuMove(MouseEvent event) {
         if (onOff == 0) {
@@ -547,7 +548,7 @@ public class PrimarySettingsController implements Initializable {
     void twitchMode(ActionEvent event) throws IOException {
         App.setRoot("Twitch_Primary");
     }
-    
+
     @FXML
     void switchToProfile(ActionEvent event) throws IOException {
         App.setRoot("primary_Profile");

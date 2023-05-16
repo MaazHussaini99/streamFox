@@ -118,12 +118,12 @@ public class PrimaryHomeController implements Initializable {
         //  Map<String, Object> profileMap = UserData.getInstance().getProfileDataMap();
         //  profileMap.put("tommorrow's Date",  tomorrow );
         // UserData.getInstance().updateProfile(profileMap);
-        System.out.println("The value of YouTube: " + (boolean) userData.getServiceListDataMap().get("youtube"));
-        if ((boolean) userData.getServiceListDataMap().get("youtube") == false) {
-            ytVids.setVisible(false);
-            youtubeButton.setVisible(false);
-            youtubeButtonMenu.setVisible(false);
-        } else {
+//        System.out.println("The value of YouTube: " + (boolean) userData.getServiceListDataMap().get("youtube"));
+//        if ((boolean) userData.getServiceListDataMap().get("youtube") == false) {
+//            ytVids.setVisible(false);
+//            youtubeButton.setVisible(false);
+//            youtubeButtonMenu.setVisible(false);
+//        } else {
             YoutubeApiEngine.initializeYoutube();
             ytVids.setSpacing(20);
             VidObj[] help = new VidObj[50];
@@ -206,7 +206,7 @@ public class PrimaryHomeController implements Initializable {
                 }
             }
 
-        }
+        //}
 
         switch (day) {
             case Calendar.MONDAY:

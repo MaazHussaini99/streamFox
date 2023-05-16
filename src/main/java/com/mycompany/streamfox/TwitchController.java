@@ -291,7 +291,11 @@ public class TwitchController implements Initializable {
 
         userNameMenuBtn.setText(((String) userData.getProfileDataMap().get("fname")) + " " + ((String) userData.getProfileDataMap().get("lname")));
         userProfView.setFill(new ImagePattern(new Image((String) userData.getProfileDataMap().get("profileImage"))));
-        CheckTotalWatchTimeLimit();
+        try {
+            CheckTotalWatchTimeLimit();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         startTimer();
         try {
             options = EngineOptions.newBuilder(HARDWARE_ACCELERATED)
@@ -314,12 +318,12 @@ public class TwitchController implements Initializable {
             runOnce();
             
             frontPane.setVisible(false);
-            FadeTransition ft = new FadeTransition(Duration.seconds(0.5), frontPane);
+            ft = new FadeTransition(Duration.seconds(0.5), frontPane);
             ft.setFromValue(1);
             ft.setToValue(0);
             ft.play();
             
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
+            tt = new TranslateTransition(Duration.seconds(0.1), frontPane);
             tt.setByX(-200);
             tt.play();
             

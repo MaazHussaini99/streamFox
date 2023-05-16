@@ -283,9 +283,13 @@ public class PrimarySettingsController implements Initializable {
                 YoutubeDailyValue = YoutubeDailyWatchTime.getValue();
                 if (hasTwitchDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
+<<<<<<< Updated upstream
                   if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue )  {
+=======
+                    if (totalDaily < totalWeekly && YoutubeDailyValue < YoutubeWeeklyValue && YoutubeDailyValue < totalWeekly && totalDaily < YoutubeWeeklyValue ) {
+>>>>>>> Stashed changes
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
-                        //   YoutubeDailyWatchTime.setDisable(f);
+            
                     } else {
 
                         DailyWatchTime.getValueFactory().setValue(totalWeekly);
@@ -330,7 +334,10 @@ public class PrimarySettingsController implements Initializable {
                 TwitchDailyValue = TwitchDailyWatchTime.getValue();
                 if (hasYoutubeDailyChanged = true) {
                     totalDaily = YoutubeDailyValue + TwitchDailyValue;
+<<<<<<< Updated upstream
                     
+=======
+>>>>>>> Stashed changes
                     if (totalDaily < totalWeekly && TwitchDailyValue < TwitchWeeklyValue && TwitchDailyValue < totalWeekly && totalDaily < TwitchWeeklyValue ) {
                         DailyWatchTime.getValueFactory().setValue(totalDaily);
 

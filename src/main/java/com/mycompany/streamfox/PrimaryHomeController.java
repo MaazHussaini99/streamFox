@@ -409,7 +409,7 @@ public class PrimaryHomeController implements Initializable {
             alert.setContentText("Are you sure? ");
             dialog = alert.getDialogPane();
             dialog.getStylesheets().add(getClass().getResource("cssAuth.css").toString());
-            alert.showAndWait();
+         //   alert.showAndWait();
 
             Optional<ButtonType> result = alert.showAndWait();
             if (!result.isPresent()) {

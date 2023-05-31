@@ -1,5 +1,5 @@
-#StreamFox
-##Stream Like a fox, all in one box – With StreamFox!
+# StreamFox
+## Stream Like a fox, all in one box – With StreamFox!
  - Maaz Hussaini (MaazHussaini99) 
  - Jonathan Nolan (jnolan10)
 

@@ -9,6 +9,7 @@ StreamFox is a revolutionary desktop application that provides users with a comp
 
 ## Initial Design and Screen Demos
 **Demo:** https://youtu.be/LfwH_uiNnqU
+
 [![Video](https://img.youtube.com/vi/LfwH_uiNnqU/0.jpg)](https://www.youtube.com/watch?v=LfwH_uiNnqU)
 
 ### Login Screen

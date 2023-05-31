@@ -11,7 +11,7 @@ StreamFox is a revolutionary desktop application that provides users with a comp
 
 ### Login Screen
 This is our current design for the login screen which has been implemented in our working app.
-  
+  [![Video](https://img.youtube.com/vi/LfwH_uiNnqU/0.jpg)](https://www.youtube.com/watch?v=LfwH_uiNnqU)
 ![video](https://youtu.be/LfwH_uiNnqU)
 
 ### Registration Page

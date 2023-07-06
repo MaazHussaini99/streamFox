@@ -1,5 +1,5 @@
 ![Light Logo](https://github.com/MaazHussaini99/streamFox/assets/65371441/38f9d667-5876-4e69-875c-18932d91ebde) 
-# StreamFox 
+# *StreamFox* 
 ## Stream Like a fox, all in one box – With StreamFox!
  - Maaz Hussaini (MaazHussaini99) 
  - Jonathan Nolan (jnolan10)

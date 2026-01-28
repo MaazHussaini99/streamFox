@@ -4,7 +4,7 @@
  - Maaz Hussaini (MaazHussaini99) 
  - Jonathan Nolan (jnolan10)
  - Adam Solomon (AdamSoloMe)
- - Daniel Nemov (Dnemov2000)
+ - DN (Dnemov2000)
 
 **GitHub Repo:** https://github.com/MaazHussaini99/streamFox
 
